@@ -2,11 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import { getNearestDepartures } from './APIQuery.js'
 import Loading from './Loading.js'
-
-var parseTime = function(seconds, isRealTime){
-	isRealTime = isRealTime || false;
-	return (isRealTime ? ' ' : '~') + (~~(seconds/3600)).toString() + ':' + ((seconds%3600)/60).toString();
-}
+import DepartureInfo from './DepartureInfo.js'
 
 class App extends Component {
 	constructor(props) {
@@ -29,20 +25,17 @@ class App extends Component {
 			return <Loading />;
 		}
 		var departureInfoArray = this.state.data.nearest.edges.filter(function(a){ return a.node.place.stoptimes.length > 0; });
-		departureInfoArray.sort(function(a,b){ return (a.node.place.stoptimes[0].realtimeArrival) - (b.node.place.stoptimes[0].realtimeArrival); });
-		var departureInfo = departureInfoArray[0].node.place
-
+		departureInfoArray.sort(function(a,b){
+			return (a.node.place.stoptimes[0].serviceDay - b.node.place.stoptimes[0].serviceDay) ?
+				(a.node.place.stoptimes[0].serviceDay - b.node.place.stoptimes[0].serviceDay) :
+				(a.node.place.stoptimes[0].realtimeArrival - b.node.place.stoptimes[0].realtimeArrival); });
 		return (
-			<ul>
-				<li class="route type"> {departureInfo.stoptimes[0].trip.route.mode} </li>
-				<li class="stop code"> {departureInfo.stop.name} </li>
-				<li class="stop name"> {departureInfo.stop.code} </li>
-				<li class="stop platform"> {departureInfo.stop.platformCode} </li>
-				<li class="route number"> {departureInfo.stoptimes[0].trip.route.shortName} </li>
-				<li class="route destination"> {departureInfo.stoptimes[0].stopHeadsign} </li>
-				<li class="route number"> {departureInfo.stoptimes[0].trip.route.shortName} </li>
-				<li class="route destination"> {parseTime(departureInfo.stoptimes[0].realtimeArrival, departureInfo.stoptimes[0].realtime)} </li>
-			</ul>
+			<div>
+				{departureInfoArray.map(function(departureInfoArrayItem, i){
+					console.log(JSON.stringify(departureInfoArrayItem, null, 2));
+					return <DepartureInfo info={departureInfoArrayItem.node.place} key={i}/>;
+				})}
+			</div>
 		)
 	}
 }
