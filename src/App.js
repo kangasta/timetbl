@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import { getNearestDepartures } from './APIQuery.js'
+import APIQuery from './APIQuery.js'
 import Loading from './Loading.js'
 import DepartureInfo from './DepartureInfo.js'
 
@@ -14,7 +14,7 @@ class App extends Component {
 
 	componentDidMount() {
 		var self = this;
-		getNearestDepartures()
+		APIQuery.getNearestDepartures()
 		.then((responseJson) => {self.setState({
 			data: responseJson
 		})});
