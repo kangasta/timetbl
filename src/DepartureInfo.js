@@ -25,22 +25,34 @@ class DepartureInfo extends Component {
 
     currentTimeInMinutes() {
         var curTime = new Date();
-        return curTime.getHours()*60+ curTime.getMinutes();
+        return curTime.getHours()*60 + curTime.getMinutes();
+    }
+
+    parseHour(seconds) {
+        var h = (~~(seconds/3600));
+        h = h > 23 ? h - 24 : h;
+        return h;
+    }
+
+    departureTimeToStr(seconds) {
+        var h = this.parseHour(seconds);
+
+        var hStr = h.toString();
+        hStr = hStr.length < 2 ? " " + hStr : hStr;
+        var minStr = (~~((seconds%3600)/60)).toString();
+        minStr = minStr.length < 2 ? "0" + minStr : minStr;
+
+        return hStr + ':' + minStr;
     }
 
     parseTime(seconds, isRealTime) {
         isRealTime = isRealTime || false;
 
-        var departureInMinutes =  (~~(seconds/3600))*60 + (~~((seconds%3600)/60));
-
-        var hStr = (~~(seconds/3600)).toString();
-        hStr = hStr.length < 2 ? " " + hStr : hStr;
-        var minStr = (~~((seconds%3600)/60)).toString();
-        minStr = minStr.length < 2 ? "0" + minStr : minStr;
+        var departureInMinutes =  this.parseHour(seconds)*60 + (~~((seconds%3600)/60));
 
         return (isRealTime ? ' ' : '~') + (((departureInMinutes - this.currentTimeInMinutes()) < 10) ?
             ((departureInMinutes - this.currentTimeInMinutes()).toString() + " min")  :
-            (hStr + ':' + minStr));
+            this.departureTimeToStr(seconds));
     }
 }
 
