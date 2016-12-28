@@ -3,7 +3,7 @@ import './DepartureInfo.css';
 
 class DepartureInfo extends Component {
 	render() {
-        var hideStopInfo = (this.props.stop.name == "Stop name") ? "hide" : "";
+        var hideStopInfo = (this.props.stop.name === "Stop name") ? "hide" : "";
 
 		return (
             <div className="departure">

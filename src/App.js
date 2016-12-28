@@ -24,6 +24,7 @@ class App extends Component {
 		if (!this.state.data.hasOwnProperty('nearest')) {
 			return <Loading />;
 		}
+
 		var departureInfoArray = this.state.data.nearest.edges.filter(function(a){ return a.node.place.stoptimes.length > 0; });
 		departureInfoArray.sort(function(a,b){
 			return (a.node.place.stoptimes[0].serviceDay - b.node.place.stoptimes[0].serviceDay) ?
@@ -32,7 +33,6 @@ class App extends Component {
 		return (
 			<div>
 				{departureInfoArray.map(function(departureInfoArrayItem, i){
-					console.log(JSON.stringify(departureInfoArrayItem, null, 2));
 					return <DepartureInfo stop={departureInfoArrayItem.node.place.stop} stoptime={departureInfoArrayItem.node.place.stoptimes[0]} key={i}/>;
 				})}
 			</div>
