@@ -33,7 +33,7 @@ class App extends Component {
 			<div>
 				{departureInfoArray.map(function(departureInfoArrayItem, i){
 					console.log(JSON.stringify(departureInfoArrayItem, null, 2));
-					return <DepartureInfo info={departureInfoArrayItem.node.place} key={i}/>;
+					return <DepartureInfo stop={departureInfoArrayItem.node.place.stop} stoptime={departureInfoArrayItem.node.place.stoptimes[0]} key={i}/>;
 				})}
 			</div>
 		)
