@@ -3,13 +3,17 @@ import './DepartureInfo.css';
 
 class DepartureInfo extends Component {
 	render() {
+        var hideStopInfo = (this.props.stop.name == "Stop name") ? "hide" : "";
+
 		return (
             <div className="departure">
                 <ul>
                     <li className="route type"> {this.props.stoptime.trip.route.mode} </li>
-                    <li className="stop code"> {this.props.stop.name} </li>
-                    <li className="stop name"> {this.props.stop.code} </li>
-                    <li className="stop platform"> {this.props.stop.platformCode} </li>
+                    <div className={"stop " + hideStopInfo}>
+                        <li className="stop code"> {this.props.stop.name} </li>
+                        <li className="stop name"> {this.props.stop.code} </li>
+                        <li className="stop platform"> {this.props.stop.platformCode} </li>
+                    </div>
                     <li className="route number"> {this.props.stoptime.trip.route.shortName} </li>
                     <li className="route destination"> {this.props.stoptime.stopHeadsign} </li>
                     <li className="route number"> {this.props.stoptime.trip.route.shortName} </li>
