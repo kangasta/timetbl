@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import { getNearestDepartures } from './APIQuery.js'
+import Loading from './Loading.js'
 
 var parseTime = function(seconds, isRealTime){
 	isRealTime = isRealTime || false;
@@ -25,7 +26,7 @@ class App extends Component {
 
 	render() {
 		if (!this.state.data.hasOwnProperty('nearest')) {
-			return <p>Loading timetable data.</p>;
+			return <Loading />;
 		}
 		var departureInfoArray = this.state.data.nearest.edges.filter(function(a){ return a.node.place.stoptimes.length > 0; });
 		departureInfoArray.sort(function(a,b){ return (a.node.place.stoptimes[0].realtimeArrival) - (b.node.place.stoptimes[0].realtimeArrival); });
