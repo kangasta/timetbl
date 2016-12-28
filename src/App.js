@@ -27,7 +27,9 @@ class App extends Component {
 		if (!this.state.data.hasOwnProperty('nearest')) {
 			return <p>No timetable data available.</p>;
 		}
-		var departureInfo = this.state.data.nearest.edges[3].node.place
+		var departureInfoArray = this.state.data.nearest.edges.filter(function(a){ return a.node.place.stoptimes.length > 0; });
+		departureInfoArray.sort(function(a,b){ return (a.node.place.stoptimes[0].realtimeArrival) - (b.node.place.stoptimes[0].realtimeArrival); });
+		var departureInfo = departureInfoArray[0].node.place
 
 		return (
 			<ul>
