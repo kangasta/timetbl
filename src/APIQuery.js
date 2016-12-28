@@ -28,6 +28,7 @@ var query = "{ \
                 } \
               } \
               realtimeArrival \
+              realtimeDeparture \
               realtime \
               stopHeadsign \
             } \
