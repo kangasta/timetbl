@@ -25,7 +25,7 @@ class App extends Component {
 
 	render() {
 		if (!this.state.data.hasOwnProperty('nearest')) {
-			return <p>No timetable data available.</p>;
+			return <p>Loading timetable data.</p>;
 		}
 		var departureInfoArray = this.state.data.nearest.edges.filter(function(a){ return a.node.place.stoptimes.length > 0; });
 		departureInfoArray.sort(function(a,b){ return (a.node.place.stoptimes[0].realtimeArrival) - (b.node.place.stoptimes[0].realtimeArrival); });
