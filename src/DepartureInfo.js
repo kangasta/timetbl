@@ -4,16 +4,18 @@ import './DepartureInfo.css';
 class DepartureInfo extends Component {
 	render() {
 		return (
-			<ul>
-				<li className="route type"> {this.props.info.stoptimes[0].trip.route.mode} </li>
-				<li className="stop code"> {this.props.info.stop.name} </li>
-				<li className="stop name"> {this.props.info.stop.code} </li>
-				<li className="stop platform"> {this.props.info.stop.platformCode} </li>
-				<li className="route number"> {this.props.info.stoptimes[0].trip.route.shortName} </li>
-				<li className="route destination"> {this.props.info.stoptimes[0].stopHeadsign} </li>
-				<li className="route number"> {this.props.info.stoptimes[0].trip.route.shortName} </li>
-				<li className="route destination"> {this.parseTime(this.props.info.stoptimes[0].realtimeArrival, this.props.info.stoptimes[0].realtime)} </li>
-			</ul>
+            <div className="departure" key={this.props.key}>
+                <ul>
+                    <li className="route type"> {this.props.info.stoptimes[0].trip.route.mode} </li>
+                    <li className="stop code"> {this.props.info.stop.name} </li>
+                    <li className="stop name"> {this.props.info.stop.code} </li>
+                    <li className="stop platform"> {this.props.info.stop.platformCode} </li>
+                    <li className="route number"> {this.props.info.stoptimes[0].trip.route.shortName} </li>
+                    <li className="route destination"> {this.props.info.stoptimes[0].stopHeadsign} </li>
+                    <li className="route number"> {this.props.info.stoptimes[0].trip.route.shortName} </li>
+                    <li className="route destination"> {this.parseTime(this.props.info.stoptimes[0].realtimeArrival, this.props.info.stoptimes[0].realtime)} </li>
+                </ul>
+            </div>
 		);
 	}
 
