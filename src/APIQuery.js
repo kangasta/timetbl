@@ -47,7 +47,7 @@ var getNearestDepartures = function() {
 		body: query
 	})
 	.then((response) => response.json()) // console.log("Status: " + response.status); 
-	.then((responseJson) => { console.log(JSON.stringify(responseJson.data)); return responseJson.data; }) //console.log("JSON: " + JSON.stringify(responseJson));
+	.then((responseJson) => { return responseJson.data; }) //console.log("JSON: " + JSON.stringify(responseJson));
 	.catch((error) => { console.error(error); });
 };
 
