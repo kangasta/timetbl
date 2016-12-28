@@ -5,6 +5,18 @@
     overflow: hidden;
 }
 
+.header {
+    background-color: slategrey
+}
+
+.even {
+    background-color: lightgrey
+}
+
+.odd {
+    background-color: ghostwhite
+}
+
 .departure li {
     float: left;
     display: bloc;

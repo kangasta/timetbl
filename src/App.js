@@ -27,7 +27,6 @@ class App extends Component {
 			return <Loading />;
 		}
 		var departureInfoArray = this.state.data.stops.filter(function(a){ return a.gtfsId.includes("HSL"); });
-		console.log(JSON.stringify(departureInfoArray, null, 2));
 		departureInfoArray[0].stoptimesWithoutPatterns.sort(function(a,b){
 			return (a.serviceDay - b.serviceDay) ?
 				(a.serviceDay - b.serviceDay) :
@@ -43,9 +42,10 @@ class App extends Component {
 		);*/
 		return (
 			<div>
+				<DepartureInfo header="stop"/>
 				{departureInfoArray[0].stoptimesWithoutPatterns.map(function(departureInfoArrayItem, i){
-					return <DepartureInfo stoptime={departureInfoArrayItem} key={i}/>;
-					//return <DepartureInfo stop={departureInfoArrayItem.node.place.stop} stoptime={departureInfoArrayItem.node.place.stoptimes[0]} key={i}/>;
+					return <DepartureInfo stoptime={departureInfoArrayItem} key={i} row={i}/>;
+					//return <DepartureInfo stop={departureInfoArrayItem.node.place.stop} stoptime={departureInfoArrayItem.node.place.stoptimes[0]} key={i} row={i}/>;
 				})}
 			</div>
 		)

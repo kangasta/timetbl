@@ -3,10 +3,11 @@ import './DepartureInfo.css';
 
 class DepartureInfo extends Component {
 	render() {
-        var hideStopInfo = (this.props.stop.name === "Stop name") ? "hide" : "";
-
+        var hideStopInfo = (this.props.stop.name === "Stop name" || this.props.header.toLowerCase() === "stop") ? "hide" : "";
+        var rowClass = (this.props.row % 2) ? "odd" : "even";
+        rowClass = this.props.header ? "header" : rowClass;
 		return (
-            <div className="departure">
+            <div className={"departure " + rowClass}>
                 <ul>
                     <li className="route type"> {this.props.stoptime.trip.route.mode} </li>
                     <div className={"stop " + hideStopInfo}>
@@ -16,8 +17,7 @@ class DepartureInfo extends Component {
                     </div>
                     <li className="route number"> {this.props.stoptime.trip.route.shortName} </li>
                     <li className="route destination"> {this.props.stoptime.stopHeadsign} </li>
-                    <li className="route number"> {this.props.stoptime.trip.route.shortName} </li>
-                    <li className="route destination"> {this.parseTime(this.props.stoptime.realtimeArrival, this.props.stoptime.realtime)} </li>
+                    <li className="route deptime"> {this.parseTime(this.props.stoptime.realtimeArrival, this.props.stoptime.realtime)} </li>
                 </ul>
             </div>
 		);
@@ -47,6 +47,9 @@ class DepartureInfo extends Component {
 
     parseTime(seconds, isRealTime) {
         isRealTime = isRealTime || false;
+        if (seconds === 0) {
+            return "Time";
+        }
 
         var departureInMinutes =  this.parseHour(seconds)*60 + (~~((seconds%3600)/60));
 
@@ -60,7 +63,7 @@ DepartureInfo.defaultProps = {
     "stop": {
         "name": "Stop name",
         "code": "Stop code",
-        "platformCode": "Platform code",
+        "platformCode": "Platform",
         "desc": "Stop description",
         "lat": 47.916667,
         "lon": 106.916667
@@ -78,7 +81,8 @@ DepartureInfo.defaultProps = {
         "realtime": true,
         "stopHeadsign": "Destination"
     },
-    "key": 0
+    "header": "",
+    "row": 0
 };
 
 export default DepartureInfo;
