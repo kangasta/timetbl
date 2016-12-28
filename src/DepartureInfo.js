@@ -19,9 +19,24 @@ class DepartureInfo extends Component {
 		);
 	}
 
-    parseTime(seconds, isRealTime){
+    currentTimeInMinutes() {
+        var curTime = new Date();
+        return curTime.getHours()*60+ curTime.getMinutes();
+    }
+
+    parseTime(seconds, isRealTime) {
         isRealTime = isRealTime || false;
-        return (isRealTime ? ' ' : '~') + (~~(seconds/3600)).toString() + ':' + ((seconds%3600)/60).toString();
+
+        var departureInMinutes =  (~~(seconds/3600))*60 + (~~((seconds%3600)/60));
+
+        var hStr = (~~(seconds/3600)).toString();
+        hStr = hStr.length < 2 ? " " + hStr : hStr;
+        var minStr = (~~((seconds%3600)/60)).toString();
+        minStr = minStr.length < 2 ? "0" + minStr : minStr;
+
+        return (isRealTime ? ' ' : '~') + (((departureInMinutes - this.currentTimeInMinutes()) < 10) ?
+            ((departureInMinutes - this.currentTimeInMinutes()).toString() + " min")  :
+            (hStr + ':' + minStr));
     }
 }
 
@@ -50,7 +65,8 @@ DepartureInfo.defaultProps = {
                 "stopHeadsign": "Destination"
             }
         ]
-    }
+    },
+    "key": 0
 };
 
 export default DepartureInfo;
