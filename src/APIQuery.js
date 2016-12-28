@@ -31,6 +31,7 @@ var query = "{ \
               realtimeDeparture \
               realtime \
               stopHeadsign \
+              serviceDay \
             } \
           } \
         } \
