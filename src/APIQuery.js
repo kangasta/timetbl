@@ -1,6 +1,7 @@
 //import fetch from 'react';
 
 var APIurl = "https://api.digitransit.fi/routing/v1/routers/hsl/index/graphql"
+// eslint-disable-next-line
 var query = "{ \
   nearest (lat: 60.1836474999998, lon: 24.828072999999993, maxDistance: 150, filterByPlaceTypes: DEPARTURE_ROW) { \
     edges { \
