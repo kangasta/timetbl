@@ -38,7 +38,7 @@ var query = "{ \
 }" 
 
 var getNearestDepartures = function() {
-	console.log(query)
+	//console.log(query)
 	return fetch(APIurl, {
 		method: 'POST',
 		headers: {
