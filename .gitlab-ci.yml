@@ -1,4 +1,4 @@
-jest.tests:
+jest-tests:
     script:
         export CI=true;
         npm install;
