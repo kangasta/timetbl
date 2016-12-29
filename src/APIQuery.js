@@ -1,24 +1,24 @@
 class APIQuery {
-  static getNearestDepartures() {
+  static getNearestDepartures(lat = 60.1836474999998, lon = 24.828072999999993, maxDistance =  150) {
     return fetch(APIQuery.APIurl, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/graphql'
       },
-      body: APIQuery.queries.nearestDepartures()
+      body: APIQuery.queries.nearestDepartures(lat, lon, maxDistance)
     })
     .then((response) => response.json()) // console.log("Status: " + response.status); 
     .then((responseJson) => { return responseJson.data; }) //console.log(JSON.stringify(responseJson, null, 2));
     .catch((error) => { console.error(error); });
   };
 
-  static getStopDepartures() {
+  static getStopDepartures(stopCode = "E2036", numberOfDepartures = 10) {
     return fetch(APIQuery.APIurl, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/graphql'
       },
-      body: APIQuery.queries.stopDepartures()
+      body: APIQuery.queries.stopDepartures(stopCode, numberOfDepartures)
     })
     .then((response) => response.json()) // console.log("Status: " + response.status); 
     .then((responseJson) => { return responseJson.data; }) //console.log(JSON.stringify(responseJson, null, 2));
