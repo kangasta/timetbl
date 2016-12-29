@@ -19,10 +19,10 @@ class TimeTable extends Component {
 
         switch (self.getType()) {
             case "nearest":
-                queryResponsePromise = APIQuery.getNearestDepartures();
+                queryResponsePromise = APIQuery.getNearestDepartures(this.props.lat, this.props.lon, this.props.maxDistance);
                 break;
             case "stop":
-                queryResponsePromise = APIQuery.getStopDepartures();
+                queryResponsePromise = APIQuery.getStopDepartures(this.props.stopCode, this.props.numberOfDepartures);
                 break;
             default:
                 console.error("Unsupported timetable type.");// TODO Error also to render.
