@@ -16,9 +16,26 @@ class App extends Component {
 		var self = this;
 		//APIQuery.getNearestDepartures()
 		APIQuery.getStopDepartures()
-		.then((responseJson) => {self.setState({
-			data: responseJson
-		})});
+		.then((responseJson) => {
+			console.log("Update state.")
+			self.setState({
+				data: responseJson
+			})
+		});
+		var intervalId = setInterval(function () {
+			APIQuery.getStopDepartures()
+			.then((responseJson) => {
+				console.log("Update state.")
+				self.setState({
+					data: responseJson
+				})
+			});
+		}, 1000*30);
+		this.setState({intervalId: intervalId});
+	}
+
+	componentWillUnmount() {
+		clearInterval(this.state.intervalId);
 	}
 
 	render() {
