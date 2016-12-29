@@ -3,7 +3,7 @@ import './DepartureInfo.css';
 
 class DepartureInfo extends Component {
 	render() {
-        var hideStopInfo = (this.props.stop.name === "Stop name" || this.props.header.toLowerCase() === "stop") ? "hide" : "";
+        var hideStopInfo = ((this.props.stop.name === "Stop name" && this.props.header.toLowerCase() !== "nearest") || this.props.header.toLowerCase() === "stop") ? "hide" : "";
         var rowClass = (this.props.row % 2) ? "odd" : "even";
         rowClass = this.props.header ? "header" : rowClass;
 		return (
@@ -59,29 +59,29 @@ class DepartureInfo extends Component {
 }
 
 DepartureInfo.defaultProps = {
-    "stop": {
-        "name": "Stop name",
-        "code": "Stop code",
-        "platformCode": "Platform",
-        "desc": "Stop description",
-        "lat": 47.916667,
-        "lon": 106.916667
+    stop: {
+        name: "Stop name",
+        code: "Stop code",
+        platformCode: "Platform",
+        desc: "Stop description",
+        lat: 47.916667,
+        lon: 106.916667
     },
-    "stoptime": {
-        "trip": {
-            "route": {
-                "shortName": "Route number",
-                "mode": "Route type",
-                "alerts": []
+    stoptime: {
+        trip: {
+            route: {
+                shortName: "Route number",
+                mode: "Route type",
+                alerts: []
             }
         },
-        "realtimeArrival": 0,
-        "realtimeDeparture": 0,
-        "realtime": true,
-        "stopHeadsign": "Destination"
+        realtimeArrival: 0,
+        realtimeDeparture: 0,
+        realtime: true,
+        stopHeadsign: "Destination"
     },
-    "header": "",
-    "row": 0
+    header: "",
+    row: 0
 };
 
 export default DepartureInfo;

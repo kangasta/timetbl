@@ -45,7 +45,7 @@ describe('DepartureInfo.departureTimeToStr', () => {
         expect(DepartureInfo.departureTimeToStr(DepartureInfo.currentTimeInMinutes()*60))
         .toMatch(/0\smin/);
     });
-    it('should departure time, if departure not in next ten minutes', () => {
+    it('should show departure time, if departure not in next ten minutes', () => {
         expect(DepartureInfo.departureTimeToStr((DepartureInfo.currentTimeInMinutes() + 10)*60))
         .toMatch(/[0-9]{1,2}.[0-9]{2,2}/);
         expect(DepartureInfo.departureTimeToStr((DepartureInfo.currentTimeInMinutes() - 3)*60))
