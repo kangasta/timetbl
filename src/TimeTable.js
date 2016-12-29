@@ -25,7 +25,7 @@ class TimeTable extends Component {
                 queryResponsePromise = APIQuery.getStopDepartures();
                 break;
             default:
-                console.error("Unsupported timetable type.");
+                console.error("Unsupported timetable type.");// TODO Error also to render.
                 return;
         }
 
