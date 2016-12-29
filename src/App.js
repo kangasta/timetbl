@@ -22,7 +22,7 @@ class App extends Component {
 				data: responseJson
 			})
 		});
-		var intervalId = setInterval(function () {
+		var intervalId = setInterval(() => {
 			APIQuery.getStopDepartures()
 			.then((responseJson) => {
 				console.log("Update state.")
@@ -43,15 +43,15 @@ class App extends Component {
 		//if (!this.state.data.hasOwnProperty('nearest')) {
 			return <Loading />;
 		}
-		var departureInfoArray = this.state.data.stops.filter(function(a){ return a.gtfsId.includes("HSL"); });
-		departureInfoArray[0].stoptimesWithoutPatterns.sort(function(a,b){
+		var departureInfoArray = this.state.data.stops.filter((a) => { return a.gtfsId.includes("HSL"); });
+		departureInfoArray[0].stoptimesWithoutPatterns.sort((a,b) => {
 			return (a.serviceDay - b.serviceDay) ?
 				(a.serviceDay - b.serviceDay) :
 				(a.realtimeArrival - b.realtimeArrival);
 			}
 		);
-		/*var departureInfoArray = this.state.data.nearest.edges.filter(function(a){ return a.node.place.stoptimes.length > 0; });
-		departureInfoArray.sort(function(a,b){
+		/*var departureInfoArray = this.state.data.nearest.edges.filter((a) => { return a.node.place.stoptimes.length > 0; });
+		departureInfoArray.sort((a,b) => {
 			return (a.node.place.stoptimes[0].serviceDay - b.node.place.stoptimes[0].serviceDay) ?
 				(a.node.place.stoptimes[0].serviceDay - b.node.place.stoptimes[0].serviceDay) :
 				(a.node.place.stoptimes[0].realtimeArrival - b.node.place.stoptimes[0].realtimeArrival);
@@ -60,7 +60,7 @@ class App extends Component {
 		return (
 			<div>
 				<DepartureInfo header="stop"/>
-				{departureInfoArray[0].stoptimesWithoutPatterns.map(function(departureInfoArrayItem, i){
+				{departureInfoArray[0].stoptimesWithoutPatterns.map((departureInfoArrayItem, i) => {
 					return <DepartureInfo stoptime={departureInfoArrayItem} key={i} row={i}/>;
 					//return <DepartureInfo stop={departureInfoArrayItem.node.place.stop} stoptime={departureInfoArrayItem.node.place.stoptimes[0]} key={i} row={i}/>;
 				})}
