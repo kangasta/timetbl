@@ -14,6 +14,7 @@ describe('APIQuery.queries', () => {
             "realtimeArrival", "realtimeDeparture", "realtime", "stopHeadsign", "serviceDay"];
         for (var field in stopFields) {
             expect(APIQuery.queries.nearestDepartures()).toMatch(field);
+            expect(APIQuery.queries.stopDepartures()).toMatch(field);
         }
     });
 });
