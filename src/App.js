@@ -1,74 +1,12 @@
 import React, { Component } from 'react';
 import './App.css';
-import APIQuery from './APIQuery.js'
-import Loading from './Loading.js'
-import DepartureInfo from './DepartureInfo.js'
+import TimeTable from './TimeTable.js'
 
 class App extends Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			data : {}
-		};
-	}
-
-	componentDidMount() {
-		var self = this;
-		//APIQuery.getNearestDepartures()
-		APIQuery.getStopDepartures()
-		.then((responseJson) => {
-			console.log("Update state.")
-			self.setState({
-				data: responseJson
-			})
-		});
-		var intervalId = setInterval(() => {
-			APIQuery.getStopDepartures()
-			.then((responseJson) => {
-				console.log("Update state.")
-				self.setState({
-					data: responseJson
-				})
-			})
-			.catch((error) => {
-				console.error(error);
-			});
-		}, 1000*30);
-		this.setState({intervalId: intervalId});
-	}
-
-	componentWillUnmount() {
-		clearInterval(this.state.intervalId);
-	}
-
 	render() {
-		if (!this.state.data.hasOwnProperty('stops')) {
-		//if (!this.state.data.hasOwnProperty('nearest')) {
-			return <Loading />;
-		}
-		var departureInfoArray = this.state.data.stops.filter((a) => { return a.gtfsId.includes("HSL"); });
-		departureInfoArray[0].stoptimesWithoutPatterns.sort((a,b) => {
-			return (a.serviceDay - b.serviceDay) ?
-				(a.serviceDay - b.serviceDay) :
-				(a.realtimeArrival - b.realtimeArrival);
-			}
-		);
-		/*var departureInfoArray = this.state.data.nearest.edges.filter((a) => { return a.node.place.stoptimes.length > 0; });
-		departureInfoArray.sort((a,b) => {
-			return (a.node.place.stoptimes[0].serviceDay - b.node.place.stoptimes[0].serviceDay) ?
-				(a.node.place.stoptimes[0].serviceDay - b.node.place.stoptimes[0].serviceDay) :
-				(a.node.place.stoptimes[0].realtimeArrival - b.node.place.stoptimes[0].realtimeArrival);
-			}
-		);*/
-		return (
-			<div>
-				<DepartureInfo header="stop"/>
-				{departureInfoArray[0].stoptimesWithoutPatterns.map((departureInfoArrayItem, i) => {
-					return <DepartureInfo stoptime={departureInfoArrayItem} key={i} row={i}/>;
-					//return <DepartureInfo stop={departureInfoArrayItem.node.place.stop} stoptime={departureInfoArrayItem.node.place.stoptimes[0]} key={i} row={i}/>;
-				})}
-			</div>
-		)
+		//return <TimeTable />;
+		//return <TimeTable stopCode="E2036" />;
+		return <TimeTable lat={60.1836474999998} lon={24.828072999999993} />;
 	}
 }
 
