@@ -1,0 +1,5 @@
+jest.tests:
+    script:
+        export CI=true;
+        npm install;
+        npm test;
