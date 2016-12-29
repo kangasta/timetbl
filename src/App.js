@@ -30,7 +30,7 @@ class App extends Component {
 
 	render() {
 		if (this.state.hasOwnProperty("error")) {
-			return <Error name={this.state.error.name} message={this.state.error.msg.toString()}/>;
+			return <Error name={this.state.error.name} message={this.state.error.msg}/>;
 		}
 		if (!this.state.hasOwnProperty("lat") || !this.state.hasOwnProperty("lat")) {
 			return <Loading />
