@@ -17,24 +17,24 @@ class DepartureInfo extends Component {
                     </div>
                     <li className="route number"> {this.props.stoptime.trip.route.shortName} </li>
                     <li className="route destination"> {this.props.stoptime.stopHeadsign} </li>
-                    <li className="route deptime"> {this.parseTime(this.props.stoptime.realtimeArrival, this.props.stoptime.realtime)} </li>
+                    <li className="route deptime"> {DepartureInfo.departureTimeToStr(this.props.stoptime.realtimeArrival, this.props.stoptime.realtime)} </li>
                 </ul>
             </div>
 		);
 	}
 
-    currentTimeInMinutes() {
+    static currentTimeInMinutes() {
         var curTime = new Date();
         return curTime.getHours()*60 + curTime.getMinutes();
     }
 
-    parseHour(seconds) {
+    static parseHour(seconds) {
         var h = (~~(seconds/3600));
         h = h > 23 ? h - 24 : h;
         return h;
     }
 
-    departureTimeToStr(seconds) {
+    static parseTime(seconds, delim = ':') {
         var h = this.parseHour(seconds);
 
         var hStr = h.toString();
@@ -42,20 +42,19 @@ class DepartureInfo extends Component {
         var minStr = (~~((seconds%3600)/60)).toString();
         minStr = minStr.length < 2 ? "0" + minStr : minStr;
 
-        return hStr + ':' + minStr;
+        return hStr + delim + minStr;
     }
 
-    parseTime(seconds, isRealTime) {
-        isRealTime = isRealTime || false;
+    static departureTimeToStr(seconds, isRealTime = false) {
         if (seconds === 0) {
             return "Time";
         }
 
-        var departureInMinutes =  this.parseHour(seconds)*60 + (~~((seconds%3600)/60));
+        var departureInMinutes =  DepartureInfo.parseHour(seconds)*60 + (~~((seconds%3600)/60)) - DepartureInfo.currentTimeInMinutes();
 
-        return (isRealTime ? ' ' : '~') + (((departureInMinutes - this.currentTimeInMinutes()) < 10) ?
-            ((departureInMinutes - this.currentTimeInMinutes()).toString() + " min")  :
-            this.departureTimeToStr(seconds));
+        return (isRealTime ? ' ' : '~') + (((departureInMinutes < 10) && (departureInMinutes >= 0)) ?
+            (departureInMinutes + " min") :
+            DepartureInfo.parseTime(seconds));
     }
 }
 
