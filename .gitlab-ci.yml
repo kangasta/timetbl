@@ -5,3 +5,9 @@ jest-tests:
         export CI=true;
         npm install;
         npm test;
+
+eslint-tests:
+    script:
+        export CI=true;
+        npm install;
+        eslint ./src/
