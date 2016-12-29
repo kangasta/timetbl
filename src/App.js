@@ -29,6 +29,9 @@ class App extends Component {
 				self.setState({
 					data: responseJson
 				})
+			})
+			.catch((error) => {
+				console.error(error);
 			});
 		}, 1000*30);
 		this.setState({intervalId: intervalId});
