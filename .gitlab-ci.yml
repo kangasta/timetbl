@@ -10,4 +10,4 @@ eslint-tests:
     script:
         export CI=true;
         npm install;
-        eslint ./src/
+        ./node_modules/.bin/eslint ./src/
