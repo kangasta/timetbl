@@ -7,4 +7,4 @@ describe('TimeTable', () => {
 		const div = document.createElement('div');
 		ReactDOM.render(<TimeTable />, div);
 	});
-})
+});
