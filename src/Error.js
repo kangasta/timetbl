@@ -14,8 +14,13 @@ class Error extends Component {
 }
 
 Error.defaultProps = {
-	header: 'Error',
+	header: 'Error name',
 	message: 'Something went wrong. This is the default message. Blame the lazy developer for not giving you any more info.'
+};
+
+Error.propTypes = {
+	name: React.PropTypes.string,
+	message: React.PropTypes.string
 };
 
 export default Error;
