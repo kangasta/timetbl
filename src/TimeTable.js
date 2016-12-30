@@ -123,5 +123,13 @@ TimeTable.defaultProps = {
 	numberOfDepartures: 15
 };
 
+TimeTable.propTypes = {
+	lat: React.PropTypes.number,
+	lon: React.PropTypes.number,
+	stopCode: React.PropTypes.string,
+	maxDistance: React.PropTypes.number,
+	numberOfDepartures: React.PropTypes.number
+};
+
 export default TimeTable;
 
