@@ -34,6 +34,7 @@
 		"semi": [
 			"error",
 			"always"
-		]
+		],
+		"jsx-uses-vars": 1
 	}
 }
