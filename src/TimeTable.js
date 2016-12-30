@@ -13,11 +13,13 @@ class TimeTable extends Component {
 		};
 	}
 
+	static unsupportedTypeErrorString = 'Component was probably initialised with out giving it any props. At least lat and lon or stopCode should be passed.';
+
 	sendQuery() {
 		var self = this;
 		var queryResponsePromise;
 
-		switch (self.getType()) {
+		switch (this.getType()) {
 		case 'nearest':
 			queryResponsePromise = APIQuery.getNearestDepartures(this.props.lat, this.props.lon, this.props.maxDistance);
 			break;
@@ -25,18 +27,23 @@ class TimeTable extends Component {
 			queryResponsePromise = APIQuery.getStopDepartures(this.props.stopCode, this.props.numberOfDepartures);
 			break;
 		default:
-			console.error('Unsupported timetable type.');// TODO Error also to render.
+			this.setState({error: {
+				name: 'Unsupported timetable type.',
+				message: TimeTable.unsupportedTypeErrorString
+			}});
 			return;
 		}
 
 		queryResponsePromise.then((responseJson) => {
-			console.log('Update state.');
 			self.setState({
 				data: responseJson
 			});
 		})
 		.catch((error) => {
-			console.error(error);
+			this.setState({error: {
+				name: 'Error in APIQuery.',
+				message: error.toString()
+			}});
 		});
 	}
 
@@ -76,7 +83,10 @@ class TimeTable extends Component {
 			});
 			return departureInfoArray[0].stoptimesWithoutPatterns;
 		default:
-			console.error('Unsupported timetable type.');
+			this.setState({error: {
+				name: 'Unsupported timetable type.',
+				message: TimeTable.unsupportedTypeErrorString
+			}});
 		}
 		return departureInfoArray;
 	}
@@ -94,6 +104,9 @@ class TimeTable extends Component {
 	render() {
 		if (this.getType() === 'none') {
 			return <Error name='Unsupported timetable type' message='Component was probably initialised with out giving it any props. At least lat and lon or stopCode should be passed.'/>;
+		}
+		if (this.state.hasOwnProperty('error')) {
+			return <Error name={this.state.error.name} message={this.state.error.msg}/>;
 		}
 		if (!this.hasValidState()) {
 			return <Loading />;

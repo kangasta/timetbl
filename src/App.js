@@ -15,7 +15,7 @@ class App extends Component {
 		var self = this;
 		try {
 			UserLocation.getUserLocation((loc) => {
-				console.log('Got coordinates: ' + loc.coords.latitude + ',' + loc.coords.longitude);
+				//console.log('Got coordinates: ' + loc.coords.latitude + ',' + loc.coords.longitude);
 				self.setState({
 					lat:loc.coords.latitude, lon:loc.coords.longitude
 				});
