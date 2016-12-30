@@ -1,4 +1,4 @@
-import DepartureInfo from './DepartureInfo.js'
+import DepartureInfo from './DepartureInfo.js';
 
 describe('DepartureInfo.currentTimeInMinutes', () => {
 	it('should not be larger that 24*60', () => {
@@ -14,20 +14,20 @@ describe('DepartureInfo.parseHour', () => {
 	it('shoud be integer', () => {
 		expect(DepartureInfo.parseHour(26*3600+1830)).toBe(2);
 		expect(DepartureInfo.parseHour(3*3600+1234)).toBe(3);
-	})
+	});
 });
 
 describe('DepartureInfo.parseTime', () => {
 	it('should add leading zero to minutes', () => {
-		expect(DepartureInfo.parseTime(10*3600+6*60)).toBe("10:06");
-		expect(DepartureInfo.parseTime(10*3600+16*60)).toBe("10:16");
+		expect(DepartureInfo.parseTime(10*3600+6*60)).toBe('10:06');
+		expect(DepartureInfo.parseTime(10*3600+16*60)).toBe('10:16');
 	});
 	it('should add leading space to hours', () => {
-		expect(DepartureInfo.parseTime( 9*3600+ 0*60)).toBe(" 9:00");
-		expect(DepartureInfo.parseTime(26*3600+16*60)).toBe(" 2:16");
+		expect(DepartureInfo.parseTime( 9*3600+ 0*60)).toBe(' 9:00');
+		expect(DepartureInfo.parseTime(26*3600+16*60)).toBe(' 2:16');
 	});
 	it('should allow custom deliminator', () => {
-		expect(DepartureInfo.parseTime(22*3600+45*60, '&')).toBe("22&45");
+		expect(DepartureInfo.parseTime(22*3600+45*60, '&')).toBe('22&45');
 	});
 });
 
