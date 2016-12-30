@@ -84,4 +84,30 @@ DepartureInfo.defaultProps = {
 	row: 0
 };
 
+DepartureInfo.propTypes = {
+	stop: {
+		name: React.PropTypes.string,
+		code: React.PropTypes.string,
+		platformCode: React.PropTypes.string,
+		desc: React.PropTypes.string,
+		lat: React.PropTypes.number,
+		lon: React.PropTypes.number
+	},
+	stoptime: {
+		trip: {
+			route: {
+				shortName: React.PropTypes.string,
+				mode: React.PropTypes.string,
+				alerts: React.PropTypes.array
+			}
+		},
+		realtimeArrival: React.PropTypes.number,
+		realtimeDeparture: React.PropTypes.number,
+		realtime: React.PropTypes.bool,
+		stopHeadsign: React.PropTypes.string
+	},
+	header: React.PropTypes.string,
+	row: React.PropTypes.number
+};
+
 export default DepartureInfo;
