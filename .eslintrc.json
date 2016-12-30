@@ -6,7 +6,7 @@
 		"es6": true,
 		"jest": true
 	},
-	"extends": "eslint:recommended",
+	"extends": ["eslint:recommended", "plugin:react/recommended"],
 	"installedESLint": true,
 	"parserOptions": {
 		"ecmaFeatures": {
@@ -34,7 +34,6 @@
 		"semi": [
 			"error",
 			"always"
-		],
-		"jsx-uses-vars": 1
+		]
 	}
 }
