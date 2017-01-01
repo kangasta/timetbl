@@ -11,7 +11,8 @@ describe('Loading', () => {
 	it('prints given name and message', () => {
 		const component = shallow(<Loading name='NAME' message='MESSAGE'/>);
 
-		expect(component.containsMatchingElement(<h2>NAME</h2>)).toEqual(true);
-		expect(component.containsMatchingElement(<p>MESSAGE</p>)).toEqual(true);
+		expect(component.containsMatchingElement(<h1>Loading</h1>)).toBeTruthy();
+		expect(component.containsMatchingElement(<h2>NAME</h2>)).toBeTruthy();
+		expect(component.containsMatchingElement(<p>MESSAGE</p>)).toBeTruthy();
 	});
 });
