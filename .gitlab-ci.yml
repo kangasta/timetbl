@@ -6,9 +6,9 @@ build:
         export CI=true;
         npm install;
     artifacts:
-    paths:
-        - node_modules/
-    expire_in: 3 days
+        paths:
+            - node_modules/
+        expire_in: 3 days
 
 jest-tests:
     stage: test
