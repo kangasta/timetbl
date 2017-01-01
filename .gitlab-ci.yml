@@ -20,5 +20,5 @@ eslint-tests:
     stage: test
     script:
         export CI=true;
-        export DEBUG=eslint:cli-engine
-        ./node_modules/.bin/eslint ./src/
+        export DEBUG=eslint:cli-engine;
+        ./node_modules/.bin/eslint ./src/;
