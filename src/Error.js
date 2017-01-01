@@ -14,7 +14,7 @@ class Error extends Component {
 }
 
 Error.defaultProps = {
-	header: 'Error name',
+	name: 'Error name',
 	message: 'Something went wrong. This is the default message. Blame the lazy developer for not giving you any more info.'
 };
 
