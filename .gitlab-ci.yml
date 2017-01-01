@@ -1,13 +1,23 @@
 image: node
 
-jest-tests:
+build:
+    stage: build
     script:
         export CI=true;
         npm install;
+    artifacts:
+    paths:
+        - node_modules/
+    expire_in: 3 days
+
+jest-tests:
+    stage: test
+    script:
+        export CI=true;
         npm test;
 
 eslint-tests:
+    stage: test
     script:
         export CI=true;
-        npm install;
         ./node_modules/.bin/eslint ./src/
