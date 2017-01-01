@@ -10,7 +10,7 @@ class DepartureInfo extends Component {
 			<div className={'departure ' + rowClass}>
 				<ul>
 					<li className='route type'> {this.props.stoptime.trip.route.mode} </li>
-						<div className={'stop ' + hideStopInfo}>
+					<div className={'stop ' + hideStopInfo}>
 						<li className='stop code'> {this.props.stop.name} </li>
 						<li className='stop name'> {this.props.stop.code} </li>
 						<li className='stop platform'> {this.props.stop.platformCode} </li>
@@ -85,27 +85,27 @@ DepartureInfo.defaultProps = {
 };
 
 DepartureInfo.propTypes = {
-	stop: {
+	stop: React.PropTypes.shape({
 		name: React.PropTypes.string,
 		code: React.PropTypes.string,
 		platformCode: React.PropTypes.string,
 		desc: React.PropTypes.string,
 		lat: React.PropTypes.number,
 		lon: React.PropTypes.number
-	},
-	stoptime: {
-		trip: {
-			route: {
+	}),
+	stoptime: React.PropTypes.shape({
+		trip: React.PropTypes.shape({
+			route: React.PropTypes.shape({
 				shortName: React.PropTypes.string,
 				mode: React.PropTypes.string,
 				alerts: React.PropTypes.array
-			}
-		},
+			})
+		}),
 		realtimeArrival: React.PropTypes.number,
 		realtimeDeparture: React.PropTypes.number,
 		realtime: React.PropTypes.bool,
 		stopHeadsign: React.PropTypes.string
-	},
+	}),
 	header: React.PropTypes.string,
 	row: React.PropTypes.number
 };
