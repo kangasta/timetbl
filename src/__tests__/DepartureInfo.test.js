@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { shallow } from 'enzyme';
-import DepartureInfo from './DepartureInfo.js';
+import DepartureInfo from './../DepartureInfo.js';
 
 describe('DepartureInfo', () => {
 	it('renders without crashing', () => {

@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import TimeTable from './TimeTable.js';
+import App from './../App';
 
-describe('TimeTable', () => {
+describe('App', () => {
 	it('renders without crashing', () => {
 		const div = document.createElement('div');
-		ReactDOM.render(<TimeTable />, div);
+		ReactDOM.render(<App />, div);
 	});
 });

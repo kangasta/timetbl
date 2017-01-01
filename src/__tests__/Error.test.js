@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { shallow } from 'enzyme';
-import Error from './Error';
+import Error from './../Error';
 
 describe('Error', () => {
 	it('renders without crashing', () => {

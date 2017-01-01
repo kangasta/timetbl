@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { shallow } from 'enzyme';
-import Loading from './Loading';
+import Loading from './../Loading';
 
 describe('Loading', () => {
 	it('renders without crashing', () => {

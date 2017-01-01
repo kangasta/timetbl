@@ -1,4 +1,4 @@
-import APIQuery from './APIQuery.js';
+import APIQuery from './../APIQuery.js';
 
 describe('APIQuery.queries', () => {
 	it('should query at least name, code, platform, and location of stop', () => {
