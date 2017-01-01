@@ -109,7 +109,7 @@ class TimeTable extends Component {
 			return <Error name={this.state.error.name} message={this.state.error.msg}/>;
 		}
 		if (!this.hasValidState()) {
-			return <Loading />;
+			return <Loading name='Timetable data' message='Reguest sent to HSL API and waiting for response'/>;
 		}
 		var departureInfoArray = this.getDepartureInfoArray();
 

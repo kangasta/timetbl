@@ -33,7 +33,7 @@ class App extends Component {
 			return <Error name={this.state.error.name} message={this.state.error.msg}/>;
 		}
 		if (!this.state.hasOwnProperty('lat') || !this.state.hasOwnProperty('lat')) {
-			return <Loading />;
+			return <Loading name='User location' message={'Waiting for user location data from browser. You might need to grant rights for this app to access your location data if you haven\'t already.'}/>;
 		}
 		return <TimeTable lat={this.state.lat} lon={this.state.lon} maxDistance={1000} />;
 	}
