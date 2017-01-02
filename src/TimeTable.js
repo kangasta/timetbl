@@ -114,7 +114,7 @@ class TimeTable extends Component {
 		var departureInfoArray = this.getDepartureInfoArray();
 
 		return (
-			<div>
+			<div className='timetable'>
 				<DepartureInfo header={this.getType()}/>
 				{
 					departureInfoArray.map((departureInfoArrayItem, i) => {
