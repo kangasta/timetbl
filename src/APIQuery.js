@@ -35,7 +35,7 @@ class APIQuery {
 			return '{ nearest (lat: ' + lat + ', lon: ' + lon + ', maxDistance: ' + maxDistance + ', filterByPlaceTypes: DEPARTURE_ROW) { edges { node { place { ... on DepartureRow { stop { ' + APIQuery.queryFields.stop + ' } stoptimes { ' + APIQuery.queryFields.stoptimes + ' }}}}}}}';
 		},
 		stopDepartures: (stopCode = 'E2036', numberOfDepartures = 10) => {
-			return '{ stops(name: \'' + stopCode + '\') { name gtfsId stoptimesWithoutPatterns(numberOfDepartures: ' + numberOfDepartures + ') { ' + APIQuery.queryFields.stoptimes + '}}}';
+			return '{ stops(name: "' + stopCode + '") { name gtfsId stoptimesWithoutPatterns(numberOfDepartures: ' + numberOfDepartures + ') { ' + APIQuery.queryFields.stoptimes + '}}}';
 		}
 	};
 }
