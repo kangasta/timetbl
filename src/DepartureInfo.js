@@ -3,24 +3,23 @@ import './DepartureInfo.css';
 
 class DepartureInfo extends Component {
 	render() {
-		var hideStopInfo = ((this.props.stop.name === 'Stop name' && this.props.header.toLowerCase() !== 'nearest') || this.props.header.toLowerCase() === 'stop') ? 'hide' : '';
+		var departureType = ((this.props.stop.name === 'Stop name' && this.props.header.toLowerCase() !== 'nearest') || this.props.header.toLowerCase() === 'stop') ? 'stop-type' : 'nearest-type';
+		var hideStopInfo = departureType === 'stop' ? 'hide' : '';
 		var rowClass = (this.props.row % 2) ? 'odd' : 'even';
 		rowClass = this.props.header ? 'header' : rowClass;
 		return (
-			<div className={'departure ' + rowClass}>
+			<div className={'departure ' + rowClass + ' ' + departureType}>
 				<ul>
 					<li className='route type'> {this.props.stoptime.trip.route.mode} </li>
-					<div className={'stop ' + hideStopInfo}>
-						<li className='stop code'> {this.props.stop.name} </li>
-						<li className='stop name'> {this.props.stop.code} </li>
-						<li className='stop platform'> {this.props.stop.platformCode} </li>
-					</div>
-					<li className='route number'> {this.props.stoptime.trip.route.shortName} </li>
-					<li className='route destination'> {this.props.stoptime.stopHeadsign} </li>
+					<li className={'stop code ' + hideStopInfo}> {this.props.stop.code} </li>
+					<li className={'stop name ' + hideStopInfo}> {this.props.stop.name} </li>
+					<li className={'stop platform ' + hideStopInfo}> {this.props.stop.platformCode ? this.props.stop.platformCode : '1'} </li>
+					<li className={'route number ' + departureType}> {this.props.stoptime.trip.route.shortName} </li>
+					<li className={'route destination ' + departureType}> {this.props.stoptime.stopHeadsign} </li>
 					<li className='route deptime'> {DepartureInfo.departureTimeToStr(this.props.stoptime.realtimeArrival, this.props.stoptime.realtime)}</li>
 				</ul>
 			</div>
-		);
+		); // TODO bug with empty platform field should be fixed in css.
 	}
 
 	static currentTimeInMinutes() {
