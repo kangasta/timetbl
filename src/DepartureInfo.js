@@ -4,7 +4,7 @@ import './DepartureInfo.css';
 class DepartureInfo extends Component {
 	render() {
 		var departureType = ((this.props.stop.name === 'Stop name' && this.props.header.toLowerCase() !== 'nearest') || this.props.header.toLowerCase() === 'stop') ? 'stop-type' : 'nearest-type';
-		var hideStopInfo = departureType === 'stop' ? 'hide' : '';
+		var hideStopInfo = departureType === 'stop-type' ? 'hide' : '';
 		var rowClass = (this.props.row % 2) ? 'odd' : 'even';
 		rowClass = this.props.header ? 'header' : rowClass;
 		return (
