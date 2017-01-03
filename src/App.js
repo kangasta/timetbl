@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
-import Error from './Error.js';
-import Loading from './Loading.js';
+import ErrorMsg from './ErrorMsg.js';
+import LoadingMsg from './LoadingMsg.js';
 import TimeTable from './TimeTable.js';
 import UserLocation from './UserLocation.js';
 
@@ -30,13 +30,25 @@ class App extends Component {
 
 	render() {
 		if (this.state.hasOwnProperty('error')) {
-			return <Error name={this.state.error.name} message={this.state.error.msg}/>;
+			return (
+				<div className='app'>
+					<ErrorMsg name={this.state.error.name} message={this.state.error.msg}/>
+				</div>
+			);
 		}
-		if (!this.state.hasOwnProperty('lat') || !this.state.hasOwnProperty('lat')) {
-			return <Loading name='User location' message={'Waiting for user location data from browser. You might need to grant rights for this app to access your location data if you haven\'t already.'}/>;
+		if (1 || !this.state.hasOwnProperty('lat') || !this.state.hasOwnProperty('lat')) {
+			return (
+				<div className='app'>
+					<LoadingMsg name='User location' message={UserLocation.waitingForUserLocation}/>
+				</div>
+			);
 		}
 		//return <TimeTable lat={this.state.lat} lon={this.state.lon} maxDistance={1000} />;
-		return <TimeTable stopCode='E2036' />;
+		return (
+			<div className='app'>
+				<TimeTable stopCode='E2036' />
+			</div>
+		);
 	}
 }
 

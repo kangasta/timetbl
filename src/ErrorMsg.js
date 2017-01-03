@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import './Error.css';
+import './ErrorMsg.css';
 
-class Error extends Component {
+class ErrorMsg extends Component {
 	render() {
 		return (
-			<div className='error'>
+			<div className='errormsg'>
 				<h1>Error:</h1>
 				<h2>{this.props.name}</h2>
 				<p>{this.props.message}</p>
@@ -13,14 +13,14 @@ class Error extends Component {
 	}
 }
 
-Error.defaultProps = {
+ErrorMsg.defaultProps = {
 	name: 'Error name',
 	message: 'Something went wrong. This is the default message. Blame the lazy developer for not giving you any more info.'
 };
 
-Error.propTypes = {
+ErrorMsg.propTypes = {
 	name: React.PropTypes.string,
 	message: React.PropTypes.string
 };
 
-export default Error;
+export default ErrorMsg;

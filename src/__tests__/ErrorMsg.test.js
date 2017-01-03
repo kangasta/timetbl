@@ -1,15 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { shallow } from 'enzyme';
-import Error from './../Error';
+import ErrorMsg from './../ErrorMsg';
 
-describe('Error', () => {
+describe('ErrorMsg', () => {
 	it('renders without crashing', () => {
 		const div = document.createElement('div');
-		ReactDOM.render(<Error />, div);
+		ReactDOM.render(<ErrorMsg />, div);
 	});
 	it('prints given name and message', () => {
-		const component = shallow(<Error name='NAME' message='MESSAGE'/>);
+		const component = shallow(<ErrorMsg name='NAME' message='MESSAGE'/>);
 
 		expect(component.containsMatchingElement(<h1>Error:</h1>)).toBeTruthy();
 		expect(component.containsMatchingElement(<h2>NAME</h2>)).toBeTruthy();

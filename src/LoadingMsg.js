@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import './Loading.css';
+import './LoadingMsg.css';
 
-class Loading extends Component {
+class LoadingMsg extends Component {
 	render() {
 		return (
 			<div className='loading'>
@@ -13,14 +13,14 @@ class Loading extends Component {
 	}
 }
 
-Loading.defaultProps = {
+LoadingMsg.defaultProps = {
 	name: 'Loading name',
-	message: 'Loading something. This is the default message. Blame the lazy developer for not giving you any more info and copy-pasting this text from Error screen.'
+	message: 'Loading something. This is the default message. Blame the lazy developer for not giving you any more info and copy-pasting this text from ErrorMsg screen.'
 };
 
-Loading.propTypes = {
+LoadingMsg.propTypes = {
 	name: React.PropTypes.string,
 	message: React.PropTypes.string
 };
 
-export default Loading;
+export default LoadingMsg;

@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import './TimeTable.css';
 import APIQuery from './APIQuery.js';
 import DepartureInfo from './DepartureInfo.js';
-import Error from './Error.js';
-import Loading from './Loading.js';
+import ErrorMsg from './ErrorMsg.js';
+import LoadingMsg from './LoadingMsg.js';
 
 class TimeTable extends Component {
 	constructor(props) {
@@ -103,13 +103,13 @@ class TimeTable extends Component {
 
 	render() {
 		if (this.getType() === 'none') {
-			return <Error name='Unsupported timetable type' message='Component was probably initialised with out giving it any props. At least lat and lon or stopCode should be passed.'/>;
+			return <ErrorMsg name='Unsupported timetable type' message='Component was probably initialised with out giving it any props. At least lat and lon or stopCode should be passed.'/>;
 		}
 		if (this.state.hasOwnProperty('error')) {
-			return <Error name={this.state.error.name} message={this.state.error.msg}/>;
+			return <ErrorMsg name={this.state.error.name} message={this.state.error.msg}/>;
 		}
 		if (!this.hasValidState()) {
-			return <Loading name='Timetable data' message='Reguest sent to HSL API and waiting for response'/>;
+			return <LoadingMsg name='Timetable data' message='Reguest sent to HSL API and waiting for response'/>;
 		}
 		var departureInfoArray = this.getDepartureInfoArray();
 
