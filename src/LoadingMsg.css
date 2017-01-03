@@ -1,0 +1,11 @@
+.loadingmsg {
+	height: 100%;
+	position: absolute;
+	top: 40%;
+	/*color: darkblue;*/
+}
+
+h1, h2 {
+	clear: both;
+	display: block;
+}
