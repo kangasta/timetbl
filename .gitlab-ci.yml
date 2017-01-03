@@ -8,13 +8,17 @@ build:
     artifacts:
         paths:
             - node_modules/
-        expire_in: 6 hours
+        expire_in: 2 hours
 
 jest-tests:
     stage: test
     script:
         export CI=true;
         npm test -- --coverage;
+    artifacts:
+        paths:
+            - coverage/
+        expire_in: 2 days
 
 eslint-tests:
     stage: test
