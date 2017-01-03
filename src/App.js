@@ -36,7 +36,8 @@ class App extends Component {
 				</div>
 			);
 		}
-		if (1 || !this.state.hasOwnProperty('lat') || !this.state.hasOwnProperty('lat')) {
+		// TODO remove 1 ||
+		if ((!this.state.hasOwnProperty('lat') || !this.state.hasOwnProperty('lon')) && !this.state.hasOwnProperty('stopCode')) {
 			return (
 				<div className='app'>
 					<LoadingMsg name='User location' message={UserLocation.waitingForUserLocation}/>
