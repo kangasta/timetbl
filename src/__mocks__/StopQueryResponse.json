@@ -1,0 +1,228 @@
+{
+  "data": {
+    "stops": [
+      {
+        "name": "Karhusaarensolmu",
+        "gtfsId": "HSL:2213234",
+        "stoptimesWithoutPatterns": [
+          {
+            "trip": {
+              "route": {
+                "shortName": "154",
+                "mode": "BUS",
+                "alerts": []
+              }
+            },
+            "realtimeArrival": 83220,
+            "realtimeDeparture": 83220,
+            "realtime": false,
+            "stopHeadsign": "Tuomarila",
+            "serviceDay": 1483394400
+          },
+          {
+            "trip": {
+              "route": {
+                "shortName": "150K",
+                "mode": "BUS",
+                "alerts": []
+              }
+            },
+            "realtimeArrival": 83280,
+            "realtimeDeparture": 83280,
+            "realtime": false,
+            "stopHeadsign": "Saunaniemi",
+            "serviceDay": 1483394400
+          },
+          {
+            "trip": {
+              "route": {
+                "shortName": "143",
+                "mode": "BUS",
+                "alerts": []
+              }
+            },
+            "realtimeArrival": 83340,
+            "realtimeDeparture": 83340,
+            "realtime": false,
+            "stopHeadsign": "Soukka",
+            "serviceDay": 1483394400
+          },
+          {
+            "trip": {
+              "route": {
+                "shortName": "160K",
+                "mode": "BUS",
+                "alerts": []
+              }
+            },
+            "realtimeArrival": 84300,
+            "realtimeDeparture": 84300,
+            "realtime": false,
+            "stopHeadsign": "Latokaski",
+            "serviceDay": 1483394400
+          },
+          {
+            "trip": {
+              "route": {
+                "shortName": "147",
+                "mode": "BUS",
+                "alerts": []
+              }
+            },
+            "realtimeArrival": 84360,
+            "realtimeDeparture": 84360,
+            "realtime": false,
+            "stopHeadsign": "Kivenlahti",
+            "serviceDay": 1483394400
+          },
+          {
+            "trip": {
+              "route": {
+                "shortName": "165N",
+                "mode": "BUS",
+                "alerts": []
+              }
+            },
+            "realtimeArrival": 84960,
+            "realtimeDeparture": 84960,
+            "realtime": false,
+            "stopHeadsign": "Kauklahti",
+            "serviceDay": 1483394400
+          },
+          {
+            "trip": {
+              "route": {
+                "shortName": "173",
+                "mode": "BUS",
+                "alerts": []
+              }
+            },
+            "realtimeArrival": 85080,
+            "realtimeDeparture": 85080,
+            "realtime": false,
+            "stopHeadsign": "Upinniemi",
+            "serviceDay": 1483394400
+          },
+          {
+            "trip": {
+              "route": {
+                "shortName": "150K",
+                "mode": "BUS",
+                "alerts": []
+              }
+            },
+            "realtimeArrival": 85080,
+            "realtimeDeparture": 85080,
+            "realtime": false,
+            "stopHeadsign": "Saunaniemi",
+            "serviceDay": 1483394400
+          },
+          {
+            "trip": {
+              "route": {
+                "shortName": "158",
+                "mode": "BUS",
+                "alerts": []
+              }
+            },
+            "realtimeArrival": 85080,
+            "realtimeDeparture": 85080,
+            "realtime": false,
+            "stopHeadsign": "Tillinmäki",
+            "serviceDay": 1483394400
+          },
+          {
+            "trip": {
+              "route": {
+                "shortName": "145",
+                "mode": "BUS",
+                "alerts": []
+              }
+            },
+            "realtimeArrival": 85140,
+            "realtimeDeparture": 85140,
+            "realtime": false,
+            "stopHeadsign": "Suvisaaristo",
+            "serviceDay": 1483394400
+          }
+        ]
+      },
+      {
+        "name": "Karhusaarensolmu",
+        "gtfsId": "MATKA:182559",
+        "stoptimesWithoutPatterns": [
+          {
+            "trip": {
+              "route": {
+                "shortName": null,
+                "mode": "BUS",
+                "alerts": []
+              }
+            },
+            "realtimeArrival": 40140,
+            "realtimeDeparture": 40140,
+            "realtime": false,
+            "stopHeadsign": "Hangon asematori",
+            "serviceDay": 1483480800
+          },
+          {
+            "trip": {
+              "route": {
+                "shortName": null,
+                "mode": "BUS",
+                "alerts": []
+              }
+            },
+            "realtimeArrival": 49080,
+            "realtimeDeparture": 49080,
+            "realtime": false,
+            "stopHeadsign": "Tammisaari linja-autoasema",
+            "serviceDay": 1483480800
+          },
+          {
+            "trip": {
+              "route": {
+                "shortName": null,
+                "mode": "BUS",
+                "alerts": []
+              }
+            },
+            "realtimeArrival": 57540,
+            "realtimeDeparture": 57540,
+            "realtime": false,
+            "stopHeadsign": "Inkoo As",
+            "serviceDay": 1483480800
+          },
+          {
+            "trip": {
+              "route": {
+                "shortName": null,
+                "mode": "BUS",
+                "alerts": []
+              }
+            },
+            "realtimeArrival": 59160,
+            "realtimeDeparture": 59160,
+            "realtime": false,
+            "stopHeadsign": "Inkoo",
+            "serviceDay": 1483480800
+          },
+          {
+            "trip": {
+              "route": {
+                "shortName": null,
+                "mode": "BUS",
+                "alerts": []
+              }
+            },
+            "realtimeArrival": 68640,
+            "realtimeDeparture": 68640,
+            "realtime": false,
+            "stopHeadsign": "Karjaa linja-autoasema",
+            "serviceDay": 1483480800
+          }
+        ]
+      }
+    ]
+  }
+}
