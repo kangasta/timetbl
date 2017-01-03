@@ -7,6 +7,7 @@
     "enzyme": "^2.7.0",
     "eslint": "^3.12.2",
     "eslint-plugin-react": "^6.8.0",
+    "jest-fetch-mock": "^1.0.6",
     "react-addons-test-utils": "^15.4.1",
     "react-scripts": "0.8.4"
   },
