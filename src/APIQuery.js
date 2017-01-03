@@ -7,9 +7,8 @@ class APIQuery {
 			},
 			body: APIQuery.queries.nearestDepartures(lat, lon, maxDistance)
 		})
-		.then((response) => response.json()) // console.log('Status: ' + response.status);
-		.then((responseJson) => { return responseJson.data; }); //console.log(JSON.stringify(responseJson, null, 2));
-		//.catch((error) => { console.error(error); });
+		.then((response) => response.json())
+		.then((responseJson) => { return responseJson.data; });
 	}
 
 	static getStopDepartures(stopCode = 'E2036', numberOfDepartures = 10) {
@@ -20,9 +19,8 @@ class APIQuery {
 			},
 			body: APIQuery.queries.stopDepartures(stopCode, numberOfDepartures)
 		})
-		.then((response) => response.json()) // console.log('Status: ' + response.status);
-		.then((responseJson) => { return responseJson.data; }); //console.log(JSON.stringify(responseJson, null, 2));
-		//.catch((error) => { console.error(error); });
+		.then((response) => response.json())
+		.then((responseJson) => { return responseJson.data; });
 	}
 
 	static APIurl = 'https://api.digitransit.fi/routing/v1/routers/hsl/index/graphql';
