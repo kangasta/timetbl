@@ -20,7 +20,7 @@
 
 .departure li {
 	float: left;
-	display: bloc;
+	display: block;
 	text-align: left;
 	text-decoration: none;
 }
