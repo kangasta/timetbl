@@ -21,18 +21,33 @@ describe('TimeTable', () => {
 		const component = shallow(<TimeTable lat={16.5} lon={28.5}/>);
 		expect(component.find(LoadingMsg)).toHaveLength(1);
 	});
-	it('shows nearest departure infos after succesfull API query.', async () => {
+	it('shows nearest departure infos after succesfull API query.', () => {
 		const component = shallow(<TimeTable lat={16.5} lon={28.5}/>);
-		await component.instance().sendQuery();
-		component.update();
-		expect(component.find(LoadingMsg)).toHaveLength(0);
-		expect(component.find(DepartureInfo)).not.toHaveLength(0);
+		component.instance().sendQuery();
+		const update = component.componentDidUpdate;
+		component.componentDidUpdate = () => {
+			expect(component.find(LoadingMsg)).toHaveLength(0);
+			expect(component.find(DepartureInfo)).not.toHaveLength(0);
+			if (update) update();
+		};
 	});
-	it('shows stop departure infos after succesfull API query.', async () => {
+	it('shows stop departure infos after succesfull API query.', () => {
 		const component = shallow(<TimeTable stopCode='E2036'/>);
-		await component.instance().sendQuery();
-		component.update();
-		expect(component.find(LoadingMsg)).toHaveLength(0);
-		expect(component.find(DepartureInfo)).not.toHaveLength(0);
+		component.instance().sendQuery();
+		const update = component.componentDidUpdate;
+		component.componentDidUpdate = () => {
+			expect(component.find(LoadingMsg)).toHaveLength(0);
+			expect(component.find(DepartureInfo)).not.toHaveLength(0);
+			if (update) update();
+		};
+	});
+	it('shows error after failed API query.', () =>  {
+		const component = shallow(<TimeTable stopCode='666'/>);
+		component.instance().sendQuery();
+		const update = component.componentDidUpdate;
+		component.componentDidUpdate = () => {
+			expect(component.find(ErrorMsg)).toHaveLength(1);
+			if (update) update();
+		};
 	});
 });

@@ -40,7 +40,7 @@ class TimeTable extends Component {
 			});
 		})
 		.catch((error) => {
-			this.setState({error: {
+			self.setState({'error': {
 				name: 'Error in APIQuery.',
 				message: error.toString()
 			}});
