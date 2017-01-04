@@ -78,11 +78,19 @@ describe('DepartureInfo.departureTimeToStr', () => {
 		.toMatch(/5\smin/);
 		expect(DepartureInfo.departureTimeToStr(DepartureInfo.currentTimeInMinutes()*60))
 		.toMatch(/0\smin/);
+
+		DepartureInfo.currentTimeInMinutes = jest.fn(() => 23*60+59);
+		expect(DepartureInfo.departureTimeToStr((DepartureInfo.currentTimeInMinutes() + 5)*60))
+		.toMatch(/5\smin/);
 	});
 	it('shows departure time, if departure not in next ten minutes', () => {
 		expect(DepartureInfo.departureTimeToStr((DepartureInfo.currentTimeInMinutes() + 10)*60))
 		.toMatch(/[0-9]{1,2}.[0-9]{2,2}/);
 		expect(DepartureInfo.departureTimeToStr((DepartureInfo.currentTimeInMinutes() - 3)*60))
+		.toMatch(/[0-9]{1,2}.[0-9]{2,2}/);
+
+		DepartureInfo.currentTimeInMinutes = jest.fn(() => 23*60+59);
+		expect(DepartureInfo.departureTimeToStr((DepartureInfo.currentTimeInMinutes() + 11)*60))
 		.toMatch(/[0-9]{1,2}.[0-9]{2,2}/);
 	});
 });

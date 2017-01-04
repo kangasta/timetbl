@@ -27,9 +27,9 @@ class DepartureInfo extends Component {
 		return curTime.getHours()*60 + curTime.getMinutes();
 	}
 
-	static parseHour(seconds) {
+	static parseHour(seconds, max23=true) {
 		var h = (~~(seconds/3600));
-		h = h > 23 ? h - 24 : h;
+		h = h > 23 && max23 ? h - 24 : h;
 		return h;
 	}
 
@@ -49,7 +49,7 @@ class DepartureInfo extends Component {
 			return 'Time';
 		}
 
-		var departureInMinutes =  DepartureInfo.parseHour(seconds)*60 + (~~((seconds%3600)/60)) - DepartureInfo.currentTimeInMinutes();
+		var departureInMinutes =  DepartureInfo.parseHour(seconds, false)*60 + (~~((seconds%3600)/60)) - DepartureInfo.currentTimeInMinutes();
 
 		return (isRealTime ? ' ' : '~') + (((departureInMinutes < 10) && (departureInMinutes >= 0)) ?
 			(departureInMinutes + ' min') :
