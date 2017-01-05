@@ -21,7 +21,7 @@ class TimeTable extends Component {
 
 		switch (this.getType()) {
 		case 'nearest':
-			queryResponsePromise = APIQuery.getNearestDepartures(this.props.lat, this.props.lon, this.props.maxDistance);
+			queryResponsePromise = APIQuery.getNearestDepartures(this.props.lat, this.props.lon, this.props.maxDistance, this.props.maxResults);
 			break;
 		case 'stop':
 			queryResponsePromise = APIQuery.getStopDepartures(this.props.stopCode, this.props.numberOfDepartures);
@@ -133,6 +133,7 @@ TimeTable.defaultProps = {
 	lon: 0,
 	stopCode: '',
 	maxDistance: 150,
+	maxResults: 20,
 	numberOfDepartures: 15
 };
 
@@ -141,6 +142,7 @@ TimeTable.propTypes = {
 	lon: React.PropTypes.number,
 	stopCode: React.PropTypes.string,
 	maxDistance: React.PropTypes.number,
+	maxResults: React.PropTypes.number,
 	numberOfDepartures: React.PropTypes.number
 };
 

@@ -1,11 +1,11 @@
 class APIQuery {
-	static getNearestDepartures(lat = 60.1836474999998, lon = 24.828072999999993, maxDistance = 150) {
+	static getNearestDepartures(lat = 60.1836474999998, lon = 24.828072999999993, maxDistance = 150, maxResults=20) {
 		return fetch(APIQuery.APIurl, {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/graphql'
 			},
-			body: APIQuery.queries.nearestDepartures(lat, lon, maxDistance)
+			body: APIQuery.queries.nearestDepartures(lat, lon, maxDistance, maxResults)
 		})
 		.then((response) => response.json())
 		.then((responseJson) => {
@@ -39,8 +39,8 @@ class APIQuery {
 		stop: 'name code platformCode desc lat lon'
 	};
 	static queries = {
-		nearestDepartures: (lat = 60.1836474999998, lon = 24.828072999999993, maxDistance = 150) => {
-			return '{ nearest (lat: ' + lat + ', lon: ' + lon + ', maxDistance: ' + maxDistance + ', filterByPlaceTypes: DEPARTURE_ROW) { edges { node { place { ... on DepartureRow { stop { ' + APIQuery.queryFields.stop + ' } stoptimes { ' + APIQuery.queryFields.stoptimes + ' }}}}}}}';
+		nearestDepartures: (lat = 60.1836474999998, lon = 24.828072999999993, maxDistance = 150, maxResults=20) => {
+			return '{ nearest (lat: ' + lat + ', lon: ' + lon + ', maxDistance: ' + maxDistance + ', maxResults: ' + maxResults + ', filterByPlaceTypes: DEPARTURE_ROW) { edges { node { place { ... on DepartureRow { stop { ' + APIQuery.queryFields.stop + ' } stoptimes { ' + APIQuery.queryFields.stoptimes + ' }}}}}}}';
 		},
 		stopDepartures: (stopCode = 'E2036', numberOfDepartures = 10) => {
 			return '{ stops(name: "' + stopCode + '") { name gtfsId stoptimesWithoutPatterns(numberOfDepartures: ' + numberOfDepartures + ') { ' + APIQuery.queryFields.stoptimes + '}}}';
