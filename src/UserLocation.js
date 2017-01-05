@@ -3,7 +3,7 @@ class UserLocation {
 		if (navigator.geolocation) {
 			navigator.geolocation.getCurrentPosition(success, error);
 		} else {
-			throw Error('Geolocation is not supported or allowed by this browser.');
+			error('Geolocation is not supported or allowed by this browser.');
 		}
 	}
 

@@ -4,6 +4,7 @@ import ErrorMsg from './ErrorMsg.js';
 import LoadingMsg from './LoadingMsg.js';
 import TimeTable from './TimeTable.js';
 import UserLocation from './UserLocation.js';
+import MapView from './MapView.js';
 
 class App extends Component {
 	constructor(props) {
@@ -13,26 +14,24 @@ class App extends Component {
 
 	componentDidMount() {
 		var self = this;
-		try {
-			UserLocation.getUserLocation((loc) => {
-				//console.log('Got coordinates: ' + loc.coords.latitude + ',' + loc.coords.longitude);
-				self.setState({
-					lat:loc.coords.latitude, lon:loc.coords.longitude
-				});
-			}, (e) => { throw e; });
-		} catch (e) {
+		UserLocation.getUserLocation((loc) => {
+			//console.log('Got coordinates: ' + loc.coords.latitude + ',' + loc.coords.longitude);
+			self.setState({
+				lat:loc.coords.latitude, lon:loc.coords.longitude
+			});
+		}, (e) => {
 			this.setState({error: {
 				name: 'User location not available.',
 				message: e.toString()
 			}});
-		}
+		});
 	}
 
 	render() {
 		if (this.state.hasOwnProperty('error')) {
 			return (
 				<div className='app'>
-					<ErrorMsg name={this.state.error.name} message={this.state.error.msg}/>
+					<ErrorMsg name={this.state.error.name} message={this.state.error.message}/>
 				</div>
 			);
 		}
@@ -44,10 +43,16 @@ class App extends Component {
 				</div>
 			);
 		}
-		//return <TimeTable lat={this.state.lat} lon={this.state.lon} maxDistance={1000} />;
+		//<TimeTable stopCode='E2036' />;
+		//Alvarin aukio 60.186269, 24.830909
 		return (
 			<div className='app'>
-				<TimeTable stopCode='E2036' />
+				<div className='horizontal-half left'>
+					<TimeTable lat={this.state.lat} lon={this.state.lon} maxDistance={1000} maxResults={30}/>
+				</div>
+				<div className='horizontal-half right'>
+					<MapView lat={this.state.lat} lon={this.state.lon} maxDistance={1000} maxResults={30}/>
+				</div>
 			</div>
 		);
 	}
