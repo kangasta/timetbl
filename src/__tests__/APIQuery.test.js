@@ -35,4 +35,13 @@ describe('APIQuery', () => {
 			expect(responseJson).toEqual(stop);
 		});
 	});
+	it('returns rejected promise with invalid response', () => {
+		const invalid = require('../__mocks__/InvalidQueryResponse.json').data;
+		fetch.mockResponse(JSON.stringify(invalid));
+
+		APIQuery.getStopDepartures()
+		.catch((errorJsonString) => {
+			expect(errorJsonString).toMatch(/{\s*error\s*:\s*{/);
+		});
+	});
 });
