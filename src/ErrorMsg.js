@@ -4,7 +4,7 @@ import './ErrorMsg.css';
 class ErrorMsg extends Component {
 	render() {
 		return (
-			<div className='errormsg'>
+			<div className='error-msg'>
 				<h1>Error:</h1>
 				<h2>{this.props.name}</h2>
 				<p>{this.props.message}</p>

@@ -4,7 +4,7 @@ import './LoadingMsg.css';
 class LoadingMsg extends Component {
 	render() {
 		return (
-			<div className='loading'>
+			<div className='loading-msg'>
 				<h1>Loading</h1>
 				<h2>{this.props.name}</h2>
 				<p>{this.props.message}</p>
