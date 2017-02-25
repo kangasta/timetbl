@@ -11,25 +11,25 @@ describe('DepartureInfo', () => {
 	it('shows stop info if stop is given in props.', () => {
 		const component = shallow(<DepartureInfo stop={{name: 'SOME NAME'}}/>);
 
-		expect(component.find('li.stop')).toHaveLength(3);
+		expect(component.find('li.stop')).toHaveLength(1);
 		expect(component.find('li.stop').everyWhere(i => i.hasClass('hide'))).toBeFalsy();
 	});
 	it('hides stop info if no stop is given in props.', () => {
 		const component = shallow(<DepartureInfo />);
 
-		expect(component.find('li.stop')).toHaveLength(3);
+		expect(component.find('li.stop')).toHaveLength(1);
 		expect(component.find('li.stop').everyWhere(i => i.hasClass('hide'))).toBeTruthy();
 	});
 	it('shows stop info if header type is nearest.', () => {
 		const component = shallow(<DepartureInfo header='nearest'/>);
 
-		expect(component.find('li.stop')).toHaveLength(3);
+		expect(component.find('li.stop')).toHaveLength(1);
 		expect(component.find('li.stop').everyWhere(i => i.hasClass('hide'))).toBeFalsy();
 	});
 	it('hides stop info if header type is stop.', () => {
 		const component = shallow(<DepartureInfo header='stop'/>);
 
-		expect(component.find('li.stop')).toHaveLength(3);
+		expect(component.find('li.stop')).toHaveLength(1);
 		expect(component.find('li.stop').everyWhere(i => i.hasClass('hide'))).toBeTruthy();
 	});
 });
