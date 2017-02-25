@@ -1,26 +1,41 @@
 .departure ul {
 	list-style-type: none;
 	margin: 0;
-	padding: 0;
+	/*padding: 0;*/
 	overflow: hidden;
 	width: 100%;
+	/*height: 100%;*/
+	vertical-align: middle;
 }
 
 .header {
-	background-color: slategrey;
+	background-color: #DCDCDC;
+}
+
+.departure {
+	width: 100%;
+	height: 5%;
+	margin-bottom: 0.5%;
+	margin-top: 0.5%;
+	opacity: 0.8;
+	border-radius: 7px;
+	font-size: 100%;
 }
 
 .even {
-	background-color: lightgrey;
+	background-color: #FFFFFF;
 }
 
 .odd {
-	background-color: ghostwhite;
+	background-color: #F0F0F0;
 }
 
 .departure li {
 	float: left;
+	/*height: 100%;*/
 	/*display: block;*/
+	top: 0.5vh;
+	font-size: 2.5vh;
 	text-align: left;
 	text-decoration: none;
 }
@@ -30,23 +45,27 @@
 }
 
 .route.type {
-	width: 3%;
+	width: 10%;
 }
 
+/*
 .stop.code {
 	width: 10%;
 }
+*/
 
 .stop.name {
 	width: 25%;
 }
 
+/*
 .stop.platform {
 	width: 5%;
 }
+*/
 
 .route.number.nearest-type {
-	width: 7%;
+	width: 10%;
 }
 
 .route.destination.nearest-type {
@@ -54,7 +73,7 @@
 }
 
 .route.number.stop-type {
-	width: 17%;
+	width: 20%;
 }
 
 .route.destination.stop-type {
@@ -62,5 +81,5 @@
 }
 
 .route.deptime {
-	width: 10%;
+	width: 15%;
 }

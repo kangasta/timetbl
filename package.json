@@ -4,10 +4,13 @@
   "private": true,
   "devDependencies": {
     "babel-eslint": ">=7.1.1",
+    "css-loader": "^0.26.1",
     "enzyme": "^2.7.0",
     "eslint": "^3.12.2",
     "eslint-plugin-react": "^6.8.0",
     "jest-fetch-mock": "^1.0.6",
+    "leaflet": "^1.0.2",
+    "leaflet.vectorgrid": "^1.1.0",
     "react-addons-test-utils": "^15.4.1",
     "react-scripts": "0.8.4"
   },

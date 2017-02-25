@@ -35,7 +35,6 @@ class App extends Component {
 				</div>
 			);
 		}
-		// TODO remove 1 ||
 		if ((!this.state.hasOwnProperty('lat') || !this.state.hasOwnProperty('lon')) && !this.state.hasOwnProperty('stopCode')) {
 			return (
 				<div className='app'>
@@ -47,10 +46,10 @@ class App extends Component {
 		//Alvarin aukio 60.186269, 24.830909
 		return (
 			<div className='app'>
-				<div className='horizontal-half left'>
+				<div className='foreground'>
 					<TimeTable lat={this.state.lat} lon={this.state.lon} maxDistance={1000} maxResults={30}/>
 				</div>
-				<div className='horizontal-half right'>
+				<div className='background'>
 					<MapView lat={this.state.lat} lon={this.state.lon} maxDistance={1000} maxResults={30}/>
 				</div>
 			</div>

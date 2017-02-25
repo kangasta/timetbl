@@ -4,6 +4,7 @@
 	bottom: 0;
 	left: 0;
 	right: 0;
+	height: 100%;
 }
 
 .horizontal-half {
@@ -17,4 +18,21 @@
 
 .right {
 	float: right;
+}
+
+.foreground {
+	top: 5%;
+	left: 5%;
+	height: 90%;
+	width: 90%;
+	position: relative;
+}
+
+.background {
+	z-index: -100;
+	height: 100%;
+	width: 100%;
+	top: 0;
+	left: 0;
+	position: absolute;
 }

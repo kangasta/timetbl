@@ -10,15 +10,15 @@ class DepartureInfo extends Component {
 		return (
 			<div className={'departure ' + rowClass + ' ' + departureType}>
 				<ul>
-					<li className='route type'> {this.props.stoptime.trip.route.mode} </li>
-					<li className={'stop code ' + hideStopInfo}> {this.props.stop.code} </li>
 					<li className={'stop name ' + hideStopInfo}> {this.props.stop.name} </li>
-					<li className={'stop platform ' + hideStopInfo}> {this.props.stop.platformCode ? this.props.stop.platformCode : '1'} </li>
 					<li className={'route number ' + departureType}> {this.props.stoptime.trip.route.shortName} </li>
 					<li className={'route destination ' + departureType}> {this.props.stoptime.stopHeadsign} </li>
 					<li className='route deptime'> {DepartureInfo.departureTimeToStr(this.props.stoptime.realtimeArrival, this.props.stoptime.realtime)}</li>
 				</ul>
 			</div>
+		//<li className='route type'> {this.props.stoptime.trip.route.mode} </li>
+		//<li className={'stop platform ' + hideStopInfo}>{this.props.stop.platformCode ? this.props.stop.platformCode : '1'} </li>
+		//<li className={'stop code ' + hideStopInfo}> {this.props.stop.code} </li>
 		); // TODO bug with empty platform field should be fixed in css.
 	}
 
@@ -69,8 +69,8 @@ DepartureInfo.defaultProps = {
 	stoptime: {
 		trip: {
 			route: {
-				shortName: 'Route number',
-				mode: 'Route type',
+				shortName: 'Route',
+				mode: 'Type',
 				alerts: []
 			}
 		},

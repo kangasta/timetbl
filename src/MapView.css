@@ -3,3 +3,12 @@
 	width: 100%;
 	background: cadetblue;
 }
+
+.leaflet-container {
+	height: 100%;
+	width: 100%;
+}
+
+#leaflet-map {
+	height: 100%;
+}
