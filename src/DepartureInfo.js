@@ -7,13 +7,15 @@ class DepartureInfo extends Component {
 		var hideStopInfo = departureType === 'stop-type' ? 'hide' : '';
 		var rowClass = (this.props.row % 2) ? 'odd' : 'even';
 		rowClass = this.props.header ? 'header' : rowClass;
+		var realtime = this.props.stoptime.realtime ? 'realtime' : '';
+		var routeType = 'route-type-' + this.props.stoptime.trip.route.mode.toLowerCase();
 		return (
 			<div className={'departure ' + rowClass + ' ' + departureType}>
 				<ul>
 					<li className={'stop name ' + hideStopInfo}> {this.props.stop.name} </li>
-					<li className={'route number ' + departureType}> {this.props.stoptime.trip.route.shortName} </li>
+					<li className={'route number ' + routeType + ' ' + departureType}> {this.props.stoptime.trip.route.shortName} </li>
 					<li className={'route destination ' + departureType}> {this.props.stoptime.stopHeadsign} </li>
-					<li className='route deptime'> {DepartureInfo.departureTimeToStr(this.props.stoptime.realtimeArrival, this.props.stoptime.realtime)}</li>
+					<li className={'route deptime ' + realtime}> {DepartureInfo.departureTimeToStr(this.props.stoptime.realtimeDeparture, this.props.stoptime.realtime)}</li>
 				</ul>
 			</div>
 		//<li className='route type'> {this.props.stoptime.trip.route.mode} </li>
@@ -51,7 +53,7 @@ class DepartureInfo extends Component {
 
 		var departureInMinutes = DepartureInfo.parseHour(seconds, false)*60 + (~~((seconds%3600)/60)) - DepartureInfo.currentTimeInMinutes();
 
-		return (isRealTime ? ' ' : '~') + (((departureInMinutes < 10) && (departureInMinutes >= 0)) ?
+		return /*(isRealTime ? ' ' : '~') + */(((departureInMinutes < 10) && (departureInMinutes >= 0)) ?
 			(departureInMinutes + ' min') :
 			DepartureInfo.parseTime(seconds));
 	}
@@ -76,7 +78,7 @@ DepartureInfo.defaultProps = {
 		},
 		realtimeArrival: 0,
 		realtimeDeparture: 0,
-		realtime: true,
+		realtime: false,
 		stopHeadsign: 'Destination'
 	},
 	header: '',
@@ -103,6 +105,7 @@ DepartureInfo.propTypes = {
 		realtimeArrival: React.PropTypes.number,
 		realtimeDeparture: React.PropTypes.number,
 		realtime: React.PropTypes.bool,
+		scheduledDeparture: React.PropTypes.number,
 		stopHeadsign: React.PropTypes.string
 	}),
 	header: React.PropTypes.string,
