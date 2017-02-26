@@ -1,23 +1,34 @@
 class APIQuery {
 	static getNearestDepartures(lat = 60.1836474999998, lon = 24.828072999999993, maxDistance = 150, maxResults=20) {
-		return fetch(APIQuery.APIurl, {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/graphql'
-			},
-			body: APIQuery.queries.nearestDepartures(lat, lon, maxDistance, maxResults)
-		})
-		.then((response) => response.json())
-		.then((responseJson) => {
-			if (responseJson.hasOwnProperty('errors')){
-				throw new Error('HSL API returned object with errors content instead of data:\n' + JSON.stringify(responseJson, null, 2));
-			}
-			return responseJson.data;
-		});
+		lat = Array.isArray(lat) ? lat : [lat];
+		lon = Array.isArray(lon) ? lon : [lon];
+		maxDistance = Array.isArray(maxDistance) ? maxDistance : [maxDistance];
+		var promises = [];
+		for (var i = 0; i < Math.max(lat.length, lon.length, maxDistance.length); i++) {
+			promises.push(fetch(APIQuery.APIurl, {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/graphql'
+				},
+				body: APIQuery.queries.nearestDepartures(
+					lat[i >= lat.length ? lat.length -1 : i],
+					lon[i >= lon.length ? lon.length -1 : i],
+					maxDistance[i >= maxDistance.length ? maxDistance.length -1 : i],
+					maxResults)
+			})
+			.then((response) => response.json())
+			.then((responseJson) => {
+				if (responseJson.hasOwnProperty('errors')){
+					throw new Error('HSL API returned object with errors content instead of data:\n' + JSON.stringify(responseJson, null, 2));
+				}
+				return responseJson.data;
+			}));
+		}
+		return promises;
 	}
 
 	static getStopDepartures(stopCode = 'E2036', numberOfDepartures = 10) {
-		return fetch(APIQuery.APIurl, {
+		return [fetch(APIQuery.APIurl, {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/graphql'
@@ -30,9 +41,10 @@ class APIQuery {
 				throw new Error('HSL API returned object with errors content instead of data\n:' + JSON.stringify(responseJson, null, 2));
 			}
 			return responseJson.data;
-		});
+		})];
 	}
 
+	static EmptyNearestQueryResponse = '{"data":{"nearest":{"edges":[]}}}';
 	static APIurl = 'https://api.digitransit.fi/routing/v1/routers/hsl/index/graphql';
 	static queryFields = {
 		stoptimes: 'trip { route { shortName mode alerts { alertHeaderText alertDescriptionText } } } realtimeArrival realtimeDeparture realtime stopHeadsign serviceDay',

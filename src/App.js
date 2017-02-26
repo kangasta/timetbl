@@ -21,11 +21,13 @@ class App extends Component {
 		if (/niemi/.exec(currentURL)) {
 			self.setState({
 				//lat:60.183692, lon:24.827744
-				lat:60.186269 ,lon:24.830909
+				lat:60.186269 ,lon:24.830909, maxDistance:1000
 			});
 		} else if (/kara/.exec(currentURL)) {
 			self.setState({
-				lat:60.224655, lon:24.759257
+				lat:[60.224655, 60.215923],
+				lon:[24.759257, 24.753498],
+				maxDistance:[300, 100]
 			});
 		}
 		//if (/location/.exec(currentURL)) {
@@ -63,10 +65,13 @@ class App extends Component {
 		return (
 			<div className='app'>
 				<div className='foreground'>
-					<TimeTable lat={this.state.lat} lon={this.state.lon} maxDistance={2000} maxResults={15}/>
+					<TimeTable lat={this.state.lat} lon={this.state.lon} maxDistance={this.state.maxDistance} maxResults={15}/>
 				</div>
 				<div className='background'>
-					<MapView lat={this.state.lat} lon={this.state.lon}/>
+					<MapView
+						lat={Array.isArray(this.state.lat) ? this.state.lat[0] : this.state.lat}
+						lon={Array.isArray(this.state.lon) ? this.state.lon[0] : this.state.lon}
+					/>
 				</div>
 			</div>
 		);

@@ -17,14 +17,18 @@ class TimeTable extends Component {
 
 	sendQuery() {
 		var self = this;
-		var queryResponsePromise;
+		var queryResponsePromises;
 
 		switch (this.getType()) {
 		case 'nearest':
-			queryResponsePromise = APIQuery.getNearestDepartures(this.props.lat, this.props.lon, this.props.maxDistance, this.props.maxResults*5);
+			if (Array.isArray(this.props.lat) && Array.isArray(this.props.lat)){
+				queryResponsePromises = APIQuery.getNearestDepartures(this.props.lat, this.props.lon, this.props.maxDistance, this.props.maxResults*5);
+			} else {
+				queryResponsePromises = APIQuery.getNearestDepartures(this.props.lat, this.props.lon, this.props.maxDistance, this.props.maxResults*5);
+			}
 			break;
 		case 'stop':
-			queryResponsePromise = APIQuery.getStopDepartures(this.props.stopCode, this.props.numberOfDepartures);
+			queryResponsePromises = APIQuery.getStopDepartures(this.props.stopCode, this.props.numberOfDepartures);
 			break;
 		default:
 			this.setState({error: {
@@ -34,7 +38,20 @@ class TimeTable extends Component {
 			return;
 		}
 
-		queryResponsePromise.then((responseJson) => {
+		Promise.all(queryResponsePromises)
+		.then((responseJsons) => {
+			if (self.getType() === 'nearest' && queryResponsePromises.length > 1)
+			{
+				var combinedResponseJson = JSON.parse(APIQuery.EmptyNearestQueryResponse);
+				for (var i = 0; i < responseJsons.length; i++) {
+					combinedResponseJson.data.nearest.edges = combinedResponseJson.data.nearest.edges.concat(responseJsons[i].nearest.edges);
+				}
+				return combinedResponseJson.data;
+			} else {
+				return responseJsons[0];
+			}
+		})
+		.then((responseJson) => {
 			self.setState({
 				data: responseJson
 			});
@@ -44,11 +61,12 @@ class TimeTable extends Component {
 				name: 'Error in APIQuery.',
 				message: error.toString()
 			}});
+			return;
 		});
 	}
 
 	getType() {
-		if (this.props.lat !== 0 && this.props.lon !== 0) {
+		if (this.props.lat && this.props.lon) {
 			return 'nearest';
 		}
 		else if (this.props.stopCode) {
@@ -139,10 +157,19 @@ TimeTable.defaultProps = {
 };
 
 TimeTable.propTypes = {
-	lat: React.PropTypes.number,
-	lon: React.PropTypes.number,
+	lat: React.PropTypes.oneOfType([
+		React.PropTypes.number,
+		React.PropTypes.array
+	]),
+	lon: React.PropTypes.oneOfType([
+		React.PropTypes.number,
+		React.PropTypes.array
+	]),
 	stopCode: React.PropTypes.string,
-	maxDistance: React.PropTypes.number,
+	maxDistance: React.PropTypes.oneOfType([
+		React.PropTypes.number,
+		React.PropTypes.array
+	]),
 	maxResults: React.PropTypes.number,
 	numberOfDepartures: React.PropTypes.number
 };
