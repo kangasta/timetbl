@@ -89,7 +89,7 @@ class TimeTable extends Component {
 			departureInfoArray.sort((a,b) => {
 				return (a.node.place.stoptimes[0].serviceDay - b.node.place.stoptimes[0].serviceDay) ?
 					(a.node.place.stoptimes[0].serviceDay - b.node.place.stoptimes[0].serviceDay) :
-					(a.node.place.stoptimes[0].realtimeArrival - b.node.place.stoptimes[0].realtimeArrival);
+					(a.node.place.stoptimes[0].scheduledDeparture - b.node.place.stoptimes[0].scheduledDeparture);
 			});
 			departureInfoArray = departureInfoArray.slice(0,this.props.maxResults);
 			return departureInfoArray;

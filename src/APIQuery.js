@@ -47,7 +47,7 @@ class APIQuery {
 	static EmptyNearestQueryResponse = '{"data":{"nearest":{"edges":[]}}}';
 	static APIurl = 'https://api.digitransit.fi/routing/v1/routers/hsl/index/graphql';
 	static queryFields = {
-		stoptimes: 'trip { route { shortName mode alerts { alertHeaderText alertDescriptionText } } } realtimeArrival realtimeDeparture realtime stopHeadsign serviceDay',
+		stoptimes: 'trip { route { shortName mode alerts { alertHeaderText alertDescriptionText } } } realtimeArrival realtimeDeparture realtime scheduledArrival scheduledDeparture stopHeadsign serviceDay',
 		stop: 'name code platformCode desc lat lon'
 	};
 	static queries = {
