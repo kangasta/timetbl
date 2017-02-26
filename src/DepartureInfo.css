@@ -4,9 +4,11 @@
 	/*padding: 0;*/
 	overflow: hidden;
 	width: 100%;
-	top: 0.5vh;
-	/*height: 100%;*/
+	/*top: 0.5vh;*/
 	vertical-align: middle;
+	position: relative;
+	top: 50%;
+	transform: translateY(-50%);
 }
 
 .header {
@@ -21,6 +23,30 @@
 	opacity: 0.8;
 	border-radius: 7px;
 	font-size: 100%;
+}
+
+.realtime {
+	color: #1a8c20
+}
+
+.route-type-bus {
+	color: #1d46ad;
+}
+
+.route-type-rail {
+	color: #811cad;
+}
+
+.route-type-tram {
+	color: #1e7511;
+}
+
+.route-type-subway {
+	color: #ba7527;
+}
+
+.route-type-ferry {
+	color: #1ba6ad;
 }
 
 .even {
