@@ -21,7 +21,7 @@ describe('APIQuery', () => {
 		const nearest = require('../__mocks__/NearestQueryResponse.json').data;
 		fetch.mockResponse(JSON.stringify(nearest));
 
-		APIQuery.getNearestDepartures()
+		Promise.all(APIQuery.getNearestDepartures())
 		.then((responseJson) => {
 			expect(responseJson).toEqual(nearest);
 		});
@@ -30,7 +30,7 @@ describe('APIQuery', () => {
 		const stop = require('../__mocks__/StopQueryResponse.json').data;
 		fetch.mockResponse(JSON.stringify(stop));
 
-		APIQuery.getStopDepartures()
+		Promise.all(APIQuery.getStopDepartures())
 		.then((responseJson) => {
 			expect(responseJson).toEqual(stop);
 		});
@@ -39,7 +39,7 @@ describe('APIQuery', () => {
 		const invalid = require('../__mocks__/InvalidQueryResponse.json').data;
 		fetch.mockResponse(JSON.stringify(invalid));
 
-		APIQuery.getStopDepartures()
+		Promise.all(APIQuery.getStopDepartures())
 		.catch((errorJsonString) => {
 			expect(errorJsonString).toMatch(/{\s*error\s*:\s*{/);
 		});

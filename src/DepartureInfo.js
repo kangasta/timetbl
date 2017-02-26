@@ -49,7 +49,7 @@ class DepartureInfo extends Component {
 			return 'Time';
 		}
 
-		var departureInMinutes =  DepartureInfo.parseHour(seconds, false)*60 + (~~((seconds%3600)/60)) - DepartureInfo.currentTimeInMinutes();
+		var departureInMinutes = DepartureInfo.parseHour(seconds, false)*60 + (~~((seconds%3600)/60)) - DepartureInfo.currentTimeInMinutes();
 
 		return (isRealTime ? ' ' : '~') + (((departureInMinutes < 10) && (departureInMinutes >= 0)) ?
 			(departureInMinutes + ' min') :
