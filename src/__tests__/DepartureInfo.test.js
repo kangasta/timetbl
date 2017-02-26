@@ -66,13 +66,13 @@ describe('DepartureInfo.parseTime', () => {
 });
 
 describe('DepartureInfo.departureTimeToStr', () => {
-	it('starts with tilde if not in real time', () => {
+	/*it('starts with tilde if not in real time', () => {
 		expect(DepartureInfo.departureTimeToStr(22*3600+45*60, false)).toMatch(/^~/);
 		expect(DepartureInfo.departureTimeToStr(22*3600+45*60)).toMatch(/^~/);
 	});
 	it('starts with space if in real time', () => {
 		expect(DepartureInfo.departureTimeToStr(22*3600+45*60, true)).toMatch(/^\s/);
-	});
+	});*/
 	it('shows minutes left, if departure in next ten minutes', () => {
 		expect(DepartureInfo.departureTimeToStr((DepartureInfo.currentTimeInMinutes() + 5)*60))
 		.toMatch(/5\smin/);

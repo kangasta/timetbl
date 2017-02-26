@@ -15,7 +15,7 @@ class DepartureInfo extends Component {
 					<li className={'stop name ' + hideStopInfo}> {this.props.stop.name} </li>
 					<li className={'route number ' + routeType + ' ' + departureType}> {this.props.stoptime.trip.route.shortName} </li>
 					<li className={'route destination ' + departureType}> {this.props.stoptime.stopHeadsign} </li>
-					<li className={'route deptime ' + realtime}> {DepartureInfo.departureTimeToStr(this.props.stoptime.realtimeDeparture, this.props.stoptime.realtime)}</li>
+					<li className={'route deptime ' + realtime}> {DepartureInfo.departureTimeToStr(this.props.stoptime.realtimeDeparture/*, this.props.stoptime.realtime*/)}</li>
 				</ul>
 			</div>
 		//<li className='route type'> {this.props.stoptime.trip.route.mode} </li>
@@ -46,7 +46,7 @@ class DepartureInfo extends Component {
 		return hStr + delim + minStr;
 	}
 
-	static departureTimeToStr(seconds, isRealTime = false) {
+	static departureTimeToStr(seconds/*, isRealTime = false*/) {
 		if (seconds === 0) {
 			return 'Time';
 		}
