@@ -20,7 +20,8 @@ class App extends Component {
 
 		if (/niemi/.exec(currentURL)) {
 			self.setState({
-				lat:60.183692, lon:24.827744
+				//lat:60.183692, lon:24.827744
+				lat:60.186269 ,lon:24.830909
 			});
 		} else if (/kara/.exec(currentURL)) {
 			self.setState({

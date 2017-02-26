@@ -21,7 +21,7 @@ class TimeTable extends Component {
 
 		switch (this.getType()) {
 		case 'nearest':
-			queryResponsePromise = APIQuery.getNearestDepartures(this.props.lat, this.props.lon, this.props.maxDistance, this.props.maxResults);
+			queryResponsePromise = APIQuery.getNearestDepartures(this.props.lat, this.props.lon, this.props.maxDistance, this.props.maxResults*5);
 			break;
 		case 'stop':
 			queryResponsePromise = APIQuery.getStopDepartures(this.props.stopCode, this.props.numberOfDepartures);
@@ -73,6 +73,7 @@ class TimeTable extends Component {
 					(a.node.place.stoptimes[0].serviceDay - b.node.place.stoptimes[0].serviceDay) :
 					(a.node.place.stoptimes[0].realtimeArrival - b.node.place.stoptimes[0].realtimeArrival);
 			});
+			departureInfoArray = departureInfoArray.slice(0,this.props.maxResults);
 			return departureInfoArray;
 		case 'stop':
 			departureInfoArray = this.state.data.stops.filter((a) => { return a.gtfsId.includes('HSL'); });
