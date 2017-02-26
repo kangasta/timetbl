@@ -4,10 +4,12 @@ import './ErrorMsg.css';
 class ErrorMsg extends Component {
 	render() {
 		return (
-			<div className='error-msg'>
-				<h1>Error:</h1>
-				<h2>{this.props.name}</h2>
-				<p>{this.props.message}</p>
+			<div className='error-msg-bg'>
+				<div className='error-msg'>
+					<h1>Error:</h1>
+					<h2>{this.props.name}</h2>
+					<p>{this.props.message}</p>
+				</div>
 			</div>
 		);
 	}

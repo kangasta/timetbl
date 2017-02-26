@@ -4,6 +4,7 @@
 	/*padding: 0;*/
 	overflow: hidden;
 	width: 100%;
+	top: 0.5vh;
 	/*height: 100%;*/
 	vertical-align: middle;
 }
@@ -34,10 +35,9 @@
 	float: left;
 	/*height: 100%;*/
 	/*display: block;*/
-	top: 0.5vh;
 	font-size: 2.5vh;
 	text-align: left;
-	text-decoration: none;
+	/*text-decoration: none;*/
 }
 
 .hide {

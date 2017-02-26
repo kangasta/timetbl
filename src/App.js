@@ -14,17 +14,32 @@ class App extends Component {
 
 	componentDidMount() {
 		var self = this;
-		UserLocation.getUserLocation((loc) => {
-			//console.log('Got coordinates: ' + loc.coords.latitude + ',' + loc.coords.longitude);
+
+		var currentURL = window.location.href;
+
+
+		if (/niemi/.exec(currentURL)) {
 			self.setState({
-				lat:loc.coords.latitude, lon:loc.coords.longitude
+				lat:60.183692, lon:24.827744
 			});
-		}, (e) => {
-			this.setState({error: {
-				name: 'User location not available.',
-				message: e.toString()
-			}});
-		});
+		} else if (/kara/.exec(currentURL)) {
+			self.setState({
+				lat:60.224655, lon:24.759257
+			});
+		}
+		//if (/location/.exec(currentURL)) {
+		else {
+			UserLocation.getUserLocation((loc) => {
+				self.setState({
+					lat:loc.coords.latitude, lon:loc.coords.longitude
+				});
+			}, (e) => {
+				this.setState({error: {
+					name: 'User location not available.',
+					message: e.toString()
+				}});
+			});
+		}
 	}
 
 	render() {
@@ -47,10 +62,10 @@ class App extends Component {
 		return (
 			<div className='app'>
 				<div className='foreground'>
-					<TimeTable lat={this.state.lat} lon={this.state.lon} maxDistance={1000} maxResults={30}/>
+					<TimeTable lat={this.state.lat} lon={this.state.lon} maxDistance={2000} maxResults={15}/>
 				</div>
 				<div className='background'>
-					<MapView lat={this.state.lat} lon={this.state.lon} maxDistance={1000} maxResults={30}/>
+					<MapView lat={this.state.lat} lon={this.state.lon}/>
 				</div>
 			</div>
 		);

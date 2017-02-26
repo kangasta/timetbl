@@ -5,6 +5,13 @@
 	/*color: darkblue;*/
 }
 
+.error-msg-bg {
+	background-color: #FFFFFF;
+	border-radius: 7px;
+	height: 100%;
+	width: 100%;
+}
+
 h1, h2 {
 	clear: both;
 	display: block;
