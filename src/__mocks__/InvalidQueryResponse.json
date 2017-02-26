@@ -1,15 +1,15 @@
 {
-  "errors": [
-    {
-      "validationErrorType": "FieldUndefined",
-      "locations": [
-        {
-          "line": 1,
-          "column": 3
-        }
-      ],
-      "errorType": "ValidationError",
-      "message": "Validation error of type FieldUndefined: Field invalid is undefined"
-    }
-  ]
+	"errors": [
+		{
+			"validationErrorType": "FieldUndefined",
+			"locations": [
+				{
+					"line": 1,
+					"column": 3
+				}
+			],
+			"errorType": "ValidationError",
+			"message": "Validation error of type FieldUndefined: Field invalid is undefined"
+		}
+	]
 }

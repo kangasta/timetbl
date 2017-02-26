@@ -1,563 +1,563 @@
 {
-  "data": {
-    "nearest": {
-      "edges": [
-        {
-          "node": {
-            "place": {
-              "stop": {
-                "name": "Kemisti",
-                "code": "E2230",
-                "platformCode": "12",
-                "desc": "Vuorimiehentie",
-                "lat": 60.1836475,
-                "lon": 24.82807300000005
-              },
-              "stoptimes": [
-                {
-                  "trip": {
-                    "route": {
-                      "shortName": "510",
-                      "mode": "BUS",
-                      "alerts": []
-                    }
-                  },
-                  "realtimeArrival": 83158,
-                  "realtimeDeparture": 83158,
-                  "realtime": true,
-                  "stopHeadsign": "Tapiola via Keilaniemi",
-                  "serviceDay": 1483394400
-                }
-              ]
-            }
-          }
-        },
-        {
-          "node": {
-            "place": {
-              "stop": {
-                "name": "Kemisti",
-                "code": "E2230",
-                "platformCode": "12",
-                "desc": "Vuorimiehentie",
-                "lat": 60.1836475,
-                "lon": 24.82807300000005
-              },
-              "stoptimes": [
-                {
-                  "trip": {
-                    "route": {
-                      "shortName": "550",
-                      "mode": "BUS",
-                      "alerts": []
-                    }
-                  },
-                  "realtimeArrival": 83018,
-                  "realtimeDeparture": 83018,
-                  "realtime": true,
-                  "stopHeadsign": "Westendinasema",
-                  "serviceDay": 1483394400
-                }
-              ]
-            }
-          }
-        },
-        {
-          "node": {
-            "place": {
-              "stop": {
-                "name": "Kemisti",
-                "code": "E2230",
-                "platformCode": "12",
-                "desc": "Vuorimiehentie",
-                "lat": 60.1836475,
-                "lon": 24.82807300000005
-              },
-              "stoptimes": [
-                {
-                  "trip": {
-                    "route": {
-                      "shortName": "15",
-                      "mode": "BUS",
-                      "alerts": []
-                    }
-                  },
-                  "realtimeArrival": 21240,
-                  "realtimeDeparture": 21240,
-                  "realtime": false,
-                  "stopHeadsign": "Otaniemi",
-                  "serviceDay": 1483480800
-                }
-              ]
-            }
-          }
-        },
-        {
-          "node": {
-            "place": {
-              "stop": {
-                "name": "Kemisti",
-                "code": "E2225",
-                "platformCode": "13",
-                "desc": "Vuorimiehentie",
-                "lat": 60.183653,
-                "lon": 24.827746099999946
-              },
-              "stoptimes": [
-                {
-                  "trip": {
-                    "route": {
-                      "shortName": "510",
-                      "mode": "BUS",
-                      "alerts": []
-                    }
-                  },
-                  "realtimeArrival": 83760,
-                  "realtimeDeparture": 83760,
-                  "realtime": false,
-                  "stopHeadsign": "Martinlaakso via Leppävaara",
-                  "serviceDay": 1483394400
-                }
-              ]
-            }
-          }
-        },
-        {
-          "node": {
-            "place": {
-              "stop": {
-                "name": "Kemisti",
-                "code": "E2225",
-                "platformCode": "13",
-                "desc": "Vuorimiehentie",
-                "lat": 60.183653,
-                "lon": 24.827746099999946
-              },
-              "stoptimes": [
-                {
-                  "trip": {
-                    "route": {
-                      "shortName": "550",
-                      "mode": "BUS",
-                      "alerts": []
-                    }
-                  },
-                  "realtimeArrival": 82840,
-                  "realtimeDeparture": 82840,
-                  "realtime": true,
-                  "stopHeadsign": "Itäkeskus(M)",
-                  "serviceDay": 1483394400
-                }
-              ]
-            }
-          }
-        },
-        {
-          "node": {
-            "place": {
-              "stop": {
-                "name": "Kemisti",
-                "code": "E2225",
-                "platformCode": "13",
-                "desc": "Vuorimiehentie",
-                "lat": 60.183653,
-                "lon": 24.827746099999946
-              },
-              "stoptimes": [
-                {
-                  "trip": {
-                    "route": {
-                      "shortName": "15",
-                      "mode": "BUS",
-                      "alerts": []
-                    }
-                  },
-                  "realtimeArrival": 22080,
-                  "realtimeDeparture": 22080,
-                  "realtime": false,
-                  "stopHeadsign": "Jupperi via Tapiola",
-                  "serviceDay": 1483480800
-                }
-              ]
-            }
-          }
-        },
-        {
-          "node": {
-            "place": {
-              "stop": {
-                "name": "Alvar Aallon puisto",
-                "code": "E2226",
-                "platformCode": "10",
-                "desc": "Otaniementie",
-                "lat": 60.1838541,
-                "lon": 24.82905669999995
-              },
-              "stoptimes": []
-            }
-          }
-        },
-        {
-          "node": {
-            "place": {
-              "stop": {
-                "name": "Alvar Aallon puisto",
-                "code": "E2226",
-                "platformCode": "10",
-                "desc": "Otaniementie",
-                "lat": 60.1838541,
-                "lon": 24.82905669999995
-              },
-              "stoptimes": [
-                {
-                  "trip": {
-                    "route": {
-                      "shortName": "194A",
-                      "mode": "BUS",
-                      "alerts": []
-                    }
-                  },
-                  "realtimeArrival": 55860,
-                  "realtimeDeparture": 55860,
-                  "realtime": false,
-                  "stopHeadsign": "Kamppi",
-                  "serviceDay": 1483480800
-                }
-              ]
-            }
-          }
-        },
-        {
-          "node": {
-            "place": {
-              "stop": {
-                "name": "Alvar Aallon puisto",
-                "code": "E2226",
-                "platformCode": "10",
-                "desc": "Otaniementie",
-                "lat": 60.1838541,
-                "lon": 24.82905669999995
-              },
-              "stoptimes": [
-                {
-                  "trip": {
-                    "route": {
-                      "shortName": "103T",
-                      "mode": "BUS",
-                      "alerts": []
-                    }
-                  },
-                  "realtimeArrival": 23280,
-                  "realtimeDeparture": 23280,
-                  "realtime": false,
-                  "stopHeadsign": "Kamppi via Lauttasaari",
-                  "serviceDay": 1483480800
-                }
-              ]
-            }
-          }
-        },
-        {
-          "node": {
-            "place": {
-              "stop": {
-                "name": "Alvar Aallon puisto",
-                "code": "E2226",
-                "platformCode": "10",
-                "desc": "Otaniementie",
-                "lat": 60.1838541,
-                "lon": 24.82905669999995
-              },
-              "stoptimes": [
-                {
-                  "trip": {
-                    "route": {
-                      "shortName": "194",
-                      "mode": "BUS",
-                      "alerts": []
-                    }
-                  },
-                  "realtimeArrival": 22680,
-                  "realtimeDeparture": 22680,
-                  "realtime": false,
-                  "stopHeadsign": "Kamppi",
-                  "serviceDay": 1483480800
-                }
-              ]
-            }
-          }
-        },
-        {
-          "node": {
-            "place": {
-              "stop": {
-                "name": "Alvar Aallon puisto",
-                "code": "E2226",
-                "platformCode": "10",
-                "desc": "Otaniementie",
-                "lat": 60.1838541,
-                "lon": 24.82905669999995
-              },
-              "stoptimes": []
-            }
-          }
-        },
-        {
-          "node": {
-            "place": {
-              "stop": {
-                "name": "Alvar Aallon puisto",
-                "code": "E2226",
-                "platformCode": "10",
-                "desc": "Otaniementie",
-                "lat": 60.1838541,
-                "lon": 24.82905669999995
-              },
-              "stoptimes": [
-                {
-                  "trip": {
-                    "route": {
-                      "shortName": "102T",
-                      "mode": "BUS",
-                      "alerts": []
-                    }
-                  },
-                  "realtimeArrival": 83820,
-                  "realtimeDeparture": 83820,
-                  "realtime": false,
-                  "stopHeadsign": "Kamppi via Lauttasaari",
-                  "serviceDay": 1483394400
-                }
-              ]
-            }
-          }
-        },
-        {
-          "node": {
-            "place": {
-              "stop": {
-                "name": "Alvar Aallon puisto",
-                "code": "E2226",
-                "platformCode": "10",
-                "desc": "Otaniementie",
-                "lat": 60.1838541,
-                "lon": 24.82905669999995
-              },
-              "stoptimes": [
-                {
-                  "trip": {
-                    "route": {
-                      "shortName": "103",
-                      "mode": "BUS",
-                      "alerts": []
-                    }
-                  },
-                  "realtimeArrival": 28440,
-                  "realtimeDeparture": 28440,
-                  "realtime": false,
-                  "stopHeadsign": "Kamppi",
-                  "serviceDay": 1483480800
-                }
-              ]
-            }
-          }
-        },
-        {
-          "node": {
-            "place": {
-              "stop": {
-                "name": "Alvar Aallon puisto",
-                "code": "E2226",
-                "platformCode": "10",
-                "desc": "Otaniementie",
-                "lat": 60.1838541,
-                "lon": 24.82905669999995
-              },
-              "stoptimes": [
-                {
-                  "trip": {
-                    "route": {
-                      "shortName": "552",
-                      "mode": "BUS",
-                      "alerts": []
-                    }
-                  },
-                  "realtimeArrival": 20220,
-                  "realtimeDeparture": 20220,
-                  "realtime": false,
-                  "stopHeadsign": "Malmi via Huopalahti",
-                  "serviceDay": 1483480800
-                }
-              ]
-            }
-          }
-        },
-        {
-          "node": {
-            "place": {
-              "stop": {
-                "name": "Alvar Aallon puisto",
-                "code": "E2226",
-                "platformCode": "10",
-                "desc": "Otaniementie",
-                "lat": 60.1838541,
-                "lon": 24.82905669999995
-              },
-              "stoptimes": []
-            }
-          }
-        },
-        {
-          "node": {
-            "place": {
-              "stop": {
-                "name": "Alvar Aallon puisto",
-                "code": "E2226",
-                "platformCode": "10",
-                "desc": "Otaniementie",
-                "lat": 60.1838541,
-                "lon": 24.82905669999995
-              },
-              "stoptimes": [
-                {
-                  "trip": {
-                    "route": {
-                      "shortName": "195",
-                      "mode": "BUS",
-                      "alerts": []
-                    }
-                  },
-                  "realtimeArrival": 82920,
-                  "realtimeDeparture": 82920,
-                  "realtime": false,
-                  "stopHeadsign": "Kamppi",
-                  "serviceDay": 1483394400
-                }
-              ]
-            }
-          }
-        },
-        {
-          "node": {
-            "place": {
-              "stop": {
-                "name": "Alvar Aallon puisto",
-                "code": "E2226",
-                "platformCode": "10",
-                "desc": "Otaniementie",
-                "lat": 60.1838541,
-                "lon": 24.82905669999995
-              },
-              "stoptimes": [
-                {
-                  "trip": {
-                    "route": {
-                      "shortName": "102",
-                      "mode": "BUS",
-                      "alerts": []
-                    }
-                  },
-                  "realtimeArrival": 22740,
-                  "realtimeDeparture": 22740,
-                  "realtime": false,
-                  "stopHeadsign": "Kamppi",
-                  "serviceDay": 1483480800
-                }
-              ]
-            }
-          }
-        },
-        {
-          "node": {
-            "place": {
-              "stop": {
-                "name": "Alvar Aallon puisto",
-                "code": "E2229",
-                "platformCode": "11",
-                "desc": "Otaniementie",
-                "lat": 60.184015499999994,
-                "lon": 24.829079099999948
-              },
-              "stoptimes": [
-                {
-                  "trip": {
-                    "route": {
-                      "shortName": "194A",
-                      "mode": "BUS",
-                      "alerts": []
-                    }
-                  },
-                  "realtimeArrival": 23580,
-                  "realtimeDeparture": 23580,
-                  "realtime": false,
-                  "stopHeadsign": "Orion",
-                  "serviceDay": 1483480800
-                }
-              ]
-            }
-          }
-        },
-        {
-          "node": {
-            "place": {
-              "stop": {
-                "name": "Alvar Aallon puisto",
-                "code": "E2229",
-                "platformCode": "11",
-                "desc": "Otaniementie",
-                "lat": 60.184015499999994,
-                "lon": 24.829079099999948
-              },
-              "stoptimes": [
-                {
-                  "trip": {
-                    "route": {
-                      "shortName": "194",
-                      "mode": "BUS",
-                      "alerts": []
-                    }
-                  },
-                  "realtimeArrival": 24780,
-                  "realtimeDeparture": 24780,
-                  "realtime": false,
-                  "stopHeadsign": "Pohjois-Tapiola",
-                  "serviceDay": 1483480800
-                }
-              ]
-            }
-          }
-        },
-        {
-          "node": {
-            "place": {
-              "stop": {
-                "name": "Alvar Aallon puisto",
-                "code": "E2229",
-                "platformCode": "11",
-                "desc": "Otaniementie",
-                "lat": 60.184015499999994,
-                "lon": 24.829079099999948
-              },
-              "stoptimes": [
-                {
-                  "trip": {
-                    "route": {
-                      "shortName": "103",
-                      "mode": "BUS",
-                      "alerts": []
-                    }
-                  },
-                  "realtimeArrival": 24120,
-                  "realtimeDeparture": 24120,
-                  "realtime": false,
-                  "stopHeadsign": "Pohjois-Tapiola",
-                  "serviceDay": 1483480800
-                }
-              ]
-            }
-          }
-        }
-      ]
-    }
-  }
+	"data": {
+		"nearest": {
+			"edges": [
+				{
+					"node": {
+						"place": {
+							"stop": {
+								"name": "Kemisti",
+								"code": "E2230",
+								"platformCode": "12",
+								"desc": "Vuorimiehentie",
+								"lat": 60.1836475,
+								"lon": 24.82807300000005
+							},
+							"stoptimes": [
+								{
+									"trip": {
+										"route": {
+											"shortName": "510",
+											"mode": "BUS",
+											"alerts": []
+										}
+									},
+									"realtimeArrival": 83158,
+									"realtimeDeparture": 83158,
+									"realtime": true,
+									"stopHeadsign": "Tapiola via Keilaniemi",
+									"serviceDay": 1483394400
+								}
+							]
+						}
+					}
+				},
+				{
+					"node": {
+						"place": {
+							"stop": {
+								"name": "Kemisti",
+								"code": "E2230",
+								"platformCode": "12",
+								"desc": "Vuorimiehentie",
+								"lat": 60.1836475,
+								"lon": 24.82807300000005
+							},
+							"stoptimes": [
+								{
+									"trip": {
+										"route": {
+											"shortName": "550",
+											"mode": "BUS",
+											"alerts": []
+										}
+									},
+									"realtimeArrival": 83018,
+									"realtimeDeparture": 83018,
+									"realtime": true,
+									"stopHeadsign": "Westendinasema",
+									"serviceDay": 1483394400
+								}
+							]
+						}
+					}
+				},
+				{
+					"node": {
+						"place": {
+							"stop": {
+								"name": "Kemisti",
+								"code": "E2230",
+								"platformCode": "12",
+								"desc": "Vuorimiehentie",
+								"lat": 60.1836475,
+								"lon": 24.82807300000005
+							},
+							"stoptimes": [
+								{
+									"trip": {
+										"route": {
+											"shortName": "15",
+											"mode": "BUS",
+											"alerts": []
+										}
+									},
+									"realtimeArrival": 21240,
+									"realtimeDeparture": 21240,
+									"realtime": false,
+									"stopHeadsign": "Otaniemi",
+									"serviceDay": 1483480800
+								}
+							]
+						}
+					}
+				},
+				{
+					"node": {
+						"place": {
+							"stop": {
+								"name": "Kemisti",
+								"code": "E2225",
+								"platformCode": "13",
+								"desc": "Vuorimiehentie",
+								"lat": 60.183653,
+								"lon": 24.827746099999946
+							},
+							"stoptimes": [
+								{
+									"trip": {
+										"route": {
+											"shortName": "510",
+											"mode": "BUS",
+											"alerts": []
+										}
+									},
+									"realtimeArrival": 83760,
+									"realtimeDeparture": 83760,
+									"realtime": false,
+									"stopHeadsign": "Martinlaakso via Leppävaara",
+									"serviceDay": 1483394400
+								}
+							]
+						}
+					}
+				},
+				{
+					"node": {
+						"place": {
+							"stop": {
+								"name": "Kemisti",
+								"code": "E2225",
+								"platformCode": "13",
+								"desc": "Vuorimiehentie",
+								"lat": 60.183653,
+								"lon": 24.827746099999946
+							},
+							"stoptimes": [
+								{
+									"trip": {
+										"route": {
+											"shortName": "550",
+											"mode": "BUS",
+											"alerts": []
+										}
+									},
+									"realtimeArrival": 82840,
+									"realtimeDeparture": 82840,
+									"realtime": true,
+									"stopHeadsign": "Itäkeskus(M)",
+									"serviceDay": 1483394400
+								}
+							]
+						}
+					}
+				},
+				{
+					"node": {
+						"place": {
+							"stop": {
+								"name": "Kemisti",
+								"code": "E2225",
+								"platformCode": "13",
+								"desc": "Vuorimiehentie",
+								"lat": 60.183653,
+								"lon": 24.827746099999946
+							},
+							"stoptimes": [
+								{
+									"trip": {
+										"route": {
+											"shortName": "15",
+											"mode": "BUS",
+											"alerts": []
+										}
+									},
+									"realtimeArrival": 22080,
+									"realtimeDeparture": 22080,
+									"realtime": false,
+									"stopHeadsign": "Jupperi via Tapiola",
+									"serviceDay": 1483480800
+								}
+							]
+						}
+					}
+				},
+				{
+					"node": {
+						"place": {
+							"stop": {
+								"name": "Alvar Aallon puisto",
+								"code": "E2226",
+								"platformCode": "10",
+								"desc": "Otaniementie",
+								"lat": 60.1838541,
+								"lon": 24.82905669999995
+							},
+							"stoptimes": []
+						}
+					}
+				},
+				{
+					"node": {
+						"place": {
+							"stop": {
+								"name": "Alvar Aallon puisto",
+								"code": "E2226",
+								"platformCode": "10",
+								"desc": "Otaniementie",
+								"lat": 60.1838541,
+								"lon": 24.82905669999995
+							},
+							"stoptimes": [
+								{
+									"trip": {
+										"route": {
+											"shortName": "194A",
+											"mode": "BUS",
+											"alerts": []
+										}
+									},
+									"realtimeArrival": 55860,
+									"realtimeDeparture": 55860,
+									"realtime": false,
+									"stopHeadsign": "Kamppi",
+									"serviceDay": 1483480800
+								}
+							]
+						}
+					}
+				},
+				{
+					"node": {
+						"place": {
+							"stop": {
+								"name": "Alvar Aallon puisto",
+								"code": "E2226",
+								"platformCode": "10",
+								"desc": "Otaniementie",
+								"lat": 60.1838541,
+								"lon": 24.82905669999995
+							},
+							"stoptimes": [
+								{
+									"trip": {
+										"route": {
+											"shortName": "103T",
+											"mode": "BUS",
+											"alerts": []
+										}
+									},
+									"realtimeArrival": 23280,
+									"realtimeDeparture": 23280,
+									"realtime": false,
+									"stopHeadsign": "Kamppi via Lauttasaari",
+									"serviceDay": 1483480800
+								}
+							]
+						}
+					}
+				},
+				{
+					"node": {
+						"place": {
+							"stop": {
+								"name": "Alvar Aallon puisto",
+								"code": "E2226",
+								"platformCode": "10",
+								"desc": "Otaniementie",
+								"lat": 60.1838541,
+								"lon": 24.82905669999995
+							},
+							"stoptimes": [
+								{
+									"trip": {
+										"route": {
+											"shortName": "194",
+											"mode": "BUS",
+											"alerts": []
+										}
+									},
+									"realtimeArrival": 22680,
+									"realtimeDeparture": 22680,
+									"realtime": false,
+									"stopHeadsign": "Kamppi",
+									"serviceDay": 1483480800
+								}
+							]
+						}
+					}
+				},
+				{
+					"node": {
+						"place": {
+							"stop": {
+								"name": "Alvar Aallon puisto",
+								"code": "E2226",
+								"platformCode": "10",
+								"desc": "Otaniementie",
+								"lat": 60.1838541,
+								"lon": 24.82905669999995
+							},
+							"stoptimes": []
+						}
+					}
+				},
+				{
+					"node": {
+						"place": {
+							"stop": {
+								"name": "Alvar Aallon puisto",
+								"code": "E2226",
+								"platformCode": "10",
+								"desc": "Otaniementie",
+								"lat": 60.1838541,
+								"lon": 24.82905669999995
+							},
+							"stoptimes": [
+								{
+									"trip": {
+										"route": {
+											"shortName": "102T",
+											"mode": "BUS",
+											"alerts": []
+										}
+									},
+									"realtimeArrival": 83820,
+									"realtimeDeparture": 83820,
+									"realtime": false,
+									"stopHeadsign": "Kamppi via Lauttasaari",
+									"serviceDay": 1483394400
+								}
+							]
+						}
+					}
+				},
+				{
+					"node": {
+						"place": {
+							"stop": {
+								"name": "Alvar Aallon puisto",
+								"code": "E2226",
+								"platformCode": "10",
+								"desc": "Otaniementie",
+								"lat": 60.1838541,
+								"lon": 24.82905669999995
+							},
+							"stoptimes": [
+								{
+									"trip": {
+										"route": {
+											"shortName": "103",
+											"mode": "BUS",
+											"alerts": []
+										}
+									},
+									"realtimeArrival": 28440,
+									"realtimeDeparture": 28440,
+									"realtime": false,
+									"stopHeadsign": "Kamppi",
+									"serviceDay": 1483480800
+								}
+							]
+						}
+					}
+				},
+				{
+					"node": {
+						"place": {
+							"stop": {
+								"name": "Alvar Aallon puisto",
+								"code": "E2226",
+								"platformCode": "10",
+								"desc": "Otaniementie",
+								"lat": 60.1838541,
+								"lon": 24.82905669999995
+							},
+							"stoptimes": [
+								{
+									"trip": {
+										"route": {
+											"shortName": "552",
+											"mode": "BUS",
+											"alerts": []
+										}
+									},
+									"realtimeArrival": 20220,
+									"realtimeDeparture": 20220,
+									"realtime": false,
+									"stopHeadsign": "Malmi via Huopalahti",
+									"serviceDay": 1483480800
+								}
+							]
+						}
+					}
+				},
+				{
+					"node": {
+						"place": {
+							"stop": {
+								"name": "Alvar Aallon puisto",
+								"code": "E2226",
+								"platformCode": "10",
+								"desc": "Otaniementie",
+								"lat": 60.1838541,
+								"lon": 24.82905669999995
+							},
+							"stoptimes": []
+						}
+					}
+				},
+				{
+					"node": {
+						"place": {
+							"stop": {
+								"name": "Alvar Aallon puisto",
+								"code": "E2226",
+								"platformCode": "10",
+								"desc": "Otaniementie",
+								"lat": 60.1838541,
+								"lon": 24.82905669999995
+							},
+							"stoptimes": [
+								{
+									"trip": {
+										"route": {
+											"shortName": "195",
+											"mode": "BUS",
+											"alerts": []
+										}
+									},
+									"realtimeArrival": 82920,
+									"realtimeDeparture": 82920,
+									"realtime": false,
+									"stopHeadsign": "Kamppi",
+									"serviceDay": 1483394400
+								}
+							]
+						}
+					}
+				},
+				{
+					"node": {
+						"place": {
+							"stop": {
+								"name": "Alvar Aallon puisto",
+								"code": "E2226",
+								"platformCode": "10",
+								"desc": "Otaniementie",
+								"lat": 60.1838541,
+								"lon": 24.82905669999995
+							},
+							"stoptimes": [
+								{
+									"trip": {
+										"route": {
+											"shortName": "102",
+											"mode": "BUS",
+											"alerts": []
+										}
+									},
+									"realtimeArrival": 22740,
+									"realtimeDeparture": 22740,
+									"realtime": false,
+									"stopHeadsign": "Kamppi",
+									"serviceDay": 1483480800
+								}
+							]
+						}
+					}
+				},
+				{
+					"node": {
+						"place": {
+							"stop": {
+								"name": "Alvar Aallon puisto",
+								"code": "E2229",
+								"platformCode": "11",
+								"desc": "Otaniementie",
+								"lat": 60.184015499999994,
+								"lon": 24.829079099999948
+							},
+							"stoptimes": [
+								{
+									"trip": {
+										"route": {
+											"shortName": "194A",
+											"mode": "BUS",
+											"alerts": []
+										}
+									},
+									"realtimeArrival": 23580,
+									"realtimeDeparture": 23580,
+									"realtime": false,
+									"stopHeadsign": "Orion",
+									"serviceDay": 1483480800
+								}
+							]
+						}
+					}
+				},
+				{
+					"node": {
+						"place": {
+							"stop": {
+								"name": "Alvar Aallon puisto",
+								"code": "E2229",
+								"platformCode": "11",
+								"desc": "Otaniementie",
+								"lat": 60.184015499999994,
+								"lon": 24.829079099999948
+							},
+							"stoptimes": [
+								{
+									"trip": {
+										"route": {
+											"shortName": "194",
+											"mode": "BUS",
+											"alerts": []
+										}
+									},
+									"realtimeArrival": 24780,
+									"realtimeDeparture": 24780,
+									"realtime": false,
+									"stopHeadsign": "Pohjois-Tapiola",
+									"serviceDay": 1483480800
+								}
+							]
+						}
+					}
+				},
+				{
+					"node": {
+						"place": {
+							"stop": {
+								"name": "Alvar Aallon puisto",
+								"code": "E2229",
+								"platformCode": "11",
+								"desc": "Otaniementie",
+								"lat": 60.184015499999994,
+								"lon": 24.829079099999948
+							},
+							"stoptimes": [
+								{
+									"trip": {
+										"route": {
+											"shortName": "103",
+											"mode": "BUS",
+											"alerts": []
+										}
+									},
+									"realtimeArrival": 24120,
+									"realtimeDeparture": 24120,
+									"realtime": false,
+									"stopHeadsign": "Pohjois-Tapiola",
+									"serviceDay": 1483480800
+								}
+							]
+						}
+					}
+				}
+			]
+		}
+	}
 }
