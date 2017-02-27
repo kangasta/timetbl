@@ -61,7 +61,6 @@ class TimeTable extends Component {
 				name: 'Error in APIQuery.',
 				message: error.toString()
 			}});
-			return;
 		});
 	}
 
@@ -91,6 +90,15 @@ class TimeTable extends Component {
 					(a.node.place.stoptimes[0].serviceDay - b.node.place.stoptimes[0].serviceDay) :
 					(a.node.place.stoptimes[0].scheduledDeparture - b.node.place.stoptimes[0].scheduledDeparture);
 			});
+			if (this.props.filterOut) {
+				departureInfoArray = departureInfoArray.filter((a) => {
+					var filterOut = Array.isArray(this.props.filterOut) ? this.props.filterOut : [this.props.filterOut];
+					return filterOut.every((filter) => {
+						//console.log(String(filter) + ', ' + String(a.node.place.stoptimes[0].stopHeadsign) + ', ' + String(a.node.place.stoptimes[0].stopHeadsign !== filter))
+						return a.node.place.stoptimes[0].stopHeadsign !== filter;
+					});
+				});
+			}
 			departureInfoArray = departureInfoArray.slice(0,this.props.maxResults);
 			return departureInfoArray;
 		case 'stop':
@@ -171,7 +179,11 @@ TimeTable.propTypes = {
 		React.PropTypes.array
 	]),
 	maxResults: React.PropTypes.number,
-	numberOfDepartures: React.PropTypes.number
+	numberOfDepartures: React.PropTypes.number,
+	filterOut: React.PropTypes.oneOfType([
+		React.PropTypes.string,
+		React.PropTypes.array
+	])
 };
 
 export default TimeTable;
