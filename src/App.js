@@ -21,7 +21,7 @@ class App extends Component {
 		if (/niemi/.exec(currentURL)) {
 			self.setState({
 				//lat:60.183692, lon:24.827744
-				lat:60.186269 ,lon:24.830909, maxDistance:1000
+				lat:60.186269 ,lon:24.830909, maxDistance:1000, filterOut:'Otaniemi'
 			});
 		} else if (/kara/.exec(currentURL)) {
 			self.setState({
@@ -29,12 +29,25 @@ class App extends Component {
 				lon:[24.759257, 24.753498],
 				maxDistance:[300, 100]
 			});
+		} else if (/sello/.exec(currentURL)) {
+			self.setState({
+				lat:60.219378, lon:24.815121, maxDistance:325, filterOut:'Leppävaara'
+			});
+		} else if (/keskusta/.exec(currentURL)) {
+			self.setState({
+				lat:60.170508, lon:24.941104, maxDistance:300, filterOut:'Leppävaara'
+			});
+		} else if (/kamppi/.exec(currentURL)) {
+			self.setState({
+				lat:60.169038, lon:24.932908, maxDistance:100, filterOut:'Leppävaara'
+			});
 		}
 		//if (/location/.exec(currentURL)) {
 		else {
 			UserLocation.getUserLocation((loc) => {
+				console.log(String(loc.coords.latitude) + ', ' + String(loc.coords.longitude));
 				self.setState({
-					lat:loc.coords.latitude, lon:loc.coords.longitude
+					lat:loc.coords.latitude, lon:loc.coords.longitude, maxDistance:500
 				});
 			}, (e) => {
 				this.setState({error: {
@@ -62,10 +75,11 @@ class App extends Component {
 		}
 		//<TimeTable stopCode='E2036' />;
 		//Alvarin aukio 60.186269, 24.830909
+		//console.log('render: ' + String(this.state.lat) + ', ' + String(this.state.lon) + ', ' + String(this.state.maxDistance))
 		return (
 			<div className='app'>
 				<div className='foreground'>
-					<TimeTable lat={this.state.lat} lon={this.state.lon} maxDistance={this.state.maxDistance} maxResults={15}/>
+					<TimeTable lat={this.state.lat} lon={this.state.lon} maxDistance={this.state.maxDistance} maxResults={15} filterOut={this.state.filterOut}/>
 				</div>
 				<div className='background'>
 					<MapView
