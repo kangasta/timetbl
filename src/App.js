@@ -45,7 +45,6 @@ class App extends Component {
 		//if (/location/.exec(currentURL)) {
 		else {
 			UserLocation.getUserLocation((loc) => {
-				console.log(String(loc.coords.latitude) + ', ' + String(loc.coords.longitude));
 				self.setState({
 					lat:loc.coords.latitude, lon:loc.coords.longitude, maxDistance:500
 				});
