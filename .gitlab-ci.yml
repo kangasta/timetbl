@@ -1,7 +1,12 @@
 image: node
 
-build:
-    stage: build
+stages:
+  - install
+  - test
+  - build
+
+install:
+    stage: install
     script:
         export CI=true;
         npm install;
@@ -26,3 +31,12 @@ eslint-tests:
         export CI=true;
         export DEBUG=eslint:cli-engine;
         ./node_modules/.bin/eslint ./src/;
+
+build:
+    stage: build
+    script:
+        npm run build
+    artifacts:
+        paths:
+            - build/
+        expire_in: 1 weeks
