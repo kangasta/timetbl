@@ -18,30 +18,34 @@ class App extends Component {
 		var currentURL = window.location.href;
 
 
-		if (/niemi/.exec(currentURL)) {
+		if (/kamppi/.exec(currentURL)) {
 			self.setState({
-				lat:60.186269 ,lon:24.830909, maxDistance:1000, filterOut:'Otaniemi'
+				lat:60.169038, lon:24.932908, maxDistance:100, filterOut:'Leppävaara'
 			});
-		} else if (/kara/.exec(currentURL)) {
+		}
+		else if (/kara/.exec(currentURL)) {
 			self.setState({
 				lat:[60.224655, 60.215923],
 				lon:[24.759257, 24.753498],
 				maxDistance:[300, 100]
 			});
-		} else if (/sello/.exec(currentURL)) {
-			self.setState({
-				lat:60.219378, lon:24.815121, maxDistance:325, filterOut:'Leppävaara'
-			});
 		} else if (/keskusta/.exec(currentURL)) {
 			self.setState({
 				lat:60.170508, lon:24.941104, maxDistance:300, filterOut:'Leppävaara'
 			});
-		} else if (/kamppi/.exec(currentURL)) {
+		} else if (/mattby/.exec(currentURL)) {
 			self.setState({
-				lat:60.169038, lon:24.932908, maxDistance:100, filterOut:'Leppävaara'
+				lat:60.161874, lon:24.739518, maxDistance:1000, filterOut:'Otaniemi'
 			});
-		}
-		else {
+		} else if (/niemi/.exec(currentURL)) {
+			self.setState({
+				lat:60.186269 ,lon:24.830909, maxDistance:1000, filterOut:'Otaniemi'
+			});
+		} else if (/sello/.exec(currentURL)) {
+			self.setState({
+				lat:60.219378, lon:24.815121, maxDistance:325, filterOut:'Leppävaara'
+			});
+		} else  {
 			UserLocation.getUserLocation((loc) => {
 				self.setState({
 					lat:loc.coords.latitude, lon:loc.coords.longitude, maxDistance:500
