@@ -28,7 +28,6 @@ describe('App', () => {
 	});
 	it('shows timetable when state is updated to valid state', () => {
 		const component = shallow(<App />);
-		//const nearest = require('../__mocks__/NearestQueryResponse.json');
 
 		component.setState({lat: 0, lon:0});
 		component.update();

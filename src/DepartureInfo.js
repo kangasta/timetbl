@@ -15,13 +15,10 @@ class DepartureInfo extends Component {
 					<li className={'stop name ' + hideStopInfo}> {this.props.stop.name} </li>
 					<li className={'route number ' + routeType + ' ' + departureType}> {this.props.stoptime.trip.route.shortName} </li>
 					<li className={'route destination ' + departureType}> {this.props.stoptime.stopHeadsign} </li>
-					<li className={'route deptime ' + realtime}> {DepartureInfo.departureTimeToStr(this.props.stoptime.realtimeDeparture/*, this.props.stoptime.realtime*/)}</li>
+					<li className={'route deptime ' + realtime}> {DepartureInfo.departureTimeToStr(this.props.stoptime.realtimeDeparture)}</li>
 				</ul>
 			</div>
-		//<li className='route type'> {this.props.stoptime.trip.route.mode} </li>
-		//<li className={'stop platform ' + hideStopInfo}>{this.props.stop.platformCode ? this.props.stop.platformCode : '1'} </li>
-		//<li className={'stop code ' + hideStopInfo}> {this.props.stop.code} </li>
-		); // TODO bug with empty platform field should be fixed in css.
+		);
 	}
 
 	static currentTimeInMinutes() {
@@ -46,14 +43,14 @@ class DepartureInfo extends Component {
 		return hStr + delim + minStr;
 	}
 
-	static departureTimeToStr(seconds/*, isRealTime = false*/) {
+	static departureTimeToStr(seconds) {
 		if (seconds === 0) {
 			return 'Time';
 		}
 
 		var departureInMinutes = DepartureInfo.parseHour(seconds, false)*60 + (~~((seconds%3600)/60)) - DepartureInfo.currentTimeInMinutes();
 
-		return /*(isRealTime ? ' ' : '~') + */(((departureInMinutes < 10) && (departureInMinutes >= 0)) ?
+		return (((departureInMinutes < 10) && (departureInMinutes >= 0)) ?
 			(departureInMinutes + ' min') :
 			DepartureInfo.parseTime(seconds));
 	}
