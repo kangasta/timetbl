@@ -1,14 +1,12 @@
 .departure ul {
 	list-style-type: none;
 	margin: 0;
-	/*padding: 0;*/
 	overflow: hidden;
-	width: 100%;
-	/*top: 0.5vh;*/
-	vertical-align: middle;
 	position: relative;
 	top: 50%;
 	transform: translateY(-50%);
+	vertical-align: middle;
+	width: 100%;
 }
 
 .header {
@@ -16,13 +14,13 @@
 }
 
 .departure {
-	width: 100%;
+	border-radius: 7px;
+	font-size: 100%;
 	height: 5%;
 	margin-bottom: 0.5%;
 	margin-top: 0.5%;
 	opacity: 0.75;
-	border-radius: 7px;
-	font-size: 100%;
+	width: 100%;
 }
 
 .realtime {
@@ -59,11 +57,8 @@
 
 .departure li {
 	float: left;
-	/*height: 100%;*/
-	/*display: block;*/
 	font-size: 2.5vh;
 	text-align: left;
-	/*text-decoration: none;*/
 }
 
 .hide {
@@ -74,21 +69,9 @@
 	width: 10%;
 }
 
-/*
-.stop.code {
-	width: 10%;
-}
-*/
-
 .stop.name {
 	width: 25%;
 }
-
-/*
-.stop.platform {
-	width: 5%;
-}
-*/
 
 .route.number.nearest-type {
 	width: 10%;

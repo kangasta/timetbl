@@ -20,7 +20,6 @@ class App extends Component {
 
 		if (/niemi/.exec(currentURL)) {
 			self.setState({
-				//lat:60.183692, lon:24.827744
 				lat:60.186269 ,lon:24.830909, maxDistance:1000, filterOut:'Otaniemi'
 			});
 		} else if (/kara/.exec(currentURL)) {
@@ -42,7 +41,6 @@ class App extends Component {
 				lat:60.169038, lon:24.932908, maxDistance:100, filterOut:'Leppävaara'
 			});
 		}
-		//if (/location/.exec(currentURL)) {
 		else {
 			UserLocation.getUserLocation((loc) => {
 				self.setState({
@@ -72,9 +70,6 @@ class App extends Component {
 				</div>
 			);
 		}
-		//<TimeTable stopCode='E2036' />;
-		//Alvarin aukio 60.186269, 24.830909
-		//console.log('render: ' + String(this.state.lat) + ', ' + String(this.state.lon) + ', ' + String(this.state.maxDistance))
 		return (
 			<div className='app'>
 				<div className='foreground'>

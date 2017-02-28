@@ -94,7 +94,6 @@ class TimeTable extends Component {
 				departureInfoArray = departureInfoArray.filter((a) => {
 					var filterOut = Array.isArray(this.props.filterOut) ? this.props.filterOut : [this.props.filterOut];
 					return filterOut.every((filter) => {
-						//console.log(String(filter) + ', ' + String(a.node.place.stoptimes[0].stopHeadsign) + ', ' + String(a.node.place.stoptimes[0].stopHeadsign !== filter))
 						return a.node.place.stoptimes[0].stopHeadsign !== filter;
 					});
 				});

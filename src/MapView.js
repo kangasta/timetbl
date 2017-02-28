@@ -1,18 +1,9 @@
 import React, { Component } from 'react';
-//import ErrorMsg from './ErrorMsg.js';
 import Leaflet from 'leaflet';
 import './MapView.css';
 import 'leaflet/dist/leaflet.css'; // TODO fix this to use css-loader
 
 class MapView extends Component {
-	/*constructor(props) {
-		super(props);
-		this.state = {error: {
-			name: 'Not implemented',
-			message: 'This should probably be coded at some point.'
-		}};
-	}*/
-
 	componentDidMount() {
 		var map = Leaflet.map('leaflet-map', { zoomControl:false }).setView([this.props.lat,this.props.lon], this.props.zoom);
 		Leaflet.tileLayer('http://api.digitransit.fi/map/v1/{id}/{z}/{x}/{y}.png', {
@@ -25,13 +16,6 @@ class MapView extends Component {
 	}
 
 	render() {
-		/*if (this.state.hasOwnProperty('error')) {
-			return (
-				<div className='map-view' id='map'>
-					<ErrorMsg name={this.state.error.name} message={this.state.error.message}/>
-				</div>
-			);
-		}*/
 		return (
 			<div className='map-view'>
 				<div className='leaflet-container' id='leaflet-map'></div>
@@ -55,5 +39,3 @@ MapView.propTypes = {
 };
 
 export default MapView;
-
-

@@ -2,7 +2,6 @@
 	height: 100%;
 	position: absolute;
 	top: 40%;
-	/*color: darkblue;*/
 }
 
 .loading-msg-bg {
@@ -10,7 +9,6 @@
 	border-radius: 7px;
 	height: 100%;
 	width: 100%;
-	/*color: darkblue;*/
 }
 
 h1, h2 {
