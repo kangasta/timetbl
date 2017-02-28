@@ -86,9 +86,15 @@ class TimeTable extends Component {
 		case 'nearest':
 			departureInfoArray = this.state.data.nearest.edges.filter((a) => { return a.node.place.stoptimes.length > 0; });
 			departureInfoArray.sort((a,b) => {
-				return (a.node.place.stoptimes[0].serviceDay - b.node.place.stoptimes[0].serviceDay) ?
-					(a.node.place.stoptimes[0].serviceDay - b.node.place.stoptimes[0].serviceDay) :
-					(a.node.place.stoptimes[0].scheduledDeparture - b.node.place.stoptimes[0].scheduledDeparture);
+				const ad = a.node.place.stoptimes[0].serviceDay;
+				const bd = b.node.place.stoptimes[0].serviceDay;
+				var at = a.node.place.stoptimes[0].realtimeDeparture;
+				var bt = b.node.place.stoptimes[0].realtimeDeparture;
+				at = (a.node.place.stoptimes[0].scheduledDeparture - at) > 20*3600 ? at + 24*3600 : at;
+				bt = (b.node.place.stoptimes[0].scheduledDeparture - bt) > 20*3600 ? bt + 24*3600 : bt;
+				return (ad - bd) ?
+					(ad - bd) :
+					(at - bt);
 			});
 			if (this.props.filterOut) {
 				departureInfoArray = departureInfoArray.filter((a) => {
