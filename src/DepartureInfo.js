@@ -32,6 +32,12 @@ class DepartureInfo extends Component {
 		return h;
 	}
 
+	static parseMinute(seconds, max23=true) {
+		var min = (~~(seconds/60));
+		min = min > 24*60 && max23 ? min - 24*60 : min;
+		return min;
+	}
+
 	static parseTime(seconds, delim = ':') {
 		var h = this.parseHour(seconds);
 
@@ -48,7 +54,7 @@ class DepartureInfo extends Component {
 			return 'Time';
 		}
 
-		var departureInMinutes = DepartureInfo.parseHour(seconds, false)*60 + (~~((seconds%3600)/60)) - DepartureInfo.currentTimeInMinutes();
+		var departureInMinutes = DepartureInfo.parseMinute(seconds) - DepartureInfo.currentTimeInMinutes();
 
 		return (((departureInMinutes < 10) && (departureInMinutes >= 0)) ?
 			(departureInMinutes + ' min') :
