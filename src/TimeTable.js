@@ -21,11 +21,7 @@ class TimeTable extends Component {
 
 		switch (this.getType()) {
 		case 'nearest':
-			if (Array.isArray(this.props.lat) && Array.isArray(this.props.lat)){
-				queryResponsePromises = APIQuery.getNearestDepartures(this.props.lat, this.props.lon, this.props.maxDistance, this.props.maxResults*5);
-			} else {
-				queryResponsePromises = APIQuery.getNearestDepartures(this.props.lat, this.props.lon, this.props.maxDistance, this.props.maxResults*5);
-			}
+			queryResponsePromises = APIQuery.getNearestDepartures(this.props.lat, this.props.lon, this.props.maxDistance, this.props.maxResults*5);
 			break;
 		case 'stop':
 			queryResponsePromises = APIQuery.getStopDepartures(this.props.stopCode, this.props.numberOfDepartures);

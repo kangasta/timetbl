@@ -22,14 +22,18 @@ describe('TimeTable', () => {
 		expect(component.find(LoadingMsg)).toHaveLength(1);
 	});
 	it('shows nearest departure infos after succesfull API query.', () => {
-		const component = shallow(<TimeTable lat={16.5} lon={28.5}/>);
-		component.instance().sendQuery();
-		const update = component.componentDidUpdate;
-		component.componentDidUpdate = () => {
-			expect(component.find(LoadingMsg)).toHaveLength(0);
-			expect(component.find(DepartureInfo)).not.toHaveLength(0);
-			if (update) update();
-		};
+		const lat = [16.5, [16.5, 14.5]];
+		const lon = [16.5, [28.5, 26.5]];
+		for(var i = 0; i < lat.length; i++) {
+			const component = shallow(<TimeTable lat={lat[i]} lon={lon[i]}  filterOut={'Otaniemi'}/>);
+			component.instance().sendQuery();
+			const update = component.componentDidUpdate;
+			component.componentDidUpdate = () => {
+				expect(component.find(LoadingMsg)).toHaveLength(0);
+				expect(component.find(DepartureInfo)).not.toHaveLength(0);
+				if (update) update();
+			};
+		}
 	});
 	it('shows stop departure infos after succesfull API query.', () => {
 		const component = shallow(<TimeTable stopCode='E2036'/>);
