@@ -31,24 +31,43 @@ class App extends Component {
 			});
 		} else if (/keskusta/.exec(currentURL)) {
 			self.setState({
-				lat:60.170508, lon:24.941104, maxDistance:300, filterOut:'Leppävaara'
+				lat:60.170508,
+				lon:24.941104,
+				maxDistance:300,
 			});
 		} else if (/mattby/.exec(currentURL)) {
 			self.setState({
-				lat:60.161874, lon:24.739518, maxDistance:1000, filterOut:'Otaniemi'
+				lat:60.161874,
+				lon:24.739518,
+				maxDistance:1000,
+				filterOut:'Matinkylä'
 			});
 		} else if (/niemi/.exec(currentURL)) {
 			self.setState({
-				lat:60.186269 ,lon:24.830909, maxDistance:1000, filterOut:'Otaniemi'
+				lat:60.186269,
+				lon:24.830909,
+				maxDistance:1000,
+				filterOut:'Otaniemi'
 			});
 		} else if (/sello/.exec(currentURL)) {
 			self.setState({
-				lat:60.219378, lon:24.815121, maxDistance:325, filterOut:'Leppävaara'
+				lat:60.219378,
+				lon:24.815121,
+				maxDistance:325,
+				filterOut:'Leppävaara'
+			});
+		} else if (/niittari/.exec(currentURL)) {
+			self.setState({
+				lat:[60.170882,60.167753],
+				lon:[24.760174,24.771770],
+				maxDistance:[300,150],
 			});
 		} else  {
 			UserLocation.getUserLocation((loc) => {
 				self.setState({
-					lat:loc.coords.latitude, lon:loc.coords.longitude, maxDistance:500
+					lat:Math.round(loc.coords.latitude*1e6)/1e6,
+					lon:Math.round(loc.coords.longitude*1e6)/1e6,
+					maxDistance:499
 				});
 			}, (e) => {
 				this.setState({error: {
