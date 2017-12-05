@@ -3,16 +3,18 @@ import PropTypes from 'prop-types';
 import './TimeTable.css';
 import APIQuery from './APIQuery.js';
 import DepartureInfo from './DepartureInfo.js';
-import ErrorMsg from './ErrorMsg.js';
-import LoadingMsg from './LoadingMsg.js';
 
-import { SFGroup, SFHead } from './simple-feed/src/SF';
+import { SFGroup, SFHead, SFError, SFLoading, SFValidate } from './simple-feed/src/SF';
 
 class TimeTable extends Component {
 	constructor(props) {
 		super(props);
+		var data = {loading: 'Waiting for timetable data from HSL API.'};
+		if (this.getType() === 'none') {
+			data = {error: 'Unsupported timetable type'};
+		}
 		this.state = {
-			data : {}
+			data: data
 		};
 	}
 
@@ -133,14 +135,15 @@ class TimeTable extends Component {
 	}
 
 	render() {
-		if (this.getType() === 'none') {
-			return <ErrorMsg name='Unsupported timetable type' message='Component was probably initialised with out giving it any props. At least lat and lon or stopCode should be passed.'/>;
-		}
-		if (this.state.hasOwnProperty('error')) {
-			return <ErrorMsg name={this.state.error.name} message={this.state.error.msg}/>;
-		}
-		if (!this.hasValidState()) {
-			return <LoadingMsg name='Timetable data' message='Reguest sent to HSL API and waiting for response'/>;
+		if (SFValidate.checkForErrorOrLoading(this.state.data))
+		{
+			return (
+				<SFGroup head={
+					<SFHead title='Timetable' info='Location'/>
+				}>
+					{SFValidate.generateErrorOrLoadingElement(this.state.data)}
+				</SFGroup>
+			);
 		}
 		var departureInfoArray = this.getDepartureInfoArray();
 
