@@ -16,13 +16,14 @@ class APIQuery {
 					maxDistance[i >= maxDistance.length ? maxDistance.length -1 : i],
 					maxResults)
 			})
-			.then((response) => response.json())
-			.then((responseJson) => {
-				if (responseJson.hasOwnProperty('errors')){
-					throw new Error('HSL API returned object with errors content instead of data:\n' + JSON.stringify(responseJson, null, 2));
-				}
-				return responseJson.data;
-			}));
+				.then((response) => response.json())
+				.then((responseJson) => {
+					if (responseJson.hasOwnProperty('errors')){
+						throw new Error('HSL API returned object with errors content instead of data:\n' + JSON.stringify(responseJson, null, 2));
+					}
+					return responseJson.data;
+				})
+			);
 		}
 		return promises;
 	}
@@ -35,13 +36,14 @@ class APIQuery {
 			},
 			body: APIQuery.queries.stopDepartures(stopCode, numberOfDepartures)
 		})
-		.then((response) => response.json())
-		.then((responseJson) => {
-			if (responseJson.hasOwnProperty('errors')){
-				throw new Error('HSL API returned object with errors content instead of data\n:' + JSON.stringify(responseJson, null, 2));
-			}
-			return responseJson.data;
-		})];
+			.then((response) => response.json())
+			.then((responseJson) => {
+				if (responseJson.hasOwnProperty('errors')){
+					throw new Error('HSL API returned object with errors content instead of data\n:' + JSON.stringify(responseJson, null, 2));
+				}
+				return responseJson.data;
+			})
+		];
 	}
 
 	static EmptyNearestQueryResponse = '{"data":{"nearest":{"edges":[]}}}';
