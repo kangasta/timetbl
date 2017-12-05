@@ -4,7 +4,7 @@ import ErrorMsg from './ErrorMsg.js';
 import LoadingMsg from './LoadingMsg.js';
 import TimeTable from './TimeTable.js';
 import UserLocation from './UserLocation.js';
-import MapView from './MapView.js';
+//import MapView from './MapView.js';
 
 import { SFMainFeed } from './simple-feed/src/SF';
 

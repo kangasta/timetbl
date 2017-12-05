@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { mount, shallow } from 'enzyme';
+import { mount } from 'enzyme';
 import DepartureInfo from './../DepartureInfo.js';
 
 describe('DepartureInfo', () => {
