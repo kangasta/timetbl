@@ -1,8 +1,7 @@
 import React from 'react';
-import { mount, shallow } from 'enzyme';
+import { shallow } from 'enzyme';
 import App from './../App';
 import ErrorMsg from './../ErrorMsg';
-import LoadingMsg from './../LoadingMsg';
 import TimeTable from './../TimeTable.js';
 
 describe('App', () => {

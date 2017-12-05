@@ -14,7 +14,7 @@ class MapView extends Component {
 			'<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ',
 			id: 'hsl-map'}).addTo(map);
 		Leaflet.vectorGrid.protobuf('http://api.digitransit.fi/hsl-stop-map/:z/:x/:y.pbf')
-		.addTo(map);
+			.addTo(map);
 	}
 
 	render() {

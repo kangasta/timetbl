@@ -36,29 +36,29 @@ class TimeTable extends Component {
 		}
 
 		Promise.all(queryResponsePromises)
-		.then((responseJsons) => {
-			if (self.getType() === 'nearest' && queryResponsePromises.length > 1)
-			{
-				var combinedResponseJson = JSON.parse(APIQuery.EmptyNearestQueryResponse);
-				for (var i = 0; i < responseJsons.length; i++) {
-					combinedResponseJson.data.nearest.edges = combinedResponseJson.data.nearest.edges.concat(responseJsons[i].nearest.edges);
+			.then((responseJsons) => {
+				if (self.getType() === 'nearest' && queryResponsePromises.length > 1)
+				{
+					var combinedResponseJson = JSON.parse(APIQuery.EmptyNearestQueryResponse);
+					for (var i = 0; i < responseJsons.length; i++) {
+						combinedResponseJson.data.nearest.edges = combinedResponseJson.data.nearest.edges.concat(responseJsons[i].nearest.edges);
+					}
+					return combinedResponseJson.data;
+				} else {
+					return responseJsons[0];
 				}
-				return combinedResponseJson.data;
-			} else {
-				return responseJsons[0];
-			}
-		})
-		.then((responseJson) => {
-			self.setState({
-				data: responseJson
+			})
+			.then((responseJson) => {
+				self.setState({
+					data: responseJson
+				});
+			})
+			.catch((error) => {
+				self.setState({'error': {
+					name: 'Error in APIQuery.',
+					message: error.toString()
+				}});
 			});
-		})
-		.catch((error) => {
-			self.setState({'error': {
-				name: 'Error in APIQuery.',
-				message: error.toString()
-			}});
-		});
 	}
 
 	getType() {

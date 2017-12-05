@@ -22,9 +22,9 @@ describe('APIQuery', () => {
 			.mockReturnValue(new Promise(() => JSON.stringify(nearest)));
 
 		Promise.all(APIQuery.getNearestDepartures())
-		.then((responseJson) => {
-			expect(responseJson).toEqual(nearest);
-		});
+			.then((responseJson) => {
+				expect(responseJson).toEqual(nearest);
+			});
 	});
 	it('returns promise with expected content for stop query', () => {
 		const stop = require('../__mocks__/StopQueryResponse.json').data;
@@ -32,17 +32,17 @@ describe('APIQuery', () => {
 			.mockReturnValue(new Promise(() => JSON.stringify(stop)));
 
 		Promise.all(APIQuery.getStopDepartures())
-		.then((responseJson) => {
-			expect(responseJson).toEqual(stop);
-		});
+			.then((responseJson) => {
+				expect(responseJson).toEqual(stop);
+			});
 	});
 	it('returns rejected promise with invalid response', () => {
 		const invalid = require('../__mocks__/InvalidQueryResponse.json').data;
 		fetch = jest.fn() // eslint-disable-line
 			.mockReturnValue(new Promise(() => JSON.stringify(invalid)));
 		Promise.all(APIQuery.getStopDepartures())
-		.catch((errorJsonString) => {
-			expect(errorJsonString).toMatch(/{\s*error\s*:\s*{/);
-		});
+			.catch((errorJsonString) => {
+				expect(errorJsonString).toMatch(/{\s*error\s*:\s*{/);
+			});
 	});
 });
