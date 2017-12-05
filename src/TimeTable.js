@@ -6,6 +6,8 @@ import DepartureInfo from './DepartureInfo.js';
 import ErrorMsg from './ErrorMsg.js';
 import LoadingMsg from './LoadingMsg.js';
 
+import { SFGroup, SFHead } from './simple-feed/src/SF';
+
 class TimeTable extends Component {
 	constructor(props) {
 		super(props);
@@ -143,7 +145,9 @@ class TimeTable extends Component {
 		var departureInfoArray = this.getDepartureInfoArray();
 
 		return (
-			<div className='timetable'>
+			<SFGroup head={
+				<SFHead title='Timetable' info='Location'/>
+			}>
 				<DepartureInfo header={this.getType()}/>
 				{
 					departureInfoArray.map((departureInfoArrayItem, i) => {
@@ -152,7 +156,7 @@ class TimeTable extends Component {
 							<DepartureInfo stoptime={departureInfoArrayItem} key={i} row={i}/>;
 					})
 				}
-			</div>
+			</SFGroup>
 		);
 	}
 }

@@ -6,6 +6,8 @@ import TimeTable from './TimeTable.js';
 import UserLocation from './UserLocation.js';
 import MapView from './MapView.js';
 
+import { SFMainFeed } from './simple-feed/src/SF';
+
 class App extends Component {
 	constructor(props) {
 		super(props);
@@ -93,6 +95,25 @@ class App extends Component {
 				</div>
 			);
 		}
+		return(
+			<SFMainFeed>
+				<TimeTable lat={this.state.lat} lon={this.state.lon} maxDistance={this.state.maxDistance} maxResults={15} filterOut={this.state.filterOut}/>
+			</SFMainFeed>
+		);
+		/*if (this.state.hasOwnProperty('error')) {
+			return (
+				<div className='app'>
+					<ErrorMsg name={this.state.error.name} message={this.state.error.message}/>
+				</div>
+			);
+		}
+		if ((!this.state.hasOwnProperty('lat') || !this.state.hasOwnProperty('lon')) && !this.state.hasOwnProperty('stopCode')) {
+			return (
+				<div className='app'>
+					<LoadingMsg name='User location' message={UserLocation.waitingForUserLocation}/>
+				</div>
+			);
+		}
 		return (
 			<div className='app'>
 				<div className='foreground'>
@@ -106,6 +127,7 @@ class App extends Component {
 				</div>
 			</div>
 		);
+		*/
 	}
 }
 

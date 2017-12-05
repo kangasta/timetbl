@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import './DepartureInfo.css';
 
+import { SFElement } from './simple-feed/src/SF';
+
 class DepartureInfo extends Component {
 	render() {
 		var departureType = ((this.props.stop.name === 'Stop name' && this.props.header.toLowerCase() !== 'nearest') || this.props.header.toLowerCase() === 'stop') ? 'stop-type' : 'nearest-type';
@@ -11,15 +13,25 @@ class DepartureInfo extends Component {
 		var realtime = this.props.stoptime.realtime ? 'realtime' : '';
 		var routeType = 'route-type-' + this.props.stoptime.trip.route.mode.toLowerCase();
 		return (
-			<div className={'departure ' + rowClass + ' ' + departureType}>
+			<SFElement width='full' pass_classes={'departure ' + rowClass + ' ' + departureType} head={
 				<ul>
 					<li className={'stop name ' + hideStopInfo}> {this.props.stop.name} </li>
 					<li className={'route number ' + routeType + ' ' + departureType}> {this.props.stoptime.trip.route.shortName} </li>
 					<li className={'route destination ' + departureType}> {this.props.stoptime.stopHeadsign} </li>
 					<li className={'route deptime ' + realtime}> {DepartureInfo.departureTimeToStr(this.props.stoptime.realtimeDeparture)}</li>
 				</ul>
-			</div>
+			}/>
 		);
+		/*
+			<SFElement width='full' className={'departure ' + rowClass + ' ' + departureType} >
+				<ul>
+					<li className={'stop name ' + hideStopInfo}> {this.props.stop.name} </li>
+					<li className={'route number ' + routeType + ' ' + departureType}> {this.props.stoptime.trip.route.shortName} </li>
+					<li className={'route destination ' + departureType}> {this.props.stoptime.stopHeadsign} </li>
+					<li className={'route deptime ' + realtime}> {DepartureInfo.departureTimeToStr(this.props.stoptime.realtimeDeparture)}</li>
+				</ul>
+			</SFElement>
+		*/
 	}
 
 	static currentTimeInMinutes() {
