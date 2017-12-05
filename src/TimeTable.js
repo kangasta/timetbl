@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import './TimeTable.css';
 import APIQuery from './APIQuery.js';
 import DepartureInfo from './DepartureInfo.js';
@@ -166,24 +167,24 @@ TimeTable.defaultProps = {
 };
 
 TimeTable.propTypes = {
-	lat: React.PropTypes.oneOfType([
-		React.PropTypes.number,
-		React.PropTypes.array
+	lat: PropTypes.oneOfType([
+		PropTypes.number,
+		PropTypes.array
 	]),
-	lon: React.PropTypes.oneOfType([
-		React.PropTypes.number,
-		React.PropTypes.array
+	lon: PropTypes.oneOfType([
+		PropTypes.number,
+		PropTypes.array
 	]),
-	stopCode: React.PropTypes.string,
-	maxDistance: React.PropTypes.oneOfType([
-		React.PropTypes.number,
-		React.PropTypes.array
+	stopCode: PropTypes.string,
+	maxDistance: PropTypes.oneOfType([
+		PropTypes.number,
+		PropTypes.array
 	]),
-	maxResults: React.PropTypes.number,
-	numberOfDepartures: React.PropTypes.number,
-	filterOut: React.PropTypes.oneOfType([
-		React.PropTypes.string,
-		React.PropTypes.array
+	maxResults: PropTypes.number,
+	numberOfDepartures: PropTypes.number,
+	filterOut: PropTypes.oneOfType([
+		PropTypes.string,
+		PropTypes.array
 	])
 };
 

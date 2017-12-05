@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import './LoadingMsg.css';
 
 class LoadingMsg extends Component {
@@ -21,8 +22,8 @@ LoadingMsg.defaultProps = {
 };
 
 LoadingMsg.propTypes = {
-	name: React.PropTypes.string,
-	message: React.PropTypes.string
+	name: PropTypes.string,
+	message: PropTypes.string
 };
 
 export default LoadingMsg;

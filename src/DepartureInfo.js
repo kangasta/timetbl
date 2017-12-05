@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import './DepartureInfo.css';
 
 class DepartureInfo extends Component {
@@ -90,30 +91,30 @@ DepartureInfo.defaultProps = {
 };
 
 DepartureInfo.propTypes = {
-	stop: React.PropTypes.shape({
-		name: React.PropTypes.string,
-		code: React.PropTypes.string,
-		platformCode: React.PropTypes.string,
-		desc: React.PropTypes.string,
-		lat: React.PropTypes.number,
-		lon: React.PropTypes.number
+	stop: PropTypes.shape({
+		name: PropTypes.string,
+		code: PropTypes.string,
+		platformCode: PropTypes.string,
+		desc: PropTypes.string,
+		lat: PropTypes.number,
+		lon: PropTypes.number
 	}),
-	stoptime: React.PropTypes.shape({
-		trip: React.PropTypes.shape({
-			route: React.PropTypes.shape({
-				shortName: React.PropTypes.string,
-				mode: React.PropTypes.string,
-				alerts: React.PropTypes.array
+	stoptime: PropTypes.shape({
+		trip: PropTypes.shape({
+			route: PropTypes.shape({
+				shortName: PropTypes.string,
+				mode: PropTypes.string,
+				alerts: PropTypes.array
 			})
 		}),
-		realtimeArrival: React.PropTypes.number,
-		realtimeDeparture: React.PropTypes.number,
-		realtime: React.PropTypes.bool,
-		scheduledDeparture: React.PropTypes.number,
-		stopHeadsign: React.PropTypes.string
+		realtimeArrival: PropTypes.number,
+		realtimeDeparture: PropTypes.number,
+		realtime: PropTypes.bool,
+		scheduledDeparture: PropTypes.number,
+		stopHeadsign: PropTypes.string
 	}),
-	header: React.PropTypes.string,
-	row: React.PropTypes.number
+	header: PropTypes.string,
+	row: PropTypes.number
 };
 
 export default DepartureInfo;

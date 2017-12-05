@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Leaflet from 'leaflet';
+import 'leaflet.vectorgrid';
 import './MapView.css';
 import 'leaflet/dist/leaflet.css'; // TODO fix this to use css-loader
 
@@ -32,10 +34,10 @@ MapView.defaultProps = {
 };
 
 MapView.propTypes = {
-	lat: React.PropTypes.number,
-	lon: React.PropTypes.number,
-	zoom: React.PropTypes.number,
-	hd: React.PropTypes.bool
+	lat: PropTypes.number,
+	lon: PropTypes.number,
+	zoom: PropTypes.number,
+	hd: PropTypes.bool
 };
 
 export default MapView;

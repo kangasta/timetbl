@@ -3,20 +3,17 @@
   "version": "0.9.0",
   "private": true,
   "devDependencies": {
-    "babel-eslint": ">=7.1.1",
-    "css-loader": "^0.26.1",
-    "enzyme": "^2.7.0",
-    "eslint": "^3.12.2",
-    "eslint-plugin-react": "^6.8.0",
-    "jest-fetch-mock": "^1.0.6",
-    "leaflet": "^1.0.2",
-    "leaflet.vectorgrid": "^1.1.0",
-    "react-addons-test-utils": "^15.4.1",
-    "react-scripts": "0.8.4"
+    "enzyme": "^3.2.0",
+    "enzyme-adapter-react-16": "^1.1.0",
+    "react-scripts": "1.0.17"
   },
   "dependencies": {
-    "react": "^15.4.1",
-    "react-dom": "^15.4.1"
+    "leaflet": "^1.0.2",
+    "leaflet.vectorgrid": "^1.1.0",
+    "moment": "^2.19.3",
+    "moment-timezone": "^0.5.14",
+    "react": "^16.1.1",
+    "react-dom": "^16.1.1"
   },
   "scripts": {
     "start": "react-scripts start",
