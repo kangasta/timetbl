@@ -4,7 +4,7 @@ import './TimeTable.css';
 import APIQuery from './APIQuery.js';
 import DepartureInfo from './DepartureInfo.js';
 
-import { SFGroup, SFHead, SFError, SFLoading, SFValidate } from './simple-feed/src/SF';
+import { SFGroup, SFHead, SFValidate } from './simple-feed/src/SF';
 
 class TimeTable extends Component {
 	constructor(props) {
@@ -18,8 +18,6 @@ class TimeTable extends Component {
 		};
 	}
 
-	static unsupportedTypeErrorString = 'Component was probably initialised with out giving it any props. At least lat and lon or stopCode should be passed.';
-
 	sendQuery() {
 		var self = this;
 		var queryResponsePromises;
@@ -32,10 +30,7 @@ class TimeTable extends Component {
 			queryResponsePromises = APIQuery.getStopDepartures(this.props.stopCode, this.props.numberOfDepartures);
 			break;
 		default:
-			this.setState({error: {
-				name: 'Unsupported timetable type.',
-				message: TimeTable.unsupportedTypeErrorString
-			}});
+			this.setState({data: {error: 'Unsupported timetable type'}});
 			return;
 		}
 
@@ -58,10 +53,7 @@ class TimeTable extends Component {
 				});
 			})
 			.catch((error) => {
-				self.setState({'error': {
-					name: 'Error in APIQuery.',
-					message: error.toString()
-				}});
+				self.setState({data: {error: error.toString()}});
 			});
 	}
 
@@ -116,10 +108,7 @@ class TimeTable extends Component {
 			});
 			return departureInfoArray[0].stoptimesWithoutPatterns;
 		default:
-			this.setState({error: {
-				name: 'Unsupported timetable type.',
-				message: TimeTable.unsupportedTypeErrorString
-			}});
+			this.setState({data: {error: 'Unsupported timetable type'}});
 		}
 		return departureInfoArray;
 	}
