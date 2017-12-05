@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { shallow } from 'enzyme';
+import { mount, shallow } from 'enzyme';
 import DepartureInfo from './../DepartureInfo.js';
 
 describe('DepartureInfo', () => {
@@ -9,25 +9,25 @@ describe('DepartureInfo', () => {
 		ReactDOM.render(<DepartureInfo />, div);
 	});
 	it('shows stop info if stop is given in props.', () => {
-		const component = shallow(<DepartureInfo stop={{name: 'SOME NAME'}}/>);
+		const component = mount(<DepartureInfo stop={{name: 'SOME NAME'}}/>);
 
 		expect(component.find('li.stop')).toHaveLength(1);
 		expect(component.find('li.stop').everyWhere(i => i.hasClass('hide'))).toBeFalsy();
 	});
 	it('hides stop info if no stop is given in props.', () => {
-		const component = shallow(<DepartureInfo />);
+		const component = mount(<DepartureInfo />);
 
 		expect(component.find('li.stop')).toHaveLength(1);
 		expect(component.find('li.stop').everyWhere(i => i.hasClass('hide'))).toBeTruthy();
 	});
 	it('shows stop info if header type is nearest.', () => {
-		const component = shallow(<DepartureInfo header='nearest'/>);
+		const component = mount(<DepartureInfo header='nearest'/>);
 
 		expect(component.find('li.stop')).toHaveLength(1);
 		expect(component.find('li.stop').everyWhere(i => i.hasClass('hide'))).toBeFalsy();
 	});
 	it('hides stop info if header type is stop.', () => {
-		const component = shallow(<DepartureInfo header='stop'/>);
+		const component = mount(<DepartureInfo header='stop'/>);
 
 		expect(component.find('li.stop')).toHaveLength(1);
 		expect(component.find('li.stop').everyWhere(i => i.hasClass('hide'))).toBeTruthy();
