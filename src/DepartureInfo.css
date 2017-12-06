@@ -1,6 +1,7 @@
 .departure ul {
 	list-style-type: none;
 	margin: 0;
+	padding: 0;
 	overflow: hidden;
 	position: relative;
 	top: 50%;
@@ -8,7 +9,7 @@
 	vertical-align: middle;
 	width: 100%;
 }
-
+/*
 .header {
 	background-color: #DCDCDC;
 }
@@ -22,6 +23,7 @@
 	opacity: 0.75;
 	width: 100%;
 }
+*/
 
 .realtime {
 	color: #1a8c20
@@ -47,6 +49,7 @@
 	color: #1ba6ad;
 }
 
+/*
 .even {
 	background-color: #FFFFFF;
 }
@@ -54,11 +57,13 @@
 .odd {
 	background-color: #F0F0F0;
 }
+*/
 
 .departure li {
 	float: left;
-	font-size: 2.5vh;
+	font-size: 80%;
 	text-align: left;
+	white-space: nowrap;
 }
 
 .hide {
@@ -78,7 +83,7 @@
 }
 
 .route.destination.nearest-type {
-	width: 40%;
+	width: 50%;
 }
 
 .route.number.stop-type {
@@ -86,9 +91,9 @@
 }
 
 .route.destination.stop-type {
-	width: 60%;
+	width: 70%;
 }
 
 .route.deptime {
-	width: 15%;
+	width: 5%;
 }
