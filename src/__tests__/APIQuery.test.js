@@ -17,32 +17,32 @@ describe('APIQuery', () => {
 		}
 	});
 	it('returns promise with expected content for nearest query', () => {
-		const nearest = require('../__mocks__/NearestQueryResponse.json').data;
+		const nearest = require('../__mocks__/NearestQueryResponse.json');
 		fetch = jest.fn() // eslint-disable-line
-			.mockReturnValue(new Promise(() => JSON.stringify(nearest)));
+			.mockReturnValue(new Promise((resolve) => {resolve({json: () => nearest});}));
 
-		Promise.all(APIQuery.getNearestDepartures())
+		return Promise.all(APIQuery.getNearestDepartures())
 			.then((responseJson) => {
-				expect(responseJson).toEqual(nearest);
+				expect(responseJson[0]).toEqual(nearest.data);
 			});
 	});
 	it('returns promise with expected content for stop query', () => {
-		const stop = require('../__mocks__/StopQueryResponse.json').data;
+		const stop = require('../__mocks__/StopQueryResponse.json');
 		fetch = jest.fn() // eslint-disable-line
-			.mockReturnValue(new Promise(() => JSON.stringify(stop)));
+			.mockReturnValue(new Promise((resolve) => {resolve({json: () => stop});}));
 
-		Promise.all(APIQuery.getStopDepartures())
+		return Promise.all(APIQuery.getStopDepartures())
 			.then((responseJson) => {
-				expect(responseJson).toEqual(stop);
+				expect(responseJson[0]).toEqual(stop.data);
 			});
 	});
 	it('returns rejected promise with invalid response', () => {
-		const invalid = require('../__mocks__/InvalidQueryResponse.json').data;
+		const invalid = require('../__mocks__/InvalidQueryResponse.json');
 		fetch = jest.fn() // eslint-disable-line
-			.mockReturnValue(new Promise(() => JSON.stringify(invalid)));
-		Promise.all(APIQuery.getStopDepartures())
+			.mockReturnValue(new Promise((resolve) => {resolve({json: () => invalid});}));
+		return Promise.all(APIQuery.getStopDepartures())
 			.catch((errorJsonString) => {
-				expect(errorJsonString).toMatch(/{\s*error\s*:\s*{/);
+				expect(errorJsonString.toString()).toMatch(/[Ee]rror/);
 			});
 	});
 });
