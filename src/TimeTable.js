@@ -69,14 +69,9 @@ class TimeTable extends Component {
 		}
 	}
 
-	hasValidState() {
-		return this.state.data.hasOwnProperty('stops') || this.state.data.hasOwnProperty('nearest');
-	}
-
 	getDepartureInfoArray() {
 		var departureInfoArray;
-		switch (this.getType()) {
-		case 'nearest':
+		if (this.getType() === 'nearest') {
 			departureInfoArray = this.state.data.nearest.edges.filter((a) => { return a.node.place.stoptimes.length > 0; });
 			departureInfoArray.sort((a,b) => {
 				const ad = a.node.place.stoptimes[0].serviceDay;
@@ -99,7 +94,7 @@ class TimeTable extends Component {
 			}
 			departureInfoArray = departureInfoArray.slice(0,this.props.maxResults);
 			return departureInfoArray;
-		case 'stop':
+		} else {
 			departureInfoArray = this.state.data.stops.filter((a) => { return a.gtfsId.includes('HSL'); });
 			departureInfoArray[0].stoptimesWithoutPatterns.sort((a,b) => {
 				return (a.serviceDay - b.serviceDay) ?
@@ -107,10 +102,7 @@ class TimeTable extends Component {
 					(a.realtimeArrival - b.realtimeArrival);
 			});
 			return departureInfoArray[0].stoptimesWithoutPatterns;
-		default:
-			this.setState({data: {error: 'Unsupported timetable type'}});
 		}
-		return departureInfoArray;
 	}
 
 	componentDidMount() {

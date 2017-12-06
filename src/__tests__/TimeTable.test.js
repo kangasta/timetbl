@@ -1,17 +1,20 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import { shallow } from 'enzyme';
+import { mount, shallow } from 'enzyme';
 import TimeTable from './../TimeTable.js';
 import DepartureInfo from './../DepartureInfo.js';
 
 import { SFError, SFLoading } from '../simple-feed/src/SF';
 
 jest.mock('../APIQuery');
+jest.useFakeTimers();
 
 describe('TimeTable', () => {
+	afterEach(()=>{
+		jest.resetAllMocks();
+	});
+
 	it('renders without crashing', () => {
-		const div = document.createElement('div');
-		ReactDOM.render(<TimeTable />, div);
+		mount(<TimeTable />);
 	});
 	it('shows error when created with invalid props.', () => {
 		const component = shallow(<TimeTable lat={16.5} />);
@@ -53,5 +56,18 @@ describe('TimeTable', () => {
 			expect(component.find(SFError)).toHaveLength(1);
 			if (update) update();
 		};
+	});
+	it('sends queries periodically', ()=> {
+		const spy = jest.spyOn(TimeTable.prototype, 'sendQuery');
+		shallow(<TimeTable stopCode='666'/>);
+		jest.runTimersToTime(10e3);
+		expect(spy).toHaveBeenCalledTimes(2);
+	});
+	it('clears timers at unmount', () => {
+		const wrapper = mount(
+			<TimeTable />
+		);
+		wrapper.unmount();
+		expect(clearInterval).toHaveBeenCalled();
 	});
 });

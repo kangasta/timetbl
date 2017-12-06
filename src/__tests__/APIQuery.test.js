@@ -40,7 +40,7 @@ describe('APIQuery', () => {
 		const invalid = require('../__mocks__/InvalidQueryResponse.json');
 		fetch = jest.fn() // eslint-disable-line
 			.mockReturnValue(new Promise((resolve) => {resolve({json: () => invalid});}));
-		return Promise.all(APIQuery.getStopDepartures())
+		return Promise.all(APIQuery.getStopDepartures().concat(APIQuery.getNearestDepartures()))
 			.catch((errorJsonString) => {
 				expect(errorJsonString.toString()).toMatch(/[Ee]rror/);
 			});
