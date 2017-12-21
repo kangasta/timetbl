@@ -1,8 +1,23 @@
 .app {
+	background: royalblue;
 	bottom: 0;
-	height: 100%;
 	left: 0;
 	position: fixed;
 	right: 0;
 	top: 0;
+
+	--sf-background-loading: white;
+	--sf-color-loading: royalblue;
+
+	--sf-background-error: white;
+	--sf-color-error: orangered;
+
+	--sf-element-background: white;
+	--sf-group-background: transparent;
+
+	--sf-element-color: darkslategray;
+	--sf-group-color: white;
+
+	--sf-element-opacity: 1;
+	--sf-group-opacity: 1;
 }

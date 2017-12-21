@@ -81,15 +81,19 @@ class App extends Component {
 		if (SFValidate.checkForErrorOrLoading(this.state.data))
 		{
 			return (
-				<SFMainFeed>
-					{SFValidate.generateErrorOrLoadingElement(this.state.data)}
-				</SFMainFeed>
+				<div className='app'>
+					<SFMainFeed>
+						{SFValidate.generateErrorOrLoadingElement(this.state.data)}
+					</SFMainFeed>
+				</div>
 			);
 		}
 		return(
-			<SFMainFeed>
-				<TimeTable lat={this.state.data.lat} lon={this.state.data.lon} maxDistance={this.state.data.maxDistance} maxResults={15} filterOut={this.state.data.filterOut}/>
-			</SFMainFeed>
+			<div className='app'>
+				<SFMainFeed>
+					<TimeTable lat={this.state.data.lat} lon={this.state.data.lon} maxDistance={this.state.data.maxDistance} maxResults={15} filterOut={this.state.data.filterOut}/>
+				</SFMainFeed>
+			</div>
 		);
 	}
 }
