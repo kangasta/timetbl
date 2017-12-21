@@ -4,7 +4,7 @@ import './TimeTable.css';
 import APIQuery from './APIQuery.js';
 import DepartureInfo from './DepartureInfo.js';
 
-import { SFGroup, SFHead, SFValidate } from './simple-feed/src/SF';
+import { SFGroup, SFValidate } from './simple-feed/src/SF';
 
 class TimeTable extends Component {
 	constructor(props) {
