@@ -22,16 +22,6 @@ class DepartureInfo extends Component {
 				</ul>
 			}/>
 		);
-		/*
-			<SFElement width='full' className={'departure ' + rowClass + ' ' + departureType} >
-				<ul>
-					<li className={'stop name ' + hideStopInfo}> {this.props.stop.name} </li>
-					<li className={'route number ' + routeType + ' ' + departureType}> {this.props.stoptime.trip.route.shortName} </li>
-					<li className={'route destination ' + departureType}> {this.props.stoptime.stopHeadsign} </li>
-					<li className={'route deptime ' + realtime}> {DepartureInfo.departureTimeToStr(this.props.stoptime.realtimeDeparture)}</li>
-				</ul>
-			</SFElement>
-		*/
 	}
 
 	static currentTimeInMinutes() {

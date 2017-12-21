@@ -9,55 +9,34 @@
 	vertical-align: middle;
 	width: 100%;
 }
-/*
+
 .header {
 	background-color: #DCDCDC;
 }
 
-.departure {
-	border-radius: 7px;
-	font-size: 100%;
-	height: 5%;
-	margin-bottom: 0.5%;
-	margin-top: 0.5%;
-	opacity: 0.75;
-	width: 100%;
-}
-*/
-
 .realtime {
-	color: #1a8c20
+	color: forestgreen
 }
 
 .route-type-bus {
-	color: #1d46ad;
+	color: royalblue;
 }
 
 .route-type-rail {
-	color: #811cad;
+	color: darkviolet;
 }
 
 .route-type-tram {
-	color: #1e7511;
+	color: forestgreen;
 }
 
 .route-type-subway {
-	color: #ba7527;
+	color: orangered;
 }
 
 .route-type-ferry {
-	color: #1ba6ad;
+	color: deepskyblue;
 }
-
-/*
-.even {
-	background-color: #FFFFFF;
-}
-
-.odd {
-	background-color: #F0F0F0;
-}
-*/
 
 .departure li {
 	float: left;

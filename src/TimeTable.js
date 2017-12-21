@@ -119,9 +119,7 @@ class TimeTable extends Component {
 		if (SFValidate.checkForErrorOrLoading(this.state.data))
 		{
 			return (
-				<SFGroup head={
-					<SFHead title='Timetable' info='Location'/>
-				}>
+				<SFGroup head={this.props.head}>
 					{SFValidate.generateErrorOrLoadingElement(this.state.data)}
 				</SFGroup>
 			);
@@ -129,10 +127,7 @@ class TimeTable extends Component {
 		var departureInfoArray = this.getDepartureInfoArray();
 
 		return (
-			<SFGroup head={
-				<SFHead title='Timetable' info='Location'/>
-			}>
-				<DepartureInfo header={this.getType()}/>
+			<SFGroup head={this.props.head}>
 				{
 					departureInfoArray.map((departureInfoArrayItem, i) => {
 						return (this.getType() === 'nearest') ?
@@ -146,6 +141,7 @@ class TimeTable extends Component {
 }
 
 TimeTable.defaultProps = {
+	head: '',
 	lat: 0,
 	lon: 0,
 	stopCode: '',
@@ -155,6 +151,10 @@ TimeTable.defaultProps = {
 };
 
 TimeTable.propTypes = {
+	head: PropTypes.oneOfType([
+		PropTypes.string,
+		PropTypes.object
+	]),
 	lat: PropTypes.oneOfType([
 		PropTypes.number,
 		PropTypes.array
