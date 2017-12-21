@@ -6,26 +6,3 @@
 	right: 0;
 	top: 0;
 }
-
-.foreground {
-	height: 90%;
-	left: 10%;
-	position: relative;
-	top: 5%;
-	width: 80%;
-}
-
-.background {
-	height: 100%;
-	left: 0;
-	position: absolute;
-	top: 0;
-	width: 100%;
-	z-index: -100;
-}
-
-body {
-	color: #303030;
-	font-family: Verdana, Geneva, sans-serif;
-	font-weight: bold;
-}

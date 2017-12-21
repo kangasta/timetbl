@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import './App.css';
 import TimeTable from './TimeTable.js';
 import UserLocation from './UserLocation.js';
-//import MapView from './MapView.js';
 
 import { SFMainFeed, SFValidate } from './simple-feed/src/SF';
 
@@ -92,21 +91,6 @@ class App extends Component {
 				<TimeTable lat={this.state.data.lat} lon={this.state.data.lon} maxDistance={this.state.data.maxDistance} maxResults={15} filterOut={this.state.data.filterOut}/>
 			</SFMainFeed>
 		);
-		/*
-		return (
-			<div className='app'>
-				<div className='foreground'>
-					<TimeTable lat={this.state.lat} lon={this.state.lon} maxDistance={this.state.maxDistance} maxResults={15} filterOut={this.state.filterOut}/>
-				</div>
-				<div className='background'>
-					<MapView
-						lat={Array.isArray(this.state.lat) ? this.state.lat[0] : this.state.lat}
-						lon={Array.isArray(this.state.lon) ? this.state.lon[0] : this.state.lon}
-					/>
-				</div>
-			</div>
-		);
-		*/
 	}
 }
 
