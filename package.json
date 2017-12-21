@@ -8,8 +8,6 @@
     "react-scripts": "1.0.17"
   },
   "dependencies": {
-    "leaflet": "^1.0.2",
-    "leaflet.vectorgrid": "^1.1.0",
     "moment": "^2.19.3",
     "moment-timezone": "^0.5.14",
     "react": "^16.1.1",
