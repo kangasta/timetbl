@@ -1,5 +1,6 @@
 {
   "name": "timetablescreen",
+  "homepage": "https://kangasta.github.io/timetablescreen",
   "version": "0.9.0",
   "private": true,
   "devDependencies": {
