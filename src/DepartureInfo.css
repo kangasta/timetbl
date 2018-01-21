@@ -1,13 +1,10 @@
 .departure ul {
 	list-style-type: none;
+	line-height: 1em;
 	margin: 0;
-	padding: 0;
+	padding-left: 0.5em;
 	overflow: hidden;
-	position: relative;
-	top: 50%;
-	transform: translateY(-50%);
 	vertical-align: middle;
-	width: 100%;
 }
 
 .header {
@@ -40,7 +37,7 @@
 
 .departure li {
 	float: left;
-	font-size: 80%;
+	font-size: 50%;
 	text-align: left;
 	white-space: nowrap;
 }

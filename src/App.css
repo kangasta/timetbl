@@ -1,23 +1,32 @@
 .app {
-	background: royalblue;
+	background: var(--app-theme-1);
 	bottom: 0;
 	left: 0;
-	position: fixed;
+	position: absolute;
 	right: 0;
 	top: 0;
+}
 
-	--sf-background-loading: white;
-	--sf-color-loading: royalblue;
+.app-bg {
+	background: var(--app-theme-1);
+}
 
-	--sf-background-error: white;
-	--sf-color-error: orangered;
+.app-box {
+	background: var(--app-theme-2);
+	color: var(--app-theme-1)
+}
 
-	--sf-element-background: white;
-	--sf-group-background: transparent;
+.app-theme-default {
+	--app-theme-1: navy;
+	--app-theme-2: white;
+}
 
-	--sf-element-color: darkslategray;
-	--sf-group-color: white;
+.app-theme-error {
+	--app-theme-1: red;
+	--app-theme-2: white;
+}
 
-	--sf-element-opacity: 1;
-	--sf-group-opacity: 1;
+.app-theme-loading {
+	--app-theme-1: blue;
+	--app-theme-2: white;
 }

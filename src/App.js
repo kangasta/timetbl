@@ -3,7 +3,7 @@ import './App.css';
 import TimeTable from './TimeTable.js';
 import UserLocation from './UserLocation.js';
 
-import { SFMainFeed, SFGroup, SFValidate } from './simple-feed/src/SF';
+import { CSBackground, /*CSBoxElement,*/ CSCenterBox, CSCentered, CSError, CSFooter, CSLoading } from 'chillisalmon';
 
 class App extends Component {
 	constructor(props) {
@@ -30,23 +30,34 @@ class App extends Component {
 	}
 
 	render() {
-		if (SFValidate.checkForErrorOrLoading(this.state.data))
-		{
+		if (this.state.data.hasOwnProperty('error'))
 			return (
-				<div className='app'>
-					<SFMainFeed>
-						<SFGroup head='Nearest departures:'>
-							{SFValidate.generateErrorOrLoadingElement(this.state.data)}
-						</SFGroup>
-					</SFMainFeed>
+				<div className='app app-theme-error'>
+					<CSCenterBox>
+						<CSError className='app-box'>
+							{this.state.data.error}
+						</CSError>
+					</CSCenterBox>
+					<CSBackground className='app-bg'/>
 				</div>
 			);
-		}
+		if (this.state.data.hasOwnProperty('loading'))
+			return (
+				<div className='app app-theme-loading'>
+					<CSCenterBox>
+						<CSLoading className='app-box'>
+							{this.state.data.loading}
+						</CSLoading>
+					</CSCenterBox>
+					<CSBackground className='app-bg'/>
+				</div>
+			);
 		return(
-			<div className='app'>
-				<SFMainFeed>
-					<TimeTable head='Nearest departures:' lat={this.state.data.lat} lon={this.state.data.lon} maxDistance={this.state.data.maxDistance} maxResults={15} filterOut={this.state.data.filterOut}/>
-				</SFMainFeed>
+			<div className='app app-theme-default'>
+				<CSCentered>
+					<TimeTable lat={this.state.data.lat} lon={this.state.data.lon} maxDistance={this.state.data.maxDistance} maxResults={15} filterOut={this.state.data.filterOut}/>
+				</CSCentered>
+				<CSBackground className='app-bg'/>
 			</div>
 		);
 	}

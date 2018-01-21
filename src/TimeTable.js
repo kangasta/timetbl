@@ -4,7 +4,7 @@ import './TimeTable.css';
 import APIQuery from './APIQuery.js';
 import DepartureInfo from './DepartureInfo.js';
 
-import { SFGroup, SFValidate } from './simple-feed/src/SF';
+import { CSBackground, CSCenterBox, CSError, CSLoading, CSList } from 'chillisalmon';
 
 class TimeTable extends Component {
 	constructor(props) {
@@ -116,18 +116,28 @@ class TimeTable extends Component {
 	}
 
 	render() {
-		if (SFValidate.checkForErrorOrLoading(this.state.data))
-		{
+		if (this.state.data.hasOwnProperty('error'))
 			return (
-				<SFGroup head={this.props.head}>
-					{SFValidate.generateErrorOrLoadingElement(this.state.data)}
-				</SFGroup>
+				<CSCenterBox>
+						<CSError className='app-box'>
+							{this.state.data.error}
+						</CSError>
+						<CSBackground className='app-bg-error'/>
+				</CSCenterBox>
 			);
-		}
+		if (this.state.data.hasOwnProperty('loading'))
+			return (
+				<CSCenterBox>
+						<CSLoading className='app-box'>
+							{this.state.data.loading}
+						</CSLoading>
+						<CSBackground className='app-bg-loading'/>
+				</CSCenterBox>
+			);
 		var departureInfoArray = this.getDepartureInfoArray();
 
 		return (
-			<SFGroup head={this.props.head}>
+			<CSList>
 				{
 					departureInfoArray.map((departureInfoArrayItem, i) => {
 						return (this.getType() === 'nearest') ?
@@ -135,7 +145,7 @@ class TimeTable extends Component {
 							<DepartureInfo stoptime={departureInfoArrayItem} key={i} row={i}/>;
 					})
 				}
-			</SFGroup>
+			</CSList>
 		);
 	}
 }

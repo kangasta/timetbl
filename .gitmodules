@@ -1,3 +1,0 @@
-[submodule "simple-feed"]
-	path = src/simple-feed
-	url = https://github.com/kangasta/simple-feed.git
