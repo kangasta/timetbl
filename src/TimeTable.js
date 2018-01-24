@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import './TimeTable.css';
 import APIQuery from './APIQuery.js';
 import DepartureInfo from './DepartureInfo.js';
+import TimeTableTitle from './TimeTableTitle.js';
 
 import { CSBackground, CSCenterBox, CSError, CSLoading, CSList } from 'chillisalmon';
 
@@ -138,6 +139,7 @@ class TimeTable extends Component {
 
 		return (
 			<CSList>
+				<TimeTableTitle/>
 				{
 					departureInfoArray.map((departureInfoArrayItem, i) => {
 						return (this.getType() === 'nearest') ?

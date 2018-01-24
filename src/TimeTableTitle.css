@@ -1,0 +1,24 @@
+.timetable-title {
+	padding: 0.25em;
+	vertical-align: middle;
+}
+
+.timetable-title-element {
+	line-height: 1em;
+	padding: 0 0.25em;
+}
+
+.timetable-title-logo {
+	fill: currentColor;
+	float: left;
+	height: 1em;
+}
+
+.timetable-title-text {
+	float: left;
+	padding-left: 0.5em;
+}
+
+.timetable-title-time {
+	float: right;
+}
