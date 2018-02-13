@@ -3,7 +3,7 @@ import './App.css';
 import TimeTable from './TimeTable.js';
 import UserLocation from './UserLocation.js';
 
-import { CSBackground, /*CSBoxElement,*/ CSCenterBox, CSCentered, CSError, CSFooter, CSLoading } from 'chillisalmon';
+import { CSBackground, CSCenterBox, CSError, CSLoading } from 'chillisalmon';
 import './Theme.css';
 
 class App extends Component {
@@ -56,7 +56,7 @@ class App extends Component {
 		return(
 			<div className='app app-theme-default'>
 				<CSCenterBox>
-					<TimeTable lat={this.state.data.lat} lon={this.state.data.lon} maxDistance={this.state.data.maxDistance} maxResults={15} filterOut={this.state.data.filterOut}/>
+					<TimeTable lat={this.state.data.lat} lon={this.state.data.lon} maxDistance={this.state.data.maxDistance} maxResults={10} filterOut={this.state.data.filterOut}/>
 				</CSCenterBox>
 				<CSBackground className='app-bg'/>
 			</div>

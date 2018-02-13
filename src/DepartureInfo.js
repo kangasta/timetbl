@@ -1,26 +1,24 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import './DepartureInfo.css';
 
-import { CSListElement } from 'chillisalmon';
+import { CSElement } from 'chillisalmon';
+
+import './DepartureInfo.css';
 
 class DepartureInfo extends Component {
 	render() {
 		var departureType = ((this.props.stop.name === 'Stop name' && this.props.header.toLowerCase() !== 'nearest') || this.props.header.toLowerCase() === 'stop') ? 'stop-type' : 'nearest-type';
-		var hideStopInfo = departureType === 'stop-type' ? 'hide' : '';
-		var rowClass = (this.props.row % 2) ? 'odd' : 'even';
-		rowClass = this.props.header ? 'header' : rowClass;
-		var realtime = this.props.stoptime.realtime ? 'realtime' : '';
-		var routeType = 'route-type-' + this.props.stoptime.trip.route.mode.toLowerCase();
 		return (
-			<CSListElement className={'app-box departure ' + rowClass + ' ' + departureType}>
-				<ul>
-					<li className={'stop name ' + hideStopInfo}> {this.props.stop.name} </li>
-					<li className={'route number ' + routeType + ' ' + departureType}> {this.props.stoptime.trip.route.shortName} </li>
-					<li className={'route destination ' + departureType}> {this.props.stoptime.stopHeadsign} </li>
-					<li className={'route deptime ' + realtime}> {DepartureInfo.departureTimeToStr(this.props.stoptime.realtimeDeparture)}</li>
-				</ul>
-			</CSListElement>
+			<CSElement className={'departure ' + departureType}
+				head={this.props.stoptime[0].trip.route.shortName}
+				title={this.props.stoptime[0].stopHeadsign}
+				right={this.props.stoptime.map((stoptime)=>(
+					<div className={'stoptime ' + (stoptime.realtime ? 'realtime' : '')}>
+						{DepartureInfo.departureTimeToStr(stoptime.realtimeDeparture)}
+					</div>)
+				)}>
+				{this.props.stop.name}
+			</CSElement>
 		);
 	}
 
@@ -75,7 +73,7 @@ DepartureInfo.defaultProps = {
 		lat: 47.916667,
 		lon: 106.916667
 	},
-	stoptime: {
+	stoptime: [{
 		trip: {
 			route: {
 				shortName: 'Route',
@@ -87,7 +85,7 @@ DepartureInfo.defaultProps = {
 		realtimeDeparture: 0,
 		realtime: false,
 		stopHeadsign: 'Destination'
-	},
+	}],
 	header: '',
 	row: 0
 };
@@ -101,7 +99,7 @@ DepartureInfo.propTypes = {
 		lat: PropTypes.number,
 		lon: PropTypes.number
 	}),
-	stoptime: PropTypes.shape({
+	stoptime: PropTypes.arrayOf(PropTypes.shape({
 		trip: PropTypes.shape({
 			route: PropTypes.shape({
 				shortName: PropTypes.string,
@@ -114,7 +112,7 @@ DepartureInfo.propTypes = {
 		realtime: PropTypes.bool,
 		scheduledDeparture: PropTypes.number,
 		stopHeadsign: PropTypes.string
-	}),
+	})),
 	header: PropTypes.string,
 	row: PropTypes.number
 };

@@ -1,23 +1,13 @@
+#root {
+	--theme-color-1: navy;
+	--theme-color-2: white;
+}
+
 .cs-background {
-	background:
-		repeating-linear-gradient(
-			45deg,
-			transparent,
-			transparent 0.35em,
-			darkslategray 0.05em,
-			darkslategray 0.4em
-		), repeating-linear-gradient(
-			-45deg,
-			transparent,
-			transparent 0.35em,
-			darkslategray 0.05em,
-			darkslategray 0.4em
-		);
+	background: navy;
 }
 
 .cs-element {
 	background: white;
-	border: thin solid lightslategray;
-	color: darkslategray;
-	opacity: .9;
+	color: navy;
 }

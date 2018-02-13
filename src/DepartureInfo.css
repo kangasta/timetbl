@@ -1,75 +1,31 @@
-.departure ul {
-	list-style-type: none;
-	line-height: 1em;
-	margin: 0;
-	padding-left: 0.5em;
-	overflow: hidden;
+.cs-element-head,.cs-element-right {
+	padding-top: .125em;
 	vertical-align: middle;
 }
 
-.header {
-	background-color: #DCDCDC;
-}
-
-.realtime {
-	color: forestgreen
-}
-
-.route-type-bus {
-	color: royalblue;
-}
-
-.route-type-rail {
-	color: darkviolet;
-}
-
-.route-type-tram {
-	color: forestgreen;
-}
-
-.route-type-subway {
-	color: orangered;
-}
-
-.route-type-ferry {
-	color: deepskyblue;
-}
-
-.departure li {
-	float: left;
-	font-size: 50%;
+.departure .cs-element-head {
+	font-size: 75%;
+	line-height: 1.666em;
 	text-align: left;
-	white-space: nowrap;
-}
-
-.hide {
-	display: none;
-}
-
-.route.type {
 	width: 10%;
 }
 
-.stop.name {
-	width: 25%;
+.departure .realtime {
+	color: green;
+	font-weight: bold;
 }
 
-.route.number.nearest-type {
-	width: 10%;
+.cs-element-right {
+	font-size: 33%;
+	line-height: 4em;
 }
 
-.route.destination.nearest-type {
-	width: 50%;
+.stoptime:first-child {
+	font-size: 2em;
 }
 
-.route.number.stop-type {
-	width: 20%;
-}
-
-.route.destination.stop-type {
-	width: 70%;
-}
-
-.route.deptime {
-	width: 5%;
+.stoptime {
+	display: inline-block;
+	margin-right: 1em;
+	min-width: 3em;
 }

@@ -6,28 +6,3 @@
 	right: 0;
 	top: 0;
 }
-/*
-.app-bg {
-	background: var(--app-theme-1);
-}
-
-.app-box {
-	background: var(--app-theme-2);
-	color: var(--app-theme-1)
-}
-
-.app-theme-default {
-	--app-theme-1: navy;
-	--app-theme-2: white;
-}
-
-.app-theme-error {
-	--app-theme-1: red;
-	--app-theme-2: white;
-}
-
-.app-theme-loading {
-	--app-theme-1: blue;
-	--app-theme-2: white;
-}
-*/
