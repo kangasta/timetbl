@@ -1,6 +1,7 @@
 .app {
 	background: var(--app-theme-1);
 	bottom: 0;
+	font-size: 5em;
 	left: 0;
 	position: absolute;
 	right: 0;

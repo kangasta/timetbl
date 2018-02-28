@@ -4,9 +4,9 @@
 }
 
 .departure .cs-element-head {
-	font-size: 75%;
-	line-height: 1.666em;
-	text-align: left;
+	font-size: 50%;
+	line-height: 2.5em;
+	text-align: center;
 	width: 10%;
 }
 
@@ -28,4 +28,5 @@
 	display: inline-block;
 	margin-right: 1em;
 	min-width: 3em;
+	text-align: center;
 }
