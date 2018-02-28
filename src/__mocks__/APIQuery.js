@@ -1,7 +1,7 @@
 class APIQuery {
-	static nearestResponse = require('./NearestQueryResponse.json');
-	static stopResponse = require('./StopQueryResponse.json');
-	static invalidResponse = require('./InvalidQueryResponse.json');
+	static get nearestResponse() { return require('./NearestQueryResponse.json'); }
+	static get stopResponse() { return require('./StopQueryResponse.json'); }
+	static get invalidResponse() { return require('./InvalidQueryResponse.json'); }
 
 	static getNearestDepartures(lat=0, lon=0) {
 		var arr = [];
