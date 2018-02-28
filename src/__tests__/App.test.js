@@ -1,9 +1,7 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { mount, shallow } from 'enzyme';
 import App from './../App';
 import TimeTable from './../TimeTable.js';
-
-import { SFError } from '../simple-feed/src/SF';
 
 describe('App', () => {
 	beforeEach( () => {
@@ -17,12 +15,12 @@ describe('App', () => {
 		shallow(<App />);
 	});
 	it('shows error when state is updated to error', () => {
-		const component = shallow(<App />);
+		const component = mount(<App />);
 
 		component.setState({data: {
 			error: 'error'
 		}});
-		expect(component.find(SFError)).toHaveLength(1);
+		expect(component.find('.cs-error')).toHaveLength(1);
 	});
 	it('shows timetable when state is updated to valid state', () => {
 		const component = shallow(<App />);

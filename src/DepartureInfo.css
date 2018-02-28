@@ -10,12 +10,7 @@
 	width: 10%;
 }
 
-.departure .realtime {
-	color: green;
-	font-weight: bold;
-}
-
-.cs-element-right {
+.departure .cs-element-right {
 	font-size: 33%;
 	line-height: 4em;
 }

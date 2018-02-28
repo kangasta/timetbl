@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
-import './App.css';
+
+import { CSBackground, CSCentered, CSCenterBox, CSError, CSLoading } from 'chillisalmon';
+
 import TimeTable from './TimeTable.js';
 import UserLocation from './UserLocation.js';
 
-import { CSBackground, CSCenterBox, CSError, CSLoading } from 'chillisalmon';
+import './App.css';
 import './Theme.css';
 
 class App extends Component {
@@ -55,9 +57,9 @@ class App extends Component {
 			);
 		return(
 			<div className='app app-theme-default'>
-				<CSCenterBox>
-					<TimeTable lat={this.state.data.lat} lon={this.state.data.lon} maxDistance={this.state.data.maxDistance} maxResults={10} filterOut={this.state.data.filterOut}/>
-				</CSCenterBox>
+				<CSCentered>
+					<TimeTable lat={this.state.data.lat} lon={this.state.data.lon} maxDistance={this.state.data.maxDistance} maxResults={12} filterOut={this.state.data.filterOut}/>
+				</CSCentered>
 				<CSBackground className='app-bg'/>
 			</div>
 		);

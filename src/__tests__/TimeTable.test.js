@@ -3,8 +3,6 @@ import { mount, shallow } from 'enzyme';
 import TimeTable from './../TimeTable.js';
 import DepartureInfo from './../DepartureInfo.js';
 
-import { SFError, SFLoading } from '../simple-feed/src/SF';
-
 jest.mock('../APIQuery');
 jest.useFakeTimers();
 
@@ -17,12 +15,12 @@ describe('TimeTable', () => {
 		mount(<TimeTable />);
 	});
 	it('shows error when created with invalid props.', () => {
-		const component = shallow(<TimeTable lat={16.5} />);
-		expect(component.find(SFError)).toHaveLength(1);
+		const component = mount(<TimeTable lat={16.5} />);
+		expect(component.find('.cs-error')).toHaveLength(1);
 	});
 	it('shows loading when created.', () => {
-		const component = shallow(<TimeTable lat={16.5} lon={28.5}/>);
-		expect(component.find(SFLoading)).toHaveLength(1);
+		const component = mount(<TimeTable lat={16.5} lon={28.5}/>);
+		expect(component.find('.cs-loading')).toHaveLength(1);
 	});
 	it('shows nearest departure infos after succesfull API query.', () => {
 		const lat = [16.5, [16.5, 14.5]];
@@ -32,7 +30,7 @@ describe('TimeTable', () => {
 			component.instance().sendQuery();
 			const update = component.componentDidUpdate;
 			component.componentDidUpdate = () => {
-				expect(component.find(SFLoading)).toHaveLength(0);
+				expect(component.find('.cs-loading')).toHaveLength(0);
 				expect(component.find(DepartureInfo)).not.toHaveLength(0);
 				if (update) update();
 			};
@@ -43,7 +41,7 @@ describe('TimeTable', () => {
 		component.instance().sendQuery();
 		const update = component.componentDidUpdate;
 		component.componentDidUpdate = () => {
-			expect(component.find(SFLoading)).toHaveLength(0);
+			expect(component.find('.cs-loading')).toHaveLength(0);
 			expect(component.find(DepartureInfo)).not.toHaveLength(0);
 			if (update) update();
 		};
@@ -53,7 +51,7 @@ describe('TimeTable', () => {
 		component.instance().sendQuery();
 		const update = component.componentDidUpdate;
 		component.componentDidUpdate = () => {
-			expect(component.find(SFError)).toHaveLength(1);
+			expect(component.find('.cs-error')).toHaveLength(1);
 			if (update) update();
 		};
 	});

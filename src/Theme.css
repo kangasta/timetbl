@@ -1,13 +1,59 @@
+
 #root {
-	--theme-color-1: navy;
+	--theme-color-1: #007ac9;
 	--theme-color-2: white;
+
+	font-family: Helvetica, Arial, sans-serif
 }
 
 .cs-background {
-	background: navy;
+	background: var(--theme-color-1);
+}
+
+.cs-centered {
+	height: 100%;
 }
 
 .cs-element {
-	background: white;
-	color: navy;
+	background: var(--theme-color-2);
+	color: var(--theme-color-1);
 }
+
+.cs-element.app-box {
+	background: var(--theme-color-1);
+	color: var(--theme-color-2);
+}
+
+.cs-element.departure {
+	border-radius: .33em;
+	margin: .166em;
+	width: 16.6em;
+}
+
+.cs-title.timetable-title {
+	color: var(--theme-color-2);
+	font-size: 0.8em;
+	padding-bottom: 0.0625em;
+	vertical-align: middle;
+}
+
+.realtime {
+	/*
+	color: green;
+	*/
+	font-weight: bold;
+}
+
+/*
+.timetable-title-element {
+	line-height: 1em;
+}
+
+.timetable-title-text {
+	display: inline-block;
+}
+
+.timetable-title-time {
+	display: none;
+}
+*/

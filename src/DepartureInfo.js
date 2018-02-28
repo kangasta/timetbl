@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-
 import { CSElement } from 'chillisalmon';
 
 import './DepartureInfo.css';
@@ -12,8 +11,8 @@ class DepartureInfo extends Component {
 			<CSElement className={'departure ' + departureType}
 				head={this.props.stoptime[0].trip.route.shortName}
 				title={this.props.stoptime[0].stopHeadsign}
-				right={this.props.stoptime.map((stoptime)=>(
-					<div className={'stoptime ' + (stoptime.realtime ? 'realtime' : '')}>
+				right={this.props.stoptime.map((stoptime,i)=>(
+					<div key={i} className={'stoptime ' + (stoptime.realtime ? 'realtime' : '')}>
 						{DepartureInfo.departureTimeToStr(stoptime.realtimeDeparture)}
 					</div>)
 				)}>

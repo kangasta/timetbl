@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import './TimeTable.css';
+import { CSBackground, CSCenterBox, CSError, CSLoading, CSList, CSTitle } from 'chillisalmon';
+
 import APIQuery from './APIQuery.js';
 import DepartureInfo from './DepartureInfo.js';
-import TimeTableTitle from './TimeTableTitle.js';
 
-import { CSBackground, CSCenterBox, CSError, CSLoading, CSList } from 'chillisalmon';
+import './TimeTable.css';
 
 class TimeTable extends Component {
 	constructor(props) {
@@ -136,11 +136,10 @@ class TimeTable extends Component {
 				</CSCenterBox>
 			);
 		var departureInfoArray = this.getDepartureInfoArray();
-		console.log(departureInfoArray)
 
 		return (
 			<CSList>
-				<TimeTableTitle/>
+				<CSTitle className='timetable-title'>Nearest departures</CSTitle>
 				{
 					departureInfoArray.map((departureInfoArrayItem, i) => {
 						return (this.getType() === 'nearest') ?
