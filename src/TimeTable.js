@@ -120,19 +120,19 @@ class TimeTable extends Component {
 		if (this.state.data.hasOwnProperty('error'))
 			return (
 				<CSCenterBox>
-						<CSError className='app-box'>
-							{this.state.data.error}
-						</CSError>
-						<CSBackground className='app-bg-error'/>
+					<CSError className='app-box'>
+						{this.state.data.error}
+					</CSError>
+					<CSBackground className='app-bg-error'/>
 				</CSCenterBox>
 			);
 		if (this.state.data.hasOwnProperty('loading'))
 			return (
 				<CSCenterBox>
-						<CSLoading className='app-box'>
-							{this.state.data.loading}
-						</CSLoading>
-						<CSBackground className='app-bg-loading'/>
+					<CSLoading className='app-box'>
+						{this.state.data.loading}
+					</CSLoading>
+					<CSBackground className='app-bg-loading'/>
 				</CSCenterBox>
 			);
 		var departureInfoArray = this.getDepartureInfoArray();
