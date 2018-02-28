@@ -9,6 +9,7 @@
     "react-scripts": "1.0.17"
   },
   "dependencies": {
+    "chillisalmon": "https://github.com/kangasta/chillisalmon/releases/download/v0.5.0/chillisalmon-0.5.0.tgz",
     "moment": "^2.19.3",
     "moment-timezone": "^0.5.14",
     "react": "^16.1.1",
