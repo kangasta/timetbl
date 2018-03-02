@@ -5,7 +5,7 @@ import { CSBackground, CSCenterBox, CSError, CSLoading, CSList, CSTitle } from '
 import APIQuery from './APIQuery.js';
 import DepartureInfo from './DepartureInfo.js';
 
-import './TimeTable.css';
+import '../style/TimeTable.css';
 
 class TimeTable extends Component {
 	constructor(props) {

@@ -18,7 +18,7 @@ describe('APIQuery', () => {
 	});
 	it('returns promise with expected content for nearest query', () => {
 		const nearest = require('../__mocks__/NearestQueryResponse.json');
-		fetch = jest.fn() // eslint-disable-line
+		global.fetch = jest.fn() // eslint-disable-line
 			.mockReturnValue(new Promise((resolve) => {resolve({json: () => nearest});}));
 
 		return Promise.all(APIQuery.getNearestDepartures())
@@ -28,7 +28,7 @@ describe('APIQuery', () => {
 	});
 	it('returns promise with expected content for stop query', () => {
 		const stop = require('../__mocks__/StopQueryResponse.json');
-		fetch = jest.fn() // eslint-disable-line
+		global.fetch = jest.fn() // eslint-disable-line
 			.mockReturnValue(new Promise((resolve) => {resolve({json: () => stop});}));
 
 		return Promise.all(APIQuery.getStopDepartures())
@@ -38,7 +38,7 @@ describe('APIQuery', () => {
 	});
 	it('returns rejected promise with invalid response', () => {
 		const invalid = require('../__mocks__/InvalidQueryResponse.json');
-		fetch = jest.fn() // eslint-disable-line
+		global.fetch = jest.fn() // eslint-disable-line
 			.mockReturnValue(new Promise((resolve) => {resolve({json: () => invalid});}));
 		return Promise.all(APIQuery.getStopDepartures().concat(APIQuery.getNearestDepartures()))
 			.catch((errorJsonString) => {

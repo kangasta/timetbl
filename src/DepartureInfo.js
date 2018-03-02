@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { CSElement } from 'chillisalmon';
 
-import './DepartureInfo.css';
+import '../style/DepartureInfo.css';
 
 class DepartureInfo extends Component {
 	render() {

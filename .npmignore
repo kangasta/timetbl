@@ -1,0 +1,7 @@
+/app
+/coverage
+/src
+
+.babelrc
+.eslint*
+.travis.yml

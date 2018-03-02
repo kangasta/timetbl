@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 
 import { CSBackground, CSCentered, CSCenterBox, CSError, CSLoading } from 'chillisalmon';
+import TimeTable from 'timetablescreen';
 
-import TimeTable from './TimeTable.js';
 import UserLocation from './UserLocation.js';
 
 import './App.css';
