@@ -20,7 +20,7 @@ jobs:
           on:
             tags: true
       - stage: deploy
-        script: cd app && npm run build;
+        script: cd app && npm install && npm run build;
         deploy:
           provider: pages
           local_dir: app/build/
