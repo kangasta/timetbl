@@ -16,7 +16,8 @@ class DepartureInfo extends Component {
 						{DepartureInfo.departureTimeToStr(stoptime.realtimeDeparture)}
 					</div>)
 				)}>
-				{this.props.stop.name}
+				<b>{this.props.stop.name}</b>
+				<span className='stop-distance'>{this.props.distance ? ' ' + this.props.distance.toString() + ' m' : ''}</span>
 			</CSElement>
 		);
 	}
@@ -64,6 +65,7 @@ class DepartureInfo extends Component {
 }
 
 DepartureInfo.defaultProps = {
+	distance: 0,
 	stop: {
 		name: 'Stop name',
 		code: 'Stop code',
@@ -90,6 +92,7 @@ DepartureInfo.defaultProps = {
 };
 
 DepartureInfo.propTypes = {
+	distance: PropTypes.number,
 	stop: PropTypes.shape({
 		name: PropTypes.string,
 		code: PropTypes.string,
