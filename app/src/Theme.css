@@ -26,15 +26,10 @@
 
 .cs-element.departure {
 	border-radius: .33em;
-	margin: .166em;
-	width: 16.6em;
 }
 
 .cs-title.timetable-title {
 	color: var(--theme-color-2);
-	font-size: 0.8em;
-	padding-bottom: 0.0625em;
-	vertical-align: middle;
 }
 
 .realtime {

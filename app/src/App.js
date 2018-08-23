@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 
-import { CSBackground, CSCentered, CSCenterBox, CSError, CSLoading } from 'chillisalmon';
+import { CSBackground, CSCentered, CSTitle, CSValidatorChanger, CSWhiteSpace } from 'chillisalmon';
 import TimeTable from 'timetablescreen';
-
 import UserLocation from './UserLocation.js';
 
 import './App.css';
@@ -33,32 +32,14 @@ class App extends Component {
 	}
 
 	render() {
-		if (this.state.data.hasOwnProperty('error'))
-			return (
-				<div className='app app-theme-error'>
-					<CSCenterBox>
-						<CSError className='app-box'>
-							{this.state.data.error}
-						</CSError>
-					</CSCenterBox>
-					<CSBackground className='app-bg'/>
-				</div>
-			);
-		if (this.state.data.hasOwnProperty('loading'))
-			return (
-				<div className='app app-theme-loading'>
-					<CSCenterBox>
-						<CSLoading className='app-box'>
-							{this.state.data.loading}
-						</CSLoading>
-					</CSCenterBox>
-					<CSBackground className='app-bg'/>
-				</div>
-			);
 		return(
 			<div className='app app-theme-default'>
 				<CSCentered>
-					<TimeTable lat={this.state.data.lat} lon={this.state.data.lon} maxDistance={this.state.data.maxDistance} maxResults={12} filterOut={this.state.data.filterOut}/>
+					<CSTitle className='timetable-title'>Nearest departures</CSTitle>
+					<CSValidatorChanger error={this.state.data.error} loading={this.state.data.loading}>
+						<TimeTable lat={this.state.data.lat} lon={this.state.data.lon} maxDistance={this.state.data.maxDistance} maxResults={12} filterOut={this.state.data.filterOut}/>
+					</CSValidatorChanger>
+					<CSWhiteSpace/>
 				</CSCentered>
 				<CSBackground className='app-bg'/>
 			</div>

@@ -9,7 +9,7 @@
   "dependencies": {
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
-    "timetablescreen": "./.."
+    "timetablescreen": "file:.."
   },
   "scripts": {
     "start": "react-scripts start",
