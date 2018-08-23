@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { CSList, CSTitle, CSValidatorChanger } from 'chillisalmon';
+import { CSList, CSValidatorChanger } from 'chillisalmon';
 
 import APIQuery from './APIQuery.js';
 import DepartureInfo from './DepartureInfo.js';
@@ -117,6 +117,15 @@ class TimeTable extends Component {
 		this.setState({intervalId: intervalId});
 	}
 
+	componentDidUpdate(prevProps, prevState) {
+		if (this.props.lat === prevProps.lat && this.props.lon === prevProps.lon && this.props.stopCode === prevProps.stopCode) return;
+		if (prevState.data.hasOwnProperty('error')) {
+			this.setState({loading: 'Waiting for timetable data from HSL API.'}, () => {
+				this.sendQuery();
+			});
+		}
+	}
+
 	componentWillUnmount() {
 		clearInterval(this.state.intervalId);
 	}
@@ -127,7 +136,6 @@ class TimeTable extends Component {
 		return (
 			<CSValidatorChanger error={this.state.data.error} loading={this.state.data.loading}>
 				<CSList>
-					<CSTitle className='timetable-title'>Nearest departures</CSTitle>
 					{
 						departureInfoArray.map((departureInfoArrayItem, i) => {
 							return (this.getType() === 'nearest') ?

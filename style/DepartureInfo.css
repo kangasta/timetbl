@@ -21,7 +21,7 @@
 
 .stoptime {
 	display: inline-block;
-	margin-right: 1em;
+	margin-right: 0.33em;
 	min-width: 3em;
 	text-align: center;
 }
