@@ -16,16 +16,14 @@
 
 .cs-element {
 	background: var(--theme-color-2);
+	border-radius: .25em;
 	color: var(--theme-color-1);
+	min-width: 12em;
 }
 
 .cs-element.app-box {
 	background: var(--theme-color-1);
 	color: var(--theme-color-2);
-}
-
-.cs-element.departure {
-	border-radius: .33em;
 }
 
 .cs-title.timetable-title {

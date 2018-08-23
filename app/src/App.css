@@ -1,3 +1,15 @@
+@media (max-width: 30rem) {
+	:root {
+		font-size: 7vw;
+	}
+}
+
+@media (min-width: 30rem) {
+	:root {
+		font-size: 2rem;
+	}
+}
+
 .app {
 	bottom: 0;
 	font-size: 1em;
