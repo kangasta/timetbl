@@ -107,7 +107,7 @@ class TimeTable extends Component {
 			}
 		}
 		catch(e) {
-			this.setState({'data': {'error': e.toString()}});
+			return [];
 		}
 	}
 
