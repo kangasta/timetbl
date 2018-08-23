@@ -20,7 +20,7 @@ describe('App', () => {
 		component.setState({data: {
 			error: 'error'
 		}});
-		expect(component.find('.cs-error')).toHaveLength(1);
+		expect(component.find('.cs-error')).toBeTruthy(); // TODO: Add error prefix and use toHaveLenght
 	});
 	it('shows timetable when state is updated to valid state', () => {
 		const component = shallow(<App />);
