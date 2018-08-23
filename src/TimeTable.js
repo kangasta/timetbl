@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { CSBackground, CSCenterBox, CSError, CSLoading, CSList, CSTitle } from 'chillisalmon';
+import { CSList, CSTitle, CSValidatorChanger } from 'chillisalmon';
 
 import APIQuery from './APIQuery.js';
 import DepartureInfo from './DepartureInfo.js';
@@ -71,38 +71,43 @@ class TimeTable extends Component {
 	}
 
 	getDepartureInfoArray() {
-		var departureInfoArray;
-		if (this.getType() === 'nearest') {
-			departureInfoArray = this.state.data.nearest.edges.filter((a) => { return a.node.place.stoptimes.length > 0; });
-			departureInfoArray.sort((a,b) => {
-				const ad = a.node.place.stoptimes[0].serviceDay;
-				const bd = b.node.place.stoptimes[0].serviceDay;
-				var at = a.node.place.stoptimes[0].realtimeDeparture;
-				var bt = b.node.place.stoptimes[0].realtimeDeparture;
-				at = (a.node.place.stoptimes[0].scheduledDeparture - at) > 20*3600 ? at + 24*3600 : at;
-				bt = (b.node.place.stoptimes[0].scheduledDeparture - bt) > 20*3600 ? bt + 24*3600 : bt;
-				return (ad - bd) ?
-					(ad - bd) :
-					(at - bt);
-			});
-			if (this.props.filterOut) {
-				departureInfoArray = departureInfoArray.filter((a) => {
-					var filterOut = Array.isArray(this.props.filterOut) ? this.props.filterOut : [this.props.filterOut];
-					return filterOut.every((filter) => {
-						return a.node.place.stoptimes[0].stopHeadsign !== filter;
-					});
+		try {
+			var departureInfoArray;
+			if (this.getType() === 'nearest') {
+				departureInfoArray = this.state.data.nearest.edges.filter((a) => { return a.node.place.stoptimes.length > 0; });
+				departureInfoArray.sort((a,b) => {
+					const ad = a.node.place.stoptimes[0].serviceDay;
+					const bd = b.node.place.stoptimes[0].serviceDay;
+					var at = a.node.place.stoptimes[0].realtimeDeparture;
+					var bt = b.node.place.stoptimes[0].realtimeDeparture;
+					at = (a.node.place.stoptimes[0].scheduledDeparture - at) > 20*3600 ? at + 24*3600 : at;
+					bt = (b.node.place.stoptimes[0].scheduledDeparture - bt) > 20*3600 ? bt + 24*3600 : bt;
+					return (ad - bd) ?
+						(ad - bd) :
+						(at - bt);
 				});
+				if (this.props.filterOut) {
+					departureInfoArray = departureInfoArray.filter((a) => {
+						var filterOut = Array.isArray(this.props.filterOut) ? this.props.filterOut : [this.props.filterOut];
+						return filterOut.every((filter) => {
+							return a.node.place.stoptimes[0].stopHeadsign !== filter;
+						});
+					});
+				}
+				departureInfoArray = departureInfoArray.slice(0,this.props.maxResults);
+				return departureInfoArray;
+			} else {
+				departureInfoArray = this.state.data.stops.filter((a) => { return a.gtfsId.includes('HSL'); });
+				departureInfoArray[0].stoptimesWithoutPatterns.sort((a,b) => {
+					return (a.serviceDay - b.serviceDay) ?
+						(a.serviceDay - b.serviceDay) :
+						(a.realtimeArrival - b.realtimeArrival);
+				});
+				return departureInfoArray[0].stoptimesWithoutPatterns;
 			}
-			departureInfoArray = departureInfoArray.slice(0,this.props.maxResults);
-			return departureInfoArray;
-		} else {
-			departureInfoArray = this.state.data.stops.filter((a) => { return a.gtfsId.includes('HSL'); });
-			departureInfoArray[0].stoptimesWithoutPatterns.sort((a,b) => {
-				return (a.serviceDay - b.serviceDay) ?
-					(a.serviceDay - b.serviceDay) :
-					(a.realtimeArrival - b.realtimeArrival);
-			});
-			return departureInfoArray[0].stoptimesWithoutPatterns;
+		}
+		catch(e) {
+			this.setState({'data': {'error': e.toString()}});
 		}
 	}
 
@@ -117,37 +122,21 @@ class TimeTable extends Component {
 	}
 
 	render() {
-		if (this.state.data.hasOwnProperty('error'))
-			return (
-				<CSCenterBox>
-					<CSError className='app-box'>
-						{this.state.data.error}
-					</CSError>
-					<CSBackground className='app-bg-error'/>
-				</CSCenterBox>
-			);
-		if (this.state.data.hasOwnProperty('loading'))
-			return (
-				<CSCenterBox>
-					<CSLoading className='app-box'>
-						{this.state.data.loading}
-					</CSLoading>
-					<CSBackground className='app-bg-loading'/>
-				</CSCenterBox>
-			);
 		var departureInfoArray = this.getDepartureInfoArray();
 
 		return (
-			<CSList>
-				<CSTitle className='timetable-title'>Nearest departures</CSTitle>
-				{
-					departureInfoArray.map((departureInfoArrayItem, i) => {
-						return (this.getType() === 'nearest') ?
-							<DepartureInfo stop={departureInfoArrayItem.node.place.stop} stoptime={departureInfoArrayItem.node.place.stoptimes} key={i} row={i}/> :
-							<DepartureInfo stoptime={departureInfoArrayItem} key={i} row={i}/>;
-					})
-				}
-			</CSList>
+			<CSValidatorChanger error={this.state.data.error} loading={this.state.data.loading}>
+				<CSList>
+					<CSTitle className='timetable-title'>Nearest departures</CSTitle>
+					{
+						departureInfoArray.map((departureInfoArrayItem, i) => {
+							return (this.getType() === 'nearest') ?
+								<DepartureInfo stop={departureInfoArrayItem.node.place.stop} stoptime={departureInfoArrayItem.node.place.stoptimes} key={i} row={i}/> :
+								<DepartureInfo stoptime={departureInfoArrayItem} key={i} row={i}/>;
+						})
+					}
+				</CSList>
+			</CSValidatorChanger>
 		);
 	}
 }
