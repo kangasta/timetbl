@@ -20,6 +20,7 @@
     "eslint-watch": "^3.1.3",
     "jest": "<22.0.0",
     "prop-types": "^15.6.0",
+    "raf": "^3.4.1",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-test-renderer": "^16.2.0"
@@ -43,7 +44,9 @@
     "moduleNameMapper": {
       "\\.(css|less)$": "<rootDir>/src/__mocks__/StyleMock.js"
     },
+    "setupFiles": ["raf/polyfill"],
     "setupTestFrameworkScriptFile": "<rootDir>/src/setupTests.js",
+    "testURL": "http://localhost:8080",
     "transform": {
       ".*": "<rootDir>/node_modules/babel-jest"
     }

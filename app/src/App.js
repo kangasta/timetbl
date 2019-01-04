@@ -8,13 +8,11 @@ import './App.css';
 import './Theme.css';
 
 class App extends Component {
-	name = 'timetablescreen';
-
 	constructor(props) {
 		super(props);
 
 		this.state = this.parseURL();
-		window.history.replaceState(this.state, this.name, this.state.url);
+		window.history.replaceState(this.state, 'timetablescreen', this.state.url);
 		window.onpopstate = (event) => {
 			this.setState(event.state);
 		};
@@ -36,7 +34,11 @@ class App extends Component {
 				<TimeTable stopCode={this.state.view.stop.code} maxResults={15}/>
 			);
 		} else {
-			this.navigateWithLocation('/#/nearby');
+			try {
+				this.navigateWithLocation('/#/nearby');
+			} catch (e) {
+				return 'Location error: TODO';
+			}
 			return (
 				'Waiting location: TODO'
 			);
@@ -98,7 +100,7 @@ class App extends Component {
 
 	navigate(url) {
 		this.setState(this.parseURL(url), ()=>{
-			window.history.pushState(this.state, this.name, this.state.url);
+			window.history.pushState(this.state, 'timetablescreen', this.state.url);
 		});
 	}
 
