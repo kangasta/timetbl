@@ -25,7 +25,7 @@ class App extends Component {
 	getActiveView() {
 		if (this.state.view.hasOwnProperty('mainmenu')) {
 			return (
-				"Mainmenu: TODO"
+				'Mainmenu: TODO'
 			);
 		} else if (this.state.view.hasOwnProperty('nearby')) {
 			return (
@@ -38,7 +38,7 @@ class App extends Component {
 		} else {
 			this.navigateWithLocation('/#/nearby');
 			return (
-				"Waiting location: TODO"
+				'Waiting location: TODO'
 			);
 		}
 	}
@@ -90,11 +90,11 @@ class App extends Component {
 		UserLocation.getUserLocation((loc) => {
 			const lat = (Math.round(loc.coords.latitude*1e6)/1e6).toString();
 			const lon = (Math.round(loc.coords.longitude*1e6)/1e6).toString();
-			this.navigate(url + '?lat=' + lat + "&lon=" + lon);
+			this.navigate(url + '?lat=' + lat + '&lon=' + lon);
 		}, (error) => {
 			throw Error(error.toString());
 		});
-}
+	}
 
 	navigate(url) {
 		this.setState(this.parseURL(url), ()=>{
