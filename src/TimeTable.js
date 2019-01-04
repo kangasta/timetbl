@@ -45,7 +45,7 @@ class TimeTable extends Component {
 					}
 					return combinedResponseJson.data;
 				} else {
-					return responseJsons[0];
+					return responseJsons.reduce((r,i) => { r = r.concat(i.stops[0].stoptimesForPatterns); return r; }, []);
 				}
 			})
 			.then((responseJson) => {
@@ -97,13 +97,13 @@ class TimeTable extends Component {
 				departureInfoArray = departureInfoArray.slice(0,this.props.maxResults);
 				return departureInfoArray;
 			} else {
-				departureInfoArray = this.state.data.stops.filter((a) => { return a.gtfsId.includes('HSL'); });
-				departureInfoArray[0].stoptimesWithoutPatterns.sort((a,b) => {
-					return (a.serviceDay - b.serviceDay) ?
-						(a.serviceDay - b.serviceDay) :
-						(a.realtimeArrival - b.realtimeArrival);
+				departureInfoArray = this.state.data;
+				departureInfoArray.sort((a,b) => {
+					return (a.stoptimes[0].serviceDay - b.stoptimes[0].serviceDay) ?
+						(a.stoptimes[0].serviceDay - b.stoptimes[0].serviceDay) :
+						(a.stoptimes[0].realtimeArrival - b.stoptimes[0].realtimeArrival);
 				});
-				return departureInfoArray[0].stoptimesWithoutPatterns;
+				return departureInfoArray;
 			}
 		}
 		catch(e) {
@@ -140,7 +140,7 @@ class TimeTable extends Component {
 						departureInfoArray.map((departureInfoArrayItem, i) => {
 							return (this.getType() === 'nearest') ?
 								<DepartureInfo distance={departureInfoArrayItem.node.distance} stop={departureInfoArrayItem.node.place.stop} stoptime={departureInfoArrayItem.node.place.stoptimes} key={i} row={i}/> :
-								<DepartureInfo stoptime={departureInfoArrayItem} key={i} row={i}/>;
+								<DepartureInfo stoptime={departureInfoArrayItem.stoptimes} key={i} row={i}/>;
 						})
 					}
 				</CSList>
@@ -172,7 +172,10 @@ TimeTable.propTypes = {
 		PropTypes.number,
 		PropTypes.array
 	]),
-	stopCode: PropTypes.string,
+	stopCode: PropTypes.oneOfType([
+		PropTypes.string,
+		PropTypes.array
+	]),
 	maxDistance: PropTypes.oneOfType([
 		PropTypes.number,
 		PropTypes.array

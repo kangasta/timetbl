@@ -10,7 +10,7 @@ class DepartureInfo extends Component {
 		return (
 			<CSElement className={'departure ' + departureType}
 				head={this.props.stoptime[0].trip.route.shortName}
-				title={this.props.stoptime[0].stopHeadsign}
+				title={this.props.stoptime[0].headsign}
 				right={this.props.stoptime.map((stoptime,i)=>(
 					<div key={i} className={'stoptime ' + (stoptime.realtime ? 'realtime' : '')}>
 						{DepartureInfo.departureTimeToStr(stoptime.realtimeDeparture)}
@@ -85,7 +85,7 @@ DepartureInfo.defaultProps = {
 		realtimeArrival: 0,
 		realtimeDeparture: 0,
 		realtime: false,
-		stopHeadsign: 'Destination'
+		headsign: 'Destination'
 	}],
 	header: '',
 	row: 0
@@ -113,7 +113,7 @@ DepartureInfo.propTypes = {
 		realtimeDeparture: PropTypes.number,
 		realtime: PropTypes.bool,
 		scheduledDeparture: PropTypes.number,
-		stopHeadsign: PropTypes.string
+		headsign: PropTypes.string
 	})),
 	header: PropTypes.string,
 	row: PropTypes.number
