@@ -51,7 +51,7 @@ class APIQuery {
 		return promises;
 	}
 
-	static get EmptyNearestQueryResponse() { return '{"data":{"nearest":{"edges":[]}}}';}
+	static get EmptyNearestQueryResponse() { return {data: {nearest: {edges: [] }}}; }
 
 	static get APIurl() { return 'https://api.digitransit.fi/routing/v1/routers/hsl/index/graphql'; }
 

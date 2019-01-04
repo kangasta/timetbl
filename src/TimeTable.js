@@ -37,13 +37,10 @@ class TimeTable extends Component {
 
 		Promise.all(queryResponsePromises)
 			.then((responseJsons) => {
-				if (self.getType() === 'nearest' && queryResponsePromises.length > 1)
-				{
-					var combinedResponseJson = JSON.parse(APIQuery.EmptyNearestQueryResponse);
-					for (var i = 0; i < responseJsons.length; i++) {
-						combinedResponseJson.data.nearest.edges = combinedResponseJson.data.nearest.edges.concat(responseJsons[i].nearest.edges);
-					}
-					return combinedResponseJson.data;
+				if (self.getType() === 'nearest') {
+					return responseJsons.reduce((r,i) => {
+						r = r.concat(i.nearest.edges); return r;
+					}, []);
 				} else {
 					return responseJsons.reduce((r,i) => { r = r.concat(i.stops[0].stoptimesForPatterns); return r; }, []);
 				}
@@ -74,8 +71,9 @@ class TimeTable extends Component {
 		try {
 			var departureInfoArray;
 			if (this.getType() === 'nearest') {
-				departureInfoArray = this.state.data.nearest.edges.filter((a) => { return a.node.place.stoptimes.length > 0; });
+				departureInfoArray = this.state.data.filter((a) => { return a.node.place.stoptimes.length > 0; });
 				departureInfoArray.sort((a,b) => {
+					// TODO: Clean up
 					const ad = a.node.place.stoptimes[0].serviceDay;
 					const bd = b.node.place.stoptimes[0].serviceDay;
 					var at = a.node.place.stoptimes[0].realtimeDeparture;
@@ -189,4 +187,3 @@ TimeTable.propTypes = {
 };
 
 export default TimeTable;
-
