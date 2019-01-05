@@ -5,23 +5,6 @@ import { CSElement } from 'chillisalmon';
 import '../style/DepartureInfo.css';
 
 class DepartureInfo extends Component {
-	render() {
-		var departureType = ((this.props.stop.name === 'Stop name' && this.props.header.toLowerCase() !== 'nearest') || this.props.header.toLowerCase() === 'stop') ? 'stop-type' : 'nearest-type';
-		return (
-			<CSElement className={'departure ' + departureType}
-				head={this.props.stoptime[0].trip.route.shortName}
-				title={this.props.stoptime[0].headsign}
-				right={this.props.stoptime.map((stoptime,i)=>(
-					<div key={i} className={'stoptime ' + (stoptime.realtime ? 'realtime' : '')}>
-						{DepartureInfo.departureTimeToStr(stoptime.realtimeDeparture)}
-					</div>)
-				)}>
-				<b>{this.props.stop.name}</b>
-				<span className='stop-distance'>{this.props.distance ? ' ' + this.props.distance.toString() + ' m' : ''}</span>
-			</CSElement>
-		);
-	}
-
 	static currentTimeInMinutes() {
 		var curTime = new Date();
 		return curTime.getHours()*60 + curTime.getMinutes();
@@ -62,8 +45,25 @@ class DepartureInfo extends Component {
 			(departureInMinutes + ' min') :
 			DepartureInfo.parseTime(seconds));
 	}
+
+	render() {
+		return (
+			<CSElement className={'departure'}
+				head={this.props.stoptime[0].trip.route.shortName}
+				title={this.props.stoptime[0].headsign}
+				right={this.props.stoptime.map((stoptime,i)=>(
+					<div key={i} className={'stoptime ' + (stoptime.realtime ? 'realtime' : '')}>
+						{DepartureInfo.departureTimeToStr(stoptime.realtimeDeparture)}
+					</div>)
+				)}>
+				{this.props.stop !== undefined ? <b>{this.props.stop.name}</b> : null}
+				{this.props.distance !== undefined ? <span className='stop-distance'>{': ' + this.props.distance.toString() + ' m'}</span> : null}
+			</CSElement>
+		);
+	}
 }
 
+/*
 DepartureInfo.defaultProps = {
 	distance: 0,
 	stop: {
@@ -90,6 +90,7 @@ DepartureInfo.defaultProps = {
 	header: '',
 	row: 0
 };
+*/
 
 DepartureInfo.propTypes = {
 	distance: PropTypes.number,
