@@ -42,7 +42,13 @@ class TimeTable extends Component {
 						r = r.concat(i.nearest.edges); return r;
 					}, []);
 				} else {
-					return responseJsons.reduce((r,i) => { r = r.concat(i.stops[0].stoptimesForPatterns); return r; }, []);
+					return responseJsons.reduce((r, i) => {
+						r = r.concat(i.stops);
+						return r;
+					}, []).reduce((r,i) => {
+						r = r.concat(i.stoptimesForPatterns);
+						return r;
+					}, []);
 				}
 			})
 			.then((responseJson) => {

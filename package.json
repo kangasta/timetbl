@@ -44,7 +44,9 @@
     "moduleNameMapper": {
       "\\.(css|less)$": "<rootDir>/src/__mocks__/StyleMock.js"
     },
-    "setupFiles": ["raf/polyfill"],
+    "setupFiles": [
+      "raf/polyfill"
+    ],
     "setupTestFrameworkScriptFile": "<rootDir>/src/setupTests.js",
     "testURL": "http://localhost:8080",
     "transform": {
