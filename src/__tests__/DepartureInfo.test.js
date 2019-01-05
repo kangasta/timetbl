@@ -4,7 +4,19 @@ import DepartureInfo from './../DepartureInfo.js';
 
 describe('DepartureInfo', () => {
 	it('renders without crashing', () => {
-		mount(<DepartureInfo />);
+		mount(<DepartureInfo stoptime={[{
+			trip: {
+				route: {
+					shortName: 'Route',
+					mode: 'Type',
+					alerts: []
+				}
+			},
+			realtimeArrival: 0,
+			realtimeDeparture: 0,
+			realtime: false,
+			headsign: 'Destination'
+		}]}/>);
 	});
 	/* TODO update
 	it('shows stop info if stop is given in props.', () => {
