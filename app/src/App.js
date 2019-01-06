@@ -90,6 +90,13 @@ class App extends Component {
 				},
 				'url': base + match[0]
 			};
+		} else if (match = url.match(/#\/nearby/)) {
+			return {
+				'view': {
+					'initial': '/#/nearby'
+				},
+				'url': base + match[0]
+			};
 		} else if (match = url.match(/#\/stop(\?[^/]*)/)) {
 			const url_params = new URLSearchParams(match[1]);
 			return {
@@ -103,7 +110,7 @@ class App extends Component {
 		} else {
 			return {
 				'view': {
-					'initial': null
+					'initial': '/#/menu'
 				},
 				'url': base + '#/'
 			};
@@ -130,7 +137,7 @@ class App extends Component {
 	componentWillMount() {
 		if (this.state.view.hasOwnProperty('initial')) {
 			try {
-				this.navigateWithLocation('/#/menu');
+				this.navigateWithLocation(this.state.view.initial);
 			} catch (e) {
 				this.setState({view: {error: 'Location not available'}});
 			}
