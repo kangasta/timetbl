@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
-import { CSBackground, CSCentered, CSTitle, CSValidatorChanger, CSWhiteSpace } from 'chillisalmon';
-import { StopMenu, TimeTable} from 'timetablescreen';
+import { CSBackground, CSCentered, CSValidatorChanger, CSWhiteSpace } from 'chillisalmon';
+import { StopMenu, TimeTable, Title } from 'timetablescreen';
 import UserLocation from './UserLocation.js';
 
 import './App.css';
@@ -41,6 +41,24 @@ class App extends Component {
 			return (
 				'Waiting location: TODO'
 			);
+		}
+	}
+
+	getTitle() {
+		if (this.state.view.hasOwnProperty('menu')) {
+			return (
+				<Title lat={this.state.view.menu.lat} lon={this.state.view.menu.lon}/>
+			);
+		} else if (this.state.view.hasOwnProperty('nearby')) {
+			return (
+				<Title lat={this.state.view.nearby.lat} lon={this.state.view.nearby.lon}/>
+			);
+		} else if (this.state.view.hasOwnProperty('stop')) {
+			return (
+				<Title text={this.state.view.stop.code}/>
+			);
+		} else {
+			return null;
 		}
 	}
 
@@ -129,7 +147,7 @@ class App extends Component {
 		return(
 			<div className='app app-theme-default'>
 				<CSCentered>
-					<CSTitle className='timetable-title'>Nearest departures</CSTitle>
+					{this.getTitle()}
 					<CSValidatorChanger error={this.state.view.error} loading={this.state.view.loading}>
 						{this.getActiveView()}
 					</CSValidatorChanger>
