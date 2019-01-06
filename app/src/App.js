@@ -63,7 +63,9 @@ class App extends Component {
 	}
 
 	parseURL(url=document.location.href) {
+		const base = document.location.href.match(/:\/\/[^/]*(\/[^#]*)/)[1];
 		var match;
+
 		const params_to_loc = params_str => {
 			const url_params = new URLSearchParams(params_str);
 			return {
@@ -79,14 +81,14 @@ class App extends Component {
 				'view': {
 					'menu': params_to_loc(match[1])
 				},
-				'url': match[0]
+				'url': base + match[0]
 			};
 		} else if (match = url.match(/#\/nearby(\?[^/]*)/)) {
 			return {
 				'view': {
 					'nearby': params_to_loc(match[1])
 				},
-				'url': match[0]
+				'url': base + match[0]
 			};
 		} else if (match = url.match(/#\/stop(\?[^/]*)/)) {
 			const url_params = new URLSearchParams(match[1]);
@@ -96,22 +98,14 @@ class App extends Component {
 						'code': url_params.get('code').split(',')
 					}
 				},
-				'url': match[0]
+				'url': base + match[0]
 			};
-		} /* else if (match = url.match(/#\/error(\?[^/]*)/)) {
-			const url_params = new URLSearchParams(match[1]);
-			return {
-				'view': {
-					'error': url_params.get('message')
-				},
-				'url': match[0]
-			};
-		} */ else {
+		} else {
 			return {
 				'view': {
 					'initial': null
 				},
-				'url': '/#/'
+				'url': base + '#/'
 			};
 		}
 		/* eslint-enable no-cond-assign */
