@@ -1,0 +1,136 @@
+{
+	"data": {
+		"nearest": {
+			"edges": [
+				{
+					"node": {
+						"place": {
+							"name": "Kotkankatu",
+							"code": "2134"
+						}
+					}
+				},
+				{
+					"node": {
+						"place": {
+							"name": "Kotkankatu",
+							"code": "0656"
+						}
+					}
+				},
+				{
+					"node": {
+						"place": {
+							"name": "Alppila",
+							"code": "0631"
+						}
+					}
+				},
+				{
+					"node": {
+						"place": {
+							"name": "Kotkankatu",
+							"code": "0657"
+						}
+					}
+				},
+				{
+					"node": {
+						"place": {
+							"name": "Alppila",
+							"code": "0632"
+						}
+					}
+				},
+				{
+					"node": {
+						"place": {
+							"name": "Sturenkatu",
+							"code": "0654"
+						}
+					}
+				},
+				{
+					"node": {
+						"place": {
+							"name": "Sturenkatu",
+							"code": "0655"
+						}
+					}
+				},
+				{
+					"node": {
+						"place": {
+							"name": "Kotkankatu",
+							"code": "2133"
+						}
+					}
+				},
+				{
+					"node": {
+						"place": {
+							"name": "Porvoonkatu",
+							"code": "2123"
+						}
+					}
+				},
+				{
+					"node": {
+						"place": {
+							"name": "Sturenkatu",
+							"code": "2153"
+						}
+					}
+				},
+				{
+					"node": {
+						"place": {
+							"name": "Linnanmäki (pohj.)",
+							"code": "0634"
+						}
+					}
+				},
+				{
+					"node": {
+						"place": {
+							"name": "Porvoonkatu",
+							"code": "0261"
+						}
+					}
+				},
+				{
+					"node": {
+						"place": {
+							"name": "Linnanmäki (pohj.)",
+							"code": "0633"
+						}
+					}
+				},
+				{
+					"node": {
+						"place": {
+							"name": "Pasilan konepaja",
+							"code": "0658"
+						}
+					}
+				},
+				{
+					"node": {
+						"place": {
+							"name": "Pasilan konepaja",
+							"code": "0659"
+						}
+					}
+				},
+				{
+					"node": {
+						"place": {
+							"name": "Sipoonkatu",
+							"code": "2132"
+						}
+					}
+				}
+			]
+		}
+	}
+}
