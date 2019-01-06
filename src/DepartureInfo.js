@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { CSElement } from 'chillisalmon';
 
 import '../style/DepartureInfo.css';
 
@@ -48,49 +47,24 @@ class DepartureInfo extends Component {
 
 	render() {
 		return (
-			<CSElement className={'departure'}
-				head={this.props.stoptime[0].trip.route.shortName}
-				title={this.props.stoptime[0].headsign}
-				right={this.props.stoptime.map((stoptime,i)=>(
-					<div key={i} className={'stoptime ' + (stoptime.realtime ? 'realtime' : '')}>
-						{DepartureInfo.departureTimeToStr(stoptime.realtimeDeparture)}
-					</div>)
-				)}>
-				{this.props.stop !== undefined ? <b>{this.props.stop.name}</b> : null}
-				{this.props.distance !== undefined ? <span className='stop-distance'>{': ' + this.props.distance.toString() + ' m'}</span> : null}
-			</CSElement>
+			<li className='DepartureInfo'>
+				<div className='Route'>{this.props.stoptime[0].trip.route.shortName}</div>
+				<div className='Destination'>{this.props.stoptime[0].headsign}</div>
+				<div className='Details'>
+					{this.props.stop !== undefined ? <b>{this.props.stop.name}</b> : null}
+					{this.props.distance !== undefined ? <span className='stop-distance'>{': ' + this.props.distance.toString() + ' m'}</span> : null}
+				</div>
+				<ul className='DepartureList'>
+					{this.props.stoptime.map((stoptime,i)=>(
+						<li key={i} className={'Departure ' + (stoptime.realtime ? 'Realtime' : '')}>
+							{DepartureInfo.departureTimeToStr(stoptime.realtimeDeparture)}
+						</li>)
+					)}
+				</ul>
+			</li>
 		);
 	}
 }
-
-/*
-DepartureInfo.defaultProps = {
-	distance: 0,
-	stop: {
-		name: 'Stop name',
-		code: 'Stop code',
-		platformCode: 'Platform',
-		desc: 'Stop description',
-		lat: 47.916667,
-		lon: 106.916667
-	},
-	stoptime: [{
-		trip: {
-			route: {
-				shortName: 'Route',
-				mode: 'Type',
-				alerts: []
-			}
-		},
-		realtimeArrival: 0,
-		realtimeDeparture: 0,
-		realtime: false,
-		headsign: 'Destination'
-	}],
-	header: '',
-	row: 0
-};
-*/
 
 DepartureInfo.propTypes = {
 	distance: PropTypes.number,

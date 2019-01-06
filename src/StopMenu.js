@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { CSList, CSValidatorChanger } from 'chillisalmon';
+import { CSValidatorChanger } from 'chillisalmon';
 
 import APIQuery from './APIQuery.js';
 
@@ -55,11 +55,14 @@ class StopMenu extends Component {
 		return (
 			<CSValidatorChanger error={this.state.data.error} loading={this.state.data.loading}>
 				<ul className='StopMenu'>
+					<li className='Nearby' onClick={
+						() => this.props.navigate('/#/nearby?lat=' + this.props.lat + '&lon=' + this.props.lon)
+					}>All nearby departures</li>
 					{stopsArray.map((stop, i) => (
-						<li className='StopName' key={stop.name}>
+						<li className='StopName' key={stop.name} onClick={() => this.props.navigate('/#/stop?code=' + stop.name)}>
 							{stop.name}
 							<ul>
-								{stop.codes.map(code => <li  className='StopCode' key={code}>{code}</li>)}
+								{stop.codes.map(code => <li  className='StopCode' key={code} onClick={() => this.props.navigate('/#/stop?code=' + code)}>{code}</li>)}
 							</ul>
 						</li>
 					))}
@@ -73,12 +76,14 @@ StopMenu.defaultProps = {
 	lat: 0,
 	lon: 0,
 	maxDistance: 1000,
+	navigate: () => undefined,
 };
 
 StopMenu.propTypes = {
 	lat: PropTypes.number,
 	lon: PropTypes.number,
 	maxDistance: PropTypes.number,
+	navigate: PropTypes.func,
 };
 
 export default StopMenu;

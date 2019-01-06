@@ -23,7 +23,7 @@ class App extends Component {
 	getActiveView() {
 		if (this.state.view.hasOwnProperty('menu')) {
 			return (
-				<StopMenu lat={this.state.view.menu.lat} lon={this.state.view.menu.lon} maxDistance={this.state.view.menu.r}/>
+				<StopMenu lat={this.state.view.menu.lat} lon={this.state.view.menu.lon} maxDistance={this.state.view.menu.r} navigate={this.navigate}/>
 			);
 		} else if (this.state.view.hasOwnProperty('nearby')) {
 			return (
@@ -39,7 +39,7 @@ class App extends Component {
 			);
 		} else {
 			try {
-				this.navigateWithLocation('/#/nearby');
+				this.navigateWithLocation('/#/menu');
 			} catch (e) {
 				return 'Location error: TODO';
 			}

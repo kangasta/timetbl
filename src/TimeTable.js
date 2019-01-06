@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { CSList, CSValidatorChanger } from 'chillisalmon';
+import { CSValidatorChanger } from 'chillisalmon';
 
 import APIQuery from './APIQuery.js';
 import DepartureInfo from './DepartureInfo.js';
@@ -138,7 +138,7 @@ class TimeTable extends Component {
 
 		return (
 			<CSValidatorChanger error={this.state.data.error} loading={this.state.data.loading}>
-				<CSList>
+				<ul>
 					{
 						departureInfoArray.map((departureInfoArrayItem, i) => {
 							return (this.getType() === 'nearest') ?
@@ -146,7 +146,7 @@ class TimeTable extends Component {
 								<DepartureInfo stoptime={departureInfoArrayItem.stoptimes} key={i} row={i}/>;
 						})
 					}
-				</CSList>
+				</ul>
 			</CSValidatorChanger>
 		);
 	}
