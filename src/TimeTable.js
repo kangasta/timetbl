@@ -20,7 +20,6 @@ class TimeTable extends Component {
 	}
 
 	sendQuery() {
-		var self = this;
 		var queryResponsePromises;
 
 		switch (this.getType()) {
@@ -37,7 +36,7 @@ class TimeTable extends Component {
 
 		Promise.all(queryResponsePromises)
 			.then((responseJsons) => {
-				if (self.getType() === 'nearest') {
+				if (this.getType() === 'nearest') {
 					return responseJsons.reduce((r,i) => {
 						r = r.concat(i.nearest.edges); return r;
 					}, []);
@@ -52,12 +51,12 @@ class TimeTable extends Component {
 				}
 			})
 			.then((responseJson) => {
-				self.setState({
+				this.setState({
 					data: responseJson
 				});
 			})
 			.catch((error) => {
-				self.setState({data: {error: error.toString()}});
+				this.setState({data: {error: error.toString()}});
 			});
 	}
 

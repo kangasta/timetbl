@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import { CSBackground, CSCentered, CSTitle, CSValidatorChanger, CSWhiteSpace } from 'chillisalmon';
-import TimeTable from 'timetablescreen';
+import { StopMenu, TimeTable} from 'timetablescreen';
 import UserLocation from './UserLocation.js';
 
 import './App.css';
@@ -21,9 +21,9 @@ class App extends Component {
 	}
 
 	getActiveView() {
-		if (this.state.view.hasOwnProperty('mainmenu')) {
+		if (this.state.view.hasOwnProperty('menu')) {
 			return (
-				'Mainmenu: TODO'
+				<StopMenu lat={this.state.view.menu.lat} lon={this.state.view.menu.lon} maxDistance={this.state.view.menu.r}/>
 			);
 		} else if (this.state.view.hasOwnProperty('nearby')) {
 			return (
@@ -32,6 +32,10 @@ class App extends Component {
 		} else if (this.state.view.hasOwnProperty('stop')) {
 			return (
 				<TimeTable stopCode={this.state.view.stop.code} maxResults={15}/>
+			);
+		} else if (this.state.view.hasOwnProperty('error')) {
+			return (
+				'Error: ' + this.state.view.error
 			);
 		} else {
 			try {
@@ -47,23 +51,27 @@ class App extends Component {
 
 	parseURL(url=document.location.href) {
 		var match;
+		const params_to_loc = params_str => {
+			const url_params = new URLSearchParams(params_str);
+			return {
+				'lat': Number(url_params.get('lat')),
+				'lon': Number(url_params.get('lon')),
+				'r': url_params.get('r') ? url_params.get('r') : 499
+			}
+		}
+
 		/* eslint-disable no-cond-assign */
-		if (match = url.match(/#\/menu\/([^/]*)/)) {
+		if (match = url.match(/#\/menu(\?[^/]*)/)) {
 			return {
 				'view': {
-					'menu': match[1]
+					'menu': params_to_loc(match[1])
 				},
 				'url': match[0]
 			};
 		} else if (match = url.match(/#\/nearby(\?[^/]*)/)) {
-			const url_params = new URLSearchParams(match[1]);
 			return {
 				'view': {
-					'nearby': {
-						'lat': Number(url_params.get('lat')),
-						'lon': Number(url_params.get('lon')),
-						'r': url_params.get('r') ? url_params.get('r') : 499
-					}
+					'nearby': params_to_loc(match[1])
 				},
 				'url': match[0]
 			};
@@ -77,7 +85,15 @@ class App extends Component {
 				},
 				'url': match[0]
 			};
-		} else {
+		} /* else if (match = url.match(/#\/error(\?[^/]*)/)) {
+			const url_params = new URLSearchParams(match[1]);
+			return {
+				'view': {
+					'error': url_params.get('message')
+				},
+				'url': match[0]
+			};
+		} */ else {
 			return {
 				'view': {
 					'topics': null
@@ -94,7 +110,7 @@ class App extends Component {
 			const lon = (Math.round(loc.coords.longitude*1e6)/1e6).toString();
 			this.navigate(url + '?lat=' + lat + '&lon=' + lon);
 		}, (error) => {
-			throw Error(error.toString());
+			this.setState({view: {error: 'Location not available'}});
 		});
 	}
 
