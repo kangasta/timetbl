@@ -1,31 +1,35 @@
-.cs-element-head,.cs-element-right {
-	padding-top: .125em;
-	vertical-align: middle;
+.Route {
+	float: left;
+	font-size: 1.75em;
+	width: 3em;
 }
 
-.departure .cs-element-head {
-	font-size: 50%;
-	line-height: 2.5em;
-	text-align: center;
-	width: 10%;
+.DepartureList {
+	float: right;
+	padding: 0;
+	width: 14em;
 }
 
-.departure .cs-element-right {
-	font-size: 33%;
-	line-height: 4em;
-}
-
-.stoptime:first-child {
-	font-size: 2em;
-}
-
-.stoptime {
+.DepartureList li {
 	display: inline-block;
-	margin-right: 0.33em;
-	min-width: 3em;
-	text-align: center;
+	list-style-type: none;
+	margin-right: 0.5em;
+	width: 3em;
 }
 
-.stop-distance {
-	margin-left: 0.5em;
+.DepartureList li:first-child {
+	font-size: 1.75em;
+}
+
+.Destination {
+	overflow: auto;
+}
+
+.Destination.NoDetails {
+	font-size: 1.75em;
+}
+
+.Details {
+	font-size: 0.75em;
+	overflow: auto;
 }

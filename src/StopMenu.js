@@ -55,12 +55,14 @@ class StopMenu extends Component {
 		return (
 			<CSValidatorChanger error={this.state.data.error} loading={this.state.data.loading}>
 				<ul className='StopMenu'>
-					<li className='Nearby' onClick={
+					<li className='Nearby ListItem' onClick={
 						() => this.props.navigate('/#/nearby?lat=' + this.props.lat + '&lon=' + this.props.lon)
-					}>All nearby departures</li>
+					}>
+						<span className='Name'>All nearby departures</span>
+					</li>
 					{stopsArray.map(stop => (
-						<li className='StopName' key={stop.name} onClick={() => this.props.navigate('/#/stop?code=' + stop.name)}>
-							{stop.name}
+						<li className='Stop ListItem' key={stop.name}>
+							<span className='Name' onClick={() => this.props.navigate('/#/stop?code=' + stop.name)}>{stop.name}</span>
 							<ul>
 								{stop.codes.map(code => <li  className='StopCode' key={code} onClick={() => this.props.navigate('/#/stop?code=' + code)}>{code}</li>)}
 							</ul>

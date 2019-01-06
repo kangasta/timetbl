@@ -6,12 +6,17 @@
 	font-family: Helvetica, Arial, sans-serif
 }
 
+.app {
+	color: var(--theme-color-2);
+}
+
 .cs-background {
 	background: var(--theme-color-1);
 }
 
 .cs-centered {
 	height: 100%;
+	width: 100%;
 }
 
 .cs-element {

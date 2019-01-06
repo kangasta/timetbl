@@ -46,14 +46,10 @@ class DepartureInfo extends Component {
 	}
 
 	render() {
+		const details = this.props.stop !== undefined ? 'WithDetails' : 'NoDetails';
 		return (
-			<li className='DepartureInfo'>
+			<li className='DepartureInfo ListItem'>
 				<div className='Route'>{this.props.stoptime[0].trip.route.shortName}</div>
-				<div className='Destination'>{this.props.stoptime[0].headsign}</div>
-				<div className='Details'>
-					{this.props.stop !== undefined ? <b>{this.props.stop.name}</b> : null}
-					{this.props.distance !== undefined ? <span className='stop-distance'>{': ' + this.props.distance.toString() + ' m'}</span> : null}
-				</div>
 				<ul className='DepartureList'>
 					{this.props.stoptime.map((stoptime,i)=>(
 						<li key={i} className={'Departure ' + (stoptime.realtime ? 'Realtime' : '')}>
@@ -61,6 +57,11 @@ class DepartureInfo extends Component {
 						</li>)
 					)}
 				</ul>
+				<div className={'Destination ' + details}>{this.props.stoptime[0].headsign}</div>
+				<div className='Details'>
+					{this.props.stop !== undefined ? <b className='StopName'>{this.props.stop.name}</b> : null}
+					{this.props.distance !== undefined ? <span className='Distance'>{': ' + this.props.distance.toString() + ' m'}</span> : null}
+				</div>
 			</li>
 		);
 	}

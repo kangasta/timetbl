@@ -138,7 +138,7 @@ class TimeTable extends Component {
 
 		return (
 			<CSValidatorChanger error={this.state.data.error} loading={this.state.data.loading}>
-				<ul>
+				<ul className='Timetable'>
 					{
 						departureInfoArray.map((departureInfoArrayItem, i) => {
 							return (this.getType() === 'nearest') ?
