@@ -35,14 +35,9 @@ class App extends Component {
 			);
 		} else if (this.state.view.hasOwnProperty('error')) {
 			return (
-				'Error: ' + this.state.view.error
+				'Error: TODO ' + this.state.view.error
 			);
 		} else {
-			try {
-				this.navigateWithLocation('/#/menu');
-			} catch (e) {
-				return 'Location error: TODO';
-			}
 			return (
 				'Waiting location: TODO'
 			);
@@ -96,7 +91,7 @@ class App extends Component {
 		} */ else {
 			return {
 				'view': {
-					'topics': null
+					'initial': null
 				},
 				'url': '/#/'
 			};
@@ -118,6 +113,16 @@ class App extends Component {
 		this.setState(this.parseURL(url), ()=>{
 			window.history.pushState(this.state, 'timetablescreen', this.state.url);
 		});
+	}
+
+	componentWillMount() {
+		if (this.state.view.hasOwnProperty('initial')) {
+			try {
+				this.navigateWithLocation('/#/menu');
+			} catch (e) {
+				this.setState({view: {error: 'Location not available'}});
+			}
+		}
 	}
 
 	render() {
