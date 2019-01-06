@@ -138,7 +138,7 @@ class TimeTable extends Component {
 
 		var n_stops = 0;
 		if (this.getType() === 'stop') {
-			n_stops = departureInfoArray.map(departure => departure.stoptimes[0].stop.code).filter((code, index, array) => array.indexOf(code) === index).length
+			n_stops = departureInfoArray.map(departure => departure.stoptimes[0].stop.code).filter((code, index, array) => array.indexOf(code) === index).length;
 		}
 
 		return (

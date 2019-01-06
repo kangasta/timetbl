@@ -122,6 +122,10 @@ DepartureInfo.propTypes = {
 		lon: PropTypes.number
 	}),
 	stoptime: PropTypes.arrayOf(PropTypes.shape({
+		stop: PropTypes.shape({
+			code: PropTypes.string,
+			platformCode: PropTypes.string
+		}),
 		trip: PropTypes.shape({
 			route: PropTypes.shape({
 				shortName: PropTypes.string,

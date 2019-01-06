@@ -152,7 +152,7 @@ class App extends Component {
 					{this.getActiveView()}
 				</CSValidatorChanger>
 				<CSWhiteSpace/>
-			<CSBackground className='app-bg'/>
+				<CSBackground className='app-bg'/>
 			</div>
 		);
 	}
