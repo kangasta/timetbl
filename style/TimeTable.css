@@ -5,12 +5,12 @@
 
 .ListItem {
 	box-sizing: border-box;
-	border-top: 2px solid currentColor;
+	border-top: thin solid currentColor;
 	list-style-type: none;
 	padding: 0.33em 1.5em;
 	width: 100%;
 }
 
 .ListItem:last-child {
-	border-bottom: 2px solid currentColor;
+	border-bottom: thin solid currentColor;
 }

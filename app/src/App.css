@@ -4,7 +4,13 @@
 	}
 }
 
-@media (min-width: 50rem) {
+@media (min-width: 33rem) {
+	:root {
+		font-size: 1rem;
+	}
+}
+
+@media (min-width: 66rem) {
 	:root {
 		font-size: 2rem;
 	}
