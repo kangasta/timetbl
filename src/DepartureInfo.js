@@ -94,7 +94,7 @@ class DepartureInfo extends Component {
 				<div className='Route'>{this.props.stoptime[0].trip.route.shortName}</div>
 				<ul className='DepartureList'>
 					{this.props.stoptime.map((stoptime,i)=>(
-						<li key={i} className={'Departure ' + (stoptime.realtime ? 'Realtime' : '')}>
+						<li key={i} className={'Departure ' + (stoptime.realtime ? 'Realtime' : 'Scheduled')}>
 							{DepartureInfo.departureTimeToStr(stoptime.realtimeDeparture)}
 						</li>)
 					)}
