@@ -4,4 +4,4 @@ import TimeTable from './TimeTable';
 export {
 	StopMenu,
 	TimeTable
-}
+};

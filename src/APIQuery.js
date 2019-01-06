@@ -53,7 +53,7 @@ class APIQuery {
 	}
 
 	static getNearestStops(lat = 60.1836474999998, lon = 24.828072999999993) {
-		return sendQuery(queries.nearestStops(lat, lon))
+		return sendQuery(queries.nearestStops(lat, lon));
 	}
 
 	static get EmptyNearestQueryResponse() { return {data: {nearest: {edges: [] }}}; }

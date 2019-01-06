@@ -57,8 +57,8 @@ class App extends Component {
 				'lat': Number(url_params.get('lat')),
 				'lon': Number(url_params.get('lon')),
 				'r': url_params.get('r') ? url_params.get('r') : 499
-			}
-		}
+			};
+		};
 
 		/* eslint-disable no-cond-assign */
 		if (match = url.match(/#\/menu(\?[^/]*)/)) {
@@ -109,7 +109,7 @@ class App extends Component {
 			const lat = (Math.round(loc.coords.latitude*1e6)/1e6).toString();
 			const lon = (Math.round(loc.coords.longitude*1e6)/1e6).toString();
 			this.navigate(url + '?lat=' + lat + '&lon=' + lon);
-		}, (error) => {
+		}, () => {
 			this.setState({view: {error: 'Location not available'}});
 		});
 	}

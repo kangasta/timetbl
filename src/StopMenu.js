@@ -8,7 +8,7 @@ import '../style/StopMenu.css';
 
 class StopMenu extends Component {
 	constructor(props) {
-		super(props);;
+		super(props);
 		this.state = {
 			data: {
 				loading: 'Waiting for StopMenu data from HSL API.'
@@ -42,10 +42,10 @@ class StopMenu extends Component {
 				if (stop === undefined) {
 					r.push({name: i.name, codes: [i.code]});
 				} else {
-					stop.codes.push(i.code)
+					stop.codes.push(i.code);
 				}
 				return r;
-			}, [])
+			}, []);
 		return stops;
 	}
 
@@ -58,7 +58,7 @@ class StopMenu extends Component {
 					<li className='Nearby' onClick={
 						() => this.props.navigate('/#/nearby?lat=' + this.props.lat + '&lon=' + this.props.lon)
 					}>All nearby departures</li>
-					{stopsArray.map((stop, i) => (
+					{stopsArray.map(stop => (
 						<li className='StopName' key={stop.name} onClick={() => this.props.navigate('/#/stop?code=' + stop.name)}>
 							{stop.name}
 							<ul>
