@@ -27,8 +27,24 @@
 	white-space: nowrap;
 }
 
+.DestinationItem:first-child {
+	font-size: 1em;
+}
+
+.DestinationItem {
+	font-size: 0.666em;
+}
+
 .Destination.NoDetails {
 	font-size: 1.75em;
+}
+
+.Metro {
+	background: orangered;
+	border-radius: 0.125em;
+	font-size: 0.7em;
+	vertical-align: middle;
+	padding: 0.125em;
 }
 
 .Details {

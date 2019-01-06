@@ -45,6 +45,27 @@ class DepartureInfo extends Component {
 			DepartureInfo.parseTime(seconds));
 	}
 
+	getDestination(classes) {
+		const destinations = this.props.stoptime[0].headsign.split('via');
+		const to_destination_item = destination => {
+			const metro = destination.match(/\(M\)/);
+			destination = destination.replace('(M)','');
+
+			return (
+				<span key={destination} className='DestinationItem'>
+					{destination}
+					{metro ? <span className='Metro'>M</span> : null}
+				</span>
+			);
+		};
+
+		return (
+			<div className={'Destination ' + classes}>
+				{destinations.map(to_destination_item)}
+			</div>
+		);
+	}
+
 	render() {
 		const details = this.props.stop !== undefined ? 'WithDetails' : 'NoDetails';
 		return (
@@ -57,7 +78,7 @@ class DepartureInfo extends Component {
 						</li>)
 					)}
 				</ul>
-				<div className={'Destination ' + details}>{this.props.stoptime[0].headsign}</div>
+				{this.getDestination(details)}
 				<div className='Details'>
 					{this.props.stop !== undefined ? <b className='StopName'>{this.props.stop.name}</b> : null}
 					{this.props.distance !== undefined ? <span className='Distance'>{': ' + this.props.distance.toString() + ' m'}</span> : null}
