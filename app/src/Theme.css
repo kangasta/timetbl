@@ -14,15 +14,10 @@
 	background: var(--theme-color-1);
 }
 
-.cs-centered {
-	height: 100%;
-	width: 100%;
-}
-
 .cs-element {
-	background: var(--theme-color-2);
+	background: var(--theme-color-1);
 	border-radius: .25em;
-	color: var(--theme-color-1);
+	color: var(--theme-color-2);
 	min-width: 12em;
 }
 
@@ -34,24 +29,3 @@
 .cs-title.timetable-title {
 	color: var(--theme-color-2);
 }
-
-.realtime {
-	/*
-	color: green;
-	*/
-	font-weight: bold;
-}
-
-/*
-.timetable-title-element {
-	line-height: 1em;
-}
-
-.timetable-title-text {
-	display: inline-block;
-}
-
-.timetable-title-time {
-	display: none;
-}
-*/

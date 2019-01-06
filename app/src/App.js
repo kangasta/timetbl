@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { CSBackground, CSCentered, CSValidatorChanger, CSWhiteSpace } from 'chillisalmon';
+import { CSBackground, CSError, CSLoading, CSValidatorChanger, CSWhiteSpace } from 'chillisalmon';
 import { StopMenu, TimeTable, Title } from 'timetablescreen';
 import UserLocation from './UserLocation.js';
 
@@ -35,11 +35,11 @@ class App extends Component {
 			);
 		} else if (this.state.view.hasOwnProperty('error')) {
 			return (
-				'Error: TODO ' + this.state.view.error
+				<CSError>{this.state.view.error}</CSError>
 			);
 		} else {
 			return (
-				'Waiting location: TODO'
+				<CSLoading>Waiting location</CSLoading>
 			);
 		}
 	}
@@ -55,7 +55,7 @@ class App extends Component {
 			);
 		} else if (this.state.view.hasOwnProperty('stop')) {
 			return (
-				<Title text={this.state.view.stop.code}/>
+				<Title text={this.state.view.stop.code[0]}/>
 			);
 		} else {
 			return null;
@@ -147,14 +147,12 @@ class App extends Component {
 	render() {
 		return(
 			<div className='app app-theme-default'>
-				<CSCentered>
-					{this.getTitle()}
-					<CSValidatorChanger error={this.state.view.error} loading={this.state.view.loading}>
-						{this.getActiveView()}
-					</CSValidatorChanger>
-					<CSWhiteSpace/>
-				</CSCentered>
-				<CSBackground className='app-bg'/>
+				{this.getTitle()}
+				<CSValidatorChanger error={this.state.view.error} loading={this.state.view.loading}>
+					{this.getActiveView()}
+				</CSValidatorChanger>
+				<CSWhiteSpace/>
+			<CSBackground className='app-bg'/>
 			</div>
 		);
 	}

@@ -136,6 +136,11 @@ class TimeTable extends Component {
 	render() {
 		var departureInfoArray = this.getDepartureInfoArray();
 
+		var n_stops = 0;
+		if (this.getType() === 'stop') {
+			n_stops = departureInfoArray.map(departure => departure.stoptimes[0].stop.code).filter((code, index, array) => array.indexOf(code) === index).length
+		}
+
 		return (
 			<CSValidatorChanger error={this.state.data.error} loading={this.state.data.loading}>
 				<ul className='Timetable'>
@@ -143,7 +148,7 @@ class TimeTable extends Component {
 						departureInfoArray.map((departureInfoArrayItem, i) => {
 							return (this.getType() === 'nearest') ?
 								<DepartureInfo distance={departureInfoArrayItem.node.distance} stop={departureInfoArrayItem.node.place.stop} stoptime={departureInfoArrayItem.node.place.stoptimes} key={i} row={i}/> :
-								<DepartureInfo stoptime={departureInfoArrayItem.stoptimes} key={i} row={i}/>;
+								<DepartureInfo showPlatform={n_stops > 1} stoptime={departureInfoArrayItem.stoptimes} key={i} row={i}/>;
 						})
 					}
 				</ul>

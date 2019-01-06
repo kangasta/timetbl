@@ -66,8 +66,29 @@ class DepartureInfo extends Component {
 		);
 	}
 
+	getDetails() {
+		if (this.props.showPlatform) {
+			const code = this.props.stoptime[0].stop.code;
+			const platform = this.props.stoptime[0].stop.platformCode;
+
+			return (
+				<div className='Details'>
+					{platform == null ? 'Stop ' + code : null}
+					{platform !== null ? 'Platform ' + platform.toString() : null}
+				</div>
+			);
+		}
+		return (
+			<div className='Details'>
+				{this.props.stop !== undefined ? this.props.stop.name : null}
+				{this.props.stop !== undefined ? <b> {this.props.stop.code}</b> : null}
+				{this.props.distance !== undefined ? <span className='Distance'>{': ' + this.props.distance.toString() + ' m'}</span> : null}
+			</div>
+		);
+	}
+
 	render() {
-		const details = this.props.stop !== undefined ? 'WithDetails' : 'NoDetails';
+		const details = this.props.stop !== undefined || this.props.showPlatform ? 'WithDetails' : 'NoDetails';
 		return (
 			<li className='DepartureInfo ListItem'>
 				<div className='Route'>{this.props.stoptime[0].trip.route.shortName}</div>
@@ -79,16 +100,18 @@ class DepartureInfo extends Component {
 					)}
 				</ul>
 				{this.getDestination(details)}
-				<div className='Details'>
-					{this.props.stop !== undefined ? <b className='StopName'>{this.props.stop.name}</b> : null}
-					{this.props.distance !== undefined ? <span className='Distance'>{': ' + this.props.distance.toString() + ' m'}</span> : null}
-				</div>
+				{this.getDetails()}
 			</li>
 		);
 	}
 }
 
+DepartureInfo.defaultProps = {
+	showPlatform: false,
+};
+
 DepartureInfo.propTypes = {
+	showPlatform: PropTypes.bool,
 	distance: PropTypes.number,
 	stop: PropTypes.shape({
 		name: PropTypes.string,
