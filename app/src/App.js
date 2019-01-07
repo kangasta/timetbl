@@ -45,7 +45,7 @@ class App extends Component {
 	}
 
 	getTitle() {
-		if (this.state.hasOwnProperty('title')) {
+		if (this.state.hasOwnProperty('title') && this.state.title) {
 			return (
 				<Title text={this.state.title}/>
 			);
