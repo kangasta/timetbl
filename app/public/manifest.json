@@ -18,7 +18,7 @@
 		"type": "image/png"
 	  }
 	],
-	"start_url": "./index.html",
+	"start_url": "./index.html#/nearby",
 	"display": "standalone",
 	"theme_color": "#0080d0",
 	"background_color": "#0080d0"
