@@ -4,6 +4,12 @@ import PropTypes from 'prop-types';
 import '../style/DepartureInfo.css';
 
 class DepartureInfo extends Component {
+	constructor(props) {
+		super(props);
+
+		this.state = {alerts_expanded: false}
+	}
+
 	static currentTimeInMinutes() {
 		var curTime = new Date();
 		return curTime.getHours()*60 + curTime.getMinutes();
@@ -52,7 +58,48 @@ class DepartureInfo extends Component {
 			<div className='Route'>
 				{!match ? this.props.stoptime[0].trip.route.shortName : match[1]}
 				{match ? <span className='Letters'>{match[2]}</span> : null}
-			</div>);
+			</div>
+		);
+	}
+
+	get alert_symbol() { return (
+		<svg className='Symbol Fill' viewBox='0 0 64 64'>
+			<defs>
+				<mask id="mask">
+					<path d='M 32 4 l 28 56 h -56 l 28 -56' fill='white' stroke='white' strokeWidth='8' strokeLinecap='round' strokeLinejoin='round'/>
+					<path d='M 32 20 v 20' stroke='black' strokeWidth='6' fill='none' strokeLinecap='round'/>
+					<circle cx='32' cy='54' r='3' fill='black'/>
+				</mask>
+			</defs>
+			<rect x='0' y='0' width='64' height='64' mask='url(#mask)'/>
+		</svg>
+	); }
+
+	getAlertSymbol() {
+		const alerts = this.props.stoptime[0].trip.route.alerts;
+
+		if (alerts.length === 0 || this.state.alerts_expanded) return null;
+		return (
+			<div className='AlertSymbol' onClick={() => {
+				this.setState(prev => ({'alerts_expanded': !prev.alerts_expanded}))
+			}}>
+				{this.alert_symbol}
+			</div>
+		);
+	}
+
+	getAlertText(lang='en') {
+		const alerts = this.props.stoptime[0].trip.route.alerts;
+		const alert_text = alerts.map(alert => alert.alertDescriptionTextTranslations.find(translation => translation.language === lang).text)[0];
+		if (alerts.length === 0 || !this.state.alerts_expanded) return null;
+		return (
+			<div className='AlertText' onClick={() => {
+				this.setState(prev => ({'alerts_expanded': !prev.alerts_expanded}))
+			}}>
+				<span className='Left'>{this.alert_symbol}</span>
+				<span>{alert_text}</span>
+			</div>
+		);
 	}
 
 	getDestination(classes) {
@@ -109,8 +156,10 @@ class DepartureInfo extends Component {
 						</li>)
 					)}
 				</ul>
+				{this.getAlertSymbol()}
 				{this.getDestination(details)}
 				{this.getDetails()}
+				{this.getAlertText()}
 			</li>
 		);
 	}

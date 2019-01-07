@@ -16,7 +16,7 @@ const sendQuery = body => {
 };
 
 const queryFields = {
-	stoptimes: 'stop { name code platformCode desc lat lon } trip { route { shortName mode alerts { alertHeaderText alertDescriptionText } } } realtimeArrival realtimeDeparture realtime scheduledArrival scheduledDeparture headsign serviceDay',
+	stoptimes: 'stop { name code platformCode desc lat lon } trip { route { shortName mode alerts { alertDescriptionTextTranslations { text language } } } } realtimeArrival realtimeDeparture realtime scheduledArrival scheduledDeparture headsign serviceDay',
 	stop: 'name code platformCode desc lat lon'
 };
 
