@@ -45,12 +45,12 @@ class App extends Component {
 	}
 
 	getTitle() {
+		if (this.state.hasOwnProperty('initial') || this.state.hasOwnProperty('error')) return null;
 		if (this.state.hasOwnProperty('title') && this.state.title) {
 			return (
 				<Title text={this.state.title}/>
 			);
-		}
-		if (this.state.view.hasOwnProperty('menu')) {
+		} else if (this.state.view.hasOwnProperty('menu')) {
 			return (
 				<Title lat={this.state.view.menu.lat} lon={this.state.view.menu.lon}/>
 			);
