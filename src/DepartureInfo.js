@@ -45,6 +45,16 @@ class DepartureInfo extends Component {
 			DepartureInfo.parseTime(seconds));
 	}
 
+	getRoute() {
+		const match = this.props.stoptime[0].trip.route.shortName.match(/([0-9]+)([a-zA-Z]*)/);
+
+		return (
+			<div className='Route'>
+				{!match ? this.props.stoptime[0].trip.route.shortName : match[1]}
+				{match ? <span className='Letters'>{match[2]}</span> : null}
+			</div>);
+	}
+
 	getDestination(classes) {
 		const destinations = this.props.stoptime[0].headsign.split('via');
 		const to_destination_item = destination => {
@@ -91,7 +101,7 @@ class DepartureInfo extends Component {
 		const details = this.props.stop !== undefined || this.props.showPlatform ? 'WithDetails' : 'NoDetails';
 		return (
 			<li className='DepartureInfo ListItem'>
-				<div className='Route'>{this.props.stoptime[0].trip.route.shortName}</div>
+				{this.getRoute()}
 				<ul className='DepartureList'>
 					{this.props.stoptime.map((stoptime,i)=>(
 						<li key={i} className={'Departure ' + (stoptime.realtime ? 'Realtime' : 'Scheduled')}>

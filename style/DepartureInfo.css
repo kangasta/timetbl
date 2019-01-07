@@ -4,6 +4,10 @@
 	width: 3em;
 }
 
+.Route .Letters {
+	font-size: 0.666em;
+}
+
 .DepartureList {
 	float: right;
 	padding: 0;
