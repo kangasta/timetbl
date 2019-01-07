@@ -76,12 +76,17 @@ class App extends Component {
 			return url_params.get('title');
 		};
 
+		const params_to_follow = params_str => {
+			const url_params = new URLSearchParams(params_str);
+			return url_params.get('follow') === 'false' ? false : true;
+		};
+
 		const params_to_loc = params_str => {
 			const url_params = new URLSearchParams(params_str);
 			return {
 				'lat': Number(url_params.get('lat')),
 				'lon': Number(url_params.get('lon')),
-				'r': url_params.get('r') ? url_params.get('r') : 499
+				'r': url_params.get('r') ? url_params.get('r') : 1000,
 			};
 		};
 
@@ -94,10 +99,16 @@ class App extends Component {
 				'url': base + match[0]
 			};
 		} else if (match = url.match(/#\/nearby(\?[^/]*)/)) {
+			if (this.state !== undefined) {
+				clearInterval(this.state.follow_interval);
+			}
 			return {
 				'view': {
 					'nearby': params_to_loc(match[1])
 				},
+				'follow_interval': params_to_follow(match[1]) ? setInterval(() => {
+					this.navigateWithLocation('/#/nearby');
+				}, 30e3) : undefined,
 				'title': params_to_title(match[1]),
 				'url': base + match[0]
 			};
@@ -132,10 +143,11 @@ class App extends Component {
 	}
 
 	navigateWithLocation(url) {
+		const params = url.split('?')[1];
 		UserLocation.getUserLocation((loc) => {
 			const lat = (Math.round(loc.coords.latitude*1e6)/1e6).toString();
 			const lon = (Math.round(loc.coords.longitude*1e6)/1e6).toString();
-			this.navigate(url + '?lat=' + lat + '&lon=' + lon);
+			this.navigate(url + '?lat=' + lat + '&lon=' + lon + (params !== undefined ? params : ''));
 		}, () => {
 			this.setState({view: {error: 'Location not available'}});
 		});
