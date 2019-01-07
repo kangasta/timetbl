@@ -45,6 +45,7 @@
 
 .Metro {
 	background: orangered;
+	color: white;
 	border-radius: 0.125em;
 	font-size: 0.7em;
 	vertical-align: middle;
@@ -77,6 +78,7 @@
 
 .AlertText {
 	font-size: 0.666em;
+	margin-top: 0.25em;
 }
 
 .AlertText .Left {

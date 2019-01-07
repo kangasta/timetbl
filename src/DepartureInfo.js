@@ -7,7 +7,7 @@ class DepartureInfo extends Component {
 	constructor(props) {
 		super(props);
 
-		this.state = {alerts_expanded: false}
+		this.state = {alerts_expanded: false};
 	}
 
 	static currentTimeInMinutes() {
@@ -81,7 +81,7 @@ class DepartureInfo extends Component {
 		if (alerts.length === 0 || this.state.alerts_expanded) return null;
 		return (
 			<div className='AlertSymbol' onClick={() => {
-				this.setState(prev => ({'alerts_expanded': !prev.alerts_expanded}))
+				this.setState(prev => ({'alerts_expanded': !prev.alerts_expanded}));
 			}}>
 				{this.alert_symbol}
 			</div>
@@ -94,7 +94,7 @@ class DepartureInfo extends Component {
 		if (alerts.length === 0 || !this.state.alerts_expanded) return null;
 		return (
 			<div className='AlertText' onClick={() => {
-				this.setState(prev => ({'alerts_expanded': !prev.alerts_expanded}))
+				this.setState(prev => ({'alerts_expanded': !prev.alerts_expanded}));
 			}}>
 				<span className='Left'>{this.alert_symbol}</span>
 				<span>{alert_text}</span>
