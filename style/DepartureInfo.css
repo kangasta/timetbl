@@ -77,8 +77,11 @@
 }
 
 .AlertText {
+	background: crimson;
+	border-radius: 0.5em;
 	font-size: 0.666em;
 	margin-top: 0.25em;
+	padding: 0.5em;
 }
 
 .AlertText .Left {
