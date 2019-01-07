@@ -45,6 +45,11 @@ class App extends Component {
 	}
 
 	getTitle() {
+		if (this.state.hasOwnProperty('title')) {
+			return (
+				<Title text={this.state.title}/>
+			);
+		}
 		if (this.state.view.hasOwnProperty('menu')) {
 			return (
 				<Title lat={this.state.view.menu.lat} lon={this.state.view.menu.lon}/>
@@ -65,6 +70,11 @@ class App extends Component {
 	parseURL(url=document.location.href) {
 		const base = document.location.href.match(/:\/\/[^/]*(\/[^#]*)/)[1];
 		var match;
+
+		const params_to_title = params_str => {
+			const url_params = new URLSearchParams(params_str);
+			return url_params.get('title');
+		};
 
 		const params_to_loc = params_str => {
 			const url_params = new URLSearchParams(params_str);
@@ -88,6 +98,7 @@ class App extends Component {
 				'view': {
 					'nearby': params_to_loc(match[1])
 				},
+				'title': params_to_title(match[1]),
 				'url': base + match[0]
 			};
 		} else if (match = url.match(/#\/nearby/)) {
@@ -95,6 +106,7 @@ class App extends Component {
 				'view': {
 					'initial': '/#/nearby'
 				},
+				'title': params_to_title(match[1]),
 				'url': base + match[0]
 			};
 		} else if (match = url.match(/#\/stop(\?[^/]*)/)) {
@@ -105,6 +117,7 @@ class App extends Component {
 						'code': url_params.get('code').split(',')
 					}
 				},
+				'title': params_to_title(match[1]),
 				'url': base + match[0]
 			};
 		} else {
