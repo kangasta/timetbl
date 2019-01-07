@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import { CSBackground, CSError, CSLoading, CSValidatorChanger, CSWhiteSpace } from 'chillisalmon';
-import { StopMenu, TimeTable, Title } from 'timetablescreen';
+import { StopMenu, TimeTable, Title } from 'timetbl';
 import UserLocation from './UserLocation.js';
 
 import './App.css';
@@ -12,7 +12,7 @@ class App extends Component {
 		super(props);
 
 		this.state = this.parseURL();
-		window.history.replaceState(this.state, 'timetablescreen', this.state.url);
+		window.history.replaceState(this.state, 'timetbl', this.state.url);
 		window.onpopstate = (event) => {
 			this.setState(event.state);
 		};
@@ -155,7 +155,7 @@ class App extends Component {
 
 	navigate(url) {
 		this.setState(this.parseURL(url), ()=>{
-			window.history.pushState(this.state, 'timetablescreen', this.state.url);
+			window.history.pushState(this.state, 'timetbl', this.state.url);
 		});
 	}
 
@@ -178,6 +178,11 @@ class App extends Component {
 				</CSValidatorChanger>
 				<CSWhiteSpace/>
 				<CSBackground className='app-bg'/>
+				<div className='Footer'>
+					<a className='Link' href='https://github.com/kangasta/timetbl'>kangasta / timetbl</a>
+					<span className='Divider'>|</span>
+					<a className='Link' href='https://digitransit.fi/en/developers/'>data source</a>
+				</div>
 			</div>
 		);
 	}

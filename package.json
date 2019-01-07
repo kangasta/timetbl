@@ -1,8 +1,8 @@
 {
-  "name": "timetablescreen",
+  "name": "timetbl",
   "version": "0.9.4",
   "private": true,
-  "main": "build/timetablescreen.js",
+  "main": "build/timetbl.js",
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",

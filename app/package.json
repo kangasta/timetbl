@@ -1,7 +1,7 @@
 {
-  "name": "timetablescreen-app",
-  "homepage": "https://kangasta.github.io/timetablescreen",
-  "version": "0.1.0",
+  "name": "timetbl-app",
+  "homepage": "https://kangasta.github.io/timetbl",
+  "version": "0.8.0",
   "private": true,
   "devDependencies": {
     "react-scripts": "1.1.1"
@@ -9,7 +9,7 @@
   "dependencies": {
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
-    "timetablescreen": "file:.."
+    "timetbl": "file:.."
   },
   "scripts": {
     "start": "react-scripts start",

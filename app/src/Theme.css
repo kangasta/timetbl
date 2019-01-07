@@ -1,6 +1,6 @@
 
 #root {
-	--theme-color-1: #007ac9;
+	--theme-color-1: #0080D0;
 	--theme-color-2: white;
 
 	font-family: Helvetica, Arial, sans-serif
@@ -26,6 +26,27 @@
 	color: var(--theme-color-2);
 }
 
-.cs-title.timetable-title {
+.Footer {
 	color: var(--theme-color-2);
+	font-size: 0.5em;
+	margin: 0.666em 0;
+	text-align: center;
+}
+
+.Divider {
+	display: inline-block;
+	text-align: center;
+	width: 0.5rem;
+}
+
+a {
+	color: white;
+}
+
+a:visited {
+	color: white;
+}
+
+a:hover {
+	color: white;
 }
