@@ -48,19 +48,19 @@ class App extends Component {
 		if (this.state.hasOwnProperty('initial') || this.state.hasOwnProperty('error')) return null;
 		if (this.state.hasOwnProperty('title') && this.state.title) {
 			return (
-				<Title text={this.state.title}/>
+				<Title text={this.state.title} clock={true}/>
 			);
 		} else if (this.state.view.hasOwnProperty('menu')) {
 			return (
-				<Title lat={this.state.view.menu.lat} lon={this.state.view.menu.lon}/>
+				<Title lat={this.state.view.menu.lat} lon={this.state.view.menu.lon} clock={true}/>
 			);
 		} else if (this.state.view.hasOwnProperty('nearby')) {
 			return (
-				<Title lat={this.state.view.nearby.lat} lon={this.state.view.nearby.lon}/>
+				<Title lat={this.state.view.nearby.lat} lon={this.state.view.nearby.lon} clock={true}/>
 			);
 		} else if (this.state.view.hasOwnProperty('stop')) {
 			return (
-				<Title text={this.state.view.stop.code[0]}/>
+				<Title text={this.state.view.stop.code[0]} clock={true}/>
 			);
 		} else {
 			return null;
