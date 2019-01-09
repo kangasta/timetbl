@@ -99,14 +99,18 @@ class App extends Component {
 				'url': base + match[0]
 			};
 		} else if (match = url.match(/#\/nearby(\?[^/]*)/)) {
+			const follow = params_to_follow(match[1]);
 			if (this.state !== undefined) {
 				clearInterval(this.state.follow_interval);
+			}
+			if (follow) {
+				this.navigateWithLocation('/#/nearby');
 			}
 			return {
 				'view': {
 					'nearby': params_to_loc(match[1])
 				},
-				'follow_interval': params_to_follow(match[1]) ? setInterval(() => {
+				'follow_interval': follow ? setInterval(() => {
 					this.navigateWithLocation('/#/nearby');
 				}, 30e3) : undefined,
 				'title': params_to_title(match[1]),
