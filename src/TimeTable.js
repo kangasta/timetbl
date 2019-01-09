@@ -123,10 +123,9 @@ class TimeTable extends Component {
 	componentDidUpdate(prevProps, prevState) {
 		if (this.props.lat === prevProps.lat && this.props.lon === prevProps.lon && this.props.stopCode === prevProps.stopCode) return;
 		if (prevState.data.hasOwnProperty('error')) {
-			this.setState({loading: 'Waiting for timetable data from HSL API.'}, () => {
-				this.sendQuery();
-			});
+			this.setState({loading: 'Waiting for timetable data from HSL API.'});
 		}
+		this.sendQuery();
 	}
 
 	componentWillUnmount() {
