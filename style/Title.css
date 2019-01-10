@@ -12,6 +12,12 @@
 	font-size: 2em;
 }
 
+.Title .Code {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
 .Title .Clock {
 	background: var(--theme-color-2);
 	border-radius: 0.25em;
