@@ -125,11 +125,14 @@ class DepartureInfo extends Component {
 
 	getDetails() {
 		if (this.props.showPlatform) {
+			const name = this.props.stoptime[0].stop.name;
 			const code = this.props.stoptime[0].stop.code;
 			const platform = this.props.stoptime[0].stop.platformCode;
+			const show_name = this.props.showStopName;
 
 			return (
 				<div className='Details'>
+					{show_name ? name + ': ': null}
 					{platform == null ? 'Stop ' + code : null}
 					{platform !== null ? 'Platform ' + platform.toString() : null}
 				</div>
@@ -167,10 +170,12 @@ class DepartureInfo extends Component {
 
 DepartureInfo.defaultProps = {
 	showPlatform: false,
+	showStopName: false,
 };
 
 DepartureInfo.propTypes = {
 	showPlatform: PropTypes.bool,
+	showStopName: PropTypes.bool,
 	distance: PropTypes.number,
 	stop: PropTypes.shape({
 		name: PropTypes.string,
@@ -183,6 +188,7 @@ DepartureInfo.propTypes = {
 	stoptime: PropTypes.arrayOf(PropTypes.shape({
 		stop: PropTypes.shape({
 			code: PropTypes.string,
+			name: PropTypes.string,
 			platformCode: PropTypes.string
 		}),
 		trip: PropTypes.shape({
