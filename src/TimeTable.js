@@ -24,7 +24,7 @@ class TimeTable extends Component {
 
 		switch (this.getType()) {
 		case 'nearest':
-			queryResponsePromises = APIQuery.getNearestDepartures(this.props.lat, this.props.lon, this.props.maxDistance, this.props.maxResults*5);
+			queryResponsePromises = APIQuery.getNearestDepartures(this.props.lat, this.props.lon, this.props.maxDistance, this.props.numberOfDepartures);
 			break;
 		case 'stop':
 			queryResponsePromises = APIQuery.getStopDepartures(this.props.stopCode, this.props.numberOfDepartures);
@@ -97,7 +97,7 @@ class TimeTable extends Component {
 						});
 					});
 				}
-				departureInfoArray = departureInfoArray.slice(0,this.props.maxResults);
+				departureInfoArray = departureInfoArray.slice(0,this.props.numberOfDepartures);
 				return departureInfoArray;
 			} else {
 				departureInfoArray = this.state.data;
@@ -162,8 +162,7 @@ TimeTable.defaultProps = {
 	lon: 0,
 	stopCode: '',
 	maxDistance: 150,
-	maxResults: 20,
-	numberOfDepartures: 15
+	numberOfDepartures: 25
 };
 
 TimeTable.propTypes = {
@@ -187,7 +186,6 @@ TimeTable.propTypes = {
 		PropTypes.number,
 		PropTypes.array
 	]),
-	maxResults: PropTypes.number,
 	numberOfDepartures: PropTypes.number,
 	filterOut: PropTypes.oneOfType([
 		PropTypes.string,
