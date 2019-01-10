@@ -36,7 +36,7 @@
   "scripts": {
     "build": "babel src -d build --ignore '**/__tests__/*','**/__mocks__/**',**/SetupTests.js",
     "build:watch": "babel src -w -d build --ignore '**/__tests__/*','**/__mocks__/**',**/SetupTests.js",
-    "lint": "eslint src/",
+    "lint": "eslint .",
     "prepublish": "npm run build",
     "test": "jest"
   },

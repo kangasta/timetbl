@@ -7,7 +7,7 @@ addons:
 
 jobs:
     include:
-      - script: ./node_modules/.bin/eslint .;
+      - script: npm run lint;
       - script: npm test -- --coverage;
       - stage: release
         script: npm pack
