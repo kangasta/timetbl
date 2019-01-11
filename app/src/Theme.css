@@ -10,8 +10,14 @@
 	color: var(--theme-color-2);
 }
 
-.cs-background {
+.Background {
 	background: var(--theme-color-1);
+	height: 100%;
+	left: 0;
+	position: fixed;
+	top: 0;
+	width: 100%;
+	z-index: -100;
 }
 
 .cs-element {
@@ -49,4 +55,12 @@ a:visited {
 
 a:hover {
 	color: white;
+}
+
+.Whitespace {
+	height: 4em;
+}
+
+.Status {
+	text-align: center;
 }

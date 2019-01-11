@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { CSBackground, CSError, CSLoading, CSValidatorChanger, CSWhiteSpace } from 'chillisalmon';
+import { CSValidatorChanger } from 'chillisalmon';
 import { StopMenu, TimeTable, Title } from 'timetbl';
 
 import UserLocation from './UserLocation.js';
@@ -38,14 +38,25 @@ class App extends Component {
 				);
 			} else if (this.state.view.hasOwnProperty('error')) {
 				return (
-					<CSError>{this.state.view.error}</CSError>
+					<div className='Status Error'>
+						<h1>Error</h1>
+						<p>{this.state.view.error}</p>
+					</div>
 				);
 			} else {
-				<CSError>State can not be resolved</CSError>;
+				return (
+					<div className='Status Error'>
+						<h1>Error</h1>
+						<p>State can not be resolved</p>
+					</div>
+				);
 			}
 		} catch(e) {
 			return (
-				<CSLoading>Waiting location</CSLoading>
+				<div className='Status Loading'>
+					<h1>Loading</h1>
+					<p>Waiting location</p>
+				</div>
 			);
 		}
 	}
@@ -213,8 +224,8 @@ class App extends Component {
 				<CSValidatorChanger error={this.state.view.error} loading={this.state.view.loading}>
 					{this.getActiveView()}
 				</CSValidatorChanger>
-				<CSWhiteSpace/>
-				<CSBackground className='app-bg'/>
+				<div className='Whitespace'/>
+				<div className='Background'/>
 				<div className='Footer'>
 					<a className='Link' href='https://github.com/kangasta/timetbl'>kangasta / timetbl</a>
 					<span className='Divider'>|</span>
