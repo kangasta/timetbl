@@ -18,7 +18,10 @@ describe('App', () => {
 	it('shows timetable when state is updated to valid state', () => {
 		const component = shallow(<App />);
 
-		component.setState({view: {nearby: {lat: 0, lon:0}}});
+		component.setState({
+			view: {nearby: null},
+			coords: {lat: 0, lon:0, r:0}
+		});
 		component.update();
 		expect(component.find(TimeTable)).toHaveLength(1);
 	});

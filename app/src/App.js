@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 
 import { CSBackground, CSError, CSLoading, CSValidatorChanger, CSWhiteSpace } from 'chillisalmon';
 import { StopMenu, TimeTable, Title } from 'timetbl';
+
 import UserLocation from './UserLocation.js';
+import NavBar from './NavBar.js';
 
 import './App.css';
 import './Theme.css';
@@ -21,23 +23,27 @@ class App extends Component {
 	}
 
 	getActiveView() {
-		if (this.state.view.hasOwnProperty('menu')) {
-			return (
-				<StopMenu lat={this.state.view.menu.lat} lon={this.state.view.menu.lon} maxDistance={this.state.view.menu.r} navigate={this.navigate}/>
-			);
-		} else if (this.state.view.hasOwnProperty('nearby')) {
-			return (
-				<TimeTable lat={this.state.view.nearby.lat} lon={this.state.view.nearby.lon} maxDistance={this.state.view.nearby.r} maxResults={15}/>
-			);
-		} else if (this.state.view.hasOwnProperty('stop')) {
-			return (
-				<TimeTable stopCode={this.state.view.stop.code} maxResults={15}/>
-			);
-		} else if (this.state.view.hasOwnProperty('error')) {
-			return (
-				<CSError>{this.state.view.error}</CSError>
-			);
-		} else {
+		try {
+			if (this.state.view.hasOwnProperty('menu')) {
+				return (
+					<StopMenu lat={this.state.coords.lat} lon={this.state.coords.lon} maxDistance={this.state.coords.r} navigate={this.navigate}/>
+				);
+			} else if (this.state.view.hasOwnProperty('nearby')) {
+				return (
+					<TimeTable lat={this.state.coords.lat} lon={this.state.coords.lon} maxDistance={this.state.coords.r} maxResults={15}/>
+				);
+			} else if (this.state.view.hasOwnProperty('stop')) {
+				return (
+					<TimeTable stopCode={this.state.view.stop.code} maxResults={15}/>
+				);
+			} else if (this.state.view.hasOwnProperty('error')) {
+				return (
+					<CSError>{this.state.view.error}</CSError>
+				);
+			} else {
+				<CSError>State can not be resolved</CSError>;
+			}
+		} catch(e) {
 			return (
 				<CSLoading>Waiting location</CSLoading>
 			);
@@ -45,113 +51,138 @@ class App extends Component {
 	}
 
 	getTitle() {
-		if (this.state.hasOwnProperty('initial') || this.state.hasOwnProperty('error')) return null;
-		if (this.state.hasOwnProperty('title') && this.state.title) {
-			return (
-				<Title text={this.state.title} clock={true}/>
-			);
-		} else if (this.state.view.hasOwnProperty('menu')) {
-			return (
-				<Title lat={this.state.view.menu.lat} lon={this.state.view.menu.lon} clock={true}/>
-			);
-		} else if (this.state.view.hasOwnProperty('nearby')) {
-			return (
-				<Title lat={this.state.view.nearby.lat} lon={this.state.view.nearby.lon} clock={true}/>
-			);
-		} else if (this.state.view.hasOwnProperty('stop')) {
-			return (
-				<Title text={this.state.view.stop.code[0]} clock={true}/>
-			);
-		} else {
+		if (this.state.hasOwnProperty('error')) return null;
+		try {
+			if (this.state.hasOwnProperty('title') && this.state.title) {
+				return (
+					<Title text={this.state.title} clock={true}/>
+				);
+			} else if (this.state.view.hasOwnProperty('menu')) {
+				return (
+					<Title lat={this.state.coords.lat} lon={this.state.coords.lon} clock={true}/>
+				);
+			} else if (this.state.view.hasOwnProperty('nearby')) {
+				return (
+					<Title lat={this.state.coords.lat} lon={this.state.coords.lon} clock={true}/>
+				);
+			} else if (this.state.view.hasOwnProperty('stop')) {
+				return (
+					<Title text={this.state.view.stop.code[0]} clock={true}/>
+				);
+			} else {
+				return null;
+			}
+		} catch(e) {
 			return null;
 		}
 	}
 
-	parseURL(url=document.location.href) {
-		const base = document.location.href.match(/:\/\/[^/]*(\/[^#]*)/)[1];
-		var match;
+	getNavBar() {
+		if (this.getTitle() === null) return null;
 
-		const params_to_title = params_str => {
-			const url_params = new URLSearchParams(params_str);
-			return url_params.get('title');
-		};
-
-		const params_to_follow = params_str => {
-			const url_params = new URLSearchParams(params_str);
-			return url_params.get('follow') === 'false' ? false : true;
-		};
-
-		const params_to_loc = params_str => {
-			const url_params = new URLSearchParams(params_str);
-			return {
-				'lat': Number(url_params.get('lat')),
-				'lon': Number(url_params.get('lon')),
-				'r': url_params.get('r') ? url_params.get('r') : 1000,
-			};
-		};
-
-		/* eslint-disable no-cond-assign */
-		if (match = url.match(/#\/menu(\?[^/]*)/)) {
-			return {
-				'view': {
-					'menu': params_to_loc(match[1])
-				},
-				'url': base + match[0]
-			};
-		} else if (match = url.match(/#\/nearby(\?[^/]*)/)) {
-			const follow = params_to_follow(match[1]);
-			if (this.state !== undefined) {
-				clearInterval(this.state.follow_interval);
+		const buttons = [
+			{
+				text: 'Nearby',
+				onClick: () => {this.navigate('/#/nearby');},
+				disabled: this.state.view.hasOwnProperty('nearby')
+			},
+			{
+				text: 'Menu',
+				onClick: () => {this.navigate('/#/menu');},
+				disabled: this.state.view.hasOwnProperty('menu')
 			}
-			if (follow) {
-				this.navigateWithLocation('/#/nearby');
-			}
-			return {
-				'view': {
-					'nearby': params_to_loc(match[1])
-				},
-				'follow_interval': follow ? setInterval(() => {
-					this.navigateWithLocation('/#/nearby');
-				}, 30e3) : undefined,
-				'title': params_to_title(match[1]),
-				'url': base + match[0]
-			};
-		} else if (match = url.match(/#\/nearby/)) {
-			return {
-				'view': {
-					'initial': '/#/nearby'
-				},
-				'title': params_to_title(match[1]),
-				'url': base + match[0]
-			};
-		} else if (match = url.match(/#\/stop(\?[^/]*)/)) {
-			const url_params = new URLSearchParams(match[1]);
-			return {
-				'view': {
-					'stop': {
-						'code': url_params.get('code').split(',')
-					}
-				},
-				'title': params_to_title(match[1]),
-				'url': base + match[0]
-			};
-		} else {
-			return {
-				'view': {
-					'initial': '/#/menu'
-				},
-				'url': base + '#/'
-			};
-		}
-		/* eslint-enable no-cond-assign */
+		];
+
+		return (
+			<NavBar buttons={buttons}/>
+		);
 	}
 
-	navigateWithLocation(url) {
-		const params = url.split('?')[1];
+	parseURL(url=document.location.href) {
+		const base = document.location.href.match(/:\/\/[^/]*(\/[^#]*)/)[1];
+		const params_match = document.location.href.match(/\?.*/);
+		const params_str = params_match ? params_match[0] : '';
+		const url_params = new URLSearchParams(params_str);
+		var match;
+		var state = {};
+
+		if (this.state !== undefined) {
+			clearInterval(this.state.follow_interval);
+		}
+
+		if (url_params.get('follow') !== 'false') {
+			state = Object.assign(state, {
+				follow: true
+			});
+		}
+
+		state = Object.assign(state, {title: url_params.get('title')});
+
+		const lat = Number(url_params.get('lat'));
+		const lon = Number(url_params.get('lon'));
+
+		if (isNaN(lat) && isNaN(lon)) {
+			var r = Number(url_params.get('r'));
+			r = isNaN(r) ? r : 1000;
+
+			state = Object.assign(state, {
+				lat: lat,
+				lon: lon,
+				r: r
+			});
+		}
+
+		const view = (() => {
+			/* eslint-disable no-cond-assign */
+			if (match = url.match(/#\/menu.*/)) {
+				return {
+					'view': {
+						'menu': null
+					},
+					'url': base + match[0]
+				};
+			} /* else if (match = url.match(/#\/nearby/)) {
+				return {
+					'view': {
+						'nearby': null
+					},
+					'url': base + match[0]
+				};
+			} */ else if (match = url.match(/#\/stop(\?[^/]*)/)) {
+				const url_params = new URLSearchParams(match[1]);
+				return {
+					'view': {
+						'stop': {
+							'code': url_params.get('code').split(',')
+						}
+					},
+					'url': base + match[0]
+				};
+			} else {
+				return {
+
+					'view': {
+						'nearby': null
+					},
+					'url': base + '#/nearby' + params_str
+				};
+			}
+			/* eslint-enable no-cond-assign */
+		})();
+		return Object.assign(state, view);
+	}
+
+	updateLocation() {
 		UserLocation.getUserLocation((loc) => {
-			const lat = (Math.round(loc.coords.latitude*1e6)/1e6).toString();
-			const lon = (Math.round(loc.coords.longitude*1e6)/1e6).toString();
-			this.navigate(url + '?lat=' + lat + '&lon=' + lon + (params !== undefined ? params : ''));
+			const lat = Math.round(loc.coords.latitude*1e6)/1e6;
+			const lon = Math.round(loc.coords.longitude*1e6)/1e6;
+			this.setState(prev => ({
+				coords: {
+					lat: lat,
+					lon: lon,
+					r: prev.coords ? prev.coords.r : 1000
+				}
+			}));
 		}, () => {
 			this.setState({view: {error: 'Location not available'}});
 		});
@@ -163,13 +194,14 @@ class App extends Component {
 		});
 	}
 
-	componentWillMount() {
-		if (this.state.view.hasOwnProperty('initial')) {
-			try {
-				this.navigateWithLocation(this.state.view.initial);
-			} catch (e) {
-				this.setState({view: {error: 'Location not available'}});
-			}
+	componentDidMount() {
+		if (this.state.follow) {
+			this.setState({
+				follow_interval: setInterval(() => {
+					this.updateLocation();
+				}, 30e3)
+			});
+			this.updateLocation();
 		}
 	}
 
@@ -177,6 +209,7 @@ class App extends Component {
 		return(
 			<div className='app app-theme-default'>
 				{this.getTitle()}
+				{this.getNavBar()}
 				<CSValidatorChanger error={this.state.view.error} loading={this.state.view.loading}>
 					{this.getActiveView()}
 				</CSValidatorChanger>

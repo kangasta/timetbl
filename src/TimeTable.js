@@ -34,7 +34,7 @@ class TimeTable extends Component {
 			return;
 		}
 
-		Promise.all(queryResponsePromises)
+		return Promise.all(queryResponsePromises)
 			.then((responseJsons) => {
 				if (this.getType() === 'nearest') {
 					return responseJsons.reduce((r,i) => {
@@ -115,13 +115,15 @@ class TimeTable extends Component {
 	}
 
 	componentDidMount() {
-		this.sendQuery();
-		var intervalId = setInterval(() => { this.sendQuery(); }, 10000);
-		this.setState({intervalId: intervalId});
+		this.setState({intervalId: setInterval(() => {
+			this.sendQuery();
+		}, 10e3)});
+		return this.sendQuery();
 	}
 
 	componentDidUpdate(prevProps, prevState) {
 		if (this.props.lat === prevProps.lat && this.props.lon === prevProps.lon && this.props.stopCode === prevProps.stopCode) return;
+
 		if (prevState.data.hasOwnProperty('error')) {
 			this.setState({loading: 'Waiting for timetable data from HSL API.'});
 		}
