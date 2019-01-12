@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { CSValidatorChanger } from 'chillisalmon';
+import { CSExpandable, CSValidatorChanger } from 'chillisalmon';
 import { StopMenu, TimeTable, Title } from 'timetbl';
 
 import UserLocation from './UserLocation.js';
@@ -105,7 +105,9 @@ class App extends Component {
 		];
 
 		return (
-			<NavBar buttons={buttons}/>
+			<CSExpandable>
+				<NavBar buttons={buttons}/>
+			</CSExpandable>
 		);
 	}
 
@@ -132,14 +134,16 @@ class App extends Component {
 		const lat = Number(url_params.get('lat'));
 		const lon = Number(url_params.get('lon'));
 
-		if (isNaN(lat) && isNaN(lon)) {
+		if (!isNaN(lat) && !isNaN(lon)) {
 			var r = Number(url_params.get('r'));
 			r = isNaN(r) ? r : 1000;
 
 			state = Object.assign(state, {
-				lat: lat,
-				lon: lon,
-				r: r
+				coords: {
+					lat: lat,
+					lon: lon,
+					r: r
+				}
 			});
 		}
 

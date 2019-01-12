@@ -1,6 +1,5 @@
 .NavBar {
 	text-align: center;
-	margin-bottom: 0.33em;
 }
 
 .NavBar .Link {
@@ -23,4 +22,12 @@
 
 .Link.Disabled {
 	opacity: 0.33;
+}
+
+.CSExpandable {
+	text-align: center;
+}
+
+.CSExpandable .Icon {
+	font-size: 0.666em;
 }
