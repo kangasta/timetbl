@@ -134,7 +134,7 @@ class App extends Component {
 		const lat = Number(url_params.get('lat'));
 		const lon = Number(url_params.get('lon'));
 
-		if (!isNaN(lat) && !isNaN(lon)) {
+		if (lat && lon) {
 			var r = Number(url_params.get('r'));
 			r = isNaN(r) ? r : 1000;
 
@@ -175,7 +175,6 @@ class App extends Component {
 				};
 			} else {
 				return {
-
 					'view': {
 						'nearby': null
 					},
