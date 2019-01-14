@@ -13,14 +13,6 @@ console.error = message => { // eslint-disable-line no-console
 // Clear mocks for each test
 beforeEach(() => {
 	jest.useFakeTimers();
-
-	global.URLSearchParams = param_str => ({
-		get: (param_name) => {
-			const match = param_str.match(param_name + /=([^&/]+)/);
-			if (!match) return null;
-			return match[1];
-		}
-	});
 });
 
 afterEach(() => {

@@ -111,11 +111,29 @@ class App extends Component {
 		);
 	}
 
+	getLazyURLSearchParamsMock(param_str) {
+		return {
+			get: (param_name) => {
+				const match = param_str.match(param_name + /=([^&/]+)/);
+				if (!match) return null;
+				return match[1];
+			}
+		};
+	}
+
 	parseURL(url=document.location.href) {
-		const base = document.location.href.match(/:\/\/[^/]*(\/[^#]*)/)[1];
-		const params_match = document.location.href.match(/\?.*/);
+		const base_match = url.match(/:\/\/[^/]*(\/[^#]*)/);
+		const base = base_match ? base_match[1] : '/';
+		const params_match = url.match(/\?.*/);
 		const params_str = params_match ? params_match[0] : '';
-		const url_params = new URLSearchParams(params_str);
+
+		var url_params;
+		try {
+			url_params = new URLSearchParams(params_str);
+		} catch(e) {
+			url_params = this.getLazyURLSearchParamsMock(params_str);
+		}
+
 		var match;
 		var state = {};
 
@@ -164,7 +182,6 @@ class App extends Component {
 					'url': base + match[0]
 				};
 			} */ else if (match = url.match(/#\/stop(\?[^/]*)/)) {
-				const url_params = new URLSearchParams(match[1]);
 				return {
 					'view': {
 						'stop': {
