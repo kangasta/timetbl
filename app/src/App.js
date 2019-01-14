@@ -114,7 +114,7 @@ class App extends Component {
 	getLazyURLSearchParamsMock(param_str) {
 		return {
 			get: (param_name) => {
-				const match = param_str.match(param_name + /=([^&/]+)/);
+				const match = param_str.match(param_name + '=([^&/]+)');
 				if (!match) return null;
 				return match[1];
 			}
