@@ -16,25 +16,28 @@ describe('APIQuery', () => {
 			expect(APIQuery.queries.stopDepartures()).toMatch(fields[i]);
 		}
 	});
-	it('returns promise with expected content for nearest query', () => {
-		const nearest = require('../__mocks__/NearestQueryResponse.json');
-		global.fetch = jest.fn() // eslint-disable-line
-			.mockReturnValue(new Promise((resolve) => {resolve({json: () => nearest});}));
+	it('returns promise with expected content for queries', () => {
+		var promises = [];
+		[
+			{
+				json: require('../__mocks__/NearestQueryResponse.json'),
+				fn: APIQuery.getNearestDepartures
+			},
+			{
+				json: require('../__mocks__/StopQueryResponse.json'),
+				fn: APIQuery.getStopDepartures
+			}
+		].map(query => {
+			global.fetch = jest.fn() // eslint-disable-line
+				.mockReturnValue(new Promise((resolve) => { resolve({json: () => query.json}); }));
 
-		return Promise.all(APIQuery.getNearestDepartures())
-			.then((responseJson) => {
-				expect(responseJson[0]).toEqual(nearest.data);
-			});
-	});
-	it('returns promise with expected content for stop query', () => {
-		const stop = require('../__mocks__/StopQueryResponse.json');
-		global.fetch = jest.fn() // eslint-disable-line
-			.mockReturnValue(new Promise((resolve) => {resolve({json: () => stop});}));
+			promises.push(Promise.all(query.fn())
+				.then((responseJson) => {
+					expect(responseJson[0]).toEqual(query.json.data);
+				}));
+		});
 
-		return Promise.all(APIQuery.getStopDepartures())
-			.then((responseJson) => {
-				expect(responseJson[0]).toEqual(stop.data);
-			});
+		return Promise.all(promises);
 	});
 	it('returns rejected promise with invalid response', () => {
 		const invalid = require('../__mocks__/InvalidQueryResponse.json');
