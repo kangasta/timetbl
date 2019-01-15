@@ -3,7 +3,7 @@ node_js:
   - "node"
 addons:
     code_climate:
-      repo_token: aaacf8e3440b4c2ad2d7ac35e8ff2c9bc95cb70ad33cf23750b8a170a5bef861
+      repo_token: 4a2c4f4f7c68cab958c00156152acb7f4bd6d88f6d1ca61ed7055e6ede3ac2c8
 
 jobs:
     include:
