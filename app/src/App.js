@@ -136,8 +136,7 @@ class App extends Component {
 	}
 
 	parseURL(url=document.location.href) {
-		const base_match = url.match(/:\/\/[^/]*(\/[^#]*)/);
-		const base = base_match ? base_match[1] : '/';
+		const base = document.location.href.match(/:\/\/[^/]*(\/[^#]*)/)[1];
 		const params_match = url.match(/\?.*/);
 		const params_str = params_match ? params_match[0] : '';
 
