@@ -8,7 +8,18 @@ class NavBar extends Component {
 		if (this.props.buttons === undefined) return null;
 		return (
 			<div className='NavBar'>
-				{this.props.buttons.map(button => <span key={button.text} className={'Link ' + (button.disabled ? 'Disabled' : 'Active')} onClick={button.disabled ? () => undefined : button.onClick}>{button.text}</span>)}
+				{this.props.buttons.map(button => {
+					const disabledClass = button.disabled ? 'Disabled ' : 'Active ';
+					const className = button.className !== undefined ? button.className : '';
+					const onClickFn = button.disabled || !button.onClick ? () => undefined : button.onClick;
+
+					return <span
+						key={button.text}
+						className={'Link ' + disabledClass + className}
+						onClick={onClickFn}>
+						{button.text}
+					</span>;
+				})}
 			</div>
 		);
 	}
@@ -17,6 +28,7 @@ class NavBar extends Component {
 NavBar.propTypes = {
 	buttons: PropTypes.arrayOf(
 		PropTypes.shape({
+			className: PropTypes.string,
 			text: PropTypes.string,
 			onClick: PropTypes.func,
 			disabled: PropTypes.bool
