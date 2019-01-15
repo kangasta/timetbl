@@ -68,11 +68,7 @@ class App extends Component {
 				return (
 					<Title text={this.state.title} clock={true}/>
 				);
-			} else if (this.state.view.hasOwnProperty('menu')) {
-				return (
-					<Title lat={this.state.coords.lat} lon={this.state.coords.lon} clock={true}/>
-				);
-			} else if (this.state.view.hasOwnProperty('nearby')) {
+			} else if (this.state.view.hasOwnProperty('menu') || this.state.view.hasOwnProperty('nearby')) {
 				return (
 					<Title lat={this.state.coords.lat} lon={this.state.coords.lon} clock={true}/>
 				);

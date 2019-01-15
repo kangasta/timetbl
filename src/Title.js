@@ -34,6 +34,19 @@ class Title extends Component {
 	hasText() { return this.props.text !== undefined; }
 	hasCoords() { return this.props.lat !== undefined && this.props.lon !== undefined; }
 
+	getCoords() {
+		if (this.hasCoords() && !this.hasText()) return null;
+		return [
+			{ letter: this.props.lat > 0 ? 'N ' : 'S ', number: this.props.lat },
+			{ letter: this.props.lon > 0 ? 'E ' : 'W ', number: this.props.lon }
+		].map(coords => (
+			<div key={coords.letter} className='Coord'>
+				<b>{coords.letter}</b>
+				{coords.number}
+			</div>
+		));
+	}
+
 	render() {
 		return (
 			<div className='Title'>
@@ -43,14 +56,7 @@ class Title extends Component {
 				{this.hasText() ? <div className='Code'>
 					{this.props.text}
 				</div> : null}
-				{this.hasCoords() && !this.hasText() ? <div className='Coord'>
-					<b>{(this.props.lat > 0 ? 'N ' : 'S ')}</b>
-					{this.props.lat}
-				</div> : null}
-				{this.hasCoords() && !this.hasText() ? <div className='Coord'>
-					<b>{(this.props.lon > 0 ? 'E ' : 'W ')}</b>
-					{this.props.lon}
-				</div> : null}
+				{this.getCoords()}
 			</div>
 		);
 	}
