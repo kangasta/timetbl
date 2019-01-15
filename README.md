@@ -1,8 +1,8 @@
 # timetbl
 
 [![Build Status](https://travis-ci.org/kangasta/timetbl.svg?branch=master)](https://travis-ci.org/kangasta/timetbl)
-[![Maintainability](https://api.codeclimate.com/v1/badges/2698d53d3dba8cb9b716/maintainability)](https://codeclimate.com/github/kangasta/timetablescreen/maintainability)
-[![Test Coverage](https://codeclimate.com/github/kangasta/timetablescreen/badges/coverage.svg)](https://codeclimate.com/github/kangasta/timetablescreen/coverage)
+[![Maintainability](https://api.codeclimate.com/v1/badges/5f82a139ff356840c565/maintainability)](https://codeclimate.com/github/kangasta/timetbl/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/5f82a139ff356840c565/test_coverage)](https://codeclimate.com/github/kangasta/timetbl/test_coverage)
 
 Simple timetable screen that uses Digitransit API to fetch HSL realtime data and React to render the data. See [digitransit](https://digitransit.fi/en/developers/) for details of the HSL API.
 
