@@ -1,5 +1,5 @@
 import React from 'react';
-import { mount } from 'enzyme';
+import { mount, shallow } from 'enzyme';
 import DepartureInfo from './../DepartureInfo.js';
 
 describe('DepartureInfo', () => {
@@ -17,6 +17,17 @@ describe('DepartureInfo', () => {
 			realtime: false,
 			headsign: 'Destination'
 		}]}/>);
+	});
+	it('renders alert either as icon or detailed text', () => {
+		const stoptime = require('../__mocks__/StoptimesWithAlert.json');
+		const wrapper = shallow(<DepartureInfo stoptime={stoptime}/>);
+
+		[true, false, true].forEach(symbol => {
+			expect(wrapper.exists('.AlertSymbol')).toBe(symbol);
+			expect(wrapper.exists('.AlertText')).toBe(!symbol);
+
+			wrapper.find(symbol ? '.AlertSymbol' : '.AlertText').simulate('click');
+		});
 	});
 	/* TODO update
 	it('shows stop info if stop is given in props.', () => {

@@ -8,6 +8,8 @@ class DepartureInfo extends Component {
 		super(props);
 
 		this.state = {alerts_expanded: false};
+
+		this.toggleAlert = this.toggleAlert.bind(this);
 	}
 
 	static currentTimeInMinutes() {
@@ -75,14 +77,16 @@ class DepartureInfo extends Component {
 		</svg>
 	); }
 
+	toggleAlert() {
+		this.setState(prev => ({'alerts_expanded': !prev.alerts_expanded}));
+	}
+
 	getAlertSymbol() {
 		const alerts = this.props.stoptime[0].trip.route.alerts;
 
 		if (alerts.length === 0 || this.state.alerts_expanded) return null;
 		return (
-			<div className='AlertSymbol' onClick={() => {
-				this.setState(prev => ({'alerts_expanded': !prev.alerts_expanded}));
-			}}>
+			<div className='AlertSymbol' onClick={this.toggleAlert}>
 				{this.alert_symbol}
 			</div>
 		);
@@ -93,9 +97,7 @@ class DepartureInfo extends Component {
 		const alert_text = alerts.map(alert => alert.alertDescriptionTextTranslations.find(translation => translation.language === lang).text)[0];
 		if (alerts.length === 0 || !this.state.alerts_expanded) return null;
 		return (
-			<div className='AlertText' onClick={() => {
-				this.setState(prev => ({'alerts_expanded': !prev.alerts_expanded}));
-			}}>
+			<div className='AlertText' onClick={this.toggleAlert}>
 				<span className='Left'>{this.alert_symbol}</span>
 				<span>{alert_text}</span>
 			</div>

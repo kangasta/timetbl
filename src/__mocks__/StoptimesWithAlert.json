@@ -1,0 +1,125 @@
+[
+	{
+		"stop": {
+			"name": "Pasila",
+			"code": "0071",
+			"platformCode": "1",
+			"desc": "Ratapihantie 6",
+			"lat": 60.199601,
+			"lon": 24.933683
+		},
+		"trip": {
+			"route": {
+				"shortName": "P",
+				"mode": "RAIL",
+				"alerts": [
+					{
+						"alertDescriptionTextTranslations": [
+							{
+								"text": "Lähijunat N Helsinkiin  ja P lentoasemalta Tikkurilan kautta Helsinkiin eivät pysähdyt Tikkurilan ja Pasilan välillä. Väliasemille pääsee Pasilan kautta vaihtamalla Keravalle tai lentoasemalle menevään junaan. Syy: korjaustyöt. Arvioitu kesto: 22:00 - 16.01.2019 04:30.",
+								"language": "fi"
+							},
+							{
+								"text": "Närtågen N mot Helsingfors  och P från flygplatsen till Helsingfors via Dickursby stannar inte mellan Dickursby och Böle. Beräknad tid: 22:00 - 16.01.2019 04:30.",
+								"language": "sv"
+							},
+							{
+								"text": "Commuter trains N to Helsinki  and P from Airport via Tikkurila to Helsinki will not stop between Tikkurila and Pasila. Estimated time: 22:00 - 16.01.2019 04:30.",
+								"language": "en"
+							}
+						]
+					}
+				]
+			}
+		},
+		"realtimeArrival": 76068,
+		"realtimeDeparture": 76068,
+		"realtime": true,
+		"scheduledArrival": 75900,
+		"scheduledDeparture": 75900,
+		"headsign": "Helsinki",
+		"serviceDay": 1547503200
+	},
+	{
+		"stop": {
+			"name": "Pasila",
+			"code": "0071",
+			"platformCode": "1",
+			"desc": "Ratapihantie 6",
+			"lat": 60.199601,
+			"lon": 24.933683
+		},
+		"trip": {
+			"route": {
+				"shortName": "P",
+				"mode": "RAIL",
+				"alerts": [
+					{
+						"alertDescriptionTextTranslations": [
+							{
+								"text": "Lähijunat N Helsinkiin  ja P lentoasemalta Tikkurilan kautta Helsinkiin eivät pysähdyt Tikkurilan ja Pasilan välillä. Väliasemille pääsee Pasilan kautta vaihtamalla Keravalle tai lentoasemalle menevään junaan. Syy: korjaustyöt. Arvioitu kesto: 22:00 - 16.01.2019 04:30.",
+								"language": "fi"
+							},
+							{
+								"text": "Närtågen N mot Helsingfors  och P från flygplatsen till Helsingfors via Dickursby stannar inte mellan Dickursby och Böle. Beräknad tid: 22:00 - 16.01.2019 04:30.",
+								"language": "sv"
+							},
+							{
+								"text": "Commuter trains N to Helsinki  and P from Airport via Tikkurila to Helsinki will not stop between Tikkurila and Pasila. Estimated time: 22:00 - 16.01.2019 04:30.",
+								"language": "en"
+							}
+						]
+					}
+				]
+			}
+		},
+		"realtimeArrival": 76542,
+		"realtimeDeparture": 76542,
+		"realtime": true,
+		"scheduledArrival": 76500,
+		"scheduledDeparture": 76500,
+		"headsign": "Helsinki",
+		"serviceDay": 1547503200
+	},
+	{
+		"stop": {
+			"name": "Pasila",
+			"code": "0071",
+			"platformCode": "1",
+			"desc": "Ratapihantie 6",
+			"lat": 60.199601,
+			"lon": 24.933683
+		},
+		"trip": {
+			"route": {
+				"shortName": "P",
+				"mode": "RAIL",
+				"alerts": [
+					{
+						"alertDescriptionTextTranslations": [
+							{
+								"text": "Lähijunat N Helsinkiin  ja P lentoasemalta Tikkurilan kautta Helsinkiin eivät pysähdyt Tikkurilan ja Pasilan välillä. Väliasemille pääsee Pasilan kautta vaihtamalla Keravalle tai lentoasemalle menevään junaan. Syy: korjaustyöt. Arvioitu kesto: 22:00 - 16.01.2019 04:30.",
+								"language": "fi"
+							},
+							{
+								"text": "Närtågen N mot Helsingfors  och P från flygplatsen till Helsingfors via Dickursby stannar inte mellan Dickursby och Böle. Beräknad tid: 22:00 - 16.01.2019 04:30.",
+								"language": "sv"
+							},
+							{
+								"text": "Commuter trains N to Helsinki  and P from Airport via Tikkurila to Helsinki will not stop between Tikkurila and Pasila. Estimated time: 22:00 - 16.01.2019 04:30.",
+								"language": "en"
+							}
+						]
+					}
+				]
+			}
+		},
+		"realtimeArrival": 77112,
+		"realtimeDeparture": 77112,
+		"realtime": true,
+		"scheduledArrival": 77100,
+		"scheduledDeparture": 77100,
+		"headsign": "Helsinki",
+		"serviceDay": 1547503200
+	}
+]
