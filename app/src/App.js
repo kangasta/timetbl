@@ -97,6 +97,20 @@ class App extends Component {
 				onClick: () => {this.navigate('/#/nearby');},
 				disabled: this.state.view.hasOwnProperty('nearby')
 			},
+			/*
+			{
+				text: 'Station',
+				disabled: true
+			},
+			{
+				text: 'Stop',
+				disabled: true
+			},
+			*/
+			{
+				text: 'Bikes',
+				disabled: true
+			},
 			{
 				text: 'Menu',
 				onClick: () => {this.navigate('/#/menu');},
