@@ -35,7 +35,7 @@ class Title extends Component {
 	hasCoords() { return this.props.lat !== undefined && this.props.lon !== undefined; }
 
 	getCoords() {
-		if (this.hasCoords() && !this.hasText()) return null;
+		if (this.hasText() || !this.hasCoords()) return null;
 		return [
 			{ letter: this.props.lat > 0 ? 'N ' : 'S ', number: this.props.lat },
 			{ letter: this.props.lon > 0 ? 'E ' : 'W ', number: this.props.lon }
