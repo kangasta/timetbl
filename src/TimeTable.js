@@ -153,8 +153,8 @@ class TimeTable extends Component {
 					{
 						departureInfoArray.map((departureInfoArrayItem, i) => {
 							return (this.getType() === 'nearest') ?
-								<DepartureInfo distance={departureInfoArrayItem.node.distance} stop={departureInfoArrayItem.node.place.stop} stoptime={departureInfoArrayItem.node.place.stoptimes} key={i} row={i}/> :
-								<DepartureInfo showPlatform={n_stop_codes > 1} showStopName={n_stop_names > 1} stoptime={departureInfoArrayItem.stoptimes} key={i} row={i}/>;
+								<DepartureInfo showPlatform={true} showStopName={true} distance={departureInfoArrayItem.node.distance} stoptime={departureInfoArrayItem.node.place.stoptimes} key={i}/> :
+								<DepartureInfo showPlatform={n_stop_codes > 1} showStopName={n_stop_names > 1} stoptime={departureInfoArrayItem.stoptimes} key={i}/>;
 						})
 					}
 				</ul>

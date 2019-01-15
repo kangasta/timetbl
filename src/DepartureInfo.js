@@ -131,26 +131,22 @@ class DepartureInfo extends Component {
 			const code = this.props.stoptime[0].stop.code;
 			const platform = this.props.stoptime[0].stop.platformCode;
 			const show_name = this.props.showStopName;
+			const distance = this.props.distance;
 
 			return (
 				<div className='Details'>
-					{show_name ? name + ': ': null}
+					{show_name ? name + ', ': null}
 					{platform == null ? 'Stop ' + code : null}
 					{platform !== null ? 'Platform ' + platform.toString() : null}
+					{distance !== undefined ? <span className='Distance'>{': ' + distance.toString() + ' m'}</span> : null}
 				</div>
 			);
 		}
-		return (
-			<div className='Details'>
-				{this.props.stop !== undefined ? this.props.stop.name : null}
-				{this.props.stop !== undefined ? <b> {this.props.stop.code}</b> : null}
-				{this.props.distance !== undefined ? <span className='Distance'>{': ' + this.props.distance.toString() + ' m'}</span> : null}
-			</div>
-		);
+		return null;
 	}
 
 	render() {
-		const details = this.props.stop !== undefined || this.props.showPlatform ? 'WithDetails' : 'NoDetails';
+		const details = this.props.showPlatform ? 'WithDetails' : 'NoDetails';
 		return (
 			<li className='DepartureInfo ListItem'>
 				{this.getRoute()}
@@ -179,14 +175,6 @@ DepartureInfo.propTypes = {
 	showPlatform: PropTypes.bool,
 	showStopName: PropTypes.bool,
 	distance: PropTypes.number,
-	stop: PropTypes.shape({
-		name: PropTypes.string,
-		code: PropTypes.string,
-		platformCode: PropTypes.string,
-		desc: PropTypes.string,
-		lat: PropTypes.number,
-		lon: PropTypes.number
-	}),
 	stoptime: PropTypes.arrayOf(PropTypes.shape({
 		stop: PropTypes.shape({
 			code: PropTypes.string,
@@ -207,7 +195,6 @@ DepartureInfo.propTypes = {
 		headsign: PropTypes.string
 	})),
 	header: PropTypes.string,
-	row: PropTypes.number
 };
 
 export default DepartureInfo;
