@@ -33,10 +33,12 @@
 
 .DestinationItem:first-child {
 	font-size: 1em;
+	margin-left: 0;
 }
 
 .DestinationItem {
 	font-size: 0.666em;
+	margin-left: 0.333em;
 }
 
 .Destination.NoDetails {
@@ -48,8 +50,9 @@
 	color: white;
 	border-radius: 0.125em;
 	font-size: 0.7em;
-	vertical-align: middle;
+	margin-left: 0.25em;
 	padding: 0.125em;
+	vertical-align: middle;
 }
 
 .Details {

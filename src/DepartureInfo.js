@@ -108,7 +108,7 @@ class DepartureInfo extends Component {
 		const destinations = this.props.stoptime[0].headsign.split('via');
 		const to_destination_item = destination => {
 			const metro = destination.match(/\(M\)/);
-			destination = destination.replace('(M)','');
+			destination = destination.replace('(M)','').trim();
 
 			return (
 				<span key={destination} className='DestinationItem'>
