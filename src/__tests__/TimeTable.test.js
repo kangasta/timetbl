@@ -5,6 +5,12 @@ import DepartureInfo from './../DepartureInfo.js';
 
 jest.mock('../APIQuery');
 
+const checkForDepartureInfo = (component, callback) => {
+	expect(component.find('.Loading')).toHaveLength(0);
+	expect(component.find(DepartureInfo)).not.toHaveLength(0);
+	if (callback) callback();
+};
+
 describe('TimeTable', () => {
 	it('renders without crashing', () => {
 		mount(<TimeTable />);
@@ -25,9 +31,7 @@ describe('TimeTable', () => {
 			component.instance().sendQuery();
 			const update = component.componentDidUpdate;
 			component.componentDidUpdate = () => {
-				expect(component.find('.Loading')).toHaveLength(0);
-				expect(component.find(DepartureInfo)).not.toHaveLength(0);
-				if (update) update();
+				checkForDepartureInfo(component, update);
 			};
 		}
 	});
@@ -36,9 +40,7 @@ describe('TimeTable', () => {
 		component.instance().sendQuery();
 		const update = component.componentDidUpdate;
 		component.componentDidUpdate = () => {
-			expect(component.find('.Loading')).toHaveLength(0);
-			expect(component.find(DepartureInfo)).not.toHaveLength(0);
-			if (update) update();
+			checkForDepartureInfo(component, update);
 		};
 	});
 	it('shows error after failed API query.', () =>  {

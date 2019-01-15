@@ -64,24 +64,28 @@ describe('DepartureInfo.currentTimeInMinutes', () => {
 });
 
 describe('DepartureInfo.parseHour', () => {
-	it('is not larger that 23', () => {
-		expect(DepartureInfo.parseHour(24*3600)).toBe(0);
-		expect(DepartureInfo.parseHour(26*3600)).toBe(2);
-	});
-	it('is integer', () => {
-		expect(DepartureInfo.parseHour(26*3600+1830)).toBe(2);
-		expect(DepartureInfo.parseHour(3*3600+1234)).toBe(3);
+	it('is not larger that 23 and is integer', () => {
+		[
+			{in: 24*3600, out: 0},
+			{in: 26*3600, out: 2},
+			{in: 26*3600+1830, out: 2},
+			{in: 3*3600+1234, out: 3},
+		].forEach(test => {
+			expect(DepartureInfo.parseHour(test.in)).toBe(test.out);
+		});
 	});
 });
 
 describe('DepartureInfo.parseTime', () => {
-	it('adds leading zero to minutes', () => {
-		expect(DepartureInfo.parseTime(10*3600+6*60)).toBe('10:06');
-		expect(DepartureInfo.parseTime(10*3600+16*60)).toBe('10:16');
-	});
-	it('adds leading space to hours', () => {
-		expect(DepartureInfo.parseTime( 9*3600+ 0*60)).toBe(' 9:00');
-		expect(DepartureInfo.parseTime(26*3600+16*60)).toBe(' 2:16');
+	it('adds leading zero to minutes and leading space to hours', () => {
+		[
+			{in: 10*3600+6*60, out: '10:06'},
+			{in: 10*3600+16*60, out: '10:16'},
+			{in: 9*3600+ 0*60, out: ' 9:00'},
+			{in: 26*3600+16*60, out: ' 2:16'}
+		].forEach(test => {
+			expect(DepartureInfo.parseTime(test.in)).toBe(test.out);
+		});
 	});
 	it('allows custom deliminator', () => {
 		expect(DepartureInfo.parseTime(22*3600+45*60, '&')).toBe('22&45');
