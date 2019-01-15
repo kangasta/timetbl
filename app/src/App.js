@@ -247,7 +247,7 @@ class App extends Component {
 
 	render() {
 		return(
-			<div className='app app-theme-default'>
+			<div className='App ThemeDefault'>
 				{this.getTitle()}
 				{this.getNavBar()}
 				<CSValidatorChanger error={this.state.view.error} loading={this.state.view.loading}>

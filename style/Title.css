@@ -1,6 +1,7 @@
 .Title {
-	margin: 0.75em 1.5em;
+	box-sizing: border-box;
 	height: 4.5em;
+	margin: 0.75em 1.5em;
 }
 
 .Title .Code,.Title .Clock {
