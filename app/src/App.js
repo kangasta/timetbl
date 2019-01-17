@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { CSExpandable, CSValidatorChanger } from 'chillisalmon';
+import { CSExpandable, CSStatus, CSValidatorChanger } from 'chillisalmon';
 import { StopMenu, TimeTable, Title } from 'timetbl';
 
 import UserLocation from './UserLocation.js';
@@ -38,25 +38,16 @@ class App extends Component {
 				);
 			} else if (this.state.view.hasOwnProperty('error')) {
 				return (
-					<div className='Status Error'>
-						<h1>Error</h1>
-						<p>{this.state.view.error}</p>
-					</div>
+					<CSStatus status={CSStatus.status.ERROR} message={this.state.view.error}/>
 				);
 			} else {
 				return (
-					<div className='Status Error'>
-						<h1>Error</h1>
-						<p>State can not be resolved</p>
-					</div>
+					<CSStatus status={CSStatus.status.ERROR} message='State can not be resolved'/>
 				);
 			}
 		} catch(e) {
 			return (
-				<div className='Status Loading'>
-					<h1>Loading</h1>
-					<p>Waiting location</p>
-				</div>
+				<CSStatus status={CSStatus.status.LOADING} message='Waiting location'/>
 			);
 		}
 	}

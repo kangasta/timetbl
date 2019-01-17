@@ -17,11 +17,11 @@ describe('TimeTable', () => {
 	});
 	it('shows error when created with invalid props.', () => {
 		const component = mount(<TimeTable lat={16.5} />);
-		expect(component.find('.Error')).toHaveLength(1);
+		expect(component.exists('.cs-changer-item-active .Error')).toBe(true);
 	});
 	it('shows loading when created.', () => {
 		const component = mount(<TimeTable lat={16.5} lon={28.5}/>);
-		expect(component.find('.Loading')).toHaveLength(1);
+		expect(component.exists('.cs-changer-item-active .Loading')).toBe(true);
 	});
 	it('shows nearest departure infos after succesfull API query.', () => {
 		const lat = [16.5, [16.5, 14.5]];

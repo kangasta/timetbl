@@ -60,6 +60,11 @@ a:hover {
 	height: 6em;
 }
 
-.Status {
+.CSStatus {
+	margin-top: 3em;
 	text-align: center;
+}
+
+.CSStatus .Icon {
+	font-size: 4em;
 }
