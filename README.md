@@ -6,6 +6,18 @@
 
 Simple timetable screen that uses Digitransit API to fetch HSL realtime data and React to render the data. See [digitransit](https://digitransit.fi/en/developers/) for details of the HSL API.
 
+## Usage
+
+For WebApp behaviour navigate to the [served page](https://kangasta.github.io/timetbl/) and enable location.
+
+### Client side routing and query parameters
+
+The WebApp has two main modes, nearby and stop, accessible through url and configured with query parameters:
+
+Nearby mode show all nearby departures and is located at `/#/nearby`.
+
+Stop mode shows departures of specified stop or list of stops and is located at `/#/stop`.
+
 ## Development
 
 Application logic is developed under `app/` directory. This directory is created with [create-react-app](https://github.com/facebookincubator/create-react-app), see README over there for details on development environment.
