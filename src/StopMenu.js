@@ -62,7 +62,7 @@ class StopMenu extends Component {
 					</li>
 					{stopsArray.map(stop => (
 						<li className='Stop ListItem' key={stop.name}>
-							<span className='Name' onClick={() => this.props.navigate('/#/stop?code=' + stop.name)}>{stop.name}</span>
+							<span className='Name' onClick={() => this.props.navigate('/#/stop?code=' + stop.codes.join(',') + '&title=' + stop.name)}>{stop.name}</span>
 							<ul>
 								{stop.codes.map(code => <li  className='StopCode' key={code} onClick={() => this.props.navigate('/#/stop?code=' + code)}>{code}</li>)}
 							</ul>
