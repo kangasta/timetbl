@@ -42,7 +42,7 @@ class StopMenu extends Component {
 				if (stop === undefined) {
 					r.push({name: i.name, codes: [i.code]});
 				} else {
-					stop.codes.push(i.code);
+					if (!stop.codes.includes(i.code)) stop.codes.push(i.code);
 				}
 				return r;
 			}, []);
