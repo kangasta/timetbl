@@ -6,6 +6,8 @@
 
 Simple timetable screen that uses Digitransit API to fetch HSL realtime data and React to render the data. See [digitransit](https://digitransit.fi/en/developers/) for details of the HSL API.
 
+![Photo of the app displayed on a phone screen](app/public/preview.jpg)
+
 ## Usage
 
 For WebApp behaviour navigate to the [served page](https://kangasta.github.io/timetbl/) and enable location.
