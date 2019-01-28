@@ -14,11 +14,15 @@ For WebApp behaviour navigate to the [served page](https://kangasta.github.io/ti
 
 ### Client side routing and query parameters
 
-The WebApp has two main modes, nearby and stop, accessible through url and configured with query parameters:
+The WebApp has three main modes, nearby, stop menu, and stop, accessible directly through URLs and configured with query parameters:
 
-Nearby mode show all nearby departures and is located at `/#/nearby`.
+Nearby mode shows all nearby departures and is located at `/#/nearby`. Query parameters `lat`, `lon`, and `r` can be used to configure the latitude,longitude, and radius for a nearby query, respectively. For example, `lat=60.198721&lon=24.933413&r=2000` will query nearest departures around Pasila station with radius of 2000m.
 
-Stop mode shows departures of specified stop or list of stops and is located at `/#/stop`.
+Stop menu provides a list of nearby stops with links to each stop mode view and in located at `/#/menu`. The stop menu mode reads the coordinates and radius similarly than the nearby mode.
+
+Stop mode shows departures of specified stop or list of stops and is located at `/#/stop`. The stop code or name is passed in with query parameter `code`. The codes or names are separated with commas if multiple codes or names are given. For example, `code=Karhusaarensolmu` or `code=E2036,E2037`.
+
+In both cases, query parameter `follow=false` can be used to disable the polling of the browser location.
 
 ## Development
 
