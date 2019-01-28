@@ -17,7 +17,7 @@ class StopMenu extends Component {
 	}
 
 	sendQuery() {
-		APIQuery.getNearestStops(this.props.lat, this.props.lon, this.props.maxDistance)
+		APIQuery.getNearestStops(this.props.lat, this.props.lon, this.props.maxDistance, this.props.maxResults)
 			.then((responseJson) => {
 				this.setState({
 					data: responseJson
@@ -78,6 +78,7 @@ StopMenu.defaultProps = {
 	lat: 0,
 	lon: 0,
 	maxDistance: 1000,
+	maxResults: 50,
 	navigate: () => undefined,
 };
 
@@ -85,6 +86,7 @@ StopMenu.propTypes = {
 	lat: PropTypes.number,
 	lon: PropTypes.number,
 	maxDistance: PropTypes.number,
+	maxResults: PropTypes.number,
 	navigate: PropTypes.func,
 };
 

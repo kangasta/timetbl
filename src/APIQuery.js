@@ -23,7 +23,7 @@ const queryFields = {
 const queries = {
 	nearestDepartures: (lat = 60.1836474999998, lon = 24.828072999999993, maxDistance = 150, maxResults=20) => '{ nearest (lat: ' + lat + ', lon: ' + lon + ', maxDistance: ' + maxDistance + ', maxResults: ' + maxResults + ', filterByPlaceTypes: DEPARTURE_ROW) { edges { node { distance place { ... on DepartureRow { stop { ' + queryFields.stop + ' } stoptimes (numberOfDepartures: 3, omitNonPickups: true) { ' + queryFields.stoptimes + ' }}}}}}}',
 	stopDepartures: (stopCode = 'E2036'/*, numberOfDepartures = 10*/) => '{ stops (name: "' + stopCode + '") { name gtfsId stoptimesForPatterns(numberOfDepartures: 3, omitNonPickups: true) { stoptimes { ' + queryFields.stoptimes + '}}}}',
-	nearestStops: (lat = 60.1836474999998, lon = 24.828072999999993) => '{ nearest(lat: ' + lat + ', lon: ' + lon + ', filterByPlaceTypes: STOP) { edges { node { place { ... on Stop { name code }}}}}}'
+	nearestStops: (lat = 60.1836474999998, lon = 24.828072999999993, maxDistance = 150, maxResults=20) => '{ nearest(lat: ' + lat + ', lon: ' + lon + ', maxDistance: ' + maxDistance + ', maxResults: ' + maxResults + ', filterByPlaceTypes: STOP) { edges { node { place { ... on Stop { name code }}}}}}'
 };
 
 class APIQuery {
@@ -52,8 +52,8 @@ class APIQuery {
 		return promises;
 	}
 
-	static getNearestStops(lat = 60.1836474999998, lon = 24.828072999999993) {
-		return sendQuery(queries.nearestStops(lat, lon));
+	static getNearestStops(lat = 60.1836474999998, lon = 24.828072999999993, maxDistance = 150, maxResults=20) {
+		return sendQuery(queries.nearestStops(lat, lon, maxDistance, maxResults));
 	}
 
 	static get EmptyNearestQueryResponse() { return {data: {nearest: {edges: [] }}}; }
