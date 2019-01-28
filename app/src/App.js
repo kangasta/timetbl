@@ -154,7 +154,7 @@ class App extends Component {
 
 		if (lat && lon) {
 			var r = Number(url_params.get('r'));
-			r = isNaN(r) ? r : 1000;
+			r = isNaN(r) ? 1000 : r;
 
 			state = Object.assign(state, {
 				coords: {
