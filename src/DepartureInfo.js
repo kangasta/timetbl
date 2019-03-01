@@ -94,7 +94,12 @@ class DepartureInfo extends Component {
 
 	getAlertText(lang='en') {
 		const alerts = this.props.stoptime[0].trip.route.alerts;
-		const alert_text = alerts.map(alert => alert.alertDescriptionTextTranslations.find(translation => translation.language === lang).text)[0];
+		var alert_text;
+		try {
+			alert_text = alerts.map(alert => alert.alertDescriptionTextTranslations.find(translation => translation.language === lang).text)[0];
+		} catch(e) {
+			alert_text = 'No alert description for language "' + lang + '" available.';
+		}
 		if (alerts.length === 0 || !this.state.alerts_expanded) return null;
 		return (
 			<div className='AlertText' onClick={this.toggleAlert}>
