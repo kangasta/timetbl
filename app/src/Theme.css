@@ -13,6 +13,15 @@
 	--theme-color-2: #555;
 }
 
+.BikesTheme .Metro {
+	background: var(--theme-color-2);
+	color: var(--theme-color-1);
+}
+
+.BikesTheme .DepartureList {
+	width: 11em;
+}
+
 .App {
 	box-sizing: border-box;
 	color: var(--theme-color-2);
