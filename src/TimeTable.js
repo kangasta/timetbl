@@ -164,7 +164,6 @@ class TimeTable extends Component {
 }
 
 TimeTable.defaultProps = {
-	head: '',
 	lat: 0,
 	lon: 0,
 	stopCode: '',
@@ -173,10 +172,6 @@ TimeTable.defaultProps = {
 };
 
 TimeTable.propTypes = {
-	head: PropTypes.oneOfType([
-		PropTypes.string,
-		PropTypes.object
-	]),
 	lat: PropTypes.oneOfType([
 		PropTypes.number,
 		PropTypes.array
