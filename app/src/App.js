@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import { CSExpandable, CSStatus, CSValidatorChanger } from 'chillisalmon';
-import { StopMenu, TimeTable, Title } from 'timetbl';
+import { BikesList, StopMenu, TimeTable, Title } from 'timetbl';
 
 import UserLocation from './UserLocation.js';
 import NavBar from './NavBar.js';
@@ -32,6 +32,10 @@ class App extends Component {
 				return (
 					<TimeTable lat={this.state.coords.lat} lon={this.state.coords.lon} maxDistance={this.state.coords.r} maxResults={15}/>
 				);
+			} else if (this.state.view.hasOwnProperty('bikes')) {
+				return (
+					<BikesList lat={this.state.coords.lat} lon={this.state.coords.lon} maxDistance={this.state.coords.r}/>
+				);
 			} else if (this.state.view.hasOwnProperty('stop')) {
 				return (
 					<TimeTable stopCode={this.state.view.stop.code} maxResults={15}/>
@@ -59,7 +63,7 @@ class App extends Component {
 				return (
 					<Title text={this.state.title} clock={true}/>
 				);
-			} else if (this.state.view.hasOwnProperty('menu') || this.state.view.hasOwnProperty('nearby')) {
+			} else if (this.state.view.hasOwnProperty('menu') || this.state.view.hasOwnProperty('bikes') || this.state.view.hasOwnProperty('nearby')) {
 				return (
 					<Title lat={this.state.coords.lat} lon={this.state.coords.lon} clock={true}/>
 				);
@@ -96,7 +100,8 @@ class App extends Component {
 			*/
 			{
 				text: 'Bikes',
-				disabled: true
+				onClick: () => {this.navigate('/#/bikes');},
+				disabled: this.state.view.hasOwnProperty('bikes')
 			},
 			{
 				text: 'Menu',
@@ -174,14 +179,14 @@ class App extends Component {
 					},
 					'url': base + match[0]
 				};
-			} /* else if (match = url.match(/#\/nearby/)) {
+			} else if (match = url.match(/#\/bikes/)) {
 				return {
 					'view': {
-						'nearby': null
+						'bikes': null
 					},
 					'url': base + match[0]
 				};
-			} */ else if (match = url.match(/#\/stop(\?[^/]*)/)) {
+			} else if (match = url.match(/#\/stop(\?[^/]*)/)) {
 				return {
 					'view': {
 						'stop': {
