@@ -25,6 +25,10 @@
 	font-size: 1.75em;
 }
 
+.Departure {
+	white-space: nowrap;
+}
+
 .Destination {
 	overflow: hidden;
 	text-overflow: ellipsis;
@@ -43,6 +47,13 @@
 
 .Destination.NoDetails {
 	font-size: 1.75em;
+}
+
+.Metro, .Number.SUBWAY {
+	background: orangered;
+	color: white;
+	border-radius: 0.125em;
+	padding: 0 0.125em;
 }
 
 .Metro {

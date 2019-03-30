@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
+import Utils from './Utils';
+
 import '../style/DepartureInfo.css';
 
 class DepartureInfo extends Component {
@@ -53,12 +55,13 @@ class DepartureInfo extends Component {
 			DepartureInfo.parseTime(seconds));
 	}
 
-	getRoute() {
-		const match = this.props.stoptime[0].trip.route.shortName.match(/([0-9]+)([a-zA-Z]*)/);
+	getRoute(type) {
+		const match = this.props.stoptime[0].trip.route.shortName.match(/(M*[0-9]+)([a-zA-Z]*)/);
+		const number = !match ? this.props.stoptime[0].trip.route.shortName : match[1];
 
 		return (
 			<div className='Route'>
-				{!match ? this.props.stoptime[0].trip.route.shortName : match[1]}
+				<span className={'Number ' + (typeof type === 'string' ? type : '')}>{number}</span>
 				{match ? <span className='Letters'>{match[2]}</span> : null}
 			</div>
 		);
@@ -111,21 +114,10 @@ class DepartureInfo extends Component {
 
 	getDestination(classes) {
 		const destinations = this.props.stoptime[0].headsign.split('via');
-		const to_destination_item = destination => {
-			const metro = destination.match(/\(M\)/);
-			destination = destination.replace('(M)','').trim();
-
-			return (
-				<span key={destination} className='DestinationItem'>
-					{destination}
-					{metro ? <span className='Metro'>M</span> : null}
-				</span>
-			);
-		};
 
 		return (
 			<div className={'Destination ' + classes}>
-				{destinations.map(to_destination_item)}
+				{destinations.map(Utils.toDestinationItem)}
 			</div>
 		);
 	}
@@ -140,7 +132,8 @@ class DepartureInfo extends Component {
 
 			return (
 				<div className='Details'>
-					{show_name ? name + ', ': null}
+					{show_name ? Utils.toDestinationItem(name) : null}
+					{show_name ? ', ' : null}
 					{platform == null ? 'Stop ' + code : null}
 					{platform !== null ? 'Platform ' + platform.toString() : null}
 					{distance !== undefined ? <span className='Distance'>{': ' + distance.toString() + ' m'}</span> : null}
@@ -154,7 +147,7 @@ class DepartureInfo extends Component {
 		const details = this.props.showPlatform ? 'WithDetails' : 'NoDetails';
 		return (
 			<li className='DepartureInfo ListItem'>
-				{this.getRoute()}
+				{this.getRoute(this.props.stoptime[0].trip.route.mode)}
 				<ul className='DepartureList'>
 					{this.props.stoptime.map((stoptime,i)=>(
 						<li key={i} className={'Departure ' + (stoptime.realtime ? 'Realtime' : 'Scheduled')}>
