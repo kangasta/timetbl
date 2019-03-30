@@ -117,6 +117,13 @@ class App extends Component {
 		);
 	}
 
+	getThemeClass() {
+		if(this.state.view.hasOwnProperty('bikes')) {
+			return 'BikesTheme';
+		}
+		return 'MainTheme';
+	}
+
 	getLazyURLSearchParamsMock(param_str) {
 		return {
 			get: (param_name) => {
@@ -243,7 +250,7 @@ class App extends Component {
 
 	render() {
 		return(
-			<div className='App ThemeDefault'>
+			<div className={'App ' + this.getThemeClass()}>
 				{this.getTitle()}
 				{this.getNavBar()}
 				<CSValidatorChanger error={this.state.view.error} loading={this.state.view.loading}>

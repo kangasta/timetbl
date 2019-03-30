@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { CSValidatorChanger,  } from 'chillisalmon';
+import { CSValidatorChanger } from 'chillisalmon';
 
-import APIQuery from './APIQuery.js';
+import APIQuery from './APIQuery';
+import Utils from './Utils';
 
 import '../style/TimeTable.css';
 
@@ -58,14 +59,16 @@ class BikesList extends Component {
 
 		return (
 			<CSValidatorChanger error={this.state.data.error} loading={this.state.data.loading}>
-				<ul className='BikesList'>
+				<ul className='BikesList Timetable'>
 					{bikesArray.map((bikesItem, i) => (
 						<li key={i} className='DepartureInfo ListItem'>
 							<ul className='DepartureList'>
 								<li className={'Departure ' + (bikesItem.node.place.realtime ? 'Realtime' : 'Scheduled')}>{bikesItem.node.place.bikesAvailable.toString() || '0'}</li>
 								<li className='Departure'>{bikesItem.node.distance < 1000 ? bikesItem.node.distance.toString() + ' m' : (Math.round(bikesItem.node.distance/100)/10).toString() + ' km'}</li>
 							</ul>
-							{bikesItem.node.place.name}
+							<div className='Destination NoDetails'>
+								{bikesItem.node.place.name.split(',').map(Utils.toDestinationItem)}
+							</div>
 						</li>
 					))}
 				</ul>

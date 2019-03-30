@@ -1,9 +1,16 @@
 
 #root {
+	font-family: Helvetica, Arial, sans-serif
+}
+
+.MainTheme {
 	--theme-color-1: #0080D0;
 	--theme-color-2: white;
+}
 
-	font-family: Helvetica, Arial, sans-serif
+.BikesTheme {
+	--theme-color-1: #ffcc33 ;
+	--theme-color-2: #555;
 }
 
 .App {
@@ -11,6 +18,7 @@
 	color: var(--theme-color-2);
 	min-height: 100vh;
 	position: relative;
+	transition: all 500ms;
 
 	/* Force browser to respect margin-top: 0 */
 	margin-top: -1px;
@@ -23,6 +31,7 @@
 	left: 0;
 	position: fixed;
 	top: 0;
+	transition: all 500ms;
 	width: 100%;
 	z-index: -100;
 }
@@ -45,15 +54,15 @@
 }
 
 a {
-	color: white;
+	color: var(--theme-color-2);
 }
 
 a:visited {
-	color: white;
+	color: var(--theme-color-2);
 }
 
 a:hover {
-	color: white;
+	color: var(--theme-color-2);
 }
 
 .Whitespace {
