@@ -1,7 +1,7 @@
 {
   "name": "timetbl-app",
   "homepage": "https://kangasta.github.io/timetbl",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "private": true,
   "devDependencies": {
     "react-scripts": "1.1.1"
