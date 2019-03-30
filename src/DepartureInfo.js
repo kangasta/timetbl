@@ -61,8 +61,10 @@ class DepartureInfo extends Component {
 
 		return (
 			<div className='Route'>
-				<span className={'Number ' + (typeof type === 'string' ? type : '')}>{number}</span>
-				{match ? <span className='Letters'>{match[2]}</span> : null}
+				<span className={'Code ' + (typeof type === 'string' ? type : '')}>
+					<span className='Number'>{number}</span>
+					{match ? <span className='Letters'>{match[2]}</span> : null}
+				</span>
 			</div>
 		);
 	}

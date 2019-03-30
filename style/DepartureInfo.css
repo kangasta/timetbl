@@ -49,17 +49,34 @@
 	font-size: 1.75em;
 }
 
-.Metro, .Number.SUBWAY {
-	background: orangered;
+.Metro, .Route .Code {
 	color: white;
 	border-radius: 0.125em;
 	padding: 0 0.125em;
+
+}
+
+.Metro, .Code.SUBWAY {
+	background: orangered;
+}
+
+.Code.RAIL {
+	background: purple;
+}
+
+.Code.TRAM {
+	background: forestgreen;
+}
+
+.Code.FERRY {
+	background: deepskyblue;
+}
+
+.Code.BUS {
+	padding: 0;
 }
 
 .Metro {
-	background: orangered;
-	color: white;
-	border-radius: 0.125em;
 	font-size: 0.7em;
 	margin-left: 0.25em;
 	padding: 0.125em;
