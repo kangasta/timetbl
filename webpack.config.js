@@ -6,7 +6,8 @@ const { GenerateSW } = require('workbox-webpack-plugin');
 
 
 module.exports = (_, options) => {
-	const publicUrl = options.mode === 'production' ? (require('./package.json').homepage || '') : '';
+	const isProduction = (options.mode === 'production');
+	const publicUrl = isProduction ? (require('./package.json').homepage || '') : '';
 
 	return {
 		entry: './src/index.js',

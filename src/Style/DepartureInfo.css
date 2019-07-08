@@ -1,7 +1,13 @@
 .Route {
 	float: left;
 	font-size: 1.75em;
-	width: 3em;
+	margin-right: 0.25em;
+	overflow: hidden;
+	width: 2.75em;
+}
+
+.Route span {
+	white-space: nowrap;
 }
 
 .Route .Letters {
