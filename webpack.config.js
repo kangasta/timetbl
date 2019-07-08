@@ -6,7 +6,7 @@ const { GenerateSW } = require('workbox-webpack-plugin');
 
 
 module.exports = (_, options) => {
-	const publicUrl = options.mode === 'production' ? require('./package.json').homepage : '/';
+	const publicUrl = options.mode === 'production' ? (require('./package.json').homepage || '') : '';
 
 	return {
 		entry: './src/index.js',
@@ -53,6 +53,11 @@ module.exports = (_, options) => {
 			new webpack.HotModuleReplacementPlugin(),
 			new webpack.NoEmitOnErrorsPlugin(),
 			new GenerateSW(),
+			new webpack.DefinePlugin({
+				'process.env': {
+					PUBLIC_URL: JSON.stringify(publicUrl),
+				},
+			}),
 		],
 	};
 };
