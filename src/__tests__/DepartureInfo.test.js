@@ -1,6 +1,7 @@
 import React from 'react';
 import { mount, shallow } from 'enzyme';
-import DepartureInfo from './../DepartureInfo.js';
+
+import { DepartureInfo } from '../timetbl';
 
 describe('DepartureInfo', () => {
 	it('renders without crashing', () => {

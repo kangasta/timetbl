@@ -2,10 +2,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { CSValidatorChanger } from 'chillisalmon';
 
-import APIQuery from './APIQuery.js';
-import DepartureInfo from './DepartureInfo.js';
+import { APIQuery, DepartureInfo } from '../timetbl';
 
-import '../style/TimeTable.css';
+import '../Style/TimeTable.css';
 
 class TimeTable extends Component {
 	constructor(props) {

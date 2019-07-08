@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { CSValidatorChanger } from 'chillisalmon';
 
-import APIQuery from './APIQuery.js';
+import { APIQuery } from '../timetbl';
 
-import '../style/StopMenu.css';
+import '../Style/StopMenu.css';
 
 class StopMenu extends Component {
 	constructor(props) {

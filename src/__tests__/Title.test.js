@@ -1,6 +1,7 @@
 import React from 'react';
 import { mount, shallow } from 'enzyme';
-import Title from './../Title';
+
+import { Title } from '../timetbl';
 
 describe('Title', () => {
 	it('renders without crashing', () => {

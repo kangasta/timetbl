@@ -1,7 +1,7 @@
 import React from 'react';
 import { mount, shallow } from 'enzyme';
 import App from './App';
-import { TimeTable } from 'timetbl';
+import { TimeTable } from '../timetbl';
 
 describe('App', () => {
 	it('renders without crashing', () => {
