@@ -1,4 +1,4 @@
-import APIQuery from './../APIQuery.js';
+import { APIQuery } from '../timetbl';
 
 describe('APIQuery', () => {
 	it('queries at least name, code, platform, and location of stop', () => {

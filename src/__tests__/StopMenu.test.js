@@ -1,6 +1,7 @@
 import React from 'react';
 import { mount } from 'enzyme';
-import StopMenu from './../StopMenu';
+
+import { StopMenu } from '../timetbl';
 
 jest.mock('../APIQuery');
 

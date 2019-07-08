@@ -1,7 +1,6 @@
 import React from 'react';
 import { mount, shallow } from 'enzyme';
-import TimeTable from './../TimeTable.js';
-import DepartureInfo from './../DepartureInfo.js';
+import { DepartureInfo, TimeTable} from '../timetbl';
 
 jest.mock('../APIQuery');
 

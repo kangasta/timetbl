@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 
 import { CSExpandable, CSStatus, CSValidatorChanger } from 'chillisalmon';
-import { BikesList, StopMenu, TimeTable, Title } from 'timetbl';
+import { BikesList, NavBar, StopMenu, TimeTable, Title } from '../timetbl';
 
-import UserLocation from './UserLocation.js';
-import NavBar from './NavBar.js';
+import UserLocation from './UserLocation';
 
 import './App.css';
 import './Theme.css';

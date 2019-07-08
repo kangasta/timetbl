@@ -9,18 +9,18 @@ jobs:
     include:
       - script: npm run lint;
       - script: npm test -- --coverage;
-      - stage: release
-        script: npm pack
-        deploy:
-          provider: releases
-          api_key: $GITHUB_TOKEN
-          file_glob: true
-          file: "*.tgz"
-          skip_cleanup: true
-          on:
-            tags: true
+#      - stage: release
+#        script: npm pack
+#        deploy:
+#          provider: releases
+#          api_key: $GITHUB_TOKEN
+#          file_glob: true
+#          file: "*.tgz"
+#          skip_cleanup: true
+#          on:
+#            tags: true
       - stage: deploy
-        script: cd app && npm install && npm run build;
+        script: npm run build;
         deploy:
           provider: pages
           local_dir: app/build/

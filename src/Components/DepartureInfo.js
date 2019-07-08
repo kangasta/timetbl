@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import Utils from './Utils';
 
-import '../style/DepartureInfo.css';
+import '../Style/DepartureInfo.css';
 
 class DepartureInfo extends Component {
 	constructor(props) {

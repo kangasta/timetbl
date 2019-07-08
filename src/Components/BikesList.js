@@ -2,10 +2,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { CSValidatorChanger } from 'chillisalmon';
 
-import APIQuery from './APIQuery';
-import Utils from './Utils';
+import { APIQuery, Utils } from '../timetbl';
 
-import '../style/TimeTable.css';
+import '../Style/TimeTable.css';
 
 class BikesList extends Component {
 	constructor(props) {
