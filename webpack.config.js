@@ -23,7 +23,7 @@ module.exports = (_, options) => {
 		devtool: 'eval',
 		output: {
 			filename: 'index.js',
-			publicPath: publicUrl,
+			publicPath: `${publicUrl}/`,
 			path: `${__dirname}/build`, // eslint-disable-line no-undef
 		},
 		module: {
