@@ -135,8 +135,8 @@ class DepartureInfo extends Component {
 			return (
 				<div className='Details'>
 					{show_name ? Utils.toDestinationItem(name) : null}
-					{show_name ? ', ' : null}
-					{platform == null ? 'Stop ' + code : null}
+					{show_name && (code !== null || platform !== null)? ', ' : null}
+					{platform === null && code !== null ? 'Stop ' + code : null}
 					{platform !== null ? 'Platform ' + platform.toString() : null}
 					{distance !== undefined ? <span className='Distance'>{': ' + distance.toString() + ' m'}</span> : null}
 				</div>

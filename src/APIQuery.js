@@ -16,8 +16,8 @@ const sendQuery = body => {
 };
 
 const queryFields = {
-	stoptimes: 'stop { name code platformCode desc lat lon } trip { route { shortName mode alerts { alertDescriptionTextTranslations { text language } } } } realtimeArrival realtimeDeparture realtime scheduledArrival scheduledDeparture headsign serviceDay',
-	stop: 'name code platformCode desc lat lon'
+	stoptimes: 'stop { gtfsId name code platformCode desc lat lon } trip { gtfsId route { shortName mode alerts { alertDescriptionTextTranslations { text language } } } } realtimeArrival realtimeDeparture realtime scheduledArrival scheduledDeparture headsign serviceDay',
+	stop: 'gtfsId name code platformCode desc lat lon'
 };
 
 const queries = {

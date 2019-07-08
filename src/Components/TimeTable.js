@@ -150,10 +150,10 @@ class TimeTable extends Component {
 			<CSValidatorChanger error={this.state.data.error} loading={this.state.data.loading}>
 				<ul className='Timetable'>
 					{
-						departureInfoArray.map((departureInfoArrayItem, i) => {
+						departureInfoArray.map(departureInfoArrayItem => {
 							return (this.getType() === 'nearest') ?
-								<DepartureInfo showPlatform={true} showStopName={true} distance={departureInfoArrayItem.node.distance} stoptime={departureInfoArrayItem.node.place.stoptimes} key={i}/> :
-								<DepartureInfo showPlatform={n_stop_codes > 1} showStopName={n_stop_names > 1} stoptime={departureInfoArrayItem.stoptimes} key={i}/>;
+								<DepartureInfo key={departureInfoArrayItem.node.place.stoptimes[0].trip.gtfsId} showPlatform={true} showStopName={true} distance={departureInfoArrayItem.node.distance} stoptime={departureInfoArrayItem.node.place.stoptimes}/> :
+								<DepartureInfo key={departureInfoArrayItem.stoptimes[0].stop.gtfsId} showPlatform={n_stop_codes > 1} showStopName={n_stop_names > 1} stoptime={departureInfoArrayItem.stoptimes}/>;
 						})
 					}
 				</ul>
