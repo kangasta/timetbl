@@ -2,6 +2,8 @@ const webpack = require('webpack');
 
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { GenerateSW } = require('workbox-webpack-plugin');
+
 
 module.exports = (_, options) => {
 	const publicUrl = options.mode === 'production' ? require('./package.json').homepage : '/';
@@ -50,6 +52,7 @@ module.exports = (_, options) => {
 			}),
 			new webpack.HotModuleReplacementPlugin(),
 			new webpack.NoEmitOnErrorsPlugin(),
+			new GenerateSW(),
 		],
 	};
 };

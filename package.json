@@ -28,7 +28,8 @@
     "style-loader": "^0.23.1",
     "webpack": "^4.35.3",
     "webpack-cli": "^3.3.5",
-    "webpack-dev-server": "^3.7.2"
+    "webpack-dev-server": "^3.7.2",
+    "workbox-webpack-plugin": "^4.3.1"
   },
   "dependencies": {
     "chillisalmon": "https://github.com/kangasta/chillisalmon/releases/download/v0.8.0/chillisalmon-0.8.0.tgz",
