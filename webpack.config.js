@@ -20,7 +20,7 @@ module.exports = (_, options) => {
 			port: 8000,
 			host: '0.0.0.0',
 		},
-		devtool: 'eval',
+		devtool: 'source-map',
 		output: {
 			filename: 'index.js',
 			publicPath: `${publicUrl}/`,

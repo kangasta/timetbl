@@ -61,10 +61,10 @@ class DepartureInfo extends Component {
 
 		return (
 			<div className='Route'>
-				<div className={'Code ' + (typeof type === 'string' ? type : '')}>
+				<span className={'Code ' + (typeof type === 'string' ? type : '')}>
 					<span className='Number'>{number}</span>
 					{match ? <span className='Letters'>{match[2]}</span> : null}
-				</div>
+				</span>
 			</div>
 		);
 	}
@@ -115,6 +115,7 @@ class DepartureInfo extends Component {
 	}
 
 	getDestination(classes) {
+		/* TODO: Wrap in try catch */
 		const destinations = this.props.stoptime[0].headsign.split('via');
 
 		return (
