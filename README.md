@@ -6,7 +6,7 @@
 
 Simple timetable screen that uses Digitransit API to fetch HSL realtime data and React to render the data. See [digitransit](https://digitransit.fi/en/developers/) for details of the HSL API.
 
-![Photo of the app displayed on a phone screen](app/public/preview.jpg)
+![Photo of the app displayed on a phone screen](src/App/public/preview.jpg)
 
 ## Usage
 
@@ -26,20 +26,13 @@ In both cases, query parameter `follow=false` can be used to disable the polling
 
 ## Development
 
-Application logic is developed under `app/` directory. This directory is created with [create-react-app](https://github.com/facebookincubator/create-react-app), see README over there for details on development environment.
-
-UI components are developed in base directory, which acts as a react component library.
+Application logic is developed under `src/App/` directory. UI components are developed in `src/Components` directory.
 
 ### Getting stared
 
 To get development server running on your machine, run:
 ```bash
-# Install component dependencies and build components
-npm install;
-npm run build;
-
-cd app;
-# Install application dependencies and start development server
+# Install dependencies and start dev server
 npm install;
 npm start;
 ```
@@ -62,11 +55,7 @@ npm test -- --coverage
 # to also get coverage analysis
 ```
 
-To create production build, run build in both base and `app/` directories:
+To create production build:
 ```bash
-for dir in . app; do
-	pushd $dir;
-	npm install && npm run build;
-	popd;
-done;
+npm install && npm run build;
 ```
