@@ -9,7 +9,7 @@ import '../Style/TimeTable.css';
 class TimeTable extends Component {
 	constructor(props) {
 		super(props);
-		var data = {loading: 'Waiting for timetable data from HSL API.'};
+		let data = {loading: 'Waiting for timetable data from HSL API.'};
 		if (this.getType() === 'none') {
 			data = {error: 'Unsupported timetable type'};
 		}
@@ -19,7 +19,7 @@ class TimeTable extends Component {
 	}
 
 	sendQuery() {
-		var queryResponsePromises;
+		let queryResponsePromises;
 
 		switch (this.getType()) {
 		case 'nearest':
@@ -73,15 +73,15 @@ class TimeTable extends Component {
 
 	getDepartureInfoArray() {
 		try {
-			var departureInfoArray;
+			let departureInfoArray;
 			if (this.getType() === 'nearest') {
 				departureInfoArray = this.state.data.filter((a) => { return a.node.place.stoptimes.length > 0; });
 				departureInfoArray.sort((a,b) => {
 					// TODO: Clean up
 					const ad = a.node.place.stoptimes[0].serviceDay;
 					const bd = b.node.place.stoptimes[0].serviceDay;
-					var at = a.node.place.stoptimes[0].realtimeDeparture;
-					var bt = b.node.place.stoptimes[0].realtimeDeparture;
+					let at = a.node.place.stoptimes[0].realtimeDeparture;
+					let bt = b.node.place.stoptimes[0].realtimeDeparture;
 					at = (a.node.place.stoptimes[0].scheduledDeparture - at) > 20*3600 ? at + 24*3600 : at;
 					bt = (b.node.place.stoptimes[0].scheduledDeparture - bt) > 20*3600 ? bt + 24*3600 : bt;
 					return (ad - bd) ?
@@ -90,7 +90,7 @@ class TimeTable extends Component {
 				});
 				if (this.props.filterOut) {
 					departureInfoArray = departureInfoArray.filter((a) => {
-						var filterOut = Array.isArray(this.props.filterOut) ? this.props.filterOut : [this.props.filterOut];
+						const filterOut = Array.isArray(this.props.filterOut) ? this.props.filterOut : [this.props.filterOut];
 						return filterOut.every((filter) => {
 							return a.node.place.stoptimes[0].stopHeadsign !== filter;
 						});
@@ -134,14 +134,14 @@ class TimeTable extends Component {
 	}
 
 	render() {
-		var departureInfoArray = this.getDepartureInfoArray();
+		const departureInfoArray = this.getDepartureInfoArray();
 
-		var n_stop_codes = 0;
+		let n_stop_codes = 0;
 		if (this.getType() === 'stop') {
 			n_stop_codes = departureInfoArray.map(departure => departure.stoptimes[0].stop.code).filter((code, index, array) => array.indexOf(code) === index).length;
 		}
 
-		var n_stop_names = 0;
+		let n_stop_names = 0;
 		if (this.getType() === 'stop') {
 			n_stop_names = departureInfoArray.map(departure => departure.stoptimes[0].stop.name).filter((name, index, array) => array.indexOf(name) === index).length;
 		}

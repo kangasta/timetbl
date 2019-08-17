@@ -35,10 +35,10 @@ class StopMenu extends Component {
 	getStopsArray() {
 		if (this.state.data.nearest === undefined) return [];
 		
-		var stops = this.state.data.nearest.edges
+		const stops = this.state.data.nearest.edges
 			.map(i => i.node.place)
 			.reduce((r, i) => {
-				var stop = r.find(j => j.name === i.name);
+				const stop = r.find(j => j.name === i.name);
 				if (stop === undefined) {
 					r.push({name: i.name, codes: [i.code]});
 				} else {
@@ -50,7 +50,7 @@ class StopMenu extends Component {
 	}
 
 	render() {
-		var stopsArray = this.getStopsArray();
+		const stopsArray = this.getStopsArray();
 
 		return (
 			<CSValidatorChanger error={this.state.data.error} loading={this.state.data.loading}>

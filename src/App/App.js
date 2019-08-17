@@ -138,15 +138,15 @@ class App extends Component {
 		const params_match = url.match(/\?.*/);
 		const params_str = params_match ? params_match[0] : '';
 
-		var url_params;
+		let url_params;
 		try {
 			url_params = new URLSearchParams(params_str);
 		} catch(e) {
 			url_params = this.getLazyURLSearchParamsMock(params_str);
 		}
 
-		var match;
-		var state = {};
+		let match;
+		let state = {};
 
 		if (this.state !== undefined) {
 			clearInterval(this.state.follow_interval);
@@ -164,7 +164,7 @@ class App extends Component {
 		const lon = Number(url_params.get('lon'));
 
 		if (lat && lon) {
-			var r = Number(url_params.get('r'));
+			let r = Number(url_params.get('r'));
 			r = isNaN(r) ? 1000 : r;
 
 			state = Object.assign(state, {
@@ -196,7 +196,7 @@ class App extends Component {
 				return {
 					'view': {
 						'stop': {
-							'code': url_params.get('code').split(',')
+							'code': (url_params.get('code') || '').split(',')
 						}
 					},
 					'url': base + match[0]
