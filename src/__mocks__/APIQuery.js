@@ -12,8 +12,8 @@ class APIQuery {
 	}
 
 	static getNearestDepartures(lat=0, lon=0) {
-		var arr = [];
-		for (var i = 0; !i || Array.isArray(lat) && i < lat.length; i++) {
+		const arr = [];
+		for (let i = 0; !i || Array.isArray(lat) && i < lat.length; i++) {
 			arr.push(Promise.resolve(lat == 666 || lon == 666 ?  APIQuery.invalidResponse : APIQuery.nearestResponse)
 				.then(APIQuery.checkResponseJSON));
 		}

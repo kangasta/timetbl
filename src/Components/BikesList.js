@@ -9,14 +9,14 @@ import '../Style/TimeTable.css';
 class BikesList extends Component {
 	constructor(props) {
 		super(props);
-		var data = {loading: 'Waiting for data from HSL API.'};
+		const data = {loading: 'Waiting for data from HSL API.'};
 		this.state = {
 			data: data
 		};
 	}
 
 	sendQuery() {
-		var queryResponsePromises= APIQuery.getNearestBikes(this.props.lat, this.props.lon, this.props.maxDistance);
+		const queryResponsePromises= APIQuery.getNearestBikes(this.props.lat, this.props.lon, this.props.maxDistance);
 
 		return Promise.all(queryResponsePromises)
 			.then((responseJsons) => responseJsons.reduce((r,i) => {
@@ -66,7 +66,7 @@ class BikesList extends Component {
 								<li className='Departure'>{bikesItem.node.distance < 1000 ? bikesItem.node.distance.toString() + ' m' : (Math.round(bikesItem.node.distance/100)/10).toString() + ' km'}</li>
 							</ul>
 							<div className='Destination NoDetails'>
-								{bikesItem.node.place.name.split(',').map(Utils.toDestinationItem)}
+								{(bikesItem.node.place.name || '').split(',').map(Utils.toDestinationItem)}
 							</div>
 						</li>
 					))}

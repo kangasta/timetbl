@@ -12,7 +12,12 @@ module.exports = (_, options) => {
 	return {
 		entry: './src/index.js',
 		resolve: {
-			extensions: ['.js'],
+			extensions: [
+				'.js',
+				'jsx',
+				'ts',
+				'tsx',
+			],
 		},
 		devServer: {
 			contentBase: '/src/App/public',
@@ -28,6 +33,20 @@ module.exports = (_, options) => {
 		},
 		module: {
 			rules: [
+				{
+					test: /\.ts(x?)$/,
+					exclude: /node_modules/,
+					use: [
+						{
+							loader: 'ts-loader'
+						}
+					]
+				},
+				{
+					enforce: 'pre',
+					test: /\.js$/,
+					loader: 'source-map-loader'
+				},
 				{
 					test: /\.(js|jsx)$/,
 					exclude: /node_modules/,

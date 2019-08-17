@@ -2,22 +2,22 @@ import { APIQuery } from '../timetbl';
 
 describe('APIQuery', () => {
 	it('queries at least name, code, platform, and location of stop', () => {
-		var fields = ['name', 'code', 'platformCode', 'lat', 'lon'];
-		for (var i = 0; i < fields; i++) {
+		const fields = ['name', 'code', 'platformCode', 'lat', 'lon'];
+		for (let i = 0; i < fields; i++) {
 			expect(APIQuery.queries.nearestDepartures()).toMatch(fields[i]);
 		}
 	});
 	it('queries at least route, route type, destination, arrival time, departure time, real time, destination, and service day of stoptime', () => {
-		var fields =
+		const fields =
 			[/trip.*{.*route.*{.*shortName.*}.*}/, /trip.*{.*route.*{.*mode.*}.*}/,
 				'realtimeArrival', 'realtimeDeparture', 'realtime', 'stopHeadsign', 'serviceDay'];
-		for (var i = 0; i < fields; i++) {
+		for (let i = 0; i < fields; i++) {
 			expect(APIQuery.queries.nearestDepartures()).toMatch(fields[i]);
 			expect(APIQuery.queries.stopDepartures()).toMatch(fields[i]);
 		}
 	});
 	it('returns promise with expected content for queries', () => {
-		var promises = [];
+		const promises = [];
 		[
 			{
 				json: require('../__mocks__/NearestQueryResponse.json'),

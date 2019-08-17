@@ -25,7 +25,7 @@ describe('TimeTable', () => {
 	it('shows nearest departure infos after succesfull API query.', () => {
 		const lat = [16.5, [16.5, 14.5]];
 		const lon = [16.5, [28.5, 26.5]];
-		for(var i = 0; i < lat.length; i++) {
+		for(let i = 0; i < lat.length; i++) {
 			const component = shallow(<TimeTable lat={lat[i]} lon={lon[i]}  filterOut={'Otaniemi'}/>);
 			component.instance().sendQuery();
 			const update = component.componentDidUpdate;

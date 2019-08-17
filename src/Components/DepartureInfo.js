@@ -15,28 +15,28 @@ class DepartureInfo extends Component {
 	}
 
 	static currentTimeInMinutes() {
-		var curTime = new Date();
+		const curTime = new Date();
 		return curTime.getHours()*60 + curTime.getMinutes();
 	}
 
 	static parseHour(seconds, max23=true) {
-		var h = (~~(seconds/3600));
+		let h = (~~(seconds/3600));
 		h = h > 23 && max23 ? h - 24 : h;
 		return h;
 	}
 
 	static parseMinute(seconds, max23=true) {
-		var min = (~~(seconds/60));
+		let min = (~~(seconds/60));
 		min = min > 24*60 && max23 ? min - 24*60 : min;
 		return min;
 	}
 
 	static parseTime(seconds, delim = ':') {
-		var h = this.parseHour(seconds);
+		const h = this.parseHour(seconds);
 
-		var hStr = h.toString();
+		let hStr = h.toString();
 		hStr = hStr.length < 2 ? ' ' + hStr : hStr;
-		var minStr = (~~((seconds%3600)/60)).toString();
+		let minStr = (~~((seconds%3600)/60)).toString();
 		minStr = minStr.length < 2 ? '0' + minStr : minStr;
 
 		return hStr + delim + minStr;
@@ -47,7 +47,7 @@ class DepartureInfo extends Component {
 			return 'Time';
 		}
 
-		var departureInMinutes = DepartureInfo.parseMinute(seconds) - DepartureInfo.currentTimeInMinutes();
+		let departureInMinutes = DepartureInfo.parseMinute(seconds) - DepartureInfo.currentTimeInMinutes();
 		departureInMinutes = departureInMinutes > 10 || departureInMinutes < 0 ? (DepartureInfo.parseMinute(seconds) - DepartureInfo.currentTimeInMinutes() + 24*60) : departureInMinutes;
 
 		return (((departureInMinutes < 10) && (departureInMinutes >= 0)) ?
@@ -99,7 +99,7 @@ class DepartureInfo extends Component {
 
 	getAlertText(lang='en') {
 		const alerts = this.props.stoptime[0].trip.route.alerts;
-		var alert_text;
+		let alert_text;
 		try {
 			alert_text = alerts.map(alert => alert.alertDescriptionTextTranslations.find(translation => translation.language === lang).text)[0];
 		} catch(e) {
@@ -115,8 +115,7 @@ class DepartureInfo extends Component {
 	}
 
 	getDestination(classes) {
-		/* TODO: Wrap in try catch */
-		const destinations = this.props.stoptime[0].headsign.split('via');
+		const destinations = (this.props.stoptime[0].headsign || '').split('via');
 
 		return (
 			<div className={'Destination ' + classes}>
