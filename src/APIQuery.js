@@ -3,7 +3,7 @@ import {
 	nearestDeparturesQuery,
 	stopDeparturesQuery,
 	nearestStopsQuery,
-} from './ApiUtils';
+} from './ApiUtils.ts';
 
 const sendQuery = body => {
 	return fetch(APIQuery.APIurl, {

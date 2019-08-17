@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { CSValidatorChanger } from 'chillisalmon';
 
-import { APIQuery, DepartureInfo } from '../timetbl';
+import { DepartureInfo } from '../timetbl';
+import { sendQuery } from '../ApiUtils.ts';
 
 import '../Style/TimeTable.css';
 
@@ -18,45 +19,27 @@ class TimeTable extends Component {
 		};
 	}
 
-	sendQuery() {
-		let queryResponsePromises;
+	async sendQuery() {
+		let queryResponse;
 
-		switch (this.getType()) {
-		case 'nearest':
-			queryResponsePromises = APIQuery.getNearestDepartures(this.props.lat, this.props.lon, this.props.maxDistance, this.props.numberOfDepartures*4);
-			break;
-		case 'stop':
-			queryResponsePromises = APIQuery.getStopDepartures(this.props.stopCode, this.props.numberOfDepartures);
-			break;
-		default:
-			this.setState({data: {error: 'Unsupported timetable type'}});
-			return;
-		}
-
-		return Promise.all(queryResponsePromises)
-			.then((responseJsons) => {
-				if (this.getType() === 'nearest') {
-					return responseJsons.reduce((r,i) => {
-						r = r.concat(i.nearest.edges); return r;
-					}, []);
-				} else {
-					return responseJsons.reduce((r, i) => {
-						r = r.concat(i.stops);
-						return r;
-					}, []).reduce((r,i) => {
-						r = r.concat(i.stoptimesForPatterns);
-						return r;
-					}, []);
-				}
-			})
-			.then((responseJson) => {
-				this.setState({
-					data: responseJson
-				});
-			})
-			.catch((error) => {
-				this.setState({data: {error: error.toString()}});
+		try {
+			switch (this.getType()) {
+			case 'nearest':
+				queryResponse = await sendQuery('nearestDepartures', {lat: this.props.lat, lon: this.props.lon, maxDistance: this.props.maxDistance, maxResults: this.props.numberOfDepartures*4});
+				break;
+			case 'stop':
+				queryResponse = await sendQuery('stopDepartures', (Array.isArray(this.props.stopCode) ? this.props.stopCode : [this.props.stopCode]).map(code => ({stopCode: code})));
+				break;
+			default:
+				this.setState({data: {error: 'Unsupported timetable type'}});
+				return;
+			}
+			this.setState({
+				data: queryResponse
 			});
+		} catch(error) {
+			this.setState({data: {error: error.toString()}});
+		}
 	}
 
 	getType() {
@@ -72,45 +55,7 @@ class TimeTable extends Component {
 	}
 
 	getDepartureInfoArray() {
-		try {
-			let departureInfoArray;
-			if (this.getType() === 'nearest') {
-				departureInfoArray = this.state.data.filter((a) => { return a.node.place.stoptimes.length > 0; });
-				departureInfoArray.sort((a,b) => {
-					// TODO: Clean up
-					const ad = a.node.place.stoptimes[0].serviceDay;
-					const bd = b.node.place.stoptimes[0].serviceDay;
-					let at = a.node.place.stoptimes[0].realtimeDeparture;
-					let bt = b.node.place.stoptimes[0].realtimeDeparture;
-					at = (a.node.place.stoptimes[0].scheduledDeparture - at) > 20*3600 ? at + 24*3600 : at;
-					bt = (b.node.place.stoptimes[0].scheduledDeparture - bt) > 20*3600 ? bt + 24*3600 : bt;
-					return (ad - bd) ?
-						(ad - bd) :
-						(at - bt);
-				});
-				if (this.props.filterOut) {
-					departureInfoArray = departureInfoArray.filter((a) => {
-						const filterOut = Array.isArray(this.props.filterOut) ? this.props.filterOut : [this.props.filterOut];
-						return filterOut.every((filter) => {
-							return a.node.place.stoptimes[0].stopHeadsign !== filter;
-						});
-					});
-				}
-				departureInfoArray = departureInfoArray.slice(0,this.props.numberOfDepartures);
-				return departureInfoArray;
-			} else {
-				departureInfoArray = this.state.data;
-				departureInfoArray.sort((a,b) => {
-					return (a.stoptimes[0].serviceDay - b.stoptimes[0].serviceDay) ?
-						(a.stoptimes[0].serviceDay - b.stoptimes[0].serviceDay) :
-						(a.stoptimes[0].realtimeArrival - b.stoptimes[0].realtimeArrival);
-				});
-				return departureInfoArray;
-			}
-		}
-		catch(e) {
-			return [];
-		}
+		return (Array.isArray(this.state.data) ? this.state.data : []);
 	}
 
 	componentDidMount() {
