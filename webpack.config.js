@@ -10,13 +10,13 @@ module.exports = (_, options) => {
 	const publicUrl = isProduction ? (require('./package.json').homepage || '') : '';
 
 	return {
-		entry: './src/index.js',
+		entry: './src/index.tsx',
 		resolve: {
 			extensions: [
 				'.js',
-				'jsx',
-				'ts',
-				'tsx',
+				'.jsx',
+				'.ts',
+				'.tsx',
 			],
 		},
 		devServer: {

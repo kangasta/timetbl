@@ -1,7 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import App from './App/App';
+import { createStore } from 'redux'
+import { Provider } from 'react-redux'
+
+import App from './App/NewApp';
+import { reducer } from './reducer';
 
 import './index.css';
 
@@ -11,7 +15,11 @@ if ('serviceWorker' in navigator) {
 	});
 }
 
+const store = createStore(reducer);
+
 ReactDOM.render(
-	<App />,
+	<Provider store={store}>
+		<App />
+	</Provider>,
 	document.getElementById('root')
 );
