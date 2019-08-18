@@ -109,20 +109,20 @@ const stopDeparturesQuery = ({stopCode}: StopParameters) => `
 		}
 	}}`;
 
-interface NearestNode <Place>{
+export interface NearestNode <Place>{
 	node: {
 		distance: number;
 		place: Place;
 	}
 }
 
-interface NearestData <Place>{
+export interface NearestData <Place>{
 	nearest: {
 		edges: NearestNode<Place>[];
 	}
 }
 
-interface StoptimeData {
+export interface StoptimeData {
 	stop: {
 		gtfsId: string;
 		name: string;
@@ -154,11 +154,11 @@ interface StoptimeData {
 	serviceDay: number;
 }
 
-interface StoptimesData {
+export interface StoptimesData {
 	stoptimes: StoptimeData[];
 }
 
-interface StopData {
+export interface StopData {
 	stops: StoptimesData[];
 }
 
@@ -196,7 +196,7 @@ const sortStoptimesData = (data: StoptimesSortable[], isNearestNode: boolean): S
 	);
 }
 
-type QueryTypeT = 'nearestBikes' | 'nearestDepartures' | 'nearestStops' | 'stopDepartures';
+export type QueryTypeT = 'nearestBikes' | 'nearestDepartures' | 'nearestStops' | 'stopDepartures';
 type QueryParametersT = PositionParameters | StopParameters;
 
 export async function sendQuery(type: QueryTypeT, parameters: QueryParametersT | QueryParametersT[]): Promise<object[]> {
