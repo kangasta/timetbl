@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { CSValidatorChanger } from 'chillisalmon';
 
-import { APIQuery, Utils } from '../timetbl';
+import { Utils } from '../timetbl';
+import { sendQuery } from '../ApiUtils.ts';
 
 import '../Style/TimeTable.css';
 
@@ -15,22 +16,14 @@ class BikesList extends Component {
 		};
 	}
 
-	sendQuery() {
-		const queryResponsePromises= APIQuery.getNearestBikes(this.props.lat, this.props.lon, this.props.maxDistance);
-
-		return Promise.all(queryResponsePromises)
-			.then((responseJsons) => responseJsons.reduce((r,i) => {
-				r = r.concat(i.nearest.edges); return r;
-			}, [])
-			)
-			.then((responseJson) => {
-				this.setState({
-					data: responseJson
-				});
-			})
-			.catch((error) => {
-				this.setState({data: {error: error.toString()}});
-			});
+	async sendQuery() {
+		const { lat, lon, maxDistance, maxResults } = this.props;
+		try {
+			const bikes = await sendQuery('nearestBikes', {lat, lon, maxDistance, maxResults});
+			this.setState({data: bikes});
+		} catch(error) {
+			this.setState({data: {error: error.toString()}});
+		}
 	}
 
 	componentDidMount() {
@@ -82,7 +75,7 @@ BikesList.defaultProps = {
 	lon: 0,
 	stopCode: '',
 	maxDistance: 150,
-	numberOfDepartures: 25
+	maxResults: 25
 };
 
 BikesList.propTypes = {
@@ -102,7 +95,7 @@ BikesList.propTypes = {
 		PropTypes.number,
 		PropTypes.array
 	]),
-	numberOfDepartures: PropTypes.number,
+	maxResults: PropTypes.number,
 };
 
 export default BikesList;

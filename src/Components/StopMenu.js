@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { CSValidatorChanger } from 'chillisalmon';
 
-import { APIQuery } from '../timetbl';
+import { sendQuery } from '../ApiUtils.ts';
 
 import '../Style/StopMenu.css';
 
@@ -16,16 +16,14 @@ class StopMenu extends Component {
 		};
 	}
 
-	sendQuery() {
-		APIQuery.getNearestStops(this.props.lat, this.props.lon, this.props.maxDistance, this.props.maxResults)
-			.then((responseJson) => {
-				this.setState({
-					data: responseJson
-				});
-			})
-			.catch((error) => {
-				this.setState({data: {error: error.toString()}});
-			});
+	async sendQuery() {
+		const { lat, lon, maxDistance, maxResults } = this.props;
+		try {
+			const stops = await sendQuery('nearestStops', {lat, lon, maxDistance, maxResults});
+			this.setState({data: stops});
+		} catch(error) {
+			this.setState({data: {error: error.toString()}});
+		}
 	}
 
 	componentDidMount() {
@@ -33,9 +31,9 @@ class StopMenu extends Component {
 	}
 	
 	getStopsArray() {
-		if (this.state.data.nearest === undefined) return [];
+		if (!Array.isArray(this.state.data)) return [];
 		
-		const stops = this.state.data.nearest.edges
+		const stops = this.state.data
 			.map(i => i.node.place)
 			.reduce((r, i) => {
 				const stop = r.find(j => j.name === i.name);
