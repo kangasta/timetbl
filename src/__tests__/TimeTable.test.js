@@ -2,7 +2,7 @@ import React from 'react';
 import { mount, shallow } from 'enzyme';
 import { DepartureInfo, TimeTable} from '../timetbl';
 
-jest.mock('../APIQuery');
+//jest.mock('../APIQuery');
 
 const checkForDepartureInfo = (component, callback) => {
 	expect(component.find('.Loading')).toHaveLength(0);

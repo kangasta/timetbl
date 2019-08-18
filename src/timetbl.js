@@ -1,4 +1,3 @@
-import APIQuery from './APIQuery';
 import BikesList from './Components/BikesList';
 import DepartureInfo from './Components/DepartureInfo';
 import NavBar from './Components/NavBar';
@@ -8,7 +7,6 @@ import Title from './Components/Title';
 import Utils from './Components/Utils';
 
 export {
-	APIQuery,
 	BikesList,
 	DepartureInfo,
 	NavBar,
