@@ -1,11 +1,35 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 
-import { StateType, Action } from '../reducer';
+import { StateType, Action } from '../Store/reducer';
 import { QueryTypeT } from '../ApiUtils';
 
+import { Title } from '../Components';
+import { TimeTable } from '../Components';
+
 export function App({view, hashChange}: {view: QueryTypeT, hashChange: (hash: string) => Action}) {
-	return <div className={'App'}>{view}</div>
+	const pushNewHash = (): void => {
+		const match = window.location.href.match(/#.*/);
+		const hash = match ? match[0] : '';
+
+		hashChange(hash);
+	}
+
+	useEffect(() => {
+		pushNewHash();
+
+		window.addEventListener('hashchange', pushNewHash);
+		return () => {
+			window.removeEventListener('hashchange', pushNewHash);
+		}
+	}, []);
+
+	return (
+		<div className={'App'}>
+			<Title/>
+			<TimeTable/>
+		</div>
+	);
 }
 
 interface StateProps {
