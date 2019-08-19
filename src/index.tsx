@@ -1,11 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import { createStore } from 'redux'
+import { createStore, applyMiddleware } from 'redux'
+import createSagaMiddleware from 'redux-saga'
 import { Provider } from 'react-redux'
 
 import App from './App/NewApp';
-import { reducer } from './reducer';
+import { reducer } from './Store/reducer';
+import { saga } from './Store/sagas';
 
 import './index.css';
 
@@ -15,7 +17,12 @@ if ('serviceWorker' in navigator) {
 	});
 }
 
-const store = createStore(reducer);
+const sagaMiddleware = createSagaMiddleware();
+const store = createStore(
+  reducer,
+  applyMiddleware(sagaMiddleware)
+);
+sagaMiddleware.run(saga);
 
 ReactDOM.render(
 	<Provider store={store}>
