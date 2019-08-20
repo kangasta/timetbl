@@ -11,26 +11,26 @@ interface StateProps {
 	lon?: number;
 	stopCodes?: string[];
 	title?: string;
-};
+}
 
 export function Title({clock, lat, lon, stopCodes, title}: StateProps) {
 	const getTimeStr = () => {
 		const time = new Date();
-		const h = time.getHours().toString()
+		const h = time.getHours().toString();
 		const m = time.getMinutes().toString().padStart(2, '0');
 
 		return `${h}:${m}`;
-	}
+	};
 
 	const [time, setTime] = useState(getTimeStr());
 
 	useEffect(() => {
 		const intervalId = setInterval(() => {
-			setTime(getTimeStr())
+			setTime(getTimeStr());
 		}, 15e3);
 
-		return () => {clearInterval(intervalId)}
-	})
+		return () => {clearInterval(intervalId);};
+	});
 
 	if (title === undefined && stopCodes !== undefined) {
 		title = stopCodes.join(' ');
@@ -50,7 +50,7 @@ export function Title({clock, lat, lon, stopCodes, title}: StateProps) {
 				{coords.number}
 			</div>
 		));
-	}
+	};
 
 	return (
 		<div className='Title'>
@@ -69,7 +69,7 @@ const mapStateToProps = (state: StateType): StateProps => {
 	const {title, position, stopCodes} = state.location;
 	const {lat, lon} = position || {lat: undefined, lon: undefined};
 
-	return { lat, lon, stopCodes, title, clock: true }
+	return { lat, lon, stopCodes, title, clock: true };
 };
 
 export default connect<StateProps>(

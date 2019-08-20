@@ -36,6 +36,7 @@
 }
 
 .Destination {
+	min-height: 1.25em;
 	overflow: hidden;
 	text-overflow: ellipsis;
 	white-space: nowrap;

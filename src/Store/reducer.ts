@@ -1,4 +1,4 @@
-import { PositionParameters, QueryTypeT } from '../ApiUtils'
+import { PositionParameters, QueryTypeT } from '../ApiUtils';
 
 export interface LocationType {
 	title?: string;
@@ -23,14 +23,19 @@ interface HashChangeMetadata {
 	hash: string;
 }
 
+interface NavigateMetadata {
+	type: QueryTypeT;
+	location?: LocationType;
+}
+
 interface NewDataMetadata {
 	type: QueryTypeT;
 	data?: object[];
 }
 
 export interface Action {
-	type: 'HASH_CHANGE' | 'NEW_DATA' | 'GET_LOCATION' | 'NEW_LOCATION';
-	metadata?: HashChangeMetadata | NewDataMetadata | LocationType;
+	type: 'HASH_CHANGE' | 'NAVIGATE' | 'NEW_DATA' | 'GET_LOCATION' | 'NEW_LOCATION';
+	metadata?: HashChangeMetadata | NavigateMetadata | NewDataMetadata | LocationType;
 }
 
 const getLocation = (params: URLSearchParams): LocationType => {
@@ -45,7 +50,7 @@ const getLocation = (params: URLSearchParams): LocationType => {
 			lon: Number(lon),
 			maxDistance: Number(params.get('r') || 1000),
 			maxResults: 30,
-		}
+		};
 	}
 
 	return {
@@ -53,32 +58,27 @@ const getLocation = (params: URLSearchParams): LocationType => {
 		position,
 		stopCodes: code && code.split(',') || undefined,
 		follow: (params.get('follow') === 'true'),
-	}
-}
+	};
+};
 
-const parseHash = (hash: string): {location: LocationType, type: QueryTypeT} => {
-	const params_match = hash.match(/\?.*/);
-	const params = new URLSearchParams(params_match ? params_match[0] : '');
+const parseHash = (hash: string): {location: LocationType; type: QueryTypeT} => {
+	const paramsMatch = hash.match(/\?.*/);
+	const params = new URLSearchParams(paramsMatch ? paramsMatch[0] : '');
 	const location = getLocation(params);
 
 	let type: QueryTypeT;
-	let newHash: string;
 	if (hash.match(/\/menu.*/)) {
 		type = 'nearestStops';
-		newHash = '/menu';
 	} else if (hash.match(/#\/bikes.*/)) {
 		type = 'nearestBikes';
-		newHash = '/bikes';
 	} else if (hash.match(/#\/stop.*/)) {
 		type = 'stopDepartures';
-		newHash = '/stop';
 	} else /* nearby */ {
 		type = 'nearestDepartures';
-		newHash = '/nearby';
 	}
 
-	return {type, location}
-}
+	return {type, location};
+};
 
 interface LoadingState {
 	loading: string | undefined;
@@ -102,7 +102,7 @@ const getLocationState = (type: QueryTypeT, location: LocationType): LoadingStat
 			break;
 	}
 	return {loading, error};
-}
+};
 
 export function reducer(prevState: StateType | undefined, action: Action): StateType {
 	if (prevState === undefined) {
@@ -113,31 +113,41 @@ export function reducer(prevState: StateType | undefined, action: Action): State
 				data: [],
 				loading: 'Loading data from HSL API'
 			},
-		}
+		};
 	}
 
 	let newState;
 	switch(action.type) {
-	case 'HASH_CHANGE':
-		const hash = (action.metadata as HashChangeMetadata).hash;
+		case 'HASH_CHANGE': {
+			const hash = (action.metadata as HashChangeMetadata).hash;
 
-		const {location, type} = parseHash(hash);
+			const {location, type} = parseHash(hash);
 
-		newState = Object.assign({}, prevState, {location});
-		if (prevState.view.type !== type) {
-			newState.view = Object.assign({
-				type,
-				data: [],
-			}, getLocationState(type, location));
+			newState = Object.assign({}, prevState, {location});
+			if (prevState.view.type !== type) {
+				newState.view = Object.assign({
+					type,
+					data: [],
+				}, getLocationState(type, location));
+			}
+			break;
 		}
-		break;
-	case 'NEW_LOCATION':
-		newState = Object.assign({}, prevState, {location: action.metadata});
-		break;
-	case 'NEW_DATA':
-		const view = action.metadata as NewDataMetadata;
-		newState = Object.assign({}, prevState, {view})
-		break;
+		case 'NAVIGATE': {
+			const {type, location} = (action.metadata as NavigateMetadata);
+			if (type !== prevState.view.type) {
+				newState = Object.assign({}, prevState, location, {view: {type, data: [], loading: 'Loading data from HSL API'}});
+			}
+			break;
+		}
+		case 'NEW_LOCATION': {
+			newState = Object.assign({}, prevState, {location: action.metadata});
+			break;
+		}
+		case 'NEW_DATA': {
+			const view = action.metadata as NewDataMetadata;
+			newState = Object.assign({}, prevState, {view});
+			break;
+		}
 	}
 
 	if (newState === undefined) {

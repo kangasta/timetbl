@@ -1,19 +1,34 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 
+// @ts-ignore
+import { CSExpandable } from 'chillisalmon';
+
 import { StateType, Action } from '../Store/reducer';
 import { QueryTypeT } from '../ApiUtils';
 
 import { Title } from '../Components';
-import { TimeTable } from '../Components';
+import { BikesList, NavBar, StopMenu, TimeTable } from '../Components';
 
-export function App({view, hashChange}: {view: QueryTypeT, hashChange: (hash: string) => Action}) {
+import './App.css';
+import './Theme.css';
+
+interface StateProps {
+	type: QueryTypeT;
+}
+
+interface DispatchProps {
+	hashChange: (hash: string) => Action;
+	navigate: (type: QueryTypeT) => Action;
+}
+
+export function App({type, hashChange, navigate}: DispatchProps & StateProps) {
 	const pushNewHash = (): void => {
 		const match = window.location.href.match(/#.*/);
 		const hash = match ? match[0] : '';
 
 		hashChange(hash);
-	}
+	};
 
 	useEffect(() => {
 		pushNewHash();
@@ -21,33 +36,69 @@ export function App({view, hashChange}: {view: QueryTypeT, hashChange: (hash: st
 		window.addEventListener('hashchange', pushNewHash);
 		return () => {
 			window.removeEventListener('hashchange', pushNewHash);
-		}
+		};
 	}, []);
 
+	const navButtons = [
+		{
+			text: 'Nearby',
+			onClick: () => { navigate('nearestDepartures'); },
+			disabled: type === 'nearestDepartures',
+		},
+		{
+			text: 'Bikes',
+			onClick: () => { navigate('nearestBikes'); },
+			disabled: type === 'nearestBikes',
+		},
+		{
+			text: 'Menu',
+			onClick: () => { navigate('nearestStops'); },
+			disabled: type === 'nearestStops',
+		}
+	];
+
+	const View = () => {
+		switch(type){
+			case 'nearestBikes':
+				return <BikesList/>;
+			case 'nearestStops':
+				return <StopMenu/>;
+			case 'nearestDepartures':
+			case 'stopDepartures':
+				return <TimeTable/>;
+	}};
+
+	const theme = type === 'nearestBikes' ? 'BikesTheme' : 'MainTheme';
+
 	return (
-		<div className={'App'}>
+		<div className={`App ${theme}`}>
 			<Title/>
-			<TimeTable/>
+			<CSExpandable>
+				<NavBar buttons={navButtons}/>
+			</CSExpandable>
+			<View/>
+			<div className='Whitespace'/>
+				<div className='Background'/>
+				<div className='Footer'>
+					<a className='Link' href='https://github.com/kangasta/timetbl'>kangasta / timetbl</a>
+					<span className='Divider'>|</span>
+					<a className='Link' href='https://digitransit.fi/en/developers/'>data source</a>
+				</div>
 		</div>
 	);
 }
 
-interface StateProps {
-	view: QueryTypeT;
-}
 const mapStateToProps = (state: StateType): StateProps => {
 	return {
-		view: state.view.type as QueryTypeT,
-	}
+		type: state.view.type as QueryTypeT,
+	};
 };
 
-interface DispatchProps {
-	hashChange: (hash: string) => Action;
-}
 const mapDispatchToProps = (dispatch: (args: Action) => Action): DispatchProps => {
 	return {
 		hashChange: (hash: string) => dispatch({type: 'HASH_CHANGE', metadata: {hash}}),
-	}
+		navigate: (type: QueryTypeT) => dispatch({type: 'NAVIGATE', metadata: {type}}),
+	};
 };
 
 export default connect<StateProps, DispatchProps>(

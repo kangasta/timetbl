@@ -1,23 +1,23 @@
-import { call, put, select, takeEvery } from 'redux-saga/effects'
-import { StateType, LocationType } from './reducer';
+import { call, put, select, takeEvery } from 'redux-saga/effects';
+import { StateType, LocationType, Action } from './reducer';
 import { QueryTypeT, PositionParameters, sendQuery } from '../ApiUtils';
 
-const getLocationAndType = (state: StateType): {type: string, location: LocationType} => ({type: state.view.type, location: state.location});
+const getLocationAndType = (state: StateType): {type: string; location: LocationType} => ({type: state.view.type, location: state.location});
 
-const getNearestQueryStr = (location: LocationType) : string => {
+const getNearestQueryStr = (location: LocationType): string => {
 	if (location.position === undefined) return '';
 
-	const getPositionParameter = (key: keyof PositionParameters): string => `${key}=${location.position[key]}`
+	const getPositionParameter = (key: keyof PositionParameters): string => `${key}=${location.position[key]}`;
 	return `?${Object.keys(location.position).map(getPositionParameter).join('&')}&follow=${location.follow}`;
-}
+};
 
-const getStopsQueryStr = (location: LocationType) : string => {
+const getStopsQueryStr = (location: LocationType): string => {
 	if (location.stopCodes === undefined) return '';
 
 	return `?code=${location.stopCodes.join(',')}`;
-}
+};
 
-const generatePath = (type: QueryTypeT, location: LocationType): {path: string, query: string} => {
+const generatePath = (type: QueryTypeT, location: LocationType): {path: string; query: string} => {
 	switch(type) {
 		case 'nearestBikes':
 			return {path: '/bikes', query: getNearestQueryStr(location)};
@@ -28,14 +28,26 @@ const generatePath = (type: QueryTypeT, location: LocationType): {path: string, 
 		case 'stopDepartures':
 			return {path: '/stop', query: getStopsQueryStr(location)};
 	}
-}
+};
 
-function* updateHash() {
+function* updateHash({type: action}: Action) {
 	const {type, location} = yield select(getLocationAndType);
 	const {path, query} = generatePath(type, location);
 
 	const baseurl = window.location.href.match(/[^#]+/)[0];
-	window.history.replaceState(null, document.title, `${baseurl}#${path}${query}`);
+	if (action === 'NAVIGATE'){
+		window.history.pushState(
+			null,
+			document.title,
+			`${baseurl}#${path}${query}`
+		);
+	} else {
+		window.history.replaceState(
+			null,
+			document.title,
+			`${baseurl}#${path}${query}`
+		);
+	}
 
 	if (type !== 'stopDepartures' && !query) {
 		yield put({type: 'GET_LOCATION'});
@@ -71,7 +83,7 @@ function* getData() {
 	if (type === 'stopDepartures') {
 		parameters = location.stopCodes.map((i: string): object => ({stopCode: i}));
 	} else {
-		parameters = location.position
+		parameters = location.position;
 	}
 	try {
 		const data = yield call(sendQuery, type, parameters);
@@ -82,10 +94,13 @@ function* getData() {
 }
 
 export function* saga() {
-	yield takeEvery("HASH_CHANGE", updateHash);
-	
-	yield takeEvery("GET_LOCATION", getLocation);
+	yield takeEvery('HASH_CHANGE', updateHash);
+	yield takeEvery('NAVIGATE', updateHash);
+	yield takeEvery('NEW_LOCATION', updateHash);
 
-	yield takeEvery("NEW_LOCATION", getData);
-	yield takeEvery("HASH_CHANGE", getData);
+	yield takeEvery('GET_LOCATION', getLocation);
+
+	yield takeEvery('HASH_CHANGE', getData);
+	yield takeEvery('NAVIGATE', getData);
+	yield takeEvery('NEW_LOCATION', getData);
 }
