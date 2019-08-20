@@ -1,15 +1,18 @@
-import React, { Component } from 'react';
+import React from 'react';
+
+// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
 // @ts-ignore
 import { CSValidatorChanger } from 'chillisalmon';
 
-// @ts-ignore
-import { DepartureInfo } from '../timetbl';
+import { DepartureInfo } from '../Components';
 import { ViewType, StateType } from '../Store/reducer';
 import { StoptimesData, NearestNode } from '../ApiUtils';
 import { connect } from 'react-redux';
 
+import '../Style/TimeTable.css';
+
 export function TimeTable({type, data, loading, error}: ViewType) {
-	data = data as StoptimesData[] | NearestNode<StoptimesData>[]
+	data = data as StoptimesData[] | NearestNode<StoptimesData>[];
 	let n_stop_codes = 0;
 	if (type === 'stopDepartures') {
 		n_stop_codes = data.map((departure: StoptimesData) => departure.stoptimes[0].stop.code).filter((code, index, array) => array.indexOf(code) === index).length;
@@ -24,13 +27,26 @@ export function TimeTable({type, data, loading, error}: ViewType) {
 		<CSValidatorChanger error={error} loading={loading}>
 			<ul className='Timetable'>
 				{
-					data.map((departureInfoArrayItem: StoptimesData | NearestNode<StoptimesData>) => {
+					data.map((departure: StoptimesData | NearestNode<StoptimesData>) => {
 						if (type === 'nearestDepartures') {
-							departureInfoArrayItem = departureInfoArrayItem as NearestNode<StoptimesData>;
-							return <DepartureInfo key={departureInfoArrayItem.node.place.stoptimes[0].trip.gtfsId} showPlatform={true} showStopName={true} distance={departureInfoArrayItem.node.distance} stoptime={departureInfoArrayItem.node.place.stoptimes}/>
+							departure = departure as NearestNode<StoptimesData>;
+							const node = departure.node;
+							return <DepartureInfo
+								key={node.place.stoptimes[0].trip.gtfsId}
+								showPlatform={true}
+								showStopName={true}
+								distance={node.distance}
+								stoptimes={node.place.stoptimes}
+							/>;
 						} else {
-							departureInfoArrayItem = departureInfoArrayItem as StoptimesData;
-							return <DepartureInfo key={departureInfoArrayItem.stoptimes[0].stop.gtfsId} showPlatform={n_stop_codes > 1} showStopName={n_stop_names > 1} stoptime={departureInfoArrayItem.stoptimes}/>}
+							departure = departure as StoptimesData;
+							return <DepartureInfo
+								key={departure.stoptimes[0].stop.gtfsId} 
+								showPlatform={n_stop_codes > 1}
+								showStopName={n_stop_names > 1}
+								stoptimes={departure.stoptimes}
+							/>;
+						}
 					})
 				}
 			</ul>
@@ -39,7 +55,7 @@ export function TimeTable({type, data, loading, error}: ViewType) {
 }
 
 const mapStateToProps = ({view}: StateType): ViewType => {
-	return view
+	return view;
 };
 
 export default connect<ViewType>(

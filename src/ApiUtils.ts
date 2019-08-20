@@ -1,12 +1,17 @@
+import { string } from 'prop-types';
+
+const stopQuery = `
+	gtfsId
+	name
+	code
+	platformCode
+	desc
+	lat
+	lon`;
+
 const stoptimesQuery = `
 	stop {
-		gtfsId
-		name
-		code
-		platformCode
-		desc
-		lat
-		lon
+		${stopQuery}
 	} trip {
 		gtfsId
 		route {
@@ -17,6 +22,9 @@ const stoptimesQuery = `
 					text
 					language
 				}
+				alertSeverityLevel
+				alertEffect
+				alertCause
 			}
 		}
 	}
@@ -87,8 +95,7 @@ const nearestDeparturesQuery = (parameters: PositionParameters): string => neare
 const nearestStopsQuery = (parameters: PositionParameters): string => nearestQuery(
 	'STOP',
 	`... on Stop {
-		name
-		code
+		${stopQuery}
 	}`,
 	parameters
 );
@@ -113,38 +120,59 @@ export interface NearestNode <Place>{
 	node: {
 		distance: number;
 		place: Place;
-	}
+	};
 }
 
 export interface NearestData <Place>{
 	nearest: {
 		edges: NearestNode<Place>[];
-	}
+	};
+}
+
+export interface BikeStation {
+	stationId: string;
+	name: string;
+	bikesAvailable: number;
+	spacesAvailable: number;
+	realtime: boolean;
+}
+
+export type AlertSeverity = 'UNKNOWN_SEVERITY' | 'INFO' | 'WARNING' | 'SEVERE';
+export type AlertEffect = 'NO_SERVICE' | 'REDUCED_SERVICE' | 'SIGNIFICANT_DELAYS' | 'DETOUR' | 'ADDITIONAL_SERVICE' | 'MODIFIED_SERVICE' | 'OTHER_EFFECT' | 'UNKNOWN_EFFECT' | 'STOP_MOVED' | 'NO_EFFECT';
+export interface RouteAlert {
+	alertDescriptionTextTranslations: {
+		text: string;
+		language: string;
+	}[];
+	alertSeverityLevel: AlertSeverity;
+	alertEffect: AlertEffect;
+	alertCause: string;
+}
+
+export type TransportMode = 'AIRPLANE' | 'BICYCLE' | 'BUS' | 'CABLE_CAR' | 'CAR' | 'FERRY' | 'FUNICULAR' | 'GONDOLA' | 'RAIL' | 'SUBWAY' | 'TRAM' | 'TRANSIT' | 'WALK';
+
+export interface TransportRoute {
+	shortName: string;
+	mode: TransportMode;
+	alerts: RouteAlert[];
+}
+
+export interface Stop {
+	gtfsId: string;
+	name: string;
+	code: string;
+	platformCode: string;
+	desc: string;
+	lat: number;
+	lon: number;
 }
 
 export interface StoptimeData {
-	stop: {
-		gtfsId: string;
-		name: string;
-		code: string;
-		platformCode: string;
-		desc: string;
-		lat: number;
-		lon: number;
-	},
+	stop: Stop;
 	trip: {
 		gtfsId: string;
-		route: {
-			shortName: string;
-			mode: string;
-			alerts: {
-				alertDescriptionTextTranslations: {
-					text: string;
-					language: string;
-				}
-			}
-		}
-	}
+		route: TransportRoute;
+	};
 	realtimeArrival: number;
 	realtimeDeparture: number;
 	realtime: boolean;
@@ -191,10 +219,10 @@ const sortStoptimesData = (data: StoptimesSortable[], isNearestNode: boolean): S
 
 			return (a0.serviceDay - b0.serviceDay) ?
 						(a0.serviceDay - b0.serviceDay) :
-						(a0.realtimeDeparture - b0.realtimeDeparture)
+						(a0.realtimeDeparture - b0.realtimeDeparture);
 		}
 	);
-}
+};
 
 export type QueryTypeT = 'nearestBikes' | 'nearestDepartures' | 'nearestStops' | 'stopDepartures';
 type QueryParametersT = PositionParameters | StopParameters;
