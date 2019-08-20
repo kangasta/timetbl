@@ -1,5 +1,3 @@
-import { string } from 'prop-types';
-
 const stopQuery = `
 	gtfsId
 	name
@@ -256,7 +254,7 @@ export async function sendQuery(type: QueryTypeT, parameters: QueryParametersT |
 		});
 
 		const jsonData = await data.json();
-		if (jsonData.hasOwnProperty('errors')) {
+		if ('errors' in jsonData) {
 			throw new Error('HSL API returned object with errors content instead of data:\n' + JSON.stringify(jsonData.errors, null, 2));
 		}
 

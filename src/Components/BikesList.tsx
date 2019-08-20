@@ -1,4 +1,6 @@
 import React from 'react';
+
+// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
 // @ts-ignore
 import { CSValidatorChanger } from 'chillisalmon';
 
@@ -20,7 +22,7 @@ export function BikesList({data, loading, error}: ViewType) {
 							<li className='Departure'>{bikesItem.node.distance < 1000 ? bikesItem.node.distance.toString() + ' m' : (Math.round(bikesItem.node.distance/100)/10).toString() + ' km'}</li>
 						</ul>
 						<div className='Destination NoDetails'>
-							{(bikesItem.node.place.name || '').split(',').map(destination => <DestinationItem destination={destination}/>)}
+							{(bikesItem.node.place.name || '').split(',').map(destination => <DestinationItem key={destination} destination={destination}/>)}
 						</div>
 					</li>
 				))}

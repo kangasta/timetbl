@@ -13,14 +13,14 @@ import '../Style/TimeTable.css';
 
 export function TimeTable({type, data, loading, error}: ViewType) {
 	data = data as StoptimesData[] | NearestNode<StoptimesData>[];
-	let n_stop_codes = 0;
+	let nStopCodes = 0;
 	if (type === 'stopDepartures') {
-		n_stop_codes = data.map((departure: StoptimesData) => departure.stoptimes[0].stop.code).filter((code, index, array) => array.indexOf(code) === index).length;
+		nStopCodes = data.map((departure: StoptimesData) => departure.stoptimes[0].stop.code).filter((code, index, array) => array.indexOf(code) === index).length;
 	}
 
-	let n_stop_names = 0;
+	let nStopNames = 0;
 	if (type === 'stopDepartures') {
-		n_stop_names = data.map((departure: StoptimesData) => departure.stoptimes[0].stop.name).filter((name, index, array) => array.indexOf(name) === index).length;
+		nStopNames = data.map((departure: StoptimesData) => departure.stoptimes[0].stop.name).filter((name, index, array) => array.indexOf(name) === index).length;
 	}
 
 	return (
@@ -42,8 +42,8 @@ export function TimeTable({type, data, loading, error}: ViewType) {
 							departure = departure as StoptimesData;
 							return <DepartureInfo
 								key={departure.stoptimes[0].stop.gtfsId} 
-								showPlatform={n_stop_codes > 1}
-								showStopName={n_stop_names > 1}
+								showPlatform={nStopCodes > 1}
+								showStopName={nStopNames > 1}
 								stoptimes={departure.stoptimes}
 							/>;
 						}

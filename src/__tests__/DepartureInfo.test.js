@@ -20,6 +20,7 @@ describe('DepartureInfo', () => {
 		}]}/>);
 	});
 	it('renders alert either as icon or detailed text', () => {
+		// eslint-disable-next-line @typescript-eslint/no-var-requires
 		const stoptime = require('../__mocks__/StoptimesWithAlert.json');
 		const wrapper = shallow(<DepartureInfo stoptime={stoptime}/>);
 
