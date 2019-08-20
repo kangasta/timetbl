@@ -23,7 +23,9 @@
 		"react"
 	],
 	"rules": {
-		"no-prototype-builtins": "off",
+		"@typescript-eslint/no-unused-vars": [
+			"error"
+		],
 		"linebreak-style": [
 			"error",
 			"unix"

@@ -51,7 +51,7 @@ function AlertText({alerts, showAlert, toggleAlert, language}: TransportRoute & 
 	return (
 		<div className='Alerts'>
 			{alertTexts.map((alertText, i) => (
-				<div className='AlertText' onClick={toggleAlert}>
+				<div key={i} className='AlertText' onClick={toggleAlert}>
 					<span className='Left'>
 						<AlertSymbol severity={alerts[i].alertSeverityLevel}/>
 					</span>
@@ -72,7 +72,7 @@ function Destinations({className, headsign}: {className: string; headsign: strin
 	);
 }
 
-function Details({stop, showStopName, showPlatform, distance}: {stop: Stop; showStopName?: boolean; showPlatform?: boolean; distance?: number}) {
+function Details({stop, showStopName, distance}: {stop: Stop; showStopName?: boolean; distance?: number}) {
 	const { name, code, platformCode } = stop;
 
 	return (
