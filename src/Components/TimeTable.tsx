@@ -41,7 +41,7 @@ export function TimeTable({type, data, loading, error}: ViewType) {
 						} else {
 							departure = departure as StoptimesData;
 							return <DepartureInfo
-								key={departure.stoptimes[0].stop.gtfsId} 
+								key={departure.stoptimes[0].trip.gtfsId}
 								showPlatform={nStopCodes > 1}
 								showStopName={nStopNames > 1}
 								stoptimes={departure.stoptimes}

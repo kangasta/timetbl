@@ -1,3 +1,5 @@
+import { getUniqueFilter } from './Components/Utils';
+
 const stopQuery = `
 	gtfsId
 	name
@@ -205,6 +207,7 @@ const combineStopsData = (data: StopData[]) => {
 };
 
 type StoptimesSortable = StoptimesData | NearestNode<StoptimesData>;
+
 const sortStoptimesData = (data: StoptimesSortable[], isNearestNode: boolean): StoptimesSortable[] => {
 	const getStoptimes = (item: StoptimesSortable): StoptimeData[] => (isNearestNode ? (item as NearestNode<StoptimesData>).node.place.stoptimes : (item as StoptimesData).stoptimes);
 
@@ -275,7 +278,7 @@ export async function sendQuery(type: QueryTypeT, parameters: QueryParametersT |
 		return sortStoptimesData(
 			combineStopsData(promise as StopData[]),
 			false
-		);
+		).filter(getUniqueFilter('stoptimes[0].trip.gtfsId'));
 	}
 }
 
