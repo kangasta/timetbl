@@ -76,18 +76,23 @@ export function departureTimeToStr(seconds: number) {
 		parseTime(seconds));
 }
 
-class Utils {
-	static toDestinationItem(destination: string) {
-		const metro = destination.match(/\(M\)/);
-		destination = destination.replace('(M)','').trim();
+export function getField<T=unknown>(obj: any, fieldString: string): T | undefined {
+	try {
+		return fieldString.split(/[.[]/).reduce<T>((o: any, i: string): any => {
+			const numberMatch = i.match(/([0-9]+)\]/);
+			const key = numberMatch ? Number(numberMatch[1]) : i;
 
-		return (
-			<span key={destination} className='DestinationItem'>
-				{destination}
-				{metro ? <span className='Metro'>M</span> : null}
-			</span>
-		);
+			return (o[key]);
+		}, obj);
+	} catch(e) {
+		return undefined;
 	}
 }
 
-export default Utils;
+export function getUniqueFilter(field: string){
+	return function <T>(element: T, index: number, array: T[]): boolean {
+		return array.findIndex(
+			i => (getField(i, field) === getField(element, field))
+		) === index;
+	};
+}

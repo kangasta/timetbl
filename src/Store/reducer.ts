@@ -135,7 +135,10 @@ export function reducer(prevState: StateType | undefined, action: Action): State
 		case 'NAVIGATE': {
 			const {type, location} = (action.metadata as NavigateMetadata);
 			if (type !== prevState.view.type) {
-				newState = Object.assign({}, prevState, location, {view: {type, data: [], loading: 'Loading data from HSL API'}});
+				newState = Object.assign({}, prevState, {view: {type, data: [], loading: 'Loading data from HSL API'}});
+				if (location) {
+					newState = Object.assign(newState, {location});
+				}
 			}
 			break;
 		}

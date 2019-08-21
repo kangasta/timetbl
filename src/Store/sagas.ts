@@ -11,10 +11,11 @@ const getNearestQueryStr = (location: LocationType): string => {
 	return `?${Object.keys(location.position).map(getPositionParameter).join('&')}&follow=${location.follow}`;
 };
 
-const getStopsQueryStr = (location: LocationType): string => {
-	if (location.stopCodes === undefined) return '';
+const getStopsQueryStr = ({title, stopCodes}: LocationType): string => {
+	if (stopCodes === undefined) return '';
+	const titleParam = title !== undefined ? `&title=${title}` : '';
 
-	return `?code=${location.stopCodes.join(',')}`;
+	return `?code=${stopCodes.join(',')}${titleParam}`;
 };
 
 const generatePath = (type: QueryTypeT, location: LocationType): {path: string; query: string} => {
@@ -78,10 +79,14 @@ function* getLocation() {
 
 function* getData() {
 	const {type, location} = yield select(getLocationAndType);
-	
+
 	let parameters;
 	if (type === 'stopDepartures') {
-		parameters = location.stopCodes.map((i: string): object => ({stopCode: i}));
+		if (location.stopCodes !== undefined && location.stopCodes.length > 0) {
+			parameters = location.stopCodes.map((i: string): object => ({stopCode: i}));
+		} else {
+			return put({type: 'NEW_DATA', metadata: {type, data: [], loading: null, error: 'No stops given'}});
+		}
 	} else {
 		parameters = location.position;
 	}
@@ -89,7 +94,7 @@ function* getData() {
 		const data = yield call(sendQuery, type, parameters);
 		yield put({type: 'NEW_DATA', metadata: {type, data}});
 	} catch(e) {
-		yield put({type: 'NEW_Data', metadata: {type, data: [], error: e.toString}});
+		yield put({type: 'NEW_DATA', metadata: {type, data: [], error: e.toString()}});
 	}
 }
 
