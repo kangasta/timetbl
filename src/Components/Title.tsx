@@ -54,12 +54,12 @@ export function Title({clock, lat, lon, stopCodes, title}: StateProps) {
 
 	return (
 		<div className='Title'>
-			{clock === true ? <div className='Clock'>
+			{clock && <div className='Clock'>
 				{time}
-			</div> : null }
-			{hasText() ? <div className='Code'>
+			</div> }
+			{hasText() && <div className='Code'>
 				{title}
-			</div> : null}
+			</div>}
 			{getCoords()}
 		</div>
 	);

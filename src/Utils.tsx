@@ -1,5 +1,5 @@
 import React from 'react';
-import { AlertSeverity } from '../ApiUtils';
+import { AlertSeverity } from './ApiUtils';
 
 export function DestinationItem({destination}: {destination: string}) {
 	const metro = destination.match(/\(M\)/);
@@ -8,12 +8,12 @@ export function DestinationItem({destination}: {destination: string}) {
 	return (
 		<span key={destination} className='DestinationItem'>
 			{destination}
-			{metro ? <span className='Metro'>M</span> : null}
+			{metro && <span className='Metro'>M</span>}
 		</span>
 	);
 }
 
-export function AlertSymbol({severity}: {severity: AlertSeverity}) {
+export function AlertSymbol({severity}: {severity?: AlertSeverity}) {
 	const mask = severity === 'INFO' ? 'AlertSymbolInfoMask' : 'AlertSymbolWarningMask';
 
 	return (
@@ -35,45 +35,43 @@ export function AlertSymbol({severity}: {severity: AlertSeverity}) {
 	);
 }
 
-export function currentTimeInMinutes() {
-	const curTime = new Date();
-	return curTime.getHours()*60 + curTime.getMinutes();
-}
-
-export function parseHour(seconds: number, max23=true) {
-	let h = (~~(seconds/3600));
-	h = h > 23 && max23 ? h - 24 : h;
-	return h;
-}
-
-export function parseMinute(seconds: number, max23=true) {
-	let min = (~~(seconds/60));
-	min = min > 24*60 && max23 ? min - 24*60 : min;
-	return min;
-}
-
-export function parseTime(seconds: number, delim = ':') {
-	const h = parseHour(seconds);
-
-	let hStr = h.toString();
-	hStr = hStr.length < 2 ? ' ' + hStr : hStr;
-	let minStr = (~~((seconds%3600)/60)).toString();
-	minStr = minStr.length < 2 ? '0' + minStr : minStr;
-
-	return hStr + delim + minStr;
-}
-
-export function departureTimeToStr(seconds: number) {
-	if (seconds === 0) {
-		return 'Time';
+export class TimeUtils {
+	static currentTimeInMinutes() {
+		const curTime = new Date(Date.now());
+		return curTime.getHours()*60 + curTime.getMinutes();
 	}
 
-	let departureInMinutes = parseMinute(seconds) - currentTimeInMinutes();
-	departureInMinutes = departureInMinutes > 10 || departureInMinutes < 0 ? (parseMinute(seconds) - currentTimeInMinutes() + 24*60) : departureInMinutes;
+	static parseHour(seconds: number, max23=true) {
+		let h = (~~(seconds/3600));
+		h = h > 23 && max23 ? h - 24 : h;
+		return h;
+	}
 
-	return (((departureInMinutes < 10) && (departureInMinutes >= 0)) ?
-		(departureInMinutes + ' min') :
-		parseTime(seconds));
+	static parseMinute(seconds: number, max23=true) {
+		let min = (~~(seconds/60));
+		min = min > 24*60 && max23 ? min - 24*60 : min;
+		return min;
+	}
+
+	static parseTime(seconds: number, delim = ':') {
+		const h = TimeUtils.parseHour(seconds);
+
+		let hStr = h.toString();
+		hStr = hStr.length < 2 ? ' ' + hStr : hStr;
+		let minStr = (~~((seconds%3600)/60)).toString();
+		minStr = minStr.length < 2 ? '0' + minStr : minStr;
+
+		return hStr + delim + minStr;
+	}
+
+	static departureTimeToStr(seconds: number, showInMinutesLimit = 10) {
+		let departureInMinutes = TimeUtils.parseMinute(seconds) - TimeUtils.currentTimeInMinutes();
+		departureInMinutes = departureInMinutes < 0 ? (departureInMinutes + 24*60) : departureInMinutes;
+
+		return (((departureInMinutes < showInMinutesLimit) && (departureInMinutes >= 0)) ?
+			(departureInMinutes + ' min') :
+			TimeUtils.parseTime(seconds));
+	}
 }
 
 export function getField<T=unknown>(obj: any, fieldString: string): T | undefined {
@@ -82,7 +80,11 @@ export function getField<T=unknown>(obj: any, fieldString: string): T | undefine
 			const numberMatch = i.match(/([0-9]+)\]/);
 			const key = numberMatch ? Number(numberMatch[1]) : i;
 
-			return (o[key]);
+			if (key === '') {
+				return o;
+			}
+
+			return o[key];
 		}, obj);
 	} catch(e) {
 		return undefined;

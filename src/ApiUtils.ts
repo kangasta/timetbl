@@ -1,4 +1,4 @@
-import { getUniqueFilter } from './Components/Utils';
+import { getUniqueFilter } from './Utils';
 
 const stopQuery = `
 	gtfsId

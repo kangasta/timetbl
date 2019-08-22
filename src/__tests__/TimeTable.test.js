@@ -1,6 +1,6 @@
-import React from 'react';
+/*import React from 'react';
 import { mount, shallow } from 'enzyme';
-import { DepartureInfo, TimeTable} from '../timetbl';
+import { DepartureInfo, TimeTable} from '../Components';
 
 //jest.mock('../APIQuery');
 
@@ -51,14 +51,12 @@ describe('TimeTable', () => {
 			if (update) update();
 		};
 	});
-	/*
 	it('sends queries periodically', ()=> {
 		const spy = jest.spyOn(TimeTable.prototype, 'sendQuery');
 		shallow(<TimeTable stopCode='E1234'/>);
 		jest.runTimersToTime(10e3);
 		expect(spy).toHaveBeenCalledTimes(2);
 	});
-	*/
 	it('clears timers at unmount', () => {
 		const wrapper = mount(
 			<TimeTable />
@@ -67,3 +65,4 @@ describe('TimeTable', () => {
 		expect(clearInterval).toHaveBeenCalled();
 	});
 });
+*/
