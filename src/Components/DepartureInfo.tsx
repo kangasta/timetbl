@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 
 import { StoptimeData, TransportRoute, AlertSeverity, Stop } from '../ApiUtils';
-import { AlertSymbol, DestinationItem, departureTimeToStr } from './Utils';
+import { AlertSymbol, DestinationItem, TimeUtils } from '../Utils';
 
 import '../Style/DepartureInfo.css';
 
@@ -105,7 +105,7 @@ export function DepartureInfo({stoptimes, distance, showPlatform=false, showStop
 			<ul className='DepartureList'>
 				{stoptimes.map((stoptime,i) => (
 					<li key={i} className={`Departure ${stoptime.realtime ? 'Realtime' : 'Scheduled'}`}>
-						{departureTimeToStr(stoptime.realtimeDeparture)}
+						{TimeUtils.departureTimeToStr(stoptime.realtimeDeparture)}
 					</li>
 				))}
 			</ul>

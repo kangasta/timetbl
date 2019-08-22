@@ -1,6 +1,6 @@
 import React from 'react';
 import { mount, shallow} from 'enzyme';
-import { NavBar } from '../timetbl';
+import { NavBar } from '../Components';
 
 describe('NavBar', () => {
 	it('renders without crashing', () => {

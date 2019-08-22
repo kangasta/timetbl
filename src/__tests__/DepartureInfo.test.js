@@ -1,7 +1,7 @@
-import React from 'react';
+/*import React from 'react';
 import { mount, shallow } from 'enzyme';
 
-import { DepartureInfo } from '../timetbl';
+import { DepartureInfo } from '../Components';
 
 describe('DepartureInfo', () => {
 	it('renders without crashing', () => {
@@ -31,7 +31,6 @@ describe('DepartureInfo', () => {
 			wrapper.find(symbol ? '.AlertSymbol' : '.AlertText').simulate('click');
 		});
 	});
-	/* TODO update
 	it('shows stop info if stop is given in props.', () => {
 		const component = mount(<DepartureInfo stop={{name: 'SOME NAME'}}/>);
 
@@ -56,7 +55,6 @@ describe('DepartureInfo', () => {
 		expect(component.find('li.stop')).toHaveLength(1);
 		expect(component.find('li.stop').everyWhere(i => i.hasClass('hide'))).toBeTruthy();
 	});
-	*/
 });
 
 describe('DepartureInfo.currentTimeInMinutes', () => {
@@ -95,13 +93,13 @@ describe('DepartureInfo.parseTime', () => {
 });
 
 describe('DepartureInfo.departureTimeToStr', () => {
-	/*it('starts with tilde if not in real time', () => {
+	it('starts with tilde if not in real time', () => {
 		expect(DepartureInfo.departureTimeToStr(22*3600+45*60, false)).toMatch(/^~/);
 		expect(DepartureInfo.departureTimeToStr(22*3600+45*60)).toMatch(/^~/);
 	});
 	it('starts with space if in real time', () => {
 		expect(DepartureInfo.departureTimeToStr(22*3600+45*60, true)).toMatch(/^\s/);
-	});*/
+	});
 	it('shows minutes left, if departure in next ten minutes', () => {
 		expect(DepartureInfo.departureTimeToStr((DepartureInfo.currentTimeInMinutes() + 5)*60))
 			.toMatch(/5\smin/);
@@ -131,3 +129,4 @@ describe('DepartureInfo.departureTimeToStr', () => {
 			.toMatch(/[0-9]{1,2}.[0-9]{2,2}/);
 	});
 });
+*/

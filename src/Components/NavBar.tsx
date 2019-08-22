@@ -11,7 +11,7 @@ interface PropsType {
 		disabled: boolean;
 	}[];
 }
-export default function NavBar({buttons}: PropsType) {
+export default function NavBar({buttons= []}: PropsType) {
 	return (
 		<div className='NavBar'>
 			{buttons.map(button => {

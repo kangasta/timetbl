@@ -63,8 +63,9 @@
     "moduleNameMapper": {
       "\\.(css|less)$": "<rootDir>/src/__mocks__/StyleMock.js"
     },
+    "moduleFileExtensions": ["js", "jsx", "ts", "tsx"],
     "setupFilesAfterEnv": [
-      "<rootDir>/src/setupTests.js"
+      "<rootDir>/src/setupTests.ts"
     ],
     "testURL": "http://localhost:8080"
   },

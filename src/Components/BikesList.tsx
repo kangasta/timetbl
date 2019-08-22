@@ -7,7 +7,7 @@ import { CSValidatorChanger } from 'chillisalmon';
 import { ViewType, StateType } from '../Store/reducer';
 import { BikeStation, NearestNode } from '../ApiUtils';
 import { connect } from 'react-redux';
-import { DestinationItem } from './Utils';
+import { DestinationItem } from '../Utils';
 
 export function BikesList({data, loading, error}: ViewType) {
 	const bikesArray = data as NearestNode<BikeStation>[];
