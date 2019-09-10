@@ -111,7 +111,7 @@ export function DepartureInfo({stoptimes, distance, showPlatform=false, showStop
 			</ul>
 			<AlertButton {...alertControls} {...route}/>
 			<Destinations className={detailsClass} headsign={stoptimes[0].headsign}/>
-			<Details stop={stoptimes[0].stop} {...{distance, showPlatform, showStopName}}/>
+			{(showStopName || showPlatform) && <Details stop={stoptimes[0].stop} {...{distance, showPlatform, showStopName}}/>}
 			<AlertText language='en' {...alertControls} {...route}/>
 		</li>
 	);
