@@ -4,7 +4,7 @@ import { NavBar } from '../Components';
 
 describe('NavBar', () => {
 	it('renders without crashing', () => {
-		mount(<NavBar />);
+		mount(<NavBar buttons={[{text: 'a', onClick: () => {}}]}/>);
 	});
 	it('allows omitting className, disabled, and onClick', () => {
 		const onClick = jest.fn();

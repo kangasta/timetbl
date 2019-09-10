@@ -2,7 +2,6 @@ import React from 'react';
 import { mount } from 'enzyme';
 
 import { DepartureInfo } from '../Components';
-import { TransportMode } from '../ApiUtils';
 import { getField } from '../Utils';
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires

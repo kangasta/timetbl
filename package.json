@@ -11,6 +11,7 @@
     "@babel/preset-env": "^7.5.5",
     "@babel/preset-react": "^7.0.0",
     "@babel/preset-typescript": "^7.3.3",
+    "@types/deep-freeze": "^0.1.2",
     "@types/enzyme": "^3.10.3",
     "@types/enzyme-adapter-react-16": "^1.0.5",
     "@types/jest": "^24.0.18",
@@ -24,6 +25,7 @@
     "babel-loader": "^8.0.6",
     "copy-webpack-plugin": "^5.0.3",
     "css-loader": "^3.1.0",
+    "deep-freeze": "0.0.1",
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.14.0",
     "eslint": "^6.1.0",
@@ -63,7 +65,12 @@
     "moduleNameMapper": {
       "\\.(css|less)$": "<rootDir>/src/__mocks__/StyleMock.js"
     },
-    "moduleFileExtensions": ["js", "jsx", "ts", "tsx"],
+    "moduleFileExtensions": [
+      "js",
+      "jsx",
+      "ts",
+      "tsx"
+    ],
     "setupFilesAfterEnv": [
       "<rootDir>/src/setupTests.ts"
     ],

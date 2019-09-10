@@ -34,7 +34,7 @@ interface NewDataMetadata {
 }
 
 export interface Action {
-	type: 'HASH_CHANGE' | 'NAVIGATE' | 'NEW_DATA' | 'GET_LOCATION' | 'NEW_LOCATION';
+	type: 'HASH_CHANGE' | 'NAVIGATE' | 'GET_DATA' | 'NEW_DATA' | 'GET_LOCATION' | 'NEW_LOCATION' | 'UPDATE';
 	metadata?: HashChangeMetadata | NavigateMetadata | NewDataMetadata | LocationType;
 }
 
@@ -104,7 +104,7 @@ const getLocationState = (type: QueryTypeT, location: LocationType): LoadingStat
 	return {loading, error};
 };
 
-export function reducer(prevState: StateType | undefined, action: Action): StateType {
+export function reducer(prevState?: StateType, action?: Action): StateType {
 	if (prevState === undefined) {
 		return {
 			location: { follow: true },

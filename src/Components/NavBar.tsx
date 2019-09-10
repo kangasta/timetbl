@@ -8,7 +8,7 @@ interface PropsType {
 		className?: string;
 		text: string;
 		onClick: () => void;
-		disabled: boolean;
+		disabled?: boolean;
 	}[];
 }
 export default function NavBar({buttons= []}: PropsType) {
