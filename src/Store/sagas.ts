@@ -98,6 +98,17 @@ function* getData() {
 	}
 }
 
+
+const getFollow = (state: StateType): boolean => (state.location.follow);
+
+export function* update() {
+	const follow = yield select(getFollow);
+	if (follow){
+		yield put({type: 'GET_LOCATION'});
+	}
+	yield put({type: 'GET_DATA'});
+}
+
 export function* saga() {
 	yield takeEvery('HASH_CHANGE', updateHash);
 	yield takeEvery('NAVIGATE', updateHash);
@@ -105,7 +116,10 @@ export function* saga() {
 
 	yield takeEvery('GET_LOCATION', getLocation);
 
+	yield takeEvery('GET_DATA', getData);
 	yield takeEvery('HASH_CHANGE', getData);
 	yield takeEvery('NAVIGATE', getData);
 	yield takeEvery('NEW_LOCATION', getData);
+
+	yield takeEvery('UPDATE', update);
 }

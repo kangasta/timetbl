@@ -53,7 +53,8 @@ const mapStateToProps = ({view}: StateType): ViewType => {
 
 interface DispatchProps {
 	navigate: (type: string, stopCodes?: string[], title?: string) => Action;
-}const mapDispatchToProps = (dispatch: (args: Action) => Action): DispatchProps => {
+}
+const mapDispatchToProps = (dispatch: (args: Action) => Action): DispatchProps => {
 	return {
 		navigate: (type: QueryTypeT, stopCodes?: string[], title?: string) => dispatch({type: 'NAVIGATE', metadata: {type, location: {follow: false, stopCodes, title}}}),
 	};

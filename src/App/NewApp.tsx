@@ -21,9 +21,10 @@ interface StateProps {
 interface DispatchProps {
 	hashChange: (hash: string) => Action;
 	navigate: (type: QueryTypeT) => Action;
+	update: () => Action;
 }
 
-export function App({type, hashChange, navigate}: DispatchProps & StateProps) {
+export function App({type, hashChange, navigate, update}: DispatchProps & StateProps) {
 	const pushNewHash = (): void => {
 		const match = window.location.href.match(/#.*/);
 		const hash = match ? match[0] : '';
@@ -34,8 +35,11 @@ export function App({type, hashChange, navigate}: DispatchProps & StateProps) {
 	useEffect(() => {
 		pushNewHash();
 
+		const updateId = setInterval(update, 20e3);
 		window.addEventListener('hashchange', pushNewHash);
+
 		return () => {
+			clearInterval(updateId);
 			window.removeEventListener('hashchange', pushNewHash);
 		};
 	}, []);
@@ -99,6 +103,7 @@ const mapDispatchToProps = (dispatch: (args: Action) => Action): DispatchProps =
 	return {
 		hashChange: (hash: string) => dispatch({type: 'HASH_CHANGE', metadata: {hash}}),
 		navigate: (type: QueryTypeT) => dispatch({type: 'NAVIGATE', metadata: {type}}),
+		update: () => dispatch({type: 'UPDATE'}),
 	};
 };
 

@@ -1,27 +1,12 @@
-/*import React from 'react';
-import { mount, shallow } from 'enzyme';
-import { DepartureInfo, TimeTable} from '../Components';
-
-//jest.mock('../APIQuery');
-
-const checkForDepartureInfo = (component, callback) => {
-	expect(component.find('.Loading')).toHaveLength(0);
-	expect(component.find(DepartureInfo)).not.toHaveLength(0);
-	if (callback) callback();
-};
+import React from 'react';
+import { mount } from 'enzyme';
+import { TimeTable } from '../Components/TimeTable';
 
 describe('TimeTable', () => {
 	it('renders without crashing', () => {
-		mount(<TimeTable />);
+		mount(<TimeTable type='nearestDepartures' data={[]}/>);
 	});
-	it('shows error when created with invalid props.', () => {
-		const component = mount(<TimeTable lat={16.5} />);
-		expect(component.exists('.cs-changer-item-active .Error')).toBe(true);
-	});
-	it('shows loading when created.', () => {
-		const component = mount(<TimeTable lat={16.5} lon={28.5}/>);
-		expect(component.exists('.cs-changer-item-active .Loading')).toBe(true);
-	});
+	/*
 	it('shows nearest departure infos after succesfull API query.', () => {
 		const lat = [16.5, [16.5, 14.5]];
 		const lon = [16.5, [28.5, 26.5]];
@@ -64,5 +49,5 @@ describe('TimeTable', () => {
 		wrapper.unmount();
 		expect(clearInterval).toHaveBeenCalled();
 	});
+	*/
 });
-*/
