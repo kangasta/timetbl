@@ -1,30 +1,80 @@
 [
 	{
 		"stop": {
-			"name": "Pasila",
-			"code": "0071",
-			"platformCode": "1",
-			"desc": "Ratapihantie 6",
-			"lat": 60.199601,
-			"lon": 24.933683
+			"gtfsId": "HSL:1040274",
+			"name": "Kamppi",
+			"code": "1244",
+			"platformCode": "44",
+			"desc": "Kamppi",
+			"lat": 60.16904,
+			"lon": 24.931804
 		},
 		"trip": {
+			"gtfsId": "HSL:1063_20190909_Ti_1_1449",
 			"route": {
-				"shortName": "P",
-				"mode": "RAIL",
+				"shortName": "63",
+				"mode": "BUS",
 				"alerts": [
 					{
 						"alertDescriptionTextTranslations": [
 							{
-								"text": "Lähijunat N Helsinkiin  ja P lentoasemalta Tikkurilan kautta Helsinkiin eivät pysähdyt Tikkurilan ja Pasilan välillä. Väliasemille pääsee Pasilan kautta vaihtamalla Keravalle tai lentoasemalle menevään junaan. Syy: korjaustyöt. Arvioitu kesto: 22:00 - 16.01.2019 04:30.",
+								"text": "Mannerheimintie osin suljettu bussiliikenteeltä lauantaiaamuna 14.9. EU-kokouksen vuoksi noin klo 9-10 - Kamppiin liikennöitävä liikenne Runeberginkadun kautta. Info: HSL.fi",
 								"language": "fi"
 							},
 							{
-								"text": "Närtågen N mot Helsingfors  och P från flygplatsen till Helsingfors via Dickursby stannar inte mellan Dickursby och Böle. Beräknad tid: 22:00 - 16.01.2019 04:30.",
+								"text": "Mannerheimvägen är delvis stängd för busstrafik på lördagsmorgonen 14.9 p.g.a. EU-sammanträdet. Kampens bussar, som normalt körs via Mannerheimvägen, körs via Runebergsgatan kl. 9-10. Info: HSL.fi",
 								"language": "sv"
 							},
 							{
-								"text": "Commuter trains N to Helsinki  and P from Airport via Tikkurila to Helsinki will not stop between Tikkurila and Pasila. Estimated time: 22:00 - 16.01.2019 04:30.",
+								"text": "Mannerheimintie partly closed to buses on Saturday morning 14 September 9am-10am due to an EU meeting. Buses serving Kamppi diverted to run via Runeberginkatu. Info:HSL.fi",
+								"language": "en"
+							}
+						]
+					},
+					{
+						"alertDescriptionTextTranslations": [
+							{
+								"text": "Mannerheimintie osin suljettu bussiliikenteeltä lauantaiaamuna 14.9. EU-kokouksen vuoksi noin klo 9-10 - Kamppiin liikennöitävä liikenne Runeberginkadun kautta. Info: HSL.fi",
+								"language": "fi"
+							},
+							{
+								"text": "Mannerheimvägen är delvis stängd för busstrafik på lördagsmorgonen 14.9 p.g.a. EU-sammanträdet. Kampens bussar, som normalt körs via Mannerheimvägen, körs via Runebergsgatan kl. 9-10. Info: HSL.fi",
+								"language": "sv"
+							},
+							{
+								"text": "Mannerheimintie partly closed to buses on Saturday morning 14 September 9am-10am due to an EU meeting. Buses serving Kamppi diverted to run via Runeberginkatu. Info:HSL.fi",
+								"language": "en"
+							}
+						]
+					},
+					{
+						"alertDescriptionTextTranslations": [
+							{
+								"text": "Mannerheimintie osin suljettu bussiliikenteeltä perjantaiaamuna 13.9. EU-kokouksen vuoksi noin klo 8-9 - Kamppiin liikennöitävä liikenne Runeberginkadun kautta. Info: HSL.fi",
+								"language": "fi"
+							},
+							{
+								"text": "Mannerheimvägen är delvis stängd för busstrafik på fredagsmorgonen 13.9 p.g.a. EU-sammanträdet. Kampens bussar, som normalt körs via Mannerheimvägen, körs via Runebergsgatan kl. 8.00-9.00. Info: HSL.fi",
+								"language": "sv"
+							},
+							{
+								"text": "Mannerheimintie partly closed to buses on Friday morning 13 September 8am-9am due to an EU meeting. Buses serving Kamppi diverted to run via Runeberginkatu. Info: HSL.fi",
+								"language": "en"
+							}
+						]
+					},
+					{
+						"alertDescriptionTextTranslations": [
+							{
+								"text": "Mannerheimintie osin suljettu bussiliikenteeltä perjantaiaamuna 13.9. EU-kokouksen vuoksi noin klo 8-9 - Kamppiin liikennöitävä liikenne Runeberginkadun kautta. Info: HSL.fi",
+								"language": "fi"
+							},
+							{
+								"text": "Mannerheimvägen är delvis stängd för busstrafik på fredagsmorgonen 13.9 p.g.a. EU-sammanträdet. Kampens bussar, som normalt körs via Mannerheimvägen, körs via Runebergsgatan kl. 8.00-9.00. Info: HSL.fi",
+								"language": "sv"
+							},
+							{
+								"text": "Mannerheimintie partly closed to buses on Friday morning 13 September 8am-9am due to an EU meeting. Buses serving Kamppi diverted to run via Runeberginkatu. Info: HSL.fi",
 								"language": "en"
 							}
 						]
@@ -32,40 +82,90 @@
 				]
 			}
 		},
-		"realtimeArrival": 76068,
-		"realtimeDeparture": 76068,
-		"realtime": true,
-		"scheduledArrival": 75900,
-		"scheduledDeparture": 75900,
-		"headsign": "Helsinki",
-		"serviceDay": 1547503200
+		"realtimeArrival": 53340,
+		"realtimeDeparture": 53340,
+		"realtime": false,
+		"scheduledArrival": 53340,
+		"scheduledDeparture": 53340,
+		"headsign": "Paloheinä via Maunula",
+		"serviceDay": 1568062800
 	},
 	{
 		"stop": {
-			"name": "Pasila",
-			"code": "0071",
-			"platformCode": "1",
-			"desc": "Ratapihantie 6",
-			"lat": 60.199601,
-			"lon": 24.933683
+			"gtfsId": "HSL:1040274",
+			"name": "Kamppi",
+			"code": "1244",
+			"platformCode": "44",
+			"desc": "Kamppi",
+			"lat": 60.16904,
+			"lon": 24.931804
 		},
 		"trip": {
+			"gtfsId": "HSL:1063_20190909_Ti_1_1501",
 			"route": {
-				"shortName": "P",
-				"mode": "RAIL",
+				"shortName": "63",
+				"mode": "BUS",
 				"alerts": [
 					{
 						"alertDescriptionTextTranslations": [
 							{
-								"text": "Lähijunat N Helsinkiin  ja P lentoasemalta Tikkurilan kautta Helsinkiin eivät pysähdyt Tikkurilan ja Pasilan välillä. Väliasemille pääsee Pasilan kautta vaihtamalla Keravalle tai lentoasemalle menevään junaan. Syy: korjaustyöt. Arvioitu kesto: 22:00 - 16.01.2019 04:30.",
+								"text": "Mannerheimintie osin suljettu bussiliikenteeltä lauantaiaamuna 14.9. EU-kokouksen vuoksi noin klo 9-10 - Kamppiin liikennöitävä liikenne Runeberginkadun kautta. Info: HSL.fi",
 								"language": "fi"
 							},
 							{
-								"text": "Närtågen N mot Helsingfors  och P från flygplatsen till Helsingfors via Dickursby stannar inte mellan Dickursby och Böle. Beräknad tid: 22:00 - 16.01.2019 04:30.",
+								"text": "Mannerheimvägen är delvis stängd för busstrafik på lördagsmorgonen 14.9 p.g.a. EU-sammanträdet. Kampens bussar, som normalt körs via Mannerheimvägen, körs via Runebergsgatan kl. 9-10. Info: HSL.fi",
 								"language": "sv"
 							},
 							{
-								"text": "Commuter trains N to Helsinki  and P from Airport via Tikkurila to Helsinki will not stop between Tikkurila and Pasila. Estimated time: 22:00 - 16.01.2019 04:30.",
+								"text": "Mannerheimintie partly closed to buses on Saturday morning 14 September 9am-10am due to an EU meeting. Buses serving Kamppi diverted to run via Runeberginkatu. Info:HSL.fi",
+								"language": "en"
+							}
+						]
+					},
+					{
+						"alertDescriptionTextTranslations": [
+							{
+								"text": "Mannerheimintie osin suljettu bussiliikenteeltä lauantaiaamuna 14.9. EU-kokouksen vuoksi noin klo 9-10 - Kamppiin liikennöitävä liikenne Runeberginkadun kautta. Info: HSL.fi",
+								"language": "fi"
+							},
+							{
+								"text": "Mannerheimvägen är delvis stängd för busstrafik på lördagsmorgonen 14.9 p.g.a. EU-sammanträdet. Kampens bussar, som normalt körs via Mannerheimvägen, körs via Runebergsgatan kl. 9-10. Info: HSL.fi",
+								"language": "sv"
+							},
+							{
+								"text": "Mannerheimintie partly closed to buses on Saturday morning 14 September 9am-10am due to an EU meeting. Buses serving Kamppi diverted to run via Runeberginkatu. Info:HSL.fi",
+								"language": "en"
+							}
+						]
+					},
+					{
+						"alertDescriptionTextTranslations": [
+							{
+								"text": "Mannerheimintie osin suljettu bussiliikenteeltä perjantaiaamuna 13.9. EU-kokouksen vuoksi noin klo 8-9 - Kamppiin liikennöitävä liikenne Runeberginkadun kautta. Info: HSL.fi",
+								"language": "fi"
+							},
+							{
+								"text": "Mannerheimvägen är delvis stängd för busstrafik på fredagsmorgonen 13.9 p.g.a. EU-sammanträdet. Kampens bussar, som normalt körs via Mannerheimvägen, körs via Runebergsgatan kl. 8.00-9.00. Info: HSL.fi",
+								"language": "sv"
+							},
+							{
+								"text": "Mannerheimintie partly closed to buses on Friday morning 13 September 8am-9am due to an EU meeting. Buses serving Kamppi diverted to run via Runeberginkatu. Info: HSL.fi",
+								"language": "en"
+							}
+						]
+					},
+					{
+						"alertDescriptionTextTranslations": [
+							{
+								"text": "Mannerheimintie osin suljettu bussiliikenteeltä perjantaiaamuna 13.9. EU-kokouksen vuoksi noin klo 8-9 - Kamppiin liikennöitävä liikenne Runeberginkadun kautta. Info: HSL.fi",
+								"language": "fi"
+							},
+							{
+								"text": "Mannerheimvägen är delvis stängd för busstrafik på fredagsmorgonen 13.9 p.g.a. EU-sammanträdet. Kampens bussar, som normalt körs via Mannerheimvägen, körs via Runebergsgatan kl. 8.00-9.00. Info: HSL.fi",
+								"language": "sv"
+							},
+							{
+								"text": "Mannerheimintie partly closed to buses on Friday morning 13 September 8am-9am due to an EU meeting. Buses serving Kamppi diverted to run via Runeberginkatu. Info: HSL.fi",
 								"language": "en"
 							}
 						]
@@ -73,40 +173,90 @@
 				]
 			}
 		},
-		"realtimeArrival": 76542,
-		"realtimeDeparture": 76542,
-		"realtime": true,
-		"scheduledArrival": 76500,
-		"scheduledDeparture": 76500,
-		"headsign": "Helsinki",
-		"serviceDay": 1547503200
+		"realtimeArrival": 54060,
+		"realtimeDeparture": 54060,
+		"realtime": false,
+		"scheduledArrival": 54060,
+		"scheduledDeparture": 54060,
+		"headsign": "Paloheinä via Maunula",
+		"serviceDay": 1568062800
 	},
 	{
 		"stop": {
-			"name": "Pasila",
-			"code": "0071",
-			"platformCode": "1",
-			"desc": "Ratapihantie 6",
-			"lat": 60.199601,
-			"lon": 24.933683
+			"gtfsId": "HSL:1040274",
+			"name": "Kamppi",
+			"code": "1244",
+			"platformCode": "44",
+			"desc": "Kamppi",
+			"lat": 60.16904,
+			"lon": 24.931804
 		},
 		"trip": {
+			"gtfsId": "HSL:1063_20190909_Ti_1_1513",
 			"route": {
-				"shortName": "P",
-				"mode": "RAIL",
+				"shortName": "63",
+				"mode": "BUS",
 				"alerts": [
 					{
 						"alertDescriptionTextTranslations": [
 							{
-								"text": "Lähijunat N Helsinkiin  ja P lentoasemalta Tikkurilan kautta Helsinkiin eivät pysähdyt Tikkurilan ja Pasilan välillä. Väliasemille pääsee Pasilan kautta vaihtamalla Keravalle tai lentoasemalle menevään junaan. Syy: korjaustyöt. Arvioitu kesto: 22:00 - 16.01.2019 04:30.",
+								"text": "Mannerheimintie osin suljettu bussiliikenteeltä lauantaiaamuna 14.9. EU-kokouksen vuoksi noin klo 9-10 - Kamppiin liikennöitävä liikenne Runeberginkadun kautta. Info: HSL.fi",
 								"language": "fi"
 							},
 							{
-								"text": "Närtågen N mot Helsingfors  och P från flygplatsen till Helsingfors via Dickursby stannar inte mellan Dickursby och Böle. Beräknad tid: 22:00 - 16.01.2019 04:30.",
+								"text": "Mannerheimvägen är delvis stängd för busstrafik på lördagsmorgonen 14.9 p.g.a. EU-sammanträdet. Kampens bussar, som normalt körs via Mannerheimvägen, körs via Runebergsgatan kl. 9-10. Info: HSL.fi",
 								"language": "sv"
 							},
 							{
-								"text": "Commuter trains N to Helsinki  and P from Airport via Tikkurila to Helsinki will not stop between Tikkurila and Pasila. Estimated time: 22:00 - 16.01.2019 04:30.",
+								"text": "Mannerheimintie partly closed to buses on Saturday morning 14 September 9am-10am due to an EU meeting. Buses serving Kamppi diverted to run via Runeberginkatu. Info:HSL.fi",
+								"language": "en"
+							}
+						]
+					},
+					{
+						"alertDescriptionTextTranslations": [
+							{
+								"text": "Mannerheimintie osin suljettu bussiliikenteeltä lauantaiaamuna 14.9. EU-kokouksen vuoksi noin klo 9-10 - Kamppiin liikennöitävä liikenne Runeberginkadun kautta. Info: HSL.fi",
+								"language": "fi"
+							},
+							{
+								"text": "Mannerheimvägen är delvis stängd för busstrafik på lördagsmorgonen 14.9 p.g.a. EU-sammanträdet. Kampens bussar, som normalt körs via Mannerheimvägen, körs via Runebergsgatan kl. 9-10. Info: HSL.fi",
+								"language": "sv"
+							},
+							{
+								"text": "Mannerheimintie partly closed to buses on Saturday morning 14 September 9am-10am due to an EU meeting. Buses serving Kamppi diverted to run via Runeberginkatu. Info:HSL.fi",
+								"language": "en"
+							}
+						]
+					},
+					{
+						"alertDescriptionTextTranslations": [
+							{
+								"text": "Mannerheimintie osin suljettu bussiliikenteeltä perjantaiaamuna 13.9. EU-kokouksen vuoksi noin klo 8-9 - Kamppiin liikennöitävä liikenne Runeberginkadun kautta. Info: HSL.fi",
+								"language": "fi"
+							},
+							{
+								"text": "Mannerheimvägen är delvis stängd för busstrafik på fredagsmorgonen 13.9 p.g.a. EU-sammanträdet. Kampens bussar, som normalt körs via Mannerheimvägen, körs via Runebergsgatan kl. 8.00-9.00. Info: HSL.fi",
+								"language": "sv"
+							},
+							{
+								"text": "Mannerheimintie partly closed to buses on Friday morning 13 September 8am-9am due to an EU meeting. Buses serving Kamppi diverted to run via Runeberginkatu. Info: HSL.fi",
+								"language": "en"
+							}
+						]
+					},
+					{
+						"alertDescriptionTextTranslations": [
+							{
+								"text": "Mannerheimintie osin suljettu bussiliikenteeltä perjantaiaamuna 13.9. EU-kokouksen vuoksi noin klo 8-9 - Kamppiin liikennöitävä liikenne Runeberginkadun kautta. Info: HSL.fi",
+								"language": "fi"
+							},
+							{
+								"text": "Mannerheimvägen är delvis stängd för busstrafik på fredagsmorgonen 13.9 p.g.a. EU-sammanträdet. Kampens bussar, som normalt körs via Mannerheimvägen, körs via Runebergsgatan kl. 8.00-9.00. Info: HSL.fi",
+								"language": "sv"
+							},
+							{
+								"text": "Mannerheimintie partly closed to buses on Friday morning 13 September 8am-9am due to an EU meeting. Buses serving Kamppi diverted to run via Runeberginkatu. Info: HSL.fi",
 								"language": "en"
 							}
 						]
@@ -114,12 +264,12 @@
 				]
 			}
 		},
-		"realtimeArrival": 77112,
-		"realtimeDeparture": 77112,
-		"realtime": true,
-		"scheduledArrival": 77100,
-		"scheduledDeparture": 77100,
-		"headsign": "Helsinki",
-		"serviceDay": 1547503200
+		"realtimeArrival": 54780,
+		"realtimeDeparture": 54780,
+		"realtime": false,
+		"scheduledArrival": 54780,
+		"scheduledDeparture": 54780,
+		"headsign": "Paloheinä via Maunula",
+		"serviceDay": 1568062800
 	}
 ]

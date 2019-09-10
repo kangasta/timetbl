@@ -25,9 +25,9 @@ export function AlertSymbol({severity}: {severity?: AlertSeverity}) {
 					<circle cx='32' cy='54' r='3' fill='black'/>
 				</mask>
 				<mask id="AlertSymbolInfoMask">
-					<circle cx='32' cy='32' r='28' fill='black'/>
-					<path d='M 32 20 v 20' stroke='black' strokeWidth='6' fill='none' strokeLinecap='round'/>
-					<circle cx='32' cy='54' r='3' fill='black'/>
+					<circle cx='32' cy='32' r='30' fill='white'/>
+					<path d='M 32 16 v 20' stroke='black' strokeWidth='6' fill='none' strokeLinecap='round'/>
+					<circle cx='32' cy='50' r='3' fill='black'/>
 				</mask>
 			</defs>
 			<rect x='0' y='0' width='64' height='64' mask={`url(#${mask})`}/>
