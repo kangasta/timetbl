@@ -77,7 +77,7 @@ function* getLocation() {
 	}});
 }
 
-function* getData() {
+export function* getData() {
 	const {type, location} = yield select(getLocationAndType);
 
 	let parameters;
@@ -85,7 +85,8 @@ function* getData() {
 		if (location.stopCodes !== undefined && location.stopCodes.length > 0) {
 			parameters = location.stopCodes.map((i: string): object => ({stopCode: i}));
 		} else {
-			return put({type: 'NEW_DATA', metadata: {type, data: [], loading: null, error: 'No stops given'}});
+			yield put({type: 'NEW_DATA', metadata: {type, data: [], loading: null, error: 'No stops given'}});
+			return;
 		}
 	} else {
 		parameters = location.position;
