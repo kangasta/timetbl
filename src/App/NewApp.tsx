@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import styled from 'styled-components';
 import { connect } from 'react-redux';
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
@@ -23,6 +24,16 @@ interface DispatchProps {
 	navigate: (type: QueryTypeT) => Action;
 	update: () => Action;
 }
+
+const AppDiv = styled.div`
+	.CSExpandable {
+		text-align: center;
+	}
+
+	.CSExpandable .Icon {
+		font-size: 0.666em;
+	}
+`;
 
 export function App({type, hashChange, navigate, update}: DispatchProps & StateProps) {
 	const pushNewHash = (): void => {
@@ -76,7 +87,7 @@ export function App({type, hashChange, navigate, update}: DispatchProps & StateP
 	const theme = type === 'nearestBikes' ? 'BikesTheme' : 'MainTheme';
 
 	return (
-		<div className={`App ${theme}`}>
+		<AppDiv className={`App ${theme}`}>
 			<Title/>
 			<CSExpandable>
 				<NavBar buttons={navButtons}/>
@@ -89,7 +100,7 @@ export function App({type, hashChange, navigate, update}: DispatchProps & StateP
 					<span className='Divider'>|</span>
 					<a className='Link' href='https://digitransit.fi/en/developers/'>data source</a>
 				</div>
-		</div>
+		</AppDiv>
 	);
 }
 

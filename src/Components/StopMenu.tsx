@@ -1,4 +1,6 @@
 import React from 'react';
+import styled from 'styled-components';
+import { connect } from 'react-redux';
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
 // @ts-ignore
@@ -6,9 +8,11 @@ import { CSValidatorChanger } from 'chillisalmon';
 
 import { Action, ViewType, StateType } from '../Store/reducer';
 import { Stop, NearestNode, QueryTypeT } from '../ApiUtils';
-import { connect } from 'react-redux';
+import { MainUl, MainLi } from '../Utils';
 
-import '../Style/StopMenu.css';
+const NameSpan = styled.span`
+	font-size: 1.75em;
+`;
 
 export function StopMenu({data, loading, error, navigate}: ViewType & DispatchProps) {
 	const getStopsArray = () => {
@@ -30,19 +34,19 @@ export function StopMenu({data, loading, error, navigate}: ViewType & DispatchPr
 
 	return (
 		<CSValidatorChanger error={error} loading={loading}>
-			<ul className='StopMenu'>
-				<li className='Nearby ListItem' onClick={ () => navigate('nearestDepartures') }>
-					<span className='Name'>All nearby departures</span>
-				</li>
+			<MainUl className='StopMenu'>
+				<MainLi className='Nearby ListItem' onClick={ () => navigate('nearestDepartures') }>
+					<NameSpan className='Name'>All nearby departures</NameSpan>
+				</MainLi>
 				{getStopsArray().map(stop => (
-					<li className='Stop ListItem' key={stop.name}>
-						<span className='Name' onClick={() => navigate('stopDepartures', stop.codes, stop.name)}>{stop.name}</span>
+					<MainLi className='Stop ListItem' key={stop.name}>
+						<NameSpan className='Name' onClick={() => navigate('stopDepartures', stop.codes, stop.name)}>{stop.name}</NameSpan>
 						<ul>
 							{stop.codes.map((code: string) => <li className='StopCode' key={code} onClick={() => navigate('stopDepartures', [code])}>{code}</li>)}
 						</ul>
-					</li>
+					</MainLi>
 				))}
-			</ul>
+			</MainUl>
 		</CSValidatorChanger>
 	);
 }

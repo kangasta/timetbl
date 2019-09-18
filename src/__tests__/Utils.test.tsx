@@ -1,16 +1,16 @@
 import React from 'react';
-import { mount, shallow } from 'enzyme';
+import { mount } from 'enzyme';
 
 import { DestinationItem, AlertSymbol, TimeUtils, getField, getUniqueFilter } from '../Utils';
 
 describe('DestinationItem', () => {
 	it('replaces (M) as M wrapped in span', () => {
 		['Kamppi', 'Kamppi (M)'].forEach(destination => {
-			const wrapper = shallow(<DestinationItem destination={destination} />);
+			const wrapper = mount(<DestinationItem destination={destination} />);
 
 			expect(wrapper.text()).toEqual(destination.replace(/[\s()]/g,''));
 			expect(
-				wrapper.contains(<span className='Metro'>M</span>)
+				wrapper.exists({className: 'Metro', children: 'M'})
 			).toBe(destination.includes('(M)'));
 		});
 	});

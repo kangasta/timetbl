@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
 // @ts-ignore
@@ -6,27 +7,27 @@ import { CSValidatorChanger } from 'chillisalmon';
 
 import { ViewType, StateType } from '../Store/reducer';
 import { BikeStation, NearestNode } from '../ApiUtils';
-import { connect } from 'react-redux';
-import { DestinationItem } from '../Utils';
+import { DestinationItem, MainUl, MainLi } from '../Utils';
+import { DepartureListUl, DepartureLi, DestinationDiv } from './DepartureInfo';
 
 export function BikesList({data, loading, error}: ViewType) {
 	const bikesArray = data as NearestNode<BikeStation>[];
 
 	return (
 		<CSValidatorChanger error={error} loading={loading}>
-			<ul className='BikesList Timetable'>
+			<MainUl className='BikesList Timetable'>
 				{bikesArray.map((bikesItem, i) => (
-					<li key={i} className='DepartureInfo ListItem'>
-						<ul className='DepartureList'>
-							<li className={'Departure ' + (bikesItem.node.place.realtime ? 'Realtime' : 'Scheduled')}>{bikesItem.node.place.bikesAvailable.toString() || '0'}</li>
-							<li className='Departure'>{bikesItem.node.distance < 1000 ? bikesItem.node.distance.toString() + ' m' : (Math.round(bikesItem.node.distance/100)/10).toString() + ' km'}</li>
-						</ul>
-						<div className='Destination NoDetails'>
+					<MainLi key={i} className='DepartureInfo'>
+						<DepartureListUl className='DepartureList'>
+							<DepartureLi className={'Departure ' + (bikesItem.node.place.realtime ? 'Realtime' : 'Scheduled')}>{bikesItem.node.place.bikesAvailable.toString() || '0'}</DepartureLi>
+							<DepartureLi className='Departure'>{bikesItem.node.distance < 1000 ? bikesItem.node.distance.toString() + ' m' : (Math.round(bikesItem.node.distance/100)/10).toString() + ' km'}</DepartureLi>
+						</DepartureListUl>
+						<DestinationDiv className='Destination NoDetails'>
 							{(bikesItem.node.place.name || '').split(',').map(destination => <DestinationItem key={destination} destination={destination}/>)}
-						</div>
-					</li>
+						</DestinationDiv>
+					</MainLi>
 				))}
-			</ul>
+			</MainUl>
 		</CSValidatorChanger>
 	);
 }

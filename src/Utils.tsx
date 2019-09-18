@@ -1,23 +1,67 @@
 import React from 'react';
+import styled from 'styled-components';
+
 import { AlertSeverity } from './ApiUtils';
+
+export const MainUl = styled.ul`
+	margin: 0;
+	padding: 0;
+`;
+
+export const MainLi = styled.li`
+	box-sizing: border-box;
+	border-top: thin solid currentColor;
+	list-style-type: none;
+	padding: 0.33em 1.5em;
+	width: 100%;
+
+	:last-child {
+		border-bottom: thin solid currentColor;
+	}
+`;
+
+const DestinationItemSpan = styled.span`
+	font-size: 0.666em;
+	margin-left: 0.333em;
+
+	:first-child {
+		font-size: 1em;
+		margin-left: 0;
+	}
+`;
+
+const MetroSpan = styled.span`
+	background: orangered;
+	border-radius: 0.125em;
+	color: white;
+	font-size: 0.7em;
+	margin-left: 0.25em;
+	padding: 0.125em;
+	vertical-align: middle;
+`;
 
 export function DestinationItem({destination}: {destination: string}) {
 	const metro = destination.match(/\(M\)/);
 	destination = destination.replace('(M)','').trim();
 
 	return (
-		<span key={destination} className='DestinationItem'>
+		<DestinationItemSpan key={destination} className='DestinationItem'>
 			{destination}
-			{metro && <span className='Metro'>M</span>}
-		</span>
+			{metro && <MetroSpan className='Metro'>M</MetroSpan>}
+		</DestinationItemSpan>
 	);
 }
+
+const SymbolFillSvg = styled.svg`
+	height: 1em;
+	fill: currentColor;
+`;
 
 export function AlertSymbol({severity}: {severity?: AlertSeverity}) {
 	const mask = severity === 'INFO' ? 'AlertSymbolInfoMask' : 'AlertSymbolWarningMask';
 
 	return (
-		<svg className='Symbol Fill' viewBox='0 0 64 64'>
+		<SymbolFillSvg viewBox='0 0 64 64'>
 			<defs>
 				<mask id="AlertSymbolWarningMask">
 					<path d='M 32 4 l 28 56 h -56 l 28 -56' fill='white' stroke='white' strokeWidth='8' strokeLinecap='round' strokeLinejoin='round'/>
@@ -31,7 +75,7 @@ export function AlertSymbol({severity}: {severity?: AlertSeverity}) {
 				</mask>
 			</defs>
 			<rect x='0' y='0' width='64' height='64' mask={`url(#${mask})`}/>
-		</svg>
+		</SymbolFillSvg>
 	);
 }
 
