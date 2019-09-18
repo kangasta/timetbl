@@ -38,7 +38,7 @@ describe('DepartureInfo', () => {
 			distance={distance}
 		/>);
 
-		const text = wrapper.find('.Details').text();
+		const text = wrapper.find('div.Details').text();
 		expect(text).toContain(`${getField(stoptimes, '[0].stop.name')}`);
 		expect(text).toContain(`${distance} m`);
 
