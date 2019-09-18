@@ -1,23 +1,58 @@
 import React, {useState} from 'react';
+import styled from 'styled-components';
 
 import { StoptimeData, TransportRoute, AlertSeverity, Stop } from '../ApiUtils';
-import { AlertSymbol, DestinationItem, TimeUtils } from '../Utils';
+import { AlertSymbol, DestinationItem, TimeUtils, MainLi } from '../Utils';
 
-import '../Style/DepartureInfo.css';
+const RouteDiv = styled.div`
+	float: left;
+	font-size: 1.75em;
+	margin-right: 0.25em;
+	overflow: hidden;
+	width: 2.75em;
+
+	span {
+		white-space: nowrap;
+	}
+`;
+
+const LettersSpan = styled.span`
+	font-size: 0.666em;
+`;
+
+const CodeSpan = styled.span`
+	color: white;
+	border-radius: 0.125em;
+	padding: 0 0.125em;
+
+	&.SUBWAY { background: orangered; }
+	&.RAIL { background: purple; }
+	&.TRAM { background: forestgreen; }
+	&.FERRY { background: deepskyblue; }
+	&.BUS { padding: 0; }
+`;
 
 function Route({shortName, mode}: TransportRoute) {
 	const match = shortName.match(/(M*[0-9]+)([a-zA-Z]*)/);
 	const number = !match ? shortName : match[1];
 
 	return (
-		<div className='Route'>
-			<span className={`Code ${mode}`}>
+		<RouteDiv>
+			<CodeSpan className={`Code ${mode}`}>
 				<span className='Number'>{number}</span>
-				{match ? <span className='Letters'>{match[2]}</span> : null}
-			</span>
-		</div>
+				{match ? <LettersSpan className='Letters'>{match[2]}</LettersSpan> : null}
+			</CodeSpan>
+		</RouteDiv>
 	);
 }
+
+const AlertSymbolDiv = styled.div`
+	float: right;
+	font-size: 1em;
+	height: 1em;
+	margin-top: 0.5em;
+	vertical-align: middle;
+`;
 
 interface AlertControls {
 	showAlert: boolean;
@@ -28,11 +63,30 @@ function AlertButton({alerts, showAlert, toggleAlert}: TransportRoute & AlertCon
 	if (alerts.length === 0 || showAlert) return null;
 	const severity: AlertSeverity = alerts.every(alert => alert.alertSeverityLevel === 'INFO') ? 'INFO' : 'WARNING';
 	return (
-		<div className='AlertSymbol' onClick={toggleAlert}>
+		<AlertSymbolDiv className='AlertSymbol' onClick={toggleAlert}>
 			<AlertSymbol severity={severity}/>
-		</div>
+		</AlertSymbolDiv>
 	);
 }
+
+const AlertTextDiv = styled.div`
+	background: crimson;
+	border-radius: 0.5em;
+	font-size: 0.666em;
+	margin-top: 0.25em;
+	padding: 0.5em;
+	padding-left: 3em;
+	position: relative;
+
+	.Left {
+		float: left;
+		font-size: 1.5em;
+		height: 1em;
+		position: absolute;
+		top: 50%;
+		transform: translate(-1.5em, -50%);
+	}
+`;
 
 function AlertText({alerts, showAlert, toggleAlert, language}: TransportRoute & {showAlert: boolean; language: string; toggleAlert: () => void}) {
 	if (!showAlert || alerts.length === 0) {
@@ -51,40 +105,78 @@ function AlertText({alerts, showAlert, toggleAlert, language}: TransportRoute & 
 	return (
 		<div className='Alerts'>
 			{alertTexts.map((alertText, i) => (
-				<div key={i} className='AlertText' onClick={toggleAlert}>
+				<AlertTextDiv key={i} className='AlertText' onClick={toggleAlert}>
 					<span className='Left'>
 						<AlertSymbol severity={alerts[i].alertSeverityLevel}/>
 					</span>
 					<span>{alertText}</span>
-				</div>
+				</AlertTextDiv>
 			))}
 		</div>
 	);
 }
 
+export const DestinationDiv = styled.div`
+	min-height: 1.25em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+
+	&.NoDetails {
+		font-size: 1.75em;
+	}
+`;
+
 function Destinations({className, headsign}: {className: string; headsign: string}) {
 	const destinations = (headsign || '').split('via');
 
 	return (
-		<div className={`Destination ${className}`}>
+		<DestinationDiv className={`Destination ${className}`}>
 			{destinations.map(i => <DestinationItem key={i} destination={i}/>)}
-		</div>
+		</DestinationDiv>
 	);
 }
+
+const DetailsDiv = styled.div`
+	font-size: 0.75em;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+`;
 
 function Details({stop, showStopName, distance}: {stop: Stop; showStopName?: boolean; distance?: number}) {
 	const { name, code, platformCode } = stop;
 
 	return (
-		<div className='Details'>
+		<DetailsDiv className='Details'>
 			{showStopName && <DestinationItem destination={name}/>}
 			{(showStopName && (code !== null || platformCode !== null)) && ', '}
 			{(platformCode === null && code !== null) && ('Stop ' + code)}
 			{platformCode !== null && ('Platform ' + platformCode.toString())}
 			{(distance !== undefined) && <span className='Distance'>{': ' + distance.toString() + ' m'}</span>}
-		</div>
+		</DetailsDiv>
 	);
 }
+
+export const DepartureListUl = styled.ul`
+	float: right;
+	padding: 0;
+	width: 13.13em;
+`;
+
+export const DepartureLi = styled.li`
+	display: inline-block;
+	list-style-type: none;
+	margin-left: 0.5em;
+	width: 3em;
+	white-space: nowrap;
+
+	&.Realtime { font-weight: bold; }
+
+	:first-child {
+		font-size: 1.75em;
+	}
+`;
 
 interface PropsType {
 	stoptimes: StoptimeData[];
@@ -92,6 +184,7 @@ interface PropsType {
 	showPlatform?: boolean;
 	showStopName?: boolean;
 }
+
 export function DepartureInfo({stoptimes, distance, showPlatform=false, showStopName=false}: PropsType) {
 	const [showAlert, setShowAlert] = useState(false);
 	const alertControls = { showAlert, toggleAlert: () => { setShowAlert(!showAlert); }};
@@ -100,20 +193,20 @@ export function DepartureInfo({stoptimes, distance, showPlatform=false, showStop
 	const route = stoptimes[0].trip.route;
 
 	return (
-		<li className='DepartureInfo ListItem'>
+		<MainLi className='DepartureInfo'>
 			<Route {...route}/>
-			<ul className='DepartureList'>
+			<DepartureListUl className='DepartureList'>
 				{stoptimes.map((stoptime,i) => (
-					<li key={i} className={`Departure ${stoptime.realtime ? 'Realtime' : 'Scheduled'}`}>
+					<DepartureLi key={i} className={`Departure ${stoptime.realtime ? 'Realtime' : 'Scheduled'}`}>
 						{TimeUtils.departureTimeToStr(stoptime.realtimeDeparture)}
-					</li>
+					</DepartureLi>
 				))}
-			</ul>
+			</DepartureListUl>
 			<AlertButton {...alertControls} {...route}/>
 			<Destinations className={detailsClass} headsign={stoptimes[0].headsign}/>
 			{(showStopName || showPlatform) && <Details stop={stoptimes[0].stop} {...{distance, showPlatform, showStopName}}/>}
 			<AlertText language='en' {...alertControls} {...route}/>
-		</li>
+		</MainLi>
 	);
 }
 

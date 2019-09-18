@@ -1,9 +1,41 @@
 import React, { useState, useEffect } from 'react';
+import styled, { css } from 'styled-components';
 import { connect } from 'react-redux';
 
 import { StateType } from '../Store/reducer';
 
-import '../Style/Title.css';
+const TitleDiv = styled.div`
+	box-sizing: border-box;
+	height: 4.5em;
+	margin: 0.75em 1.5em;
+`;
+
+const CodeClockCommonCss = css`
+	font-size: 3em;
+	line-height: 1.5em;
+`;
+
+const CoordDiv = styled.div`
+	font-size: 2em;
+`;
+
+const CodeDiv = styled.div`
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	${CodeClockCommonCss}
+`;
+
+const ClockDiv = styled.div`
+	background: var(--theme-color-2);
+	border-radius: 0.25em;
+	color: var(--theme-color-1);
+	float: right;
+	padding: 0 0.33em;
+	text-align: center;
+	width: 2.5em;
+	${CodeClockCommonCss}
+`;
 
 interface StateProps {
 	clock: boolean;
@@ -45,23 +77,23 @@ export function Title({clock, lat, lon, stopCodes, title}: StateProps) {
 			{ letter: lat > 0 ? 'N ' : 'S ', number: lat.toString().padEnd(9, '0') },
 			{ letter: lon > 0 ? 'E ' : 'W ', number: lon.toString().padEnd(9, '0') }
 		].map(coords => (
-			<div key={coords.letter} className='Coord'>
+			<CoordDiv key={coords.letter} className='Coord'>
 				<b>{coords.letter}</b>
 				{coords.number}
-			</div>
+			</CoordDiv>
 		));
 	};
 
 	return (
-		<div className='Title'>
-			{clock && <div className='Clock'>
+		<TitleDiv className='Title'>
+			{clock && <ClockDiv className='Clock'>
 				{time}
-			</div> }
-			{hasText() && <div className='Code'>
+			</ClockDiv> }
+			{hasText() && <CodeDiv className='Code'>
 				{title}
-			</div>}
+			</CodeDiv>}
 			{getCoords()}
-		</div>
+		</TitleDiv>
 	);
 }
 

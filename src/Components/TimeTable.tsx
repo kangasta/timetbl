@@ -7,9 +7,8 @@ import { CSValidatorChanger } from 'chillisalmon';
 import { DepartureInfo } from '../Components';
 import { ViewType, StateType } from '../Store/reducer';
 import { StoptimesData, NearestNode } from '../ApiUtils';
+import { MainUl } from '../Utils';
 import { connect } from 'react-redux';
-
-import '../Style/TimeTable.css';
 
 export function TimeTable({type, data, loading, error}: ViewType) {
 	data = data as StoptimesData[] | NearestNode<StoptimesData>[];
@@ -25,7 +24,7 @@ export function TimeTable({type, data, loading, error}: ViewType) {
 
 	return (
 		<CSValidatorChanger error={error} loading={loading}>
-			<ul className='Timetable'>
+			<MainUl className='Timetable'>
 				{
 					data.map((departure: StoptimesData | NearestNode<StoptimesData>) => {
 						if (type === 'nearestDepartures') {
@@ -49,7 +48,7 @@ export function TimeTable({type, data, loading, error}: ViewType) {
 						}
 					})
 				}
-			</ul>
+			</MainUl>
 		</CSValidatorChanger>
 	);
 }
