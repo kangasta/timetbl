@@ -4,7 +4,6 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { GenerateSW } = require('workbox-webpack-plugin');
 
-
 module.exports = (_, options) => {
 	const isProduction = (options.mode === 'production');
 	const publicUrl = isProduction ? (require('./package.json').homepage || '') : '';
@@ -57,7 +56,7 @@ module.exports = (_, options) => {
 				},
 				{
 					test:/\.css$/,
-					loader: 'style-loader!css-loader'
+					use: ['style-loader', 'css-loader'],
 				},
 			],
 		},
