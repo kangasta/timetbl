@@ -5,11 +5,4 @@ import StopMenu from './Components/StopMenu';
 import TimeTable from './Components/TimeTable';
 import Title from './Components/Title';
 
-export {
-	BikesList,
-	DepartureInfo,
-	NavBar,
-	StopMenu,
-	TimeTable,
-	Title,
-};
+export { BikesList, DepartureInfo, NavBar, StopMenu, TimeTable, Title };

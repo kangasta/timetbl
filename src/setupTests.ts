@@ -12,6 +12,6 @@ console.error = message => { // eslint-disable-line no-console
 
 // Clear mocks for each test
 beforeEach(() => {
-	jest.restoreAllMocks();
-	jest.useFakeTimers();
+  jest.restoreAllMocks();
+  jest.useFakeTimers();
 });
