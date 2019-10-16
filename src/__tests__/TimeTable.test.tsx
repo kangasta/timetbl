@@ -3,10 +3,10 @@ import { mount } from 'enzyme';
 import { TimeTable } from '../Components/TimeTable';
 
 describe('TimeTable', () => {
-	it('renders without crashing', () => {
-		mount(<TimeTable type='nearestDepartures' data={[]}/>);
-	});
-	/*
+  it('renders without crashing', () => {
+    mount(<TimeTable type='nearestDepartures' data={[]} />);
+  });
+  /*
 	it('shows nearest departure infos after succesfull API query.', () => {
 		const lat = [16.5, [16.5, 14.5]];
 		const lon = [16.5, [28.5, 26.5]];
