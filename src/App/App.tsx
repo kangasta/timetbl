@@ -41,14 +41,14 @@ export function App({
   navigate,
   update
 }: DispatchProps & StateProps) {
-  const pushNewHash = (): void => {
-    const match = window.location.href.match(/#.*/);
-    const hash = match ? match[0] : '';
-
-    hashChange(hash);
-  };
-
   useEffect(() => {
+    const pushNewHash = (): void => {
+      const match = window.location.href.match(/#.*/);
+      const hash = match ? match[0] : '';
+
+      hashChange(hash);
+    };
+
     pushNewHash();
 
     const updateId = setInterval(update, 20e3);
@@ -58,7 +58,7 @@ export function App({
       clearInterval(updateId);
       window.removeEventListener('hashchange', pushNewHash);
     };
-  }, []);
+  }, [hashChange, update]);
 
   const navButtons = [
     {
