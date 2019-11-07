@@ -193,15 +193,15 @@ function Details({
   showStopName?: boolean;
   distance?: number;
 }) {
-  const { name, code, platformCode } = stop;
+  const { name, code, platformCode = '' } = stop;
 
   return (
     <DetailsDiv className='Details'>
       {showStopName && <DestinationItem destination={name} />}
-      {showStopName && (code !== null || platformCode !== null) && ', '}
-      {platformCode === null && code !== null && 'Stop ' + code}
-      {platformCode !== null && 'Platform ' + platformCode.toString()}
-      {distance !== undefined && (
+      {showStopName && (code || platformCode) && ', '}
+      {!platformCode && code && 'Stop ' + code}
+      {platformCode && 'Platform ' + platformCode.toString()}
+      {distance && (
         <span className='Distance'>{': ' + distance.toString() + ' m'}</span>
       )}
     </DetailsDiv>

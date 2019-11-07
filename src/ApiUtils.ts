@@ -192,7 +192,7 @@ export interface Stop {
   gtfsId: string;
   name: string;
   code: string;
-  platformCode: string;
+  platformCode?: string;
   desc: string;
   lat: number;
   lon: number;
