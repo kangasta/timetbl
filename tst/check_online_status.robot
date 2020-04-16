@@ -1,6 +1,8 @@
 *** Settings ***
-Library     OperatingSystem
-Library     SeleniumLibrary
+Library         OperatingSystem
+Library         SeleniumLibrary
+Test setup      Open timetbl
+Test teardown   Close Browser
 
 *** Variables ***
 ${URL}              https://kangasta.github.io/timetbl/#/stop?code=Rautatientori
@@ -9,10 +11,9 @@ ${BROWSER_OPTIONS}  ${EMPTY}
 
 *** Test Cases ***
 Check page is online
-    Open timetbl
     Check title
     Check has departures
-    [Teardown]    Close Browser
+    Capture page screenshot
 
 *** Keywords ***
 Open timetbl
