@@ -1,0 +1,26 @@
+name: Deploy
+on:
+  push:
+    branches:
+    - master
+
+jobs:
+  deploy-pages:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-node@v2
+      with:
+        node-version: '14'
+    - name: Install dependencies
+      run: npm ci
+    - name: Build static file bundle
+      run: |
+        npm run build
+    - name: Deploy to pages
+      uses: JamesIves/github-pages-deploy-action@3.7.1
+      with:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        BRANCH: gh-pages
+        FOLDER: build
+        CLEAN: true
