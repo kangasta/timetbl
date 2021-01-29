@@ -9,7 +9,7 @@
 
     <meta property="og:url" content="<%= htmlWebpackPlugin.options.publicUrl %>"/>
     <meta property="og:title" content="timetbl"/>
-    <meta property="og:description" content="Simple web app to show nearest HSL  departures."/>
+    <meta property="og:description" content="Simple web app to show nearest HSL departures."/>
     <meta property="og:image" content="<%= htmlWebpackPlugin.options.publicUrl %>/preview.jpg"/>
 
     <!--
@@ -17,7 +17,8 @@
       homescreen on Android. See https://developers.google.com/web/fundamentals/engage-and-retain/web-app-manifest/
     -->
     <link rel="manifest" href="<%= htmlWebpackPlugin.options.publicUrl %>/manifest.json">
-    <link rel="shortcut icon" href="<%= htmlWebpackPlugin.options.publicUrl %>/favicon256.png">
+    <link rel="apple-touch-icon" href="<%= htmlWebpackPlugin.options.publicUrl %>/favicon-192.png">
+    <link rel="shortcut icon" href="<%= htmlWebpackPlugin.options.publicUrl %>/favicon-256.png">
     <!--
       Notice the use of <%= htmlWebpackPlugin.options.publicUrl %> in the tag above.
       It will be replaced with the URL of the `public` folder during the build.
