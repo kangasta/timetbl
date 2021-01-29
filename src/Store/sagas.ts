@@ -69,7 +69,7 @@ function* updateHash({ type: action }: Action) {
 const getUserLocation = () =>
   new Promise((resolve, reject) => {
     if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(resolve, reject);
+      navigator.geolocation.getCurrentPosition(resolve, reject, { enableHighAccuracy: true });
     } else {
       reject('Geolocation is not supported or allowed by this browser.');
     }
