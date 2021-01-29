@@ -16,6 +16,7 @@ jobs:
       run: npm ci
     - name: Build static file bundle
       run: |
+        export COMMIT=${GITHUB_SHA}
         npm run build
     - name: Deploy to pages
       uses: JamesIves/github-pages-deploy-action@3.7.1

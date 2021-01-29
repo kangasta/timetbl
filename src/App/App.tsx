@@ -109,8 +109,10 @@ export function App({
       <div className='Background' />
       <div className='Footer'>
         <a className='Link' href='https://github.com/kangasta/timetbl'>
-          kangasta / timetbl
+          kangasta/timetbl
         </a>
+        {' version '}
+        {process.env.COMMIT}
         <span className='Divider'>|</span>
         <a className='Link' href='https://digitransit.fi/en/developers/'>
           data source

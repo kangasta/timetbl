@@ -69,17 +69,28 @@ function* updateHash({ type: action }: Action) {
 const getUserLocation = () =>
   new Promise((resolve, reject) => {
     if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(resolve, reject, { enableHighAccuracy: true });
+      navigator.geolocation.getCurrentPosition(resolve, reject, {
+        enableHighAccuracy: true
+      });
     } else {
       reject('Geolocation is not supported or allowed by this browser.');
     }
   });
 
 function* getLocation() {
-  const { latitude: lat, longitude: lon } = (yield call(
-    getUserLocation
-  )).coords;
+  let location;
+  try {
+    location = yield call(getUserLocation);
+  } catch (e) {
+    const { type } = yield select(getLocationAndType);
+    yield put({
+      type: 'NEW_DATA',
+      metadata: { type, data: [], error: 'Location information not available' }
+    });
+    return;
+  }
 
+  const { latitude: lat, longitude: lon } = location.coords;
   yield put({
     type: 'NEW_LOCATION',
     metadata: {
@@ -111,6 +122,17 @@ export function* getData() {
       return;
     }
   } else {
+    if (!location.position) {
+      yield put({
+        type: 'NEW_DATA',
+        metadata: {
+          type,
+          data: [],
+          loading: 'Waiting for location information'
+        }
+      });
+      return;
+    }
     parameters = location.position;
   }
   try {

@@ -7,6 +7,7 @@ const { GenerateSW } = require('workbox-webpack-plugin');
 module.exports = (_, options) => {
 	const isProduction = (options.mode === 'production');
 	const publicUrl = isProduction ? (require('./package.json').homepage || '') : '';
+	const commit = process.env.COMMIT?.slice(0,8);
 
 	return {
 		entry: './src/index.tsx',
@@ -75,6 +76,7 @@ module.exports = (_, options) => {
 			new webpack.DefinePlugin({
 				'process.env': {
 					PUBLIC_URL: JSON.stringify(publicUrl),
+					COMMIT: JSON.stringify(commit),
 				},
 			}),
 		],
