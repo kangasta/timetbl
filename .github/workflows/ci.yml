@@ -28,3 +28,12 @@ jobs:
       with:
         coverageLocations: |
           coverage/lcov.info:lcov
+  browser-test:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Run robot framework tests
+      run: |
+        cd tst/
+        docker-compose build
+        docker-compose up --exit-code-from test

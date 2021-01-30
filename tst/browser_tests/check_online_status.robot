@@ -5,7 +5,7 @@ Test setup      Open timetbl
 Test teardown   Close Browser
 
 *** Variables ***
-${URL}              https://kangasta.github.io/timetbl/#/stop?code=Rautatientori
+${URL}              https://kangasta.github.io/timetbl
 ${BROWSER}          headlesschrome
 ${BROWSER_OPTIONS}  ${EMPTY}
 
@@ -19,10 +19,10 @@ Check page is online
 Open timetbl
     ${browser_options}=  Get Environment Variable    BROWSER_OPTIONS    ${BROWSER_OPTIONS}
     ${browser}=  Get Environment Variable    BROWSER    ${BROWSER}
-    Open browser    ${URL}    browser=${browser}    options=${browser_options}
+    Open browser    ${URL}/#/stop?code=Rautatientori    browser=${browser}    options=${browser_options}
 
 Check title
-    Wait Until Element Contains    css:div.Code    Rautatientori
+    Wait Until Page Contains    Rautatientori
 
 Check has departures
     Wait Until Page Contains Element    css:li.DepartureInfo
