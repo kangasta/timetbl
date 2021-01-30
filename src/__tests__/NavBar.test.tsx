@@ -1,40 +1,33 @@
 import React from 'react';
-import { mount, shallow } from 'enzyme';
+import { fireEvent, render } from '@testing-library/react';
+
 import { NavBar } from '../Components';
 
 describe('NavBar', () => {
   it('renders without crashing', () => {
-    mount(<NavBar buttons={[{ text: 'a', onClick: () => undefined }]} />);
+    render(<NavBar buttons={[{ text: 'a', onClick: () => undefined }]} />);
   });
   it('allows omitting className, disabled, and onClick', () => {
     const onClick = jest.fn();
-    const wrapper = shallow(
+    const { getByText } = render(
       <NavBar buttons={[{ text: 'a', onClick: onClick }]} />
     );
 
-    expect(wrapper.find('.Link').text()).toEqual('a');
-
-    wrapper.find('.Link').simulate('click');
+    const link = getByText('a');
+    fireEvent.click(link);
     expect(onClick).toHaveBeenCalledTimes(1);
   });
-  it('maps provided buttons to navbar and disables onClick when component is disabled', () => {
-    const onClick = jest.fn();
-    const buttons = [
-      { className: 'A', text: 'a', disabled: true, onClick: onClick },
-      { className: 'B', text: 'b', disabled: false, onClick: onClick },
-    ];
-    const wrapper = shallow(<NavBar buttons={buttons} />);
+  it.each([[true], [false]])(
+    'maps provided buttons to navbar and disables onClick when component is disabled: %s',
+    (disabled: boolean) => {
+      const onClick = jest.fn();
+      const { getByText } = render(
+        <NavBar buttons={[{ text: 'a', disabled, onClick: onClick }]} />
+      );
 
-    buttons.forEach((button) => {
-      const buttonWrapper = wrapper.find('.Link.' + button.className);
-
-      expect(
-        buttonWrapper.exists(button.disabled ? '.Disabled' : '.Active')
-      ).toBe(true);
-      expect(buttonWrapper.text()).toEqual(button.text);
-      buttonWrapper.simulate('click');
-    });
-
-    expect(onClick).toHaveBeenCalledTimes(1);
-  });
+      const button = getByText('a');
+      fireEvent.click(button);
+      expect(onClick).toHaveBeenCalledTimes(disabled ? 0 : 1);
+    }
+  );
 });

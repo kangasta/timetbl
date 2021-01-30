@@ -1,5 +1,5 @@
 import React from 'react';
-import { mount } from 'enzyme';
+import { render } from '@testing-library/react';
 
 import {
   DestinationItem,
@@ -10,21 +10,24 @@ import {
 } from '../Utils';
 
 describe('DestinationItem', () => {
-  it('replaces (M) as M wrapped in span', () => {
-    ['Kamppi', 'Kamppi (M)'].forEach((destination) => {
-      const wrapper = mount(<DestinationItem destination={destination} />);
-
-      expect(wrapper.text()).toEqual(destination.replace(/[\s()]/g, ''));
-      expect(wrapper.exists({ className: 'Metro', children: 'M' })).toBe(
-        destination.includes('(M)')
+  it.each([['Kamppi'], ['Kamppi (M)']])(
+    'replaces (M) as M wrapped in span: %s',
+    (destination: string) => {
+      const { container, getByText } = render(
+        <DestinationItem destination={destination} />
       );
-    });
-  });
+
+      expect(container.textContent).toEqual(destination.replace(/[\s()]/g, ''));
+      if (destination.includes('(M)')) {
+        expect(getByText('M')).toHaveClass('Metro');
+      }
+    }
+  );
 });
 
 describe('AlertSymbol', () => {
   it('renders without crashing', () => {
-    mount(<AlertSymbol />);
+    render(<AlertSymbol />);
   });
 });
 

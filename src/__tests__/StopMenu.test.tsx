@@ -1,5 +1,5 @@
 import React from 'react';
-import { mount } from 'enzyme';
+import { render } from '@testing-library/react';
 
 import { StopMenu } from '../Components/StopMenu';
 
@@ -7,7 +7,7 @@ import { StopMenu } from '../Components/StopMenu';
 
 describe('StopMenu', () => {
   it('renders without crashing', () => {
-    mount(
+    render(
       <StopMenu
         type='nearestStops'
         data={[]}
