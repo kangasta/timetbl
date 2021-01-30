@@ -6,7 +6,7 @@ import { StateType, Action } from '../Store/reducer';
 import { QueryTypeT } from '../ApiUtils';
 
 import { Title } from '../Components';
-import { BikesList, NavBar, StopMenu, TimeTable } from '../Components';
+import { BikesList, NavList, StopMenu, TimeTable } from '../Components';
 
 import './App.css';
 import './Theme.css';
@@ -97,7 +97,7 @@ export function App({
   return (
     <AppDiv className={`App ${theme}`}>
       <Title />
-      <NavBar buttons={navButtons} expandable secondary />
+      <NavList buttons={navButtons} expandable secondary />
       <View />
       <div className='Whitespace' />
       <div className='Background' />

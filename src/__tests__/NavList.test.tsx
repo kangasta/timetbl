@@ -1,16 +1,16 @@
 import React from 'react';
 import { fireEvent, render } from '@testing-library/react';
 
-import { NavBar } from '../Components';
+import { NavList } from '../Components';
 
-describe('NavBar', () => {
+describe('NavList', () => {
   it('renders without crashing', () => {
-    render(<NavBar buttons={[{ text: 'a', onClick: () => undefined }]} />);
+    render(<NavList buttons={[{ text: 'a', onClick: () => undefined }]} />);
   });
   it('allows omitting className, disabled, and onClick', () => {
     const onClick = jest.fn();
     const { getByText } = render(
-      <NavBar buttons={[{ text: 'a', onClick: onClick }]} />
+      <NavList buttons={[{ text: 'a', onClick: onClick }]} />
     );
 
     const link = getByText('a');
@@ -18,11 +18,11 @@ describe('NavBar', () => {
     expect(onClick).toHaveBeenCalledTimes(1);
   });
   it.each([[true], [false]])(
-    'maps provided buttons to navbar and disables onClick when component is disabled: %s',
+    'maps provided buttons to NavList and disables onClick when component is disabled: %s',
     (disabled: boolean) => {
       const onClick = jest.fn();
       const { getByText } = render(
-        <NavBar buttons={[{ text: 'a', disabled, onClick: onClick }]} />
+        <NavList buttons={[{ text: 'a', disabled, onClick: onClick }]} />
       );
 
       const button = getByText('a');

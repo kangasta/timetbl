@@ -55,14 +55,23 @@ const ExpancdIconSvg = styled.svg`
   transition: inherit;
 `;
 
-const NavLi = styled(MainLi)`
+const NavTextSpan = styled.span`
   font-size: 1.75em;
+`;
+
+const NavLi = styled(MainLi)`
+  text-align: left;
 
   &.Disabled {
     color: var(--text-secondary);
   }
 
-  &.Secondary {
+  &.Child {
+    padding-left: 2.5em;
+  }
+
+  &.Secondary,
+  &.Child {
     border-top: thin dotted var(--text-primary);
   }
 
@@ -84,18 +93,21 @@ const ExpandIcon = () => (
   </ExpancdIconSvg>
 );
 
+interface Button {
+  className?: string;
+  text: string;
+  onClick: () => void;
+  disabled?: boolean;
+  buttons?: Button[];
+}
+
 interface PropsType {
-  buttons: {
-    className?: string;
-    text: string;
-    onClick: () => void;
-    disabled?: boolean;
-  }[];
+  buttons: Button[];
   expandable?: boolean;
   secondary?: boolean;
 }
 
-export default function NavBar({
+export default function NavList({
   buttons = [],
   expandable = false,
   secondary = false,
@@ -104,34 +116,43 @@ export default function NavBar({
   const toggleOpen = () => setOpen((prev) => !prev);
   const openClass = !expandable || open ? 'Open' : 'Closed';
 
-  return (
-    <>
-      <NavBarDiv className={openClass}>
-        <MainUl>
-          {buttons.map((button) => {
-            const disabledClass = button.disabled ? 'Disabled ' : 'Active ';
-            const secondaryClass = secondary ? 'Secondary' : '';
-            const onClickFn =
-              button.disabled || !button.onClick
-                ? (): undefined => undefined
-                : () => {
-                    button.onClick();
-                    setOpen(false);
-                  };
+  const getButtons = (buttons: Button[], child = false): React.ReactElement[] =>
+    buttons.map(
+      ({ className, disabled, onClick, text, buttons: childButtons }) => {
+        const childClass = child ? 'Child' : '';
+        const disabledClass = disabled ? 'Disabled ' : 'Active ';
+        const secondaryClass = secondary ? 'Secondary' : '';
+        const onClickFn =
+          disabled || !onClick
+            ? (): undefined => undefined
+            : () => {
+                onClick();
+                setOpen(false);
+              };
 
-            return (
+        return (
+          <React.Fragment key={text}>
+            {text && (
               <NavLi
-                key={button.text}
-                className={`${secondaryClass} ${disabledClass} ${
-                  button.className || ''
+                key={text}
+                className={`${childClass} ${secondaryClass} ${disabledClass} ${
+                  className || ''
                 }`}
                 onClick={onClickFn}
               >
-                {button.text}
+                <NavTextSpan>{text}</NavTextSpan>
               </NavLi>
-            );
-          })}
-        </MainUl>
+            )}
+            {childButtons && getButtons(childButtons, true)}
+          </React.Fragment>
+        );
+      }
+    );
+
+  return (
+    <>
+      <NavBarDiv className={openClass}>
+        <MainUl>{getButtons(buttons)}</MainUl>
       </NavBarDiv>
       {expandable && (
         <ExpandIconDiv>
