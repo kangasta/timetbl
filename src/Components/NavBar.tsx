@@ -1,35 +1,88 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
+import { MainLi, MainUl } from '../Utils';
 
 const NavBarDiv = styled.div`
+  margin-bottom: 0.25em;
   text-align: center;
-  margin-bottom: 0.333em;
+  transition: all 0.4s ease-in-out, transform 0.2s ease-in-out;
+
+  &.Open {
+    margin-top: 0.5em;
+    max-height: auto;
+    transform: scale(1, 1);
+  }
+
+  &.Closed {
+    max-height: 0;
+    transform: scale(1, 0);
+  }
 `;
 
-const LinkSpan = styled.span`
-  background: var(--theme-color-2);
-  color: var(--theme-color-1);
-  cursor: pointer;
-  margin-left: 0.0625em;
-  display: inline-block;
-  padding: 0.25em 1.25em;
-  transition: all 0.2s ease-in-out;
+const ExpandIconDiv = styled.div`
+  text-align: center;
+`;
 
-  :first-child {
-    border-radius: 0.25em 0 0 0.25em;
-  }
-  :last-child {
-    border-radius: 0 0.25em 0.25em 0;
+const ExpandIconButton = styled.button`
+  appearance: none;
+  background: transparent;
+  border: 0;
+  border-radius: 50%;
+  box-sizing: content-box;
+  color: inherit;
+  font-size: inherit;
+  height: 1em;
+  line-height: 1em;
+  margin: -0.75em 0;
+  padding: 1em;
+
+  :focus {
+    background: var(--background-secondary);
+    outline: none;
   }
 
-  &.Active:hover {
-    opacity: 0.66;
+  &.Open {
+    margin: 0.25em 0;
   }
+
+  &.Open svg {
+    transform: scale(1, -1);
+  }
+`;
+
+const ExpancdIconSvg = styled.svg`
+  height: 1em;
+  transition: inherit;
+`;
+
+const NavLi = styled(MainLi)`
+  font-size: 1.75em;
 
   &.Disabled {
-    opacity: 0.33;
+    color: var(--text-secondary);
+  }
+
+  &.Secondary {
+    border-top: thin dotted var(--text-primary);
+  }
+
+  &.Secondary:last-child {
+    border-bottom: thin dotted var(--text-primary);
   }
 `;
+
+const ExpandIcon = () => (
+  <ExpancdIconSvg viewBox='0 0 64 64'>
+    <path
+      d='M 16 24 l 16 16 l 16 -16'
+      stroke='currentColor'
+      strokeWidth='6'
+      fill='none'
+      strokeLinecap='round'
+      strokeLinejoin='round'
+    />
+  </ExpancdIconSvg>
+);
 
 interface PropsType {
   buttons: {
@@ -38,28 +91,55 @@ interface PropsType {
     onClick: () => void;
     disabled?: boolean;
   }[];
+  expandable?: boolean;
+  secondary?: boolean;
 }
 
-export default function NavBar({ buttons = [] }: PropsType) {
-  return (
-    <NavBarDiv className='NavBar'>
-      {buttons.map((button) => {
-        const disabledClass = button.disabled ? 'Disabled ' : 'Active ';
-        const onClickFn =
-          button.disabled || !button.onClick
-            ? (): undefined => undefined
-            : button.onClick;
+export default function NavBar({
+  buttons = [],
+  expandable = false,
+  secondary = false,
+}: PropsType) {
+  const [open, setOpen] = useState(false);
+  const toggleOpen = () => setOpen((prev) => !prev);
+  const openClass = !expandable || open ? 'Open' : 'Closed';
 
-        return (
-          <LinkSpan
-            key={button.text}
-            className={`Link ${disabledClass} ${button.className || ''}`}
-            onClick={onClickFn}
-          >
-            {button.text}
-          </LinkSpan>
-        );
-      })}
-    </NavBarDiv>
+  return (
+    <>
+      <NavBarDiv className={openClass}>
+        <MainUl>
+          {buttons.map((button) => {
+            const disabledClass = button.disabled ? 'Disabled ' : 'Active ';
+            const secondaryClass = secondary ? 'Secondary' : '';
+            const onClickFn =
+              button.disabled || !button.onClick
+                ? (): undefined => undefined
+                : () => {
+                    button.onClick();
+                    setOpen(false);
+                  };
+
+            return (
+              <NavLi
+                key={button.text}
+                className={`${secondaryClass} ${disabledClass} ${
+                  button.className || ''
+                }`}
+                onClick={onClickFn}
+              >
+                {button.text}
+              </NavLi>
+            );
+          })}
+        </MainUl>
+      </NavBarDiv>
+      {expandable && (
+        <ExpandIconDiv>
+          <ExpandIconButton className={openClass} onClick={toggleOpen}>
+            <ExpandIcon />
+          </ExpandIconButton>
+        </ExpandIconDiv>
+      )}
+    </>
   );
 }

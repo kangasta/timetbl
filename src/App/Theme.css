@@ -5,12 +5,18 @@
 
 .MainTheme {
 	--theme-color-1: #0080D0;
+	--background-secondary: rgba(255,255,255, 0.25);
 	--theme-color-2: white;
+	--text-primary: white;
+	--text-secondary: rgba(255,255,255, 0.5);
 }
 
 .BikesTheme {
 	--theme-color-1: #ffcc33 ;
-	--theme-color-2: #555;
+	--background-secondary: rgba(85,85,85, 0.25);
+	--theme-color-2: #555555;
+	--text-primary: #555555;
+	--text-secondary: rgba(85,85,85, 0.5);
 }
 
 .BikesTheme .Metro {

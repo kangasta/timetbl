@@ -63,4 +63,4 @@ const mapStateToProps = ({ view }: StateType): ViewType => {
   return view;
 };
 
-export default connect<ViewType>(mapStateToProps)(TimeTable);
+export default connect(mapStateToProps)(TimeTable);

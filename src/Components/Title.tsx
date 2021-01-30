@@ -7,7 +7,7 @@ import { StateType } from '../Store/reducer';
 const TitleDiv = styled.div`
   box-sizing: border-box;
   height: 4.5em;
-  margin: 0.75em 1.5em;
+  margin: 0.75em 1.5em 0;
 `;
 
 const CodeClockCommonCss = css`

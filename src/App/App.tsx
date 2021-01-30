@@ -2,10 +2,6 @@ import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
-import { CSExpandable } from 'chillisalmon';
-
 import { StateType, Action } from '../Store/reducer';
 import { QueryTypeT } from '../ApiUtils';
 
@@ -101,9 +97,7 @@ export function App({
   return (
     <AppDiv className={`App ${theme}`}>
       <Title />
-      <CSExpandable>
-        <NavBar buttons={navButtons} />
-      </CSExpandable>
+      <NavBar buttons={navButtons} expandable secondary />
       <View />
       <div className='Whitespace' />
       <div className='Background' />
