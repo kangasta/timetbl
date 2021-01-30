@@ -1,0 +1,11 @@
+version: "3.4"
+services:
+  app.local:
+    build: ..
+  test:
+    build: .
+    command:
+    - -v
+    - URL:http://app.local
+    - -d
+    - /out
