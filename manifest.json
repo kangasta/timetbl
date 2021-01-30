@@ -1,0 +1,26 @@
+{
+	"short_name": "timetbl",
+	"name": "Timetable screen",
+	"icons": [
+	  {
+		"src": "favicon128.png",
+		"sizes": "128x128",
+		"type": "image/png"
+	  },
+	  {
+		"src": "favicon256.png",
+		"sizes": "256x256",
+		"type": "image/png"
+	  },
+	  {
+		"src": "favicon512.png",
+		"sizes": "512x512",
+		"type": "image/png"
+	  }
+	],
+	"start_url": "./index.html#/nearby",
+	"display": "standalone",
+	"theme_color": "#0080d0",
+	"background_color": "#0080d0"
+  }
+  
