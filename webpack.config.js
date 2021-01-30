@@ -64,8 +64,8 @@ module.exports = (_, options) => {
 		plugins: [
 			new CopyWebpackPlugin({
 				patterns: [
-					{ from: 'src/App/public' },
-				]
+					{ from: 'src/App/public', filter: path => !path.endsWith('.html'), },
+				],
 			}),
 			new HtmlWebpackPlugin({
 				template: 'src/App/public/index.html',
