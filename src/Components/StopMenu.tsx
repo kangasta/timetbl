@@ -1,5 +1,4 @@
 import React from 'react';
-import styled from 'styled-components';
 import { connect } from 'react-redux';
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -8,11 +7,7 @@ import { CSValidatorChanger } from 'chillisalmon';
 
 import { Action, ViewType, StateType } from '../Store/reducer';
 import { Stop, NearestNode, QueryTypeT } from '../ApiUtils';
-import { MainUl, MainLi } from '../Utils';
-
-const NameSpan = styled.span`
-  font-size: 1.75em;
-`;
+import { NavList } from '../Components';
 
 export function StopMenu({
   data,
@@ -37,37 +32,30 @@ export function StopMenu({
     return stops;
   };
 
+  const links = [
+    {
+      text: 'All nearby departures',
+      onClick: () => {
+        navigate('nearestDepartures');
+      },
+    },
+    ...getStopsArray().map(({ name, codes }) => ({
+      text: name,
+      onClick: () => {
+        navigate('stopDepartures', codes, name);
+      },
+      buttons: codes.map((code: string) => ({
+        text: code,
+        onClick: () => {
+          navigate('stopDepartures', [code]);
+        },
+      })),
+    })),
+  ];
+
   return (
     <CSValidatorChanger error={error} loading={loading}>
-      <MainUl className='StopMenu'>
-        <MainLi
-          className='Nearby ListItem'
-          onClick={() => navigate('nearestDepartures')}
-        >
-          <NameSpan className='Name'>All nearby departures</NameSpan>
-        </MainLi>
-        {getStopsArray().map((stop) => (
-          <MainLi className='Stop ListItem' key={stop.name}>
-            <NameSpan
-              className='Name'
-              onClick={() => navigate('stopDepartures', stop.codes, stop.name)}
-            >
-              {stop.name}
-            </NameSpan>
-            <ul>
-              {stop.codes.map((code: string) => (
-                <li
-                  className='StopCode'
-                  key={code}
-                  onClick={() => navigate('stopDepartures', [code])}
-                >
-                  {code}
-                </li>
-              ))}
-            </ul>
-          </MainLi>
-        ))}
-      </MainUl>
+      <NavList buttons={links} />
     </CSValidatorChanger>
   );
 }
@@ -77,7 +65,7 @@ const mapStateToProps = ({ view }: StateType): ViewType => {
 };
 
 interface DispatchProps {
-  navigate: (type: string, stopCodes?: string[], title?: string) => Action;
+  navigate: (type: QueryTypeT, stopCodes?: string[], title?: string) => Action;
 }
 const mapDispatchToProps = (
   dispatch: (args: Action) => Action
@@ -91,7 +79,4 @@ const mapDispatchToProps = (
   };
 };
 
-export default connect<ViewType, DispatchProps>(
-  mapStateToProps,
-  mapDispatchToProps
-)(StopMenu);
+export default connect(mapStateToProps, mapDispatchToProps)(StopMenu);
