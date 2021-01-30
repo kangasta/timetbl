@@ -83,7 +83,7 @@ function AlertButton({
     ? 'INFO'
     : 'WARNING';
   return (
-    <AlertSymbolDiv className='AlertSymbol' onClick={toggleAlert}>
+    <AlertSymbolDiv onClick={toggleAlert} data-testid='departure-alert-symbol'>
       <AlertSymbol severity={severity} />
     </AlertSymbolDiv>
   );
@@ -137,7 +137,11 @@ function AlertText({
   return (
     <div className='Alerts'>
       {alertTexts.map((alertText, i) => (
-        <AlertTextDiv key={i} className='AlertText' onClick={toggleAlert}>
+        <AlertTextDiv
+          key={i}
+          data-testid='departure-alert-text'
+          onClick={toggleAlert}
+        >
           <span className='Left'>
             <AlertSymbol severity={alerts[i].alertSeverityLevel} />
           </span>

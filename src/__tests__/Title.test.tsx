@@ -1,33 +1,42 @@
 import React from 'react';
-import { mount, shallow } from 'enzyme';
+import { render } from '@testing-library/react';
 
 import { Title } from '../Components/Title';
 
 describe('Title', () => {
   it('renders without crashing', () => {
-    mount(<Title clock={true} />);
+    render(<Title clock={true} />);
   });
-  it('displays clock if asked', () => {
-    [true, false].forEach((clock) => {
-      const wrapper = shallow(<Title clock={clock} />);
+  it.each([[true], [false]])(
+    'displays clock if asked: %s',
+    (clock: boolean) => {
+      const { container } = render(<Title clock={clock} />);
 
-      expect(wrapper.exists('.Clock')).toBe(clock);
-      if (clock)
-        expect(wrapper.find('.Clock').text()).toMatch(/[0-9]{1,2}.[0-9]{2}/);
-    });
-  });
+      const timeRe = /[0-9]{1,2}.[0-9]{2}/;
+      if (clock) {
+        expect(container.textContent).toMatch(timeRe);
+      } else {
+        expect(container.textContent).not.toMatch(timeRe);
+      }
+    }
+  );
   // TODO: check clock is updated
-  it('displays either coordinates or text', () => {
-    [
-      { title: 'Title', has: '.Code', hasNot: '.Coord' },
-      { title: 'Title', lat: 60, lon: 24, has: '.Code', hasNot: '.Coord' },
-      { lat: 60, lon: 24, has: '.Coord', hasNot: '.Code' },
-      { stopCodes: ['1', '2', '3'], has: '.Code', hasNot: '.Coord' },
-    ].forEach((test) => {
-      const wrapper = shallow(<Title clock={true} {...test} />);
+  it.each([
+    [{ title: 'Title', has: 'Title' }],
+    [{ title: 'Title', lat: 60, lon: 24, has: 'Title', hasNot: 'N 60' }],
+    [{ lat: 60, lon: 24, has: 'N 60' }],
+    [{ stopCodes: ['1', '2', '3'], has: '1 2 3' }],
+  ] as any[])(
+    'displays either coordinates or text',
+    ({ has, hasNot, ...props }) => {
+      const { container } = render(<Title clock={true} {...props} />);
 
-      expect(wrapper.exists(test.has)).toBe(true);
-      expect(wrapper.exists(test.hasNot)).toBe(false);
-    });
-  });
+      if (has) {
+        expect(container.textContent).toContain(has);
+      }
+      if (hasNot) {
+        expect(container.textContent).not.toContain(hasNot);
+      }
+    }
+  );
 });

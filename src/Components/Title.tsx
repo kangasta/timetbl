@@ -79,7 +79,7 @@ export function Title({ clock, lat, lon, stopCodes, title }: StateProps) {
       { letter: lat > 0 ? 'N ' : 'S ', number: lat.toString().padEnd(9, '0') },
       { letter: lon > 0 ? 'E ' : 'W ', number: lon.toString().padEnd(9, '0') },
     ].map((coords) => (
-      <CoordDiv key={coords.letter} className='Coord'>
+      <CoordDiv key={coords.letter}>
         <b>{coords.letter}</b>
         {coords.number}
       </CoordDiv>
@@ -87,9 +87,9 @@ export function Title({ clock, lat, lon, stopCodes, title }: StateProps) {
   };
 
   return (
-    <TitleDiv className='Title'>
-      {clock && <ClockDiv className='Clock'>{time}</ClockDiv>}
-      {hasText() && <CodeDiv className='Code'>{title}</CodeDiv>}
+    <TitleDiv>
+      {clock && <ClockDiv>{time}</ClockDiv>}
+      {hasText() && <CodeDiv>{title}</CodeDiv>}
       {getCoords()}
     </TitleDiv>
   );
@@ -102,4 +102,4 @@ const mapStateToProps = (state: StateType): StateProps => {
   return { lat, lon, stopCodes, title, clock: true };
 };
 
-export default connect<StateProps>(mapStateToProps)(Title);
+export default connect(mapStateToProps)(Title);

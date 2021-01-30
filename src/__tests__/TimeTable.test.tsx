@@ -1,10 +1,10 @@
 import React from 'react';
-import { mount } from 'enzyme';
+import { render } from '@testing-library/react';
 import { TimeTable } from '../Components/TimeTable';
 
 describe('TimeTable', () => {
   it('renders without crashing', () => {
-    mount(<TimeTable type='nearestDepartures' data={[]} />);
+    render(<TimeTable type='nearestDepartures' data={[]} />);
   });
   /*
 	it('shows nearest departure infos after succesfull API query.', () => {
