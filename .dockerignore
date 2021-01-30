@@ -1,1 +1,7 @@
-.gitignore
+node_modules/
+coverage/
+build/
+
+tst/
+
+timetablescreen*.tgz

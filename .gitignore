@@ -1,5 +1,8 @@
-node_modules
-coverage
-build
+node_modules/
+coverage/
+build/
+
+tst/comment.md
+tst/out
 
 timetablescreen*.tgz
