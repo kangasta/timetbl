@@ -6,12 +6,12 @@ import {
   AlertSymbol,
   TimeUtils,
   getField,
-  getUniqueFilter
+  getUniqueFilter,
 } from '../Utils';
 
 describe('DestinationItem', () => {
   it('replaces (M) as M wrapped in span', () => {
-    ['Kamppi', 'Kamppi (M)'].forEach(destination => {
+    ['Kamppi', 'Kamppi (M)'].forEach((destination) => {
       const wrapper = mount(<DestinationItem destination={destination} />);
 
       expect(wrapper.text()).toEqual(destination.replace(/[\s()]/g, ''));
@@ -43,8 +43,8 @@ describe('parseHour', () => {
       { in: 24 * 3600, out: 0 },
       { in: 26 * 3600, out: 2 },
       { in: 26 * 3600 + 1830, out: 2 },
-      { in: 3 * 3600 + 1234, out: 3 }
-    ].forEach(test => {
+      { in: 3 * 3600 + 1234, out: 3 },
+    ].forEach((test) => {
       expect(TimeUtils.parseHour(test.in)).toBe(test.out);
     });
   });
@@ -56,8 +56,8 @@ describe('parseTime', () => {
       { in: 10 * 3600 + 6 * 60, out: '10:06' },
       { in: 10 * 3600 + 16 * 60, out: '10:16' },
       { in: 9 * 3600 + 0 * 60, out: ' 9:00' },
-      { in: 26 * 3600 + 16 * 60, out: ' 2:16' }
-    ].forEach(test => {
+      { in: 26 * 3600 + 16 * 60, out: ' 2:16' },
+    ].forEach((test) => {
       expect(TimeUtils.parseTime(test.in)).toBe(test.out);
     });
   });
@@ -121,7 +121,7 @@ describe('getUniqueFilter', () => {
     const arr = [{ a: [0] }, { a: [0] }, { a: [1] }, { a: [1] }];
     expect(arr.filter(getUniqueFilter('a[0]'))).toEqual([
       { a: [0] },
-      { a: [1] }
+      { a: [1] },
     ]);
   });
 });

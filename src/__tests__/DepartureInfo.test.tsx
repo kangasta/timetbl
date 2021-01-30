@@ -14,7 +14,7 @@ describe('DepartureInfo', () => {
   it('renders alert either as icon or detailed text', () => {
     const wrapper = mount(<DepartureInfo stoptimes={stoptimes} />);
 
-    [true, false, true].forEach(symbol => {
+    [true, false, true].forEach((symbol) => {
       expect(wrapper.exists('.AlertSymbol')).toBe(symbol);
       expect(wrapper.exists('.AlertText')).toBe(!symbol);
 

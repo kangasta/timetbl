@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import { CSValidatorChanger } from 'chillisalmon';
 
@@ -36,9 +36,14 @@ export function BikesList({ data, loading, error }: ViewType) {
               </DepartureLi>
             </DepartureListUl>
             <DestinationDiv className='Destination NoDetails'>
-              {(bikesItem.node.place.name || '').split(',').map(destination => (
-                <DestinationItem key={destination} destination={destination} />
-              ))}
+              {(bikesItem.node.place.name || '')
+                .split(',')
+                .map((destination) => (
+                  <DestinationItem
+                    key={destination}
+                    destination={destination}
+                  />
+                ))}
             </DestinationDiv>
           </MainLi>
         ))}

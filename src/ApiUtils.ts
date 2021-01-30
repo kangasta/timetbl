@@ -273,7 +273,7 @@ type QueryParametersT = PositionParameters | StopParameters;
 export async function sendQuery(
   type: QueryTypeT,
   parameters: QueryParametersT | QueryParametersT[]
-): Promise<object[]> {
+): Promise<any[]> {
   parameters = Array.isArray(parameters) ? parameters : [parameters];
 
   let queryGetter: (parameters: PositionParameters | StopParameters) => string;
@@ -293,13 +293,13 @@ export async function sendQuery(
   }
 
   const promises = parameters.map(
-    async (parametersItem): Promise<object> => {
+    async (parametersItem): Promise<any> => {
       const data = await fetch(apiUrl, {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/graphql'
+          'Content-Type': 'application/graphql',
         },
-        body: queryGetter(parametersItem)
+        body: queryGetter(parametersItem),
       });
 
       const jsonData = await data.json();
@@ -336,5 +336,5 @@ export {
   nearestBikesQuery,
   nearestDeparturesQuery,
   nearestStopsQuery,
-  stopDeparturesQuery
+  stopDeparturesQuery,
 };

@@ -9,7 +9,7 @@ export interface LocationType {
 
 export interface ViewType {
   type: QueryTypeT;
-  data: object[];
+  data: any[];
   loading?: string;
   error?: string;
 }
@@ -30,7 +30,7 @@ interface NavigateMetadata {
 
 interface NewDataMetadata {
   type: QueryTypeT;
-  data?: object[];
+  data?: any[];
 }
 
 export interface Action {
@@ -60,7 +60,7 @@ const getLocation = (params: URLSearchParams): LocationType => {
       lat: Number(lat),
       lon: Number(lon),
       maxDistance: Number(params.get('r') || 1000),
-      maxResults: 30
+      maxResults: 30,
     };
   }
 
@@ -68,7 +68,7 @@ const getLocation = (params: URLSearchParams): LocationType => {
     title: params.get('title') || undefined,
     position,
     stopCodes: (code && code.split(',')) || undefined,
-    follow: params.get('follow') === 'true'
+    follow: params.get('follow') === 'true',
   };
 };
 
@@ -127,8 +127,8 @@ export function reducer(prevState?: StateType, action?: Action): StateType {
       view: {
         type: 'nearestDepartures',
         data: [],
-        loading: 'Loading data from HSL API'
-      }
+        loading: 'Loading data from HSL API',
+      },
     };
   }
 
@@ -144,7 +144,7 @@ export function reducer(prevState?: StateType, action?: Action): StateType {
         newState.view = Object.assign(
           {
             type,
-            data: []
+            data: [],
           },
           getLocationState(type, location)
         );
@@ -155,7 +155,7 @@ export function reducer(prevState?: StateType, action?: Action): StateType {
       const { type, location } = action.metadata as NavigateMetadata;
       if (type !== prevState.view.type) {
         newState = Object.assign({}, prevState, {
-          view: { type, data: [], loading: 'Loading data from HSL API' }
+          view: { type, data: [], loading: 'Loading data from HSL API' },
         });
         if (location) {
           newState = Object.assign(newState, { location });
