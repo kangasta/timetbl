@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 
-// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import { CSValidatorChanger } from 'chillisalmon';
 
@@ -18,15 +18,15 @@ export function StopMenu({
   data,
   loading,
   error,
-  navigate
+  navigate,
 }: ViewType & DispatchProps) {
   const getStopsArray = () => {
     if (data.length === 0) return [];
 
     const stops = (data as NearestNode<Stop>[])
-      .map(i => i.node.place)
+      .map((i) => i.node.place)
       .reduce((r, i) => {
-        const stop = r.find(j => j.name === i.name);
+        const stop = r.find((j) => j.name === i.name);
         if (stop === undefined) {
           r.push({ name: i.name, codes: [i.code] });
         } else {
@@ -46,7 +46,7 @@ export function StopMenu({
         >
           <NameSpan className='Name'>All nearby departures</NameSpan>
         </MainLi>
-        {getStopsArray().map(stop => (
+        {getStopsArray().map((stop) => (
           <MainLi className='Stop ListItem' key={stop.name}>
             <NameSpan
               className='Name'
@@ -86,8 +86,8 @@ const mapDispatchToProps = (
     navigate: (type: QueryTypeT, stopCodes?: string[], title?: string) =>
       dispatch({
         type: 'NAVIGATE',
-        metadata: { type, location: { follow: false, stopCodes, title } }
-      })
+        metadata: { type, location: { follow: false, stopCodes, title } },
+      }),
   };
 };
 

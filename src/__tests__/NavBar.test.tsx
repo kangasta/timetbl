@@ -21,11 +21,11 @@ describe('NavBar', () => {
     const onClick = jest.fn();
     const buttons = [
       { className: 'A', text: 'a', disabled: true, onClick: onClick },
-      { className: 'B', text: 'b', disabled: false, onClick: onClick }
+      { className: 'B', text: 'b', disabled: false, onClick: onClick },
     ];
     const wrapper = shallow(<NavBar buttons={buttons} />);
 
-    buttons.forEach(button => {
+    buttons.forEach((button) => {
       const buttonWrapper = wrapper.find('.Link.' + button.className);
 
       expect(

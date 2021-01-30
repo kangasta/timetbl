@@ -12,14 +12,14 @@ const coordsLocation: LocationType = {
     lat: 10,
     lon: 20,
     maxDistance: 30,
-    maxResults: 40
+    maxResults: 40,
   },
-  follow: true
+  follow: true,
 };
 
 const stopsLocation: LocationType = {
   stopCodes: ['1234'],
-  follow: false
+  follow: false,
 };
 
 describe('update', (): void => {
@@ -28,7 +28,7 @@ describe('update', (): void => {
       const dispatch = jest.fn();
       const getState = () =>
         Object.assign({}, defaultState, {
-          location: { follow: follow }
+          location: { follow: follow },
         });
 
       runSaga({ dispatch, getState }, update);
@@ -47,7 +47,7 @@ describe('getData', (): void => {
       { type: 'nearestBikes', location: coordsLocation },
       { type: 'nearestDepartures', location: coordsLocation },
       { type: 'nearestStops', location: coordsLocation },
-      { type: 'stopDepartures', location: stopsLocation }
+      { type: 'stopDepartures', location: stopsLocation },
     ].forEach(async ({ location, type }) => {
       const sendQuery = jest
         .spyOn(ApiUtils, 'sendQuery')
@@ -60,8 +60,10 @@ describe('getData', (): void => {
 
       let parameters;
       if (type === 'stopDepartures') {
-        parameters = location.stopCodes.map((i: string): object => ({
-          stopCode: i
+        parameters = location.stopCodes.map((i: string): {
+          [k: string]: string;
+        } => ({
+          stopCode: i,
         }));
       } else {
         parameters = location.position;
@@ -70,7 +72,7 @@ describe('getData', (): void => {
       expect(sendQuery).toHaveBeenCalledWith(type, parameters);
       expect(dispatch).toHaveBeenCalledWith({
         type: 'NEW_DATA',
-        metadata: { type, data: [] }
+        metadata: { type, data: [] },
       });
     });
   });
@@ -87,7 +89,7 @@ describe('getData', (): void => {
     expect(sendQuery).not.toHaveBeenCalled();
     expect(dispatch).toHaveBeenCalledWith({
       type: 'NEW_DATA',
-      metadata: { type, data: [], loading: null, error: 'No stops given' }
+      metadata: { type, data: [], loading: null, error: 'No stops given' },
     });
   });
 });

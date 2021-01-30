@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 
-// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import { CSExpandable } from 'chillisalmon';
 
@@ -39,7 +39,7 @@ export function App({
   type,
   hashChange,
   navigate,
-  update
+  update,
 }: DispatchProps & StateProps) {
   useEffect(() => {
     const pushNewHash = (): void => {
@@ -66,22 +66,22 @@ export function App({
       onClick: () => {
         navigate('nearestDepartures');
       },
-      disabled: type === 'nearestDepartures'
+      disabled: type === 'nearestDepartures',
     },
     {
       text: 'Bikes',
       onClick: () => {
         navigate('nearestBikes');
       },
-      disabled: type === 'nearestBikes'
+      disabled: type === 'nearestBikes',
     },
     {
       text: 'Menu',
       onClick: () => {
         navigate('nearestStops');
       },
-      disabled: type === 'nearestStops'
-    }
+      disabled: type === 'nearestStops',
+    },
   ];
 
   const View = () => {
@@ -124,7 +124,7 @@ export function App({
 
 const mapStateToProps = (state: StateType): StateProps => {
   return {
-    type: state.view.type as QueryTypeT
+    type: state.view.type as QueryTypeT,
   };
 };
 
@@ -136,7 +136,7 @@ const mapDispatchToProps = (
       dispatch({ type: 'HASH_CHANGE', metadata: { hash } }),
     navigate: (type: QueryTypeT) =>
       dispatch({ type: 'NAVIGATE', metadata: { type } }),
-    update: () => dispatch({ type: 'UPDATE' })
+    update: () => dispatch({ type: 'UPDATE' }),
   };
 };
 

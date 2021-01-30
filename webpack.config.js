@@ -7,7 +7,7 @@ const { GenerateSW } = require('workbox-webpack-plugin');
 module.exports = (_, options) => {
 	const isProduction = (options.mode === 'production');
 	const publicUrl = isProduction ? (require('./package.json').homepage || '') : '';
-	const commit = process.env.COMMIT?.slice(0,8);
+	const commit = process.env.COMMIT?.slice(0, 8);
 
 	return {
 		entry: './src/index.tsx',
@@ -56,15 +56,17 @@ module.exports = (_, options) => {
 					}],
 				},
 				{
-					test:/\.css$/,
+					test: /\.css$/,
 					use: ['style-loader', 'css-loader'],
 				},
 			],
 		},
 		plugins: [
-			new CopyWebpackPlugin([
-				{ from: 'src/App/public' },
-			]),
+			new CopyWebpackPlugin({
+				patterns: [
+					{ from: 'src/App/public' },
+				]
+			}),
 			new HtmlWebpackPlugin({
 				template: 'src/App/public/index.html',
 				inject: 'body',

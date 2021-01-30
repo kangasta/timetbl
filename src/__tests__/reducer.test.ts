@@ -10,8 +10,8 @@ describe('reducer', (): void => {
     const action = {
       type: 'HASH_CHANGE',
       metadata: {
-        hash: '#/stop?code=kamppi'
-      }
+        hash: '#/stop?code=kamppi',
+      },
     } as Action;
     deepFreeze(action);
     const newState = {
@@ -19,14 +19,14 @@ describe('reducer', (): void => {
         title: undefined,
         position: undefined,
         stopCodes: ['kamppi'],
-        follow: false
+        follow: false,
       },
       view: {
         type: 'stopDepartures',
         data: [],
         loading: undefined,
-        error: undefined
-      }
+        error: undefined,
+      },
     } as StateType;
 
     expect(reducer(defaultState, action)).toEqual(newState);
@@ -38,21 +38,21 @@ describe('reducer', (): void => {
         type: 'stopDepartures',
         location: {
           follow: false,
-          stopCodes: ['Kamppi']
-        }
-      }
+          stopCodes: ['Kamppi'],
+        },
+      },
     } as Action;
     deepFreeze(action);
     const newState = {
       location: {
         stopCodes: ['Kamppi'],
-        follow: false
+        follow: false,
       },
       view: {
         type: 'stopDepartures',
         data: [],
-        loading: 'Loading data from HSL API'
-      }
+        loading: 'Loading data from HSL API',
+      },
     } as StateType;
 
     expect(reducer(defaultState, action)).toEqual(newState);

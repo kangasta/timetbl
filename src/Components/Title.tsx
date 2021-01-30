@@ -49,10 +49,7 @@ export function Title({ clock, lat, lon, stopCodes, title }: StateProps) {
   const getTimeStr = () => {
     const time = new Date();
     const h = time.getHours().toString();
-    const m = time
-      .getMinutes()
-      .toString()
-      .padStart(2, '0');
+    const m = time.getMinutes().toString().padStart(2, '0');
 
     return `${h}:${m}`;
   };
@@ -80,8 +77,8 @@ export function Title({ clock, lat, lon, stopCodes, title }: StateProps) {
     if (hasText() || !hasCoords()) return null;
     return [
       { letter: lat > 0 ? 'N ' : 'S ', number: lat.toString().padEnd(9, '0') },
-      { letter: lon > 0 ? 'E ' : 'W ', number: lon.toString().padEnd(9, '0') }
-    ].map(coords => (
+      { letter: lon > 0 ? 'E ' : 'W ', number: lon.toString().padEnd(9, '0') },
+    ].map((coords) => (
       <CoordDiv key={coords.letter} className='Coord'>
         <b>{coords.letter}</b>
         {coords.number}

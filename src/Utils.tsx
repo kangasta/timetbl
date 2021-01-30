@@ -163,10 +163,11 @@ export function getField<T = unknown>(
 }
 
 export function getUniqueFilter(field: string) {
-  return function<T>(element: T, index: number, array: T[]): boolean {
+  return function <T>(element: T, index: number, array: T[]): boolean {
     return (
-      array.findIndex(i => getField(i, field) === getField(element, field)) ===
-      index
+      array.findIndex(
+        (i) => getField(i, field) === getField(element, field)
+      ) === index
     );
   };
 }

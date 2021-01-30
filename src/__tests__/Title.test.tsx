@@ -8,7 +8,7 @@ describe('Title', () => {
     mount(<Title clock={true} />);
   });
   it('displays clock if asked', () => {
-    [true, false].forEach(clock => {
+    [true, false].forEach((clock) => {
       const wrapper = shallow(<Title clock={clock} />);
 
       expect(wrapper.exists('.Clock')).toBe(clock);
@@ -22,8 +22,8 @@ describe('Title', () => {
       { title: 'Title', has: '.Code', hasNot: '.Coord' },
       { title: 'Title', lat: 60, lon: 24, has: '.Code', hasNot: '.Coord' },
       { lat: 60, lon: 24, has: '.Coord', hasNot: '.Code' },
-      { stopCodes: ['1', '2', '3'], has: '.Code', hasNot: '.Coord' }
-    ].forEach(test => {
+      { stopCodes: ['1', '2', '3'], has: '.Code', hasNot: '.Coord' },
+    ].forEach((test) => {
       const wrapper = shallow(<Title clock={true} {...test} />);
 
       expect(wrapper.exists(test.has)).toBe(true);

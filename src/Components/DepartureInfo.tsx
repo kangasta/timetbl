@@ -74,11 +74,11 @@ interface AlertControls {
 function AlertButton({
   alerts,
   showAlert,
-  toggleAlert
+  toggleAlert,
 }: TransportRoute & AlertControls) {
   if (alerts.length === 0 || showAlert) return null;
   const severity: AlertSeverity = alerts.every(
-    alert => alert.alertSeverityLevel === 'INFO'
+    (alert) => alert.alertSeverityLevel === 'INFO'
   )
     ? 'INFO'
     : 'WARNING';
@@ -112,7 +112,7 @@ function AlertText({
   alerts,
   showAlert,
   toggleAlert,
-  language
+  language,
 }: TransportRoute & {
   showAlert: boolean;
   language: string;
@@ -125,9 +125,9 @@ function AlertText({
   let alertTexts: string[];
   try {
     alertTexts = alerts.map(
-      alert =>
+      (alert) =>
         alert.alertDescriptionTextTranslations.find(
-          translation => translation.language === language
+          (translation) => translation.language === language
         ).text
     );
   } catch (e) {
@@ -161,7 +161,7 @@ export const DestinationDiv = styled.div`
 
 function Destinations({
   className,
-  headsign
+  headsign,
 }: {
   className: string;
   headsign: string;
@@ -170,7 +170,7 @@ function Destinations({
 
   return (
     <DestinationDiv className={`Destination ${className}`}>
-      {destinations.map(i => (
+      {destinations.map((i) => (
         <DestinationItem key={i} destination={i} />
       ))}
     </DestinationDiv>
@@ -187,7 +187,7 @@ const DetailsDiv = styled.div`
 function Details({
   stop,
   showStopName,
-  distance
+  distance,
 }: {
   stop: Stop;
   showStopName?: boolean;
@@ -241,14 +241,14 @@ export function DepartureInfo({
   stoptimes,
   distance,
   showPlatform = false,
-  showStopName = false
+  showStopName = false,
 }: PropsType) {
   const [showAlert, setShowAlert] = useState(false);
   const alertControls = {
     showAlert,
     toggleAlert: () => {
       setShowAlert(!showAlert);
-    }
+    },
   };
 
   const detailsClass = showPlatform ? 'WithDetails' : 'NoDetails';

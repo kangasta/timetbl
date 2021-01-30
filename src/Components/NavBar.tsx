@@ -43,7 +43,7 @@ interface PropsType {
 export default function NavBar({ buttons = [] }: PropsType) {
   return (
     <NavBarDiv className='NavBar'>
-      {buttons.map(button => {
+      {buttons.map((button) => {
         const disabledClass = button.disabled ? 'Disabled ' : 'Active ';
         const onClickFn =
           button.disabled || !button.onClick

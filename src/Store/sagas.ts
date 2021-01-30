@@ -6,7 +6,7 @@ const getLocationAndType = (
   state: StateType
 ): { type: string; location: LocationType } => ({
   type: state.view.type,
-  location: state.location
+  location: state.location,
 });
 
 const getNearestQueryStr = (location: LocationType): string => {
@@ -70,7 +70,7 @@ const getUserLocation = () =>
   new Promise((resolve, reject) => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(resolve, reject, {
-        enableHighAccuracy: true
+        enableHighAccuracy: true,
       });
     } else {
       reject('Geolocation is not supported or allowed by this browser.');
@@ -85,7 +85,7 @@ function* getLocation() {
     const { type } = yield select(getLocationAndType);
     yield put({
       type: 'NEW_DATA',
-      metadata: { type, data: [], error: 'Location information not available' }
+      metadata: { type, data: [], error: 'Location information not available' },
     });
     return;
   }
@@ -99,9 +99,9 @@ function* getLocation() {
         lat: Math.round(lat * 1e6) / 1e6,
         lon: Math.round(lon * 1e6) / 1e6,
         maxDistance: 1500,
-        maxResults: 30
-      }
-    }
+        maxResults: 30,
+      },
+    },
   });
 }
 
@@ -111,13 +111,15 @@ export function* getData() {
   let parameters;
   if (type === 'stopDepartures') {
     if (location.stopCodes !== undefined && location.stopCodes.length > 0) {
-      parameters = location.stopCodes.map((i: string): object => ({
-        stopCode: i
+      parameters = location.stopCodes.map((i: string): {
+        [k: string]: string;
+      } => ({
+        stopCode: i,
       }));
     } else {
       yield put({
         type: 'NEW_DATA',
-        metadata: { type, data: [], loading: null, error: 'No stops given' }
+        metadata: { type, data: [], loading: null, error: 'No stops given' },
       });
       return;
     }
@@ -128,8 +130,8 @@ export function* getData() {
         metadata: {
           type,
           data: [],
-          loading: 'Waiting for location information'
-        }
+          loading: 'Waiting for location information',
+        },
       });
       return;
     }
@@ -141,7 +143,7 @@ export function* getData() {
   } catch (e) {
     yield put({
       type: 'NEW_DATA',
-      metadata: { type, data: [], error: e.toString() }
+      metadata: { type, data: [], error: e.toString() },
     });
   }
 }
