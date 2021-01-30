@@ -6,7 +6,8 @@ const { GenerateSW } = require('workbox-webpack-plugin');
 
 module.exports = (_, options) => {
 	const isProduction = (options.mode === 'production');
-	const publicUrl = isProduction ? (require('./package.json').homepage || '') : '';
+	const homepage = process.env.PUBLIC_URL ?? (require('./package.json').homepage || '');
+	const publicUrl = isProduction ? homepage : '';
 	const commit = process.env.COMMIT?.slice(0, 8);
 
 	return {

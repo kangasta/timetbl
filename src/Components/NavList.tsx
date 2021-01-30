@@ -9,7 +9,7 @@ const NavBarDiv = styled.div`
 
   &.Open {
     margin-top: 0.5em;
-    max-height: auto;
+    max-height: 100vh;
     transform: scale(1, 1);
   }
 
@@ -156,7 +156,11 @@ export default function NavList({
       </NavBarDiv>
       {expandable && (
         <ExpandIconDiv>
-          <ExpandIconButton className={openClass} onClick={toggleOpen}>
+          <ExpandIconButton
+            className={openClass}
+            onClick={toggleOpen}
+            data-testid='navlist-expand-button'
+          >
             <ExpandIcon />
           </ExpandIconButton>
         </ExpandIconDiv>

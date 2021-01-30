@@ -2,6 +2,8 @@ version: "3.4"
 services:
   app.local:
     build: ..
+    ports:
+      - 8001:80
   test:
     build: .
     command:
@@ -9,3 +11,5 @@ services:
     - URL:http://app.local
     - -d
     - /out
+    - -L
+    - TRACE:INFO

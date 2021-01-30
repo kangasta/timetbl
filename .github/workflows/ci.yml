@@ -37,3 +37,17 @@ jobs:
         cd tst/
         docker-compose build
         docker-compose up --exit-code-from test
+    #     ./screenshots_to_comment.sh
+    # - name: Comment pull request
+    #   uses: actions/github-script@v3
+    #   with:
+    #     github-token: ${{secrets.GITHUB_TOKEN}}
+    #     script: |
+    #       const fs = require('fs');
+    #       github.issues.createComment({
+    #         issue_number: context.issue.number,
+    #         owner: context.repo.owner,
+    #         repo: context.repo.repo,
+    #         body: fs.readFileSync(`${process.env.GITHUB_WORKSPACE}/tst/comment.md`).toString()
+    #       })
+    #   if: github.event_name == 'pull_request'

@@ -1,5 +1,7 @@
 FROM node:lts-alpine as build
 
+ARG PUBLIC_URL=""
+
 RUN apk add git
 WORKDIR /app
 
