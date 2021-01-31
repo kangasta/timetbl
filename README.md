@@ -1,6 +1,7 @@
 # timetbl
 
-[![Build Status](https://travis-ci.org/kangasta/timetbl.svg?branch=master)](https://travis-ci.org/kangasta/timetbl)
+![CI](https://github.com/kangasta/timetbl/workflows/CI/badge.svg)
+![Deploy](https://github.com/kangasta/timetbl/workflows/Deploy/badge.svg)
 [![Maintainability](https://api.codeclimate.com/v1/badges/5f82a139ff356840c565/maintainability)](https://codeclimate.com/github/kangasta/timetbl/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/5f82a139ff356840c565/test_coverage)](https://codeclimate.com/github/kangasta/timetbl/test_coverage)
 
