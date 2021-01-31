@@ -22,12 +22,35 @@ interface DispatchProps {
 }
 
 const AppDiv = styled.div`
-  .CSExpandable {
-    text-align: center;
-  }
+  background: var(--theme-color-1);
+  box-sizing: border-box;
+  color: var(--theme-color-2);
+  display: flex;
+  flex-direction: column;
+  font-family: Helvetica, Arial, sans-serif;
+  min-height: 100vh;
+  transition: all 500ms;
 
-  .CSExpandable .Icon {
-    font-size: 0.666em;
+  /* Force browser to respect margin-top: 0 */
+  margin-top: -1px;
+  padding-top: 1px;
+`;
+
+const Main = styled.main`
+  flex: 1;
+`;
+
+const Footer = styled.footer`
+  color: var(--theme-color-2);
+  font-size: 0.75em;
+  margin-top: 3em;
+  padding: 0.25em;
+  text-align: center;
+
+  .Divider {
+    display: inline-block;
+    text-align: center;
+    width: 0.5rem;
   }
 `;
 
@@ -95,23 +118,21 @@ export function App({
   const theme = type === 'nearestBikes' ? 'BikesTheme' : 'MainTheme';
 
   return (
-    <AppDiv className={`App ${theme}`}>
-      <Title />
-      <NavList buttons={navButtons} expandable secondary />
-      <View />
-      <div className='Whitespace' />
-      <div className='Background' />
-      <div className='Footer'>
-        <a className='Link' href='https://github.com/kangasta/timetbl'>
-          kangasta/timetbl
-        </a>
+    <AppDiv className={theme}>
+      <header>
+        <Title />
+        <NavList buttons={navButtons} expandable secondary />
+      </header>
+      <Main>
+        <View />
+      </Main>
+      <Footer>
+        <a href='https://github.com/kangasta/timetbl'>kangasta/timetbl</a>
         {' version '}
         {process.env.COMMIT}
         <span className='Divider'>|</span>
-        <a className='Link' href='https://digitransit.fi/en/developers/'>
-          data source
-        </a>
-      </div>
+        <a href='https://digitransit.fi/en/developers/'>data source</a>
+      </Footer>
     </AppDiv>
   );
 }
@@ -134,7 +155,4 @@ const mapDispatchToProps = (
   };
 };
 
-export default connect<StateProps, DispatchProps>(
-  mapStateToProps,
-  mapDispatchToProps
-)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);
