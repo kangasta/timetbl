@@ -4,6 +4,8 @@ import Status from './StatusMessage';
 
 export type Visibility = 'Show' | 'Hide' | 'None';
 
+const TRANSITION_TIME_MS = 300;
+
 const FaderDiv = styled.div`
   transition: all 200ms;
 
@@ -38,31 +40,38 @@ export function Fader({
 }
 
 export interface ChangerProps extends React.HTMLAttributes<HTMLDivElement> {
-  transitionTime?: number;
+  changeKey?: string;
 }
 
 export function Changer({
   children,
-  transitionTime = 300,
+  changeKey,
   ...props
 }: ChangerProps): React.ReactElement {
-  const [visibility, setVisibility] = useState<Visibility>('Hide');
+  const [visibility, setVisibility] = useState<Visibility>('Show');
   const [content, setContent] = useState<React.ReactNode>();
+  const [contentKey, setContentKey] = useState<string | undefined>(changeKey);
 
   useEffect(() => {
+    if (changeKey === contentKey) {
+      setContent(children);
+      return;
+    }
+
     if (content === children) {
       return;
     }
 
     setVisibility('Hide');
-    const timeout = !content ? 50 : transitionTime + 50;
+    const timeout = !content ? 50 : TRANSITION_TIME_MS + 50;
     const id = setTimeout((): void => {
+      setContentKey(changeKey);
       setContent(children);
       setVisibility('Show');
     }, timeout);
 
     return (): void => clearTimeout(id);
-  }, [children, content, transitionTime]);
+  }, [children, content, changeKey, contentKey]);
 
   return (
     <Fader visibility={visibility} {...props}>
@@ -92,10 +101,13 @@ export function LoadingWrapper({
   const errorContent = error && <Status error={error} />;
   const loadingContent = loading && <Status loading={loading} />;
   const active = errorContent ?? loadingContent ?? children;
+  const changeKey = error ?? loading ?? 'content';
 
   return (
     <LoadingWrapperDiv className={error || loading ? 'Status' : 'Content'}>
-      <Changer {...props}>{active}</Changer>
+      <Changer changeKey={changeKey} {...props}>
+        {active}
+      </Changer>
     </LoadingWrapperDiv>
   );
 }
