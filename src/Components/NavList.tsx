@@ -114,7 +114,7 @@ export default function NavList({
 }: PropsType) {
   const [open, setOpen] = useState(false);
   const toggleOpen = () => setOpen((prev) => !prev);
-  const openClass = !expandable || open ? 'Open' : 'Closed';
+  const openClass = !expandable ? '' : open ? 'Open' : 'Closed';
 
   const getButtons = (buttons: Button[], child = false): React.ReactElement[] =>
     buttons.map(

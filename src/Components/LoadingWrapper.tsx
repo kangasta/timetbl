@@ -72,7 +72,9 @@ export function Changer({
 }
 
 const LoadingWrapperDiv = styled.div`
-  border-top: thin solid var(--text-primary);
+  &.Status {
+    border-top: thin solid var(--text-primary);
+  }
 `;
 
 export interface IntervalChangerProps extends ChangerProps {
@@ -92,7 +94,7 @@ export function LoadingWrapper({
   const active = errorContent ?? loadingContent ?? children;
 
   return (
-    <LoadingWrapperDiv>
+    <LoadingWrapperDiv className={error || loading ? 'Status' : 'Content'}>
       <Changer {...props}>{active}</Changer>
     </LoadingWrapperDiv>
   );
