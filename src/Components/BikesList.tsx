@@ -1,20 +1,17 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
-import { CSValidatorChanger } from 'chillisalmon';
-
 import { ViewType, StateType } from '../Store/reducer';
 import { BikeStation, NearestNode } from '../ApiUtils';
 import { DestinationItem, MainUl, MainLi } from '../Utils';
 import { DepartureListUl, DepartureLi, DestinationDiv } from './DepartureInfo';
+import { LoadingWrapper } from './LoadingWrapper';
 
 export function BikesList({ data, loading, error }: ViewType) {
   const bikesArray = data as NearestNode<BikeStation>[];
 
   return (
-    <CSValidatorChanger error={error} loading={loading}>
+    <LoadingWrapper error={error} loading={loading}>
       <MainUl className='BikesList Timetable'>
         {bikesArray.map((bikesItem, i) => (
           <MainLi key={i} className='DepartureInfo'>
@@ -48,7 +45,7 @@ export function BikesList({ data, loading, error }: ViewType) {
           </MainLi>
         ))}
       </MainUl>
-    </CSValidatorChanger>
+    </LoadingWrapper>
   );
 }
 
@@ -56,4 +53,4 @@ const mapStateToProps = ({ view }: StateType): ViewType => {
   return view;
 };
 
-export default connect<ViewType>(mapStateToProps)(BikesList);
+export default connect(mapStateToProps)(BikesList);

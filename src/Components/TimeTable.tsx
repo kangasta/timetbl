@@ -1,8 +1,6 @@
 import React from 'react';
 
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
-import { CSValidatorChanger } from 'chillisalmon';
+import { LoadingWrapper } from './LoadingWrapper';
 
 import { DepartureInfo } from '../Components';
 import { ViewType, StateType } from '../Store/reducer';
@@ -27,7 +25,7 @@ export function TimeTable({ type, data, loading, error }: ViewType) {
   }
 
   return (
-    <CSValidatorChanger error={error} loading={loading}>
+    <LoadingWrapper error={error} loading={loading}>
       <MainUl className='Timetable'>
         {data.map((departure: StoptimesData | NearestNode<StoptimesData>) => {
           if (type === 'nearestDepartures') {
@@ -55,7 +53,7 @@ export function TimeTable({ type, data, loading, error }: ViewType) {
           }
         })}
       </MainUl>
-    </CSValidatorChanger>
+    </LoadingWrapper>
   );
 }
 

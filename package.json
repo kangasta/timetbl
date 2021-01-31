@@ -49,7 +49,6 @@
     "workbox-webpack-plugin": "^6.1.0"
   },
   "dependencies": {
-    "chillisalmon": "https://github.com/kangasta/chillisalmon/releases/download/v0.8.0/chillisalmon-0.8.0.tgz",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-redux": "^7.2.2",

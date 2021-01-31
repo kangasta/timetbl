@@ -83,12 +83,3 @@ a:hover {
 .Whitespace {
 	height: 6em;
 }
-
-.CSStatus {
-	margin-top: 3em;
-	text-align: center;
-}
-
-.CSStatus .Icon {
-	font-size: 4em;
-}

@@ -1,9 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
-import { CSValidatorChanger } from 'chillisalmon';
+import { LoadingWrapper } from './LoadingWrapper';
 
 import { Action, ViewType, StateType } from '../Store/reducer';
 import { Stop, NearestNode, QueryTypeT } from '../ApiUtils';
@@ -54,9 +52,9 @@ export function StopMenu({
   ];
 
   return (
-    <CSValidatorChanger error={error} loading={loading}>
+    <LoadingWrapper error={error} loading={loading}>
       <NavList buttons={links} />
-    </CSValidatorChanger>
+    </LoadingWrapper>
   );
 }
 
