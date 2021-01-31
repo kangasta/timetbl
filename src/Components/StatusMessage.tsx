@@ -28,7 +28,7 @@ const ErrorIcon = () => (
 );
 
 const LoadingIcon = () => (
-  <IconSvg viewBox='0 0 64 64'>
+  <IconSvg className='Loading' viewBox='0 0 64 64'>
     <path
       d='M 16 4 v 16 l 10 12 l -10 12 v 16 h 32 v -16 l -10 -12 l 10 -12 v -16 h -32 M 16 6 l 16 6 l 16 -6 M 16 58 l 16 -6 l 16 6'
       stroke='currentColor'
